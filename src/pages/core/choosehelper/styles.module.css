@@ -4,5 +4,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("back.jpg");
+  background-image: url("/back.jpg");
 }

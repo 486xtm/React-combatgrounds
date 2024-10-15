@@ -5,7 +5,7 @@
   background-color: black;
   display: flex;
   flex-direction: column;
-  background-image: url("back_cam.gif");
+  background-image: url("/back_cam.gif");
   padding-top: 50px;
 }
 
@@ -32,4 +32,9 @@
   line-height: 12px;
   /* text-decoration: underline; */
   margin: 0;
+}
+
+.link:hover {
+  color: #ffff00;
+  font-weight: bold;
 }
