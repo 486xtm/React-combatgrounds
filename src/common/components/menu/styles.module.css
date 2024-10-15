@@ -33,3 +33,8 @@
   /* text-decoration: underline; */
   margin: 0;
 }
+
+.link:hover {
+  color: #ffff00;
+  font-weight: bold;
+}
