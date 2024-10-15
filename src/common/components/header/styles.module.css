@@ -4,78 +4,85 @@
 }
 
 .main-page {
-  background-image: url("images/index_r2_c1.gif");
+  background-image: url("/images/index_r2_c1.gif");
   height: 35px;
   width: 131px;
   cursor: pointer;
 }
 
-.main-page:hover, .main-page.active {
-  background-image: url("images/index_r2_c1_f2.gif");
+.main-page:hover,
+.main-page.active {
+  background-image: url("/images/index_r2_c1_f2.gif");
 }
 
 .headquarters {
-  background-image: url("images/index_r2_c2.jpg");
+  background-image: url("/images/index_r2_c2.jpg");
   height: 35px;
   width: 160px;
   cursor: pointer;
 }
 
-.headquarters:hover, .headquarters.active {
-  background-image: url("images/index_r2_c2_f2.jpg");
+.headquarters:hover,
+.headquarters.active {
+  background-image: url("/images/index_r2_c2_f2.jpg");
 }
 
 .rankings {
-  background-image: url("images/index_r2_c3.jpg");
+  background-image: url("/images/index_r2_c3.jpg");
   height: 35px;
   width: 113px;
   cursor: pointer;
 }
 
-.rankings:hover, .rankings.active {
-  background-image: url("images/index_r2_c3_f2.jpg");
+.rankings:hover,
+.rankings.active {
+  background-image: url("/images/index_r2_c3_f2.jpg");
 }
 
 .hall-of-fame {
-  background-image: url("images/index_r2_c4.jpg");
+  background-image: url("/images/index_r2_c4.jpg");
   height: 35px;
   width: 169px;
   cursor: pointer;
 }
 
-.hall-of-fame:hover, .hall-of-fame.active {
-  background-image: url("images/index_r2_c4_f2.jpg");
+.hall-of-fame:hover,
+.hall-of-fame.active {
+  background-image: url("/images/index_r2_c4_f2.jpg");
 }
 
 .faq {
-  background-image: url("images/index_r2_c5.jpg");
+  background-image: url("/images/index_r2_c5.jpg");
   height: 35px;
   width: 85px;
   cursor: pointer;
 }
 
-.faq:hover, .faq.active {
-  background-image: url("images/index_r2_c5_f2.jpg");
+.faq:hover,
+.faq.active {
+  background-image: url("/images/index_r2_c5_f2.jpg");
 }
 
 .userguide {
-  background-image: url("images/index_r2_c6.jpg");
+  background-image: url("/images/index_r2_c6.jpg");
   height: 35px;
   width: 134px;
   cursor: pointer;
 }
 
-.userguide:hover, .userguide.active {
-  background-image: url("images/index_r2_c6_f2.jpg");
+.userguide:hover,
+.userguide.active {
+  background-image: url("/images/index_r2_c6_f2.jpg");
 }
 
 .news {
-  background-image: url("images/index_r2_c7.jpg");
+  background-image: url("/images/index_r2_c7.jpg");
   height: 35px;
   width: 88px;
   cursor: pointer;
 }
 
-.news:hover, .new.active {
-  background-image: url("images/index_r2_c7_f2.jpg");
+.news:hover,
+.new.active {
+  background-image: url("/images/index_r2_c7_f2.jpg");
 }

@@ -5,7 +5,7 @@
   background-color: black;
   display: flex;
   flex-direction: column;
-  background-image: url("back_cam.gif");
+  background-image: url("/back_cam.gif");
   padding-top: 50px;
 }
 

@@ -11,6 +11,7 @@ import SignUp from "./pages/auth/SignUpPage/SignUp";
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { ChooseHelper } from "./pages/core/choosehelper/choosehelper";
+import { HeadQuarter } from "./pages/core";
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
@@ -29,6 +30,7 @@ const App = () => {
         <Route exact path="/login" element={<SignIn />} />
         <Route exact path="/register" element={<SignUp />} />
         <Route exact path="/choosehelper" element={<ChooseHelper />} />
+        <Route exact path="/headquarter" element={<HeadQuarter />} />
         <Route
           exact
           path="/secret"
