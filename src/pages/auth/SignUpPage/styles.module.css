@@ -1,7 +1,8 @@
 .back {
-  background-image: url("back.jpg");
+  background-image: url("/back.jpg");
   background-repeat: repeat;
 }
 .fontset {
   font-family: Verdana;
+
 }
