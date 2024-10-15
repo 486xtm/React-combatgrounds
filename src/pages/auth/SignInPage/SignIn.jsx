@@ -10,7 +10,9 @@ const MyComponent = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [hover, setHover] = useState(false);
+  const [hoverFag, setHoverFag] = useState(false);
+  const [hoverUserGuid, setHoverUserGuid] = useState(false);
   const handleLogin = () => {
     console.log("loginfo==>", username, password);
     navigate("/choose-helper");
@@ -149,7 +151,7 @@ const MyComponent = () => {
                           type="text"
                           name="username"
                           size="10"
-                          style={{ border: "0" }}
+                          className="border-0 rounded-lg"
                           onChange={(e) => setUsername(e.target.value)}
                         />
                       </td>
@@ -166,7 +168,7 @@ const MyComponent = () => {
                           type="password"
                           name="password"
                           size="10"
-                          style={{ border: "0" }}
+                          className="border-0 rounded-lg"
                           onChange={(e) => setPassword(e.target.value)}
                         />
                       </td>
@@ -197,10 +199,14 @@ const MyComponent = () => {
               <td colSpan="2">
                 <Link
                   to="/forgotpass"
-                  onClick={() => popupfp(this, "forgotpass")}
+                  onMouseOver={() => setHover(true)}
+                  onMouseLeave={() => setHover(false)}
                 >
                   <img
-                    src="imgs/index_r5_c6.jpg"
+                    name="index_r5_c6"
+                    src={
+                      hover ? "imgs/index_r5_c6_f2.jpg" : "imgs/index_r5_c6.jpg"
+                    }
                     width="96"
                     height="31"
                     alt=""
@@ -241,7 +247,7 @@ const MyComponent = () => {
                   alt=""
                 />
               </td>
-              <td colSpan="7" valign="top">
+              <td colSpan="7" valign="center" align="center">
                 <p>&nbsp;</p>
                 <span
                   style={{
@@ -292,9 +298,12 @@ const MyComponent = () => {
                 />
               </td>
               <td>
-                <Link to="faq">
+                <Link to="faq"
+                  onMouseOver={() => setHoverFag(true)}
+                  onMouseLeave={() => setHoverFag(false)}
+                >
                   <img
-                    src="imgs/index_r9_c4.jpg"
+                    src={hoverFag ?"imgs/index_r9_c4_f2.jpg": "imgs/index_r9_c4.jpg"}
                     width="29"
                     height="20"
                     alt=""
@@ -302,9 +311,12 @@ const MyComponent = () => {
                 </Link>
               </td>
               <td colSpan="2">
-                <Link to="userguide">
+                <Link to="userguide"
+                onMouseOver={() => setHoverUserGuid(true)}
+                onMouseLeave={() => setHoverUserGuid(false)}
+                >
                   <img
-                    src="imgs/index_r9_c5.jpg"
+                    src={hoverUserGuid ? "imgs/index_r9_c5_f2.jpg":"imgs/index_r9_c5.jpg"}
                     width="70"
                     height="20"
                     alt=""
