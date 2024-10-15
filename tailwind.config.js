@@ -5,7 +5,16 @@ export default {
     // Add paths to all your template files here
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "rgb(129, 132, 60)",
+        secondary: "rgb(255, 255, 0)",
+      },
+      fontSize: {
+        xxl: "1.7rem",
+        tiny: "0.84rem",
+      },
+    },
   },
   plugins: [],
 };
