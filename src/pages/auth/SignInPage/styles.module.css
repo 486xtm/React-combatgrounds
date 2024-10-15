@@ -8,7 +8,7 @@ td.pass {
   font-size: 13px;
 }
 
-A:link {
+/* A:link {
   color: #ffffff;
   font-family: Verdana;
   font-size: 12px;
@@ -27,7 +27,7 @@ A:hover {
   font-family: Verdana;
   font-size: 12px;
   font-weight: bold;
-}
+} */
 
 .sign-in-container {
   background-color: #000000;

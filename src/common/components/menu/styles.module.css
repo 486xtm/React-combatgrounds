@@ -1,0 +1,35 @@
+.menu-container {
+  height: 470px;
+  width: 166px;
+  vertical-align: top;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  background-image: url("back_cam.gif");
+  padding-top: 50px;
+}
+
+.menu-item {
+  font-family: Verdana;
+  font-size: 13px;
+  color: #ffff00;
+  font-weight: bold;
+  line-height: 16px;
+  margin-left: 0.25rem;
+}
+
+.sub-menu {
+  font-family: Verdana;
+  font-size: 10px;
+  color: #ffffff;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  font-size: 10px;
+  line-height: 12px;
+  /* text-decoration: underline; */
+  margin: 0;
+}

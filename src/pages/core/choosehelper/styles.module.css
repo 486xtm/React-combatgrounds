@@ -1,0 +1,8 @@
+.choose-helper-container {
+  min-width: 875px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("back.jpg");
+}
