@@ -6,13 +6,13 @@ import {
   Routes,
   redirect,
 } from "react-router-dom";
-import SignIn from "./pages/auth/SignIn";
-import SignUp from "./pages/auth/SignUp";
+import SignIn from "./pages/auth/SignInPage/SignIn";
+import SignUp from "./pages/auth/SignUpPage/SignUp";
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = useSelector(({auth}) => auth.isAuthenticated);
+  const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
   let location = useLocation();
 
   if (!isAuthenticated) {

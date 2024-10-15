@@ -1,3 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  display: block;
+  border-right-style: solid;
+  height: revert-layer;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+tr {
+  border: none;
+  padding: 0;
+  line-height: 0;
+}
+
+div.desc {
+  color: #81843c;
+  font-family: verdana, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+td.password {
+  font-size: 13px;
+}
+
+div.desc.error {
+  color: red;
+}
+
+a {
+  font-size: 8px;
+  color: white;
+}
