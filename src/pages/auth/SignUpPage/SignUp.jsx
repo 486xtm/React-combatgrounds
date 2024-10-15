@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styles from "./styles.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import Loading from '../../../common/components/Loading'
+
 const SignUpPage = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [username, setUsername] = useState("");
@@ -16,8 +19,11 @@ const SignUpPage = () => {
   const [hoverUserGuid, setHoverUserGuid] = useState(false);
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    console.log("loginfo==>", user, pass);
-    navigate("/choosehelper");
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      navigate("/choosehelper")
+    }, 5000);
   };
 
   const handleRegisterSubmit = (e) => {
@@ -34,11 +40,12 @@ const SignUpPage = () => {
 
     navigate("/login");
   };
-
+  if (isLoading)
+    return <Loading />
   return (
     <div
       className={
-        "flex flex-col justify-center items-center bg-black " + styles["back"]
+        "flex flex-col items-center bg-black " + styles["back"]
       }
     >
       <div className="w-[880px]">

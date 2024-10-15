@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-
+import Loading from '../../../common/components/Loading'
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 const MyComponent = () => {
@@ -13,9 +13,13 @@ const MyComponent = () => {
   const [hover, setHover] = useState(false);
   const [hoverFag, setHoverFag] = useState(false);
   const [hoverUserGuid, setHoverUserGuid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const handleLogin = () => {
-    console.log("loginfo==>", username, password);
-    navigate("/choose-helper");
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      navigate("/choosehelper")
+    }, 5000);
   };
 
   useEffect(() => {
@@ -45,7 +49,8 @@ const MyComponent = () => {
       document.removeEventListener("contextmenu", disableContextMenu);
     };
   }, []);
-
+  if(isLoading)
+    return <Loading />
   return (
     <div className={styles["sign-in-container"]}>
       <div align="center">
