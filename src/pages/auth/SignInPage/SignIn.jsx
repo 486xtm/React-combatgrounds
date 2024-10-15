@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-
+import Loading from '../../../common/components/Loading'
 import { Link, useNavigate } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 const MyComponent = () => {
   // Preload images on component mount
 
   const navigate = useNavigate();
-
+  const isInitial = useSelector(({auth}) => auth.isInitial);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [hover, setHover] = useState(false);
   const [hoverFag, setHoverFag] = useState(false);
   const [hoverUserGuid, setHoverUserGuid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const handleLogin = () => {
-    console.log("loginfo==>", username, password);
-    navigate("/choose-helper");
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      navigate("/choosehelper")
+    }, 5000);
   };
 
   useEffect(() => {
@@ -45,7 +49,8 @@ const MyComponent = () => {
       document.removeEventListener("contextmenu", disableContextMenu);
     };
   }, []);
-
+  if(isLoading)
+    return <Loading />
   return (
     <div className={styles["sign-in-container"]}>
       <div align="center">
@@ -248,7 +253,22 @@ const MyComponent = () => {
                 />
               </td>
               <td colSpan="7" valign="center" align="center">
-                <p>&nbsp;</p>
+                {
+                  isInitial ? <div className="desc text-left leading-4 w-[320px]">
+                  Combat Grounds is a text-based multiplayer strategy game for
+                  those who want to jump into a world of politics and dominate
+                  the battlefield through words and strength.
+                  <br />
+                  <br />
+                  At Combat Grounds you can become a Navy Seal, a Soldier, or
+                  a Terrorist. Where is the enemy? Who are your allies? In an
+                  environment where the only certainty you have is yourself,
+                  can you survive?
+                  <a href="intro.htm" className="text-white">
+                    {" "}
+                    [+]
+                  </a>
+                </div> : (<span><p>&nbsp;</p>
                 <span
                   style={{
                     color: "#FF0000",
@@ -256,12 +276,14 @@ const MyComponent = () => {
                     fontFamily: "Verdana",
                   }}
                 >
-                  <b>
-                    <div className="desc error">
-                      You must be logged in to view that page.
-                    </div>
-                  </b>
-                </span>
+                  <div className="desc error">
+                    <b>You must be logged in to view that page.</b>
+                  </div>
+                  
+                </span></span>)
+                }
+                {/*  */}
+                
               </td>
               <td rowSpan="2">
                 <img
@@ -298,12 +320,17 @@ const MyComponent = () => {
                 />
               </td>
               <td>
-                <Link to="faq"
+                <Link
+                  to="faq"
                   onMouseOver={() => setHoverFag(true)}
                   onMouseLeave={() => setHoverFag(false)}
                 >
                   <img
-                    src={hoverFag ?"imgs/index_r9_c4_f2.jpg": "imgs/index_r9_c4.jpg"}
+                    src={
+                      hoverFag
+                        ? "imgs/index_r9_c4_f2.jpg"
+                        : "imgs/index_r9_c4.jpg"
+                    }
                     width="29"
                     height="20"
                     alt=""
@@ -311,12 +338,17 @@ const MyComponent = () => {
                 </Link>
               </td>
               <td colSpan="2">
-                <Link to="userguide"
-                onMouseOver={() => setHoverUserGuid(true)}
-                onMouseLeave={() => setHoverUserGuid(false)}
+                <Link
+                  to="userguide"
+                  onMouseOver={() => setHoverUserGuid(true)}
+                  onMouseLeave={() => setHoverUserGuid(false)}
                 >
                   <img
-                    src={hoverUserGuid ? "imgs/index_r9_c5_f2.jpg":"imgs/index_r9_c5.jpg"}
+                    src={
+                      hoverUserGuid
+                        ? "imgs/index_r9_c5_f2.jpg"
+                        : "imgs/index_r9_c5.jpg"
+                    }
                     width="70"
                     height="20"
                     alt=""

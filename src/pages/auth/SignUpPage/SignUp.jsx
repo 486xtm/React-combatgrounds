@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styles from "./styles.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import Loading from '../../../common/components/Loading'
+
 const SignUpPage = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [username, setUsername] = useState("");
@@ -12,10 +15,15 @@ const SignUpPage = () => {
   const [cpass, setCPass] = useState("");
   const [characterType, setCharacterType] = useState("Soldier");
   const [hover, setHover] = useState(false);
+  const [hoverFag, setHoverFag] = useState(false);
+  const [hoverUserGuid, setHoverUserGuid] = useState(false);
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    console.log("loginfo==>", user, pass);
-    navigate("/choose-helper");
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      navigate("/choosehelper")
+    }, 5000);
   };
 
   const handleRegisterSubmit = (e) => {
@@ -32,11 +40,12 @@ const SignUpPage = () => {
 
     navigate("/login");
   };
-
+  if (isLoading)
+    return <Loading />
   return (
     <div
       className={
-        "flex flex-col justify-center items-center bg-black " + styles["back"]
+        "flex flex-col items-center bg-black " + styles["back"]
       }
     >
       <div className="w-[880px]">
@@ -126,7 +135,11 @@ const SignUpPage = () => {
                         >
                           <img
                             name="index_r5_c6"
-                            src={hover ? "imgs/index_r5_c6_f2.jpg" : "imgs/index_r5_c6.jpg"}
+                            src={
+                              hover
+                                ? "imgs/index_r5_c6_f2.jpg"
+                                : "imgs/index_r5_c6.jpg"
+                            }
                             width="96"
                             height="31"
                             alt=""
@@ -169,20 +182,36 @@ const SignUpPage = () => {
                 <br />
                 <br />
                 <div className="flex">
-                  <Link to="/faq">
+                  <Link
+                    to="/faq"
+                    onMouseOver={() => setHoverFag(true)}
+                    onMouseLeave={() => setHoverFag(false)}
+                  >
                     <img
                       name="index_r9_c4"
-                      src="https://combatgrounds.com/imgs/index_r9_c4.jpg"
+                      src={
+                        hoverFag
+                          ? "/imgs/index_r9_c4_f2.jpg"
+                          : "/imgs/index_r9_c4.jpg"
+                      }
                       width="29"
                       height="20"
                       alt=""
                     />
                   </Link>
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  <Link to="/userguide">
+                  <Link
+                    to="/userguide"
+                    onMouseOver={() => setHoverUserGuid(true)}
+                    onMouseLeave={() => setHoverUserGuid(false)}
+                  >
                     <img
                       name="index_r9_c5"
-                      src="https://combatgrounds.com/imgs/index_r9_c5.jpg"
+                      src={
+                        hoverUserGuid
+                          ? "imgs/index_r9_c5_f2.jpg"
+                          : "imgs/index_r9_c5.jpg"
+                      }
                       width="70"
                       height="20"
                       alt=""
@@ -319,9 +348,18 @@ const SignUpPage = () => {
       <footer className="text-center">
         <b>Copyright © 2005-2006 CombatGrounds.com. All rights reserved.</b>
         <br />
-        <a href="mailto:info@combatgrounds.com">Contact us.</a>
+        <a
+          className="underline decoration-white hover:decoration-yellow-400"
+          href="mailto:info@combatgrounds.com"
+        >
+          Contact us.
+        </a>
         <br />
-        <a href="http://www.xmmorpg.com" target="_blank">
+        <a
+          className="underline decoration-white hover:decoration-yellow-400"
+          href="http://www.xmmorpg.com"
+          target="_blank"
+        >
           MMORPG
         </a>
       </footer>
