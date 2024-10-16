@@ -53,50 +53,6 @@ export const HeadQuarter = () => {
         <div className="flex h-[625px] w-full bg-black pb-[20px] pt-5 mt-5">
           <Menu />
           <div className="flex-1 flex flex-col">
-            <div className="h-[125px] ml-[25px] flex">
-              <object
-                className="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-                codeBase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
-                width="125"
-                height="125"
-                id="Forex"
-                align="middle"
-              >
-                <param name="allowScriptAccess" value="sameDomain" />
-                <param
-                  name="movie"
-                  value="070912_125x125_gangster.swf?clickTAG=http://www.gangstermind.com/?refer=cg2"
-                />
-                <param name="quality" value="high" />
-                <param name="bgcolor" value="#000000" />
-                <embed
-                  quality="high"
-                  bgcolor="#000000"
-                  src="070912_125x125_gangster.swf?clickTAG=http://www.gangstermind.com"
-                  width="125"
-                  height="125"
-                  name="Forex"
-                  align="middle"
-                  allowScriptAccess="sameDomain"
-                  type="application/x-shockwave-flash"
-                  pluginspage="http://www.macromedia.com/go/getflashplayer"
-                />
-              </object>
-              <span className="text-sm text-white ml-[50px] mr-5">
-                <Link to="www.gangstermind.com">
-                  <u>
-                    <b>www.gangstermind.com</b>
-                  </u>
-                </Link>
-                <p>
-                  GangsterMind is a FREE, browser-based game where you are a
-                  ruthless gangster thirsting for money and power. At the helm
-                  of an organized crime gang, you will instill fear in the
-                  hearts of your enemies to protect your assets and expand your
-                  territory... <u>[+]</u>
-                </p>
-              </span>
-            </div>
             <Link to="/news">
               <p className="text-xl underline text-white font-bold text-center my-5">
                 Click here for News

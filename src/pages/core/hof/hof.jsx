@@ -5,7 +5,7 @@ import { Header, Menu } from "../../../common/components";
 export const HallOfFame = () => {
   return (
     <div className={styles["hof-container"]}>
-      <Header currentActiveTab="rankings" />
+      <Header currentActiveTab="hall-of-fame" />
       <div className="flex flex-col w-[870px] border-primary border-2 bg-black">
         <div className={styles["status-bar"]}>
           <div className="flex flex-col">
