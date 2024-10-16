@@ -405,33 +405,8 @@ const MyComponent = () => {
                 <img src="imgs/spacer.gif" width="1" height="20" alt="" />
               </td>
             </tr>
-            <tr>
-              <td colSpan="12">&nbsp;</td>
-            </tr>
-            <tr>
-              <td colSpan="12" align="center">
-                <embed
-                  width="728"
-                  height="90"
-                  quality="high"
-                  bgcolor="#000000"
-                  src="070912_728x90_gangster.swf"
-                />
-              </td>
-            </tr>
           </tbody>
         </table>
-        <Link to="http://www.xmmorpg.com" target="_blank">
-          <span
-            style={{
-              fontSize: "1",
-              fontFamily: "Arial, Helvetica, sans-serif",
-              marginTop: "20px",
-            }}
-          >
-            MMORPG
-          </span>
-        </Link>
       </div>
     </div>
   );
