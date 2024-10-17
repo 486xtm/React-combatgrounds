@@ -59,7 +59,7 @@ export const Profile = () => {
                   <p className="text-sm text-secondary text-bold">
                     Sealife42111
                   </p>
-                  <p className="text-sm text-red-300 text-bold">
+                  <p className="text-sm text-red-500 text-bold">
                     Net worth: 444,269
                   </p>
                 </div>
@@ -154,7 +154,7 @@ export const Profile = () => {
                   <p className="text-center text-white font-bold text-sm mt-3">
                     MONEY banked:
                   </p>
-                  <p className="text-center text-red-400 font-bold">$0</p>
+                  <p className="text-center text-red-600 font-bold">$0</p>
                   <div className="my-1 bg-dark-primary text-sm font-bold text-white text-bold text-center mt-3">
                     CREW
                   </div>
@@ -166,7 +166,7 @@ export const Profile = () => {
                   </div>
                   <div className="flex">
                     <div className="flex flex-col w-[70px]">
-                      <p className="text-red-800 text-xs font-bold border-gray-900 border-2">
+                      <p className="text-red-600 text-xs font-bold border-gray-900 border-2 text-center">
                         Attack items
                       </p>
                       <img
@@ -186,7 +186,7 @@ export const Profile = () => {
                       />
                     </div>
                     <div className="flex flex-col w-[70px]">
-                      <p className="text-blue-800 text-xs font-bold border-gray-900 border-2">
+                      <p className="text-blue-800 text-xs font-bold border-gray-900 border-2 text-center">
                         Defense items
                       </p>
                       <img
@@ -211,7 +211,7 @@ export const Profile = () => {
                       />
                     </div>
                     <div className="flex flex-col w-[70px]">
-                      <p className="text-white text-xs font-bold border-gray-900 border-2">
+                      <p className="text-white text-xs font-bold border-gray-900 border-2 text-center">
                         Combo items
                       </p>
                       <img
@@ -226,7 +226,7 @@ export const Profile = () => {
                       />
                     </div>
                     <div className="flex flex-col w-[70px]">
-                      <p className="text-green-500 text-xs font-bold border-gray-900 border-2">
+                      <p className="text-green-500 text-xs font-bold border-gray-900 border-2 text-center">
                         Income items
                       </p>
                       <img

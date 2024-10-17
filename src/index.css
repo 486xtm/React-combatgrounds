@@ -50,3 +50,10 @@ td.password {
 div.desc.error {
   color: red;
 }
+
+button {
+  background-color: silver;
+  border-radius: 2px;
+  padding: 3px;
+  font-size: 13px;
+}
