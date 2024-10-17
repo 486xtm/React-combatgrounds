@@ -92,7 +92,7 @@ export const Rankings = ({}) => {
     //fetch_datac
     console.log("type===>", type);
     // setData([]);
-  }, type);
+  }, [type]);
 
   return (
     <div className={styles["ranking-container"]}>
@@ -146,22 +146,22 @@ export const Rankings = ({}) => {
             <div className={styles["ranking-actions"]}>
               <div
                 className="text-transparent text-lg font-bold mx-auto cursor-pointer"
-                // onClick={() => navigate("/ranking?type=supporter")}
-                onClick={() => setType("supporter")}
+                onClick={() => {
+                  setType("supporter");
+                  console.log("oka");
+                }}
               >
                 AAAAAAAAAAAA
               </div>
               <div className="flex justify-center">
                 <div
                   className="text-transparent text-lg font-bold cursor-pointer"
-                  // onClick={() => navigate("/ranking?type=fee")}
                   onClick={() => setType("free")}
                 >
                   BBBBBBBB
                 </div>
                 <div
                   className="text-transparent text-lg font-bold ml-[175px] cursor-pointer"
-                  // onClick={() => navigate("/ranking?type=player")}
                   onClick={() => setType("player")}
                 >
                   CCCCCCCC
@@ -170,14 +170,13 @@ export const Rankings = ({}) => {
               <div className="flex justify-center">
                 <div
                   className="text-transparent text-lg font-bold cursor-pointer"
-                  // onClick={() => navigate("/ranking?type=crew")}
                   onClick={() => setType("crew")}
                 >
                   DDDDD
                 </div>
                 <div
                   className="text-transparent text-lg font-bold ml-[100px] cursor-pointer"
-                  onClick={() => navigate("/stats-misc")}
+                  onClick={() => navigate("/statmisc")}
                 >
                   EEEEEEE
                 </div>
