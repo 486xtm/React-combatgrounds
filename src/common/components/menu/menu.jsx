@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./styles.module.css";
-
+import { useDispatch } from "react-redux";
+import { logout } from "../../../redux/authSlice";
 export const Menu = () => {
+  const dispatch = useDispatch();
   return (
     <div className={styles["menu-container"]}>
       <div className={styles["menu-item"]}>MEMBERS</div>
@@ -111,7 +113,10 @@ export const Menu = () => {
           SUPPORT
         </Link>
         <Link
-          to="/bank"
+          to="/login"
+          onClick={() => {
+            dispatch(logout());
+          }}
           className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
         >
           LOGOUT
