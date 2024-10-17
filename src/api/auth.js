@@ -1,10 +1,11 @@
 import axios from "axios";
 const basicURL = "http://localhost:5000/api";
 import { login } from "../redux/authSlice";
-import { setLoginError } from "../redux/errorSlice";
+import { setLoginError, setRegisterError } from "../redux/errorSlice";
 // const basicURL = process.env.basicURL;
-export const signIn = async ({ username, password }, dispatch) => {
+export const signIn = async (data, dispatch) => {
   try {
+    const { username, password } = data;
     const response = await axios.post(`${basicURL}/user/login`, {
       name: username,
       password,
@@ -20,8 +21,27 @@ export const signIn = async ({ username, password }, dispatch) => {
       },
     });
     dispatch(login(userInfo.data));
+    dispatch(setLoginError(null));
   } catch (err) {
-    dispatch(setLoginError({msg:err.response?.data.msg || err.message}))
+    dispatch(setLoginError({ msg: err.response?.data.msg || err.message }));
+  }
+};
+export const signUp = async (data, dispatch, navigate) => {
+  try {
+    const { username, email, cemail, newPass, cpass, characterType } = data;
+    const reqData = {
+      name: username,
+      email,
+      cemail,
+      password: newPass,
+      cpassword: cpass,
+      characterType,
+    };
+    await axios.post(`${basicURL}/user/register`, reqData);
+    dispatch(setRegisterError(null));
+    navigate("/login");
+  } catch (err) {
+    dispatch(setRegisterError({ msg: err.response?.data.msg || err.message }));
   }
 };
 
