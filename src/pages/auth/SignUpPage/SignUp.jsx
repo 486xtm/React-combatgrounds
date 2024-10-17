@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import styles from "./styles.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from '../../../common/components/Loading'
+import { useSelector, useDispatch } from "react-redux";
+import { signIn } from "../../../api/auth";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
+  const loginError = useSelector(({error}) => error.login);
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
@@ -66,6 +69,9 @@ const SignUpPage = () => {
               <div className={"text-white text-xs " + styles["fontset"]}>
                 Already have a CombatGrounds account? Login here.
               </div>
+              {
+                loginError ? <div className={"text-[#FF0000] text-xs text-center mt-3 font-bold " + styles["fontset"]}>{loginError.msg}</div> : null
+              }
               <form name="loginform" method="post" onSubmit={handleLoginSubmit}>
                 <table width="100%" border="0" cellPadding="0" cellSpacing="0">
                   <tbody>

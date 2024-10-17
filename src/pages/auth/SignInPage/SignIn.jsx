@@ -2,26 +2,40 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import Loading from '../../../common/components/Loading'
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { signIn } from "../../../api/auth";
+
 const MyComponent = () => {
   // Preload images on component mount
 
   const navigate = useNavigate();
   const isInitial = useSelector(({auth}) => auth.isInitial);
+  const isAuthenticated = useSelector(({auth}) => auth.isAuthenticated);
+  const loginError = useSelector(({error}) => error.login);
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [hover, setHover] = useState(false);
   const [hoverFag, setHoverFag] = useState(false);
   const [hoverUserGuid, setHoverUserGuid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const handleLogin = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      navigate("/choosehelper")
-    }, 5000);
+  const handleLogin = async() => {
+    await signIn({username, password}, dispatch);
   };
-
+  useEffect(() => {
+    if(isAuthenticated){
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        navigate("/choosehelper")
+      }, 5000);
+    }
+  },[isAuthenticated])
+  useEffect(() => {
+    if(loginError) {
+      navigate('/register');
+    }
+  }, [loginError])
   useEffect(() => {
     const preloadImages = (imageArray) => {
       imageArray.forEach((src) => {

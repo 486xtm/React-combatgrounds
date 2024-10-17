@@ -13,12 +13,12 @@ const authSlice = createSlice({
     login: (state, action) => {
       state.isAuthenticated = true;
       state.user = action.payload;
-      isInitial = false
+      state.isInitial = false
     },
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
-      isInitial = false
+      state.isInitial = false
     },
   },
 });
