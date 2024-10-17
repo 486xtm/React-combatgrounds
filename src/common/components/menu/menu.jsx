@@ -24,7 +24,7 @@ export const Menu = () => {
 
       <div className={styles["menu-item"]}>PROFILE</div>
       <div className={styles["sub-menu"]}>
-        <Link to="/pro" className={styles["link"]}>
+        <Link to="/profile" className={styles["link"]}>
           - <u>VIEW PROFILE</u>
         </Link>
         <Link to="/editinfo" className={styles["link"]}>
