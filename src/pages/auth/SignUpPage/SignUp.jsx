@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import Loading from '../../../common/components/Loading'
+import Loading from "../../../common/components/Loading";
 import { useSelector, useDispatch } from "react-redux";
-import { signIn } from "../../../api/auth";
+import { signIn, signUp } from "../../../api/auth";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const loginError = useSelector(({error}) => error.login);
+  const dispatch = useDispatch();
+  const loginError = useSelector(({ error }) => error.login);
+  const registerError = useSelector(({ error }) => error.register);
+  const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
@@ -20,37 +23,55 @@ const SignUpPage = () => {
   const [hover, setHover] = useState(false);
   const [hoverFag, setHoverFag] = useState(false);
   const [hoverUserGuid, setHoverUserGuid] = useState(false);
-  const handleLoginSubmit = (e) => {
+  const [agreeCheck, setAgreeCheck] = useState(false);
+  const [accountCheck, setAccountCheck] = useState(false);
+
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      navigate("/choosehelper")
-    }, 5000);
+    await signIn({ username: user, password: pass }, dispatch);
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    console.log(
-      "register==>",
-      username,
-      email,
-      cemail,
-      newPass,
-      cpass,
-      characterType
-    );
-
-    navigate("/login");
+    console.log(accountCheck, agreeCheck);
+    if (!agreeCheck) {
+      alert("You must accept the terms of use.");
+      return;
+    } else if (!accountCheck) {
+      alert(
+        "You must confirm that this is your only CombatGroudns.com account."
+      );
+      return;
+    } else {
+      await signUp(
+        { username, email, cemail, newPass, cpass, characterType },
+        dispatch,
+        navigate
+      );
+    }
   };
-  if (isLoading)
-    return <Loading />
+  useEffect(() => {
+    if (isAuthenticated) {
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        navigate("/choosehelper");
+      }, 5000);
+    }
+  }, [isAuthenticated]);
+  useEffect(() => {
+    if (loginError) {
+      navigate("/register");
+    }
+  }, [loginError]);
+  useEffect(() => {
+    if (registerError) {
+      alert(registerError.msg);
+    }
+  }, [registerError]);
+  if (isLoading) return <Loading />;
   return (
-    <div
-      className={
-        "flex flex-col items-center bg-black " + styles["back"]
-      }
-    >
+    <div className={"flex flex-col items-center bg-black " + styles["back"]}>
       <div className="w-[880px]">
         <img src="images/index_r1_c1.jpg" width="880" height="165" alt="" />
       </div>
@@ -69,9 +90,16 @@ const SignUpPage = () => {
               <div className={"text-white text-xs " + styles["fontset"]}>
                 Already have a CombatGrounds account? Login here.
               </div>
-              {
-                loginError ? <div className={"text-[#FF0000] text-xs text-center mt-3 font-bold " + styles["fontset"]}>{loginError.msg}</div> : null
-              }
+              {loginError ? (
+                <div
+                  className={
+                    "text-[#FF0000] text-xs text-center mt-3 font-bold " +
+                    styles["fontset"]
+                  }
+                >
+                  {loginError.msg}
+                </div>
+              ) : null}
               <form name="loginform" method="post" onSubmit={handleLoginSubmit}>
                 <table width="100%" border="0" cellPadding="0" cellSpacing="0">
                   <tbody>
@@ -246,7 +274,6 @@ const SignUpPage = () => {
                   <div className="w-[40%] pr-10">
                     <input
                       type="text"
-                      name="username"
                       className="w-full h-[20px] rounded-sm border-[1px] border-[#CCCCCC] text-black"
                       value={username}
                       onChange={(ev) => setUsername(ev.target.value)}
@@ -263,7 +290,6 @@ const SignUpPage = () => {
                   <div className="w-[40%]">
                     <input
                       type="text"
-                      name="username"
                       className="w-full h-[20px] rounded-sm border-[1px] border-[#CCCCCC] text-black"
                       value={email}
                       onChange={(ev) => setEmail(ev.target.value)}
@@ -286,8 +312,7 @@ const SignUpPage = () => {
                   <div className="w-[30%]">Password</div>
                   <div className="w-[40%] pr-10">
                     <input
-                      type="text"
-                      name="username"
+                      type="password"
                       className="w-full h-[20px] rounded-sm border-[1px] border-[#CCCCCC] text-black"
                       value={newPass}
                       onChange={(ev) => setNewPass(ev.target.value)}
@@ -303,8 +328,7 @@ const SignUpPage = () => {
                   <div className="w-[30%]">Confirm Password</div>
                   <div className="w-[40%]">
                     <input
-                      type="text"
-                      name="username"
+                      type="password"
                       className="w-full h-[20px] rounded-sm border-[1px] border-[#CCCCCC] text-black"
                       value={cpass}
                       onChange={(ev) => setCPass(ev.target.value)}
@@ -327,7 +351,12 @@ const SignUpPage = () => {
               </div>
               <div className="gap-4 my-4 flex flex-col">
                 <div className="flex items-center space-x-2">
-                  <input name="terms" type="checkbox" value="1" />
+                  <input
+                    name="terms"
+                    type="checkbox"
+                    value={agreeCheck}
+                    onChange={() => setAgreeCheck(!agreeCheck)}
+                  />
                   <div>
                     I agree to the{" "}
                     <Link to="/termsofuse">
@@ -336,7 +365,12 @@ const SignUpPage = () => {
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <input name="multi" type="checkbox" value="1" />
+                  <input
+                    name="multi"
+                    type="checkbox"
+                    value={accountCheck}
+                    onChange={() => setAccountCheck(!accountCheck)}
+                  />
                   <div>This is my ONLY CombatGrounds.com Account.</div>
                 </div>
               </div>
