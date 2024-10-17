@@ -1,0 +1,40 @@
+.edit-info-container {
+  min-width: 875px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("/back.jpg");
+}
+
+.status-bar {
+  width: 100%;
+  height: 130px;
+  background-image: url("/bar.gif");
+  padding: 6px;
+  display: flex;
+}
+
+.buy-turns {
+  background-image: url("/pics/turns.gif");
+  height: 42px;
+  width: 120px;
+  cursor: pointer;
+  margin-left: 200px;
+}
+
+.buy-turns:hover {
+  background-image: url("/pics/turns2.gif");
+}
+
+.subscribe {
+  background-image: url("/pics/subscribe.gif");
+  width: 120px;
+  height: 42px;
+  margin-left: 200px;
+  cursor: pointer;
+}
+
+.subscribe:hover {
+  background-image: url("/pics/subscribe2.gif");
+}

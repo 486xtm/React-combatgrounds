@@ -11,6 +11,7 @@ export default {
         secondary: "rgb(255, 255, 0)",
         "dark-primary": "rgb(102, 102, 51)",
         "dark-secondary": "rgb(210, 180, 140)",
+        "custom-gray": "rgb(51, 51, 51)",
       },
       fontSize: {
         xxl: "1.7rem",

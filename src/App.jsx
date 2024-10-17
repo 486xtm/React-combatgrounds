@@ -11,7 +11,13 @@ import SignUp from "./pages/auth/SignUpPage/SignUp";
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { ChooseHelper } from "./pages/core/choosehelper/choosehelper";
-import { HallOfFame, HeadQuarter, Rankings } from "./pages/core";
+import {
+  EditInfo,
+  HallOfFame,
+  HeadQuarter,
+  Profile,
+  Rankings,
+} from "./pages/core";
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
@@ -33,6 +39,8 @@ const App = () => {
         <Route exact path="/headquarter" element={<HeadQuarter />} />
         <Route exact path="/hof" element={<HallOfFame />} />
         <Route exact path="/ranking" element={<Rankings />} />
+        <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/editinfo" element={<EditInfo />} />
         <Route
           exact
           path="/secret"
