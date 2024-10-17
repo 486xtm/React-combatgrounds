@@ -111,7 +111,7 @@ export const Menu = () => {
           SUPPORT
         </Link>
         <Link
-          to="/bank"
+          to="/login"
           className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
         >
           LOGOUT

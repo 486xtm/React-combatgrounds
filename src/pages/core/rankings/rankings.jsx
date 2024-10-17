@@ -5,92 +5,194 @@ import { useNavigate } from "react-router-dom";
 
 export const Rankings = ({}) => {
   const [type, setType] = useState("");
-  const [data, setData] = useState([
-    {
-      name: "webdde",
-      worth: "234,234,234",
-      online: true,
-    },
-    {
-      name: "abs",
-      worth: "234,234,234",
-      online: false,
-    },
-    {
-      name: "wefs",
-      worth: "234,234,234",
-      online: true,
-    },
-
-    {
-      name: "webdde",
-      worth: "234,234,234",
-      online: true,
-    },
-    {
-      name: "abs",
-      worth: "234,234,234",
-      online: false,
-    },
-    {
-      name: "wefs",
-      worth: "234,234,234",
-      online: true,
-    },
-
-    {
-      name: "webdde",
-      worth: "234,234,234",
-      online: true,
-    },
-    {
-      name: "abs",
-      worth: "234,234,234",
-      online: false,
-    },
-    {
-      name: "wefs",
-      worth: "234,234,234",
-      online: true,
-    },
-
-    {
-      name: "webdde",
-      worth: "234,234,234",
-      online: true,
-    },
-    {
-      name: "abs",
-      worth: "234,234,234",
-      online: false,
-    },
-    {
-      name: "wefs",
-      worth: "234,234,234",
-      online: true,
-    },
-
-    {
-      name: "webdde",
-      worth: "234,234,234",
-      online: true,
-    },
-    {
-      name: "abs",
-      worth: "234,234,234",
-      online: false,
-    },
-    {
-      name: "wefs",
-      worth: "234,234,234",
-      online: true,
-    },
-  ]);
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     //fetch_datac
     console.log("type===>", type);
+    if (type === "free")
+      setData([
+        {
+          name: "A",
+          worth: "234,234,234",
+          online: true,
+        },
+        {
+          name: "B",
+          worth: "234,234,234",
+          online: false,
+        },
+        {
+          name: "wefs",
+          worth: "234,234,234",
+          online: true,
+        },
+
+        {
+          name: "A",
+          worth: "234,234,234",
+          online: true,
+        },
+        {
+          name: "B",
+          worth: "234,234,234",
+          online: false,
+        },
+        {
+          name: "wefs",
+          worth: "234,234,234",
+          online: true,
+        },
+
+        {
+          name: "A",
+          worth: "234,234,234",
+          online: true,
+        },
+        {
+          name: "B",
+          worth: "234,234,234",
+          online: false,
+        },
+        {
+          name: "wefs",
+          worth: "234,234,234",
+          online: true,
+        },
+      ]);
+    else if (type === "crew") {
+      setData([
+        {
+          name: "A",
+          worth: "234,234,234",
+          online: true,
+        },
+        {
+          name: "abs",
+          worth: "234,234,234",
+          online: false,
+        },
+      ]);
+    } else if (type === "") {
+      setData([]);
+    } else if (type === "player") {
+      setData([
+        {
+          name: "A",
+          worth: "234,234,234",
+          online: true,
+        },
+        {
+          name: "abs",
+          worth: "234,234,234",
+          online: false,
+        },
+        {
+          name: "wefs",
+          worth: "234,234,234",
+          online: true,
+        },
+
+        {
+          name: "A",
+          worth: "234,234,234",
+          online: true,
+        },
+        {
+          name: "abs",
+          worth: "234,234,234",
+          online: false,
+        },
+        {
+          name: "wefs",
+          worth: "234,234,234",
+          online: true,
+        },
+      ]);
+    } else {
+      setData([
+        {
+          name: "webdde",
+          worth: "234,234,234",
+          online: true,
+        },
+        {
+          name: "abs",
+          worth: "234,234,234",
+          online: false,
+        },
+        {
+          name: "wefs",
+          worth: "234,234,234",
+          online: true,
+        },
+
+        {
+          name: "webdde",
+          worth: "234,234,234",
+          online: true,
+        },
+        {
+          name: "abs",
+          worth: "234,234,234",
+          online: false,
+        },
+        {
+          name: "wefs",
+          worth: "234,234,234",
+          online: true,
+        },
+
+        {
+          name: "webdde",
+          worth: "234,234,234",
+          online: true,
+        },
+        {
+          name: "abs",
+          worth: "234,234,234",
+          online: false,
+        },
+        {
+          name: "wefs",
+          worth: "234,234,234",
+          online: true,
+        },
+
+        {
+          name: "webdde",
+          worth: "234,234,234",
+          online: true,
+        },
+        {
+          name: "abs",
+          worth: "234,234,234",
+          online: false,
+        },
+        {
+          name: "wefs",
+          worth: "234,234,234",
+          online: true,
+        },
+
+        {
+          name: "webdde",
+          worth: "234,234,234",
+          online: true,
+        },
+        {
+          name: "abs",
+          worth: "234,234,234",
+          online: false,
+        },
+        {
+          name: "wefs",
+          worth: "234,234,234",
+          online: true,
+        },
+      ]);
+    }
     // setData([]);
   }, [type]);
 
