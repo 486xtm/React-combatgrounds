@@ -17,6 +17,7 @@ import {
   HeadQuarter,
   Profile,
   Rankings,
+  StatMisc,
 } from "./pages/core";
 
 const ProtectedRoute = ({ children }) => {
@@ -41,6 +42,7 @@ const App = () => {
         <Route exact path="/ranking" element={<Rankings />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/editinfo" element={<EditInfo />} />
+        <Route exact path="/statmisc" element={<StatMisc />} />
         <Route
           exact
           path="/secret"

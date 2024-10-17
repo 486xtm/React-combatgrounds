@@ -177,7 +177,7 @@ export const Rankings = ({}) => {
                 </div>
                 <div
                   className="text-transparent text-lg font-bold ml-[100px] cursor-pointer"
-                  onClick={() => navigate("/stats-misc")}
+                  onClick={() => navigate("/statmisc")}
                 >
                   EEEEEEE
                 </div>
