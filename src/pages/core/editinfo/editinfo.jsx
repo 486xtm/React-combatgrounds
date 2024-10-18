@@ -1,8 +1,83 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Header, Menu } from "../../../common/components";
+import {
+  updateAvatar,
+  updateCharacterType,
+  updateEmail,
+  updateName,
+  updatePassword,
+  updateProfileInfo,
+  updateYoutube,
+} from "../../../api/auth";
+import { useDispatch } from "react-redux";
 
 export const EditInfo = () => {
+  const [newEmail, setNewEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [characterType, setCharacterType] = useState("Solider");
+  const [newName, setNewName] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+  const [aimName, setAIMName] = useState("");
+  const [description, setDescription] = useState("");
+  const [youtube, setYoutube] = useState("");
+  const [enableYoutube, setEnableYoutube] = useState(false);
+  const [autoYoutube, setAutoYoutube] = useState(false);
+  const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(450);
+  const [avatar, setAvatar] = useState(null);
+
+  const dispatch = useDispatch();
+
+  const changeEmailSubmit = () => {
+    console.log(newEmail);
+    updateEmail({ newEmail }, dispatch);
+  };
+
+  const changeNameSubmit = () => {
+    console.log(newName);
+    updateName({ newName }, dispatch);
+  };
+
+  const changePasswordSubmit = () => {
+    console.log(password, confirmPassword, oldPassword);
+    updatePassword(
+      {
+        oldPassword,
+        newPassword: password,
+        confirmNewPassword: confirmPassword,
+      },
+      dispatch
+    );
+  };
+
+  const changeCharacterTypeSubmit = () => {
+    console.log(characterType);
+    updateCharacterType({ characterType }, dispatch);
+  };
+
+  const changeBioSubmit = () => {
+    console.log(aimName, description);
+    updateProfileInfo({ aimName, description }, dispatch);
+  };
+
+  const changeYoutubeSubmit = () => {
+    console.log(youtube, enableYoutube, autoYoutube);
+    updateYoutube(
+      { youtube: { youtube, enableYoutube, autoYoutube } },
+      dispatch
+    );
+  };
+
+  const changeAvatar = () => {
+    console.log("avatar===>", avatar);
+    updateAvatar({ avatar }, dispatch);
+  };
+
+  useEffect(() => {
+    setDescriptionReaminLetters(450 - description.length);
+  }, [description]);
+
   return (
     <div className={styles["edit-info-container"]}>
       <Header currentActiveTab="hall-of-fame" />
@@ -61,7 +136,10 @@ export const EditInfo = () => {
                   <span className="text-white font-bold text-sm w-[110px]">
                     AIM screen name:
                   </span>
-                  <input className="flex-1 text-sm px-2 py-1" />
+                  <input
+                    className="flex-1 text-sm px-2 py-1"
+                    onChange={(e) => setAIMName(e.target.value)}
+                  />
                 </div>
                 <div className="flex gap-30px mt-5">
                   <span className="text-white font-bold text-sm w-[110px]">
@@ -71,13 +149,14 @@ export const EditInfo = () => {
                     className="flex-1 text-sm px-2 py-1"
                     maxLength={450}
                     rows={10}
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                 </div>
                 <div className="flex mt-5 mx-auto gap-3">
                   <span className="text-sm text-white text-bold">
-                    450 characters left
+                    {descriptionReaminLetters} characters left
                   </span>
-                  <button>Update Info</button>
+                  <button onClick={changeBioSubmit}>Update Info</button>
                 </div>
               </div>
               <div className="flex flex-col p-3 gap-3 border-t-2 border-gray-400">
@@ -85,13 +164,17 @@ export const EditInfo = () => {
                   <span className="text-white text-sm font-bold">
                     Upload image:
                   </span>
-                  <input type="file" className="text-xs min-w-[400px]" />
+                  <input
+                    type="file"
+                    className="text-xs min-w-[400px]"
+                    onChange={(e) => setAvatar(e.target.files[0])}
+                  />
                 </div>
                 <div className="flex justify-between">
                   <span className="text-red-600 text=xs font-bold">
                     Only GIF's-max 300*300/60k
                   </span>
-                  <button>Submit</button>
+                  <button onClick={changeAvatar}>Submit</button>
                 </div>
               </div>
               <div className="flex flex-col border-t-2 border-gray-400 p-3 gap-5">
@@ -102,54 +185,81 @@ export const EditInfo = () => {
                   <input
                     placeholder="example: www.youtube.com/watch?v=abcdef"
                     className="min-w-[400px] text-xs px-1"
+                    onChange={(e) => setYoutube(e.target.value)}
                   />
                 </div>
                 <div className="flex">
                   <span className="text-sm text-white font-bold min-w-[250px]">
                     Enable Youtube on your profile
                   </span>
-                  <input type="checkbox" className="ml-5" />
+                  <input
+                    type="checkbox"
+                    className="ml-5"
+                    onChange={(e) => setEnableYoutube(e.target.checked)}
+                  />
                 </div>
                 <div className="flex">
                   <span className="text-sm text-white font-bold min-w-[250px]">
                     Enable autostart of Youtube videos
                   </span>
-                  <input type="checkbox" className="ml-5" />
+                  <input
+                    type="checkbox"
+                    className="ml-5"
+                    onChange={(e) => setAutoYoutube(e.target.checked)}
+                  />
                 </div>
-                <button className="mx-auto">submit</button>
+                <button className="mx-auto" onClick={changeYoutubeSubmit}>
+                  submit
+                </button>
               </div>
               <div className="flex gap-4 p-3 border-t-2 border-gray-400">
                 <span className="text-white text-sm font-bold">
                   Change your character type
                 </span>
-                <select className="text-sm rounded">
-                  <option>Navyseal</option>
+                <select
+                  className="text-sm rounded"
+                  onChange={(e) => setCharacterType(e.target.value)}
+                >
                   <option>Soldier</option>
+                  <option>Navyseal</option>
                 </select>
-                <button className="ml-auto">submit</button>
+                <button className="ml-auto" onClick={changeCharacterTypeSubmit}>
+                  submit
+                </button>
               </div>
               <div className="flex flex-col p-3 gap-3 border-t-2 border-gray-400">
                 <div className="flex justify-between">
                   <span className="text-white text-sm font-bold min-w-[200px]">
                     Old password:
                   </span>
-                  <input className="flex-1 ml-5" />
+                  <input
+                    className="flex-1 ml-5"
+                    onChange={(e) => setOldPassword(e.target.value)}
+                  />
                 </div>
 
                 <div className="flex justify-between">
                   <span className="text-white text-sm font-bold min-w-[200px]">
                     New password:
                   </span>
-                  <input className="flex-1 ml-5" />
+                  <input
+                    className="flex-1 ml-5"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </div>
 
                 <div className="flex justify-between">
                   <span className="text-white text-sm font-bold min-w-[200px]">
                     Confirm password:
                   </span>
-                  <input className="flex-1 ml-5" />
+                  <input
+                    className="flex-1 ml-5"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
                 </div>
-                <button className="ml-auto">update</button>
+                <button className="ml-auto" onClick={changePasswordSubmit}>
+                  update
+                </button>
 
                 <div className="flex">
                   <span className="text-white text-sm font-bold">
@@ -163,13 +273,16 @@ export const EditInfo = () => {
                   <span className="text-white text-sm font-bold">
                     Change E-mail:
                   </span>
-                  <input className="flex=1 ml-5" />
+                  <input
+                    className="flex=1 ml-5"
+                    onChange={(e) => setNewEmail(e.target.value)}
+                  />
                 </div>
                 <div className="flex justify-between">
                   <span className="text-red-600 font-bold text-sm">
                     An account activation Email is sent
                   </span>
-                  <button>submit</button>
+                  <button onClick={changeEmailSubmit}>submit</button>
                 </div>
               </div>
               <div className="flex flex-col gap-3 p-3 border-t-2 border-gray-400">
@@ -185,13 +298,16 @@ export const EditInfo = () => {
                   <span className="text-white text-sm font-bold">
                     Change your current name:
                   </span>
-                  <input className="flex-1 ml-5" />
+                  <input
+                    className="flex-1 ml-5"
+                    onChange={(e) => setNewName(e.target.value)}
+                  />
                 </div>
                 <div className="flex justify-between">
                   <span className="text-sm text-red-600 font-bold">
                     You can change your name only on the first day of a round
                   </span>
-                  <button>submit</button>
+                  <button onClick={changeNameSubmit}>submit</button>
                 </div>
               </div>
             </div>

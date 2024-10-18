@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   login: null,
-  register: null
+  register: null,
 };
 
 const errorSlice = createSlice({
-  name: 'error',
+  name: "error",
   initialState,
   reducers: {
     setLoginError: (state, action) => {
@@ -14,9 +14,13 @@ const errorSlice = createSlice({
     },
     setRegisterError: (state, action) => {
       state.register = action.payload;
-    }
+    },
+    setUpdateError: (state, action) => {
+      state.update = action.payload;
+    },
   },
 });
 
-export const { setLoginError, setRegisterError } = errorSlice.actions;
+export const { setLoginError, setRegisterError, setUpdateError } =
+  errorSlice.actions;
 export default errorSlice.reducer;

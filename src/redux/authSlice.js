@@ -1,24 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isInitial : true,
+  isInitial: true,
   isAuthenticated: false,
   user: null,
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     login: (state, action) => {
       state.isAuthenticated = true;
       state.user = action.payload;
-      state.isInitial = false
+      state.isInitial = false;
     },
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
-      state.isInitial = false
+      state.isInitial = false;
     },
   },
 });
