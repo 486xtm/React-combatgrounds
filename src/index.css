@@ -57,3 +57,29 @@ button {
   padding: 3px;
   font-size: 13px;
 }
+
+[data-title]:hover::after {
+  content: attr(data-title);
+  position: absolute;
+  background-color: #4b9c2c; /* Tooltip background color */
+  color: #ffffff; /* Tooltip text color */
+  padding: 5px; /* Padding around text */
+  border-radius: 5px; /* Rounded corners */
+  white-space: nowrap; /* Prevent text wrapping */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+[data-title] {
+  position: relative; /* Position relative to allow absolute positioning of tooltip */
+}
+
+[data-title]:hover::after {
+  visibility: visible;
+  opacity: 1;
+}
+
+[data-title]::after {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s; /* Smooth transition for showing/hiding */
+}

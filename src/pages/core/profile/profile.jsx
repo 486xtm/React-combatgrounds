@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles.module.css";
 import { Header, Menu } from "../../../common/components";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserInfo } from "../../../api/auth";
 
 export const Profile = () => {
+  const user = useSelector(({ auth }) => auth.user);
+  console.log("user===>", user);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getUserInfo(dispatch);
+  }, []);
+
   return (
     <div className={styles["profile-container"]}>
       <Header currentActiveTab="hall-of-fame" />
       <div className="flex flex-col w-[870px] border-primary border-2 bg-black">
         <div className={styles["status-bar"]}>
-          <div className="flex flex-col">
+          <div className="flex flex-col w-[680px]">
             <div className="flex pt-1">
               <span className="text-black text-sm pl-[160px] font-bold w-[460px]">
-                SeaLife24111
+                {user && user.name}
               </span>
               <span className="text-secondary text-sm pl-3 font-bold">
                 2,083
@@ -19,30 +30,30 @@ export const Profile = () => {
             </div>
             <div className="flex pt-1">
               <span className="text-secondary text-sm pl-[200px] font-bold w-[460px]">
-                35,471
+                {user && user.totalRecruits ? user.totalRecruits : 0}
               </span>
               <span className="text-secondary text-sm pl-3 font-bold">
-                452,319
+                {user && user.netWorth ? user.netWorth : 0}
               </span>
             </div>
             <div className="flex pt-1">
               <span className="text-secondary text-sm pl-[472px] font-bold">
-                $552,452,319
+                ${user && user.money ? user.money : 0}
               </span>
             </div>
             <div className="flex pt-1">
               <div className="black text-sm ml-[90px] font-bold w-[200px] h-5 border-2 border-gray">
                 <div className="bg-gray-100 text-center text-gray-500 w-[30%] h-full">
-                  30%
+                  50%
                 </div>
               </div>
               <span className="text-secondary text-sm pl-[182px] font-bold">
-                25
+                {user && user.level ? user.level : 1}
               </span>
             </div>
           </div>
-          <div className="text-xxl font-bold text-secondary ml-[160px] mt-[50px]">
-            25
+          <div className="text-xxl font-bold text-secondary mt-[50px] w-[125px] text-center">
+            {user && user.level ? user.level : 325}
           </div>
         </div>
         <div className="flex">
@@ -57,10 +68,10 @@ export const Profile = () => {
               <div className="flex flex-col py-4 px-3 py-4">
                 <div className="flex justify-between">
                   <p className="text-sm text-secondary text-bold">
-                    Sealife42111
+                    {user && user.name}
                   </p>
                   <p className="text-sm text-red-500 text-bold">
-                    Net worth: 444,269
+                    Net worth: {user && user.netWorth ? user.netWorth : 0}
                   </p>
                 </div>
                 <img
@@ -80,7 +91,7 @@ export const Profile = () => {
                       </tr>
                       <tr>
                         <td>Class</td>
-                        <td>Solider</td>
+                        <td>{user && user.characterType}</td>
                       </tr>
                       <tr>
                         <td>Grade</td>
@@ -88,11 +99,13 @@ export const Profile = () => {
                       </tr>
                       <tr>
                         <td>Lavel</td>
-                        <td>151</td>
+                        <td>{user && user.level ? user.level : 1}</td>
                       </tr>
                       <tr>
                         <td>Total Recruits</td>
-                        <td>36,405</td>
+                        <td>
+                          {user && user.totalRecruits ? user.totalRecruits : 0}
+                        </td>
                       </tr>
                       <tr>
                         <td>Directly Recruits Today</td>
@@ -106,21 +119,31 @@ export const Profile = () => {
                       src="/images/winsmastery.jpg"
                       alt="a"
                       className="my-5"
+                      title={`wins: ${user && user.wins ? user.wins : 0}`}
                     />
                     <img
                       src="/images/clicksmastery.jpg"
                       alt="b"
                       className="my-5"
+                      title={`Recruits: ${
+                        user && user.recruits ? user.recruits : 0
+                      }`}
                     />
                     <img
                       src="/images/levelmastery.jpg"
                       alt="c"
                       className="my-5"
+                      title={`Level: ${user && user.level ? user.level : 1}`}
                     />
                     <img
                       src="/images/defensemastery.jpg"
                       alt="d"
                       className="my-5"
+                      title={`Defended Attacks: ${
+                        user && user.defended_attacks
+                          ? user.defended_attacks
+                          : 1
+                      }`}
                     />
                   </div>
 
@@ -132,12 +155,17 @@ export const Profile = () => {
                   <div className="my-1 bg-dark-primary text-sm font-bold text-white text-bold text-center">
                     DESCRIPTION
                   </div>
+                  <div className="text-xs text-white">
+                    {user && user.description}
+                  </div>
                   <div className="my-1 bg-dark-primary text-sm font-bold text-white text-bold text-center">
                     PLAYER'S ATATAR
                   </div>
                   <div>
                     <img
-                      src="/pics/avatar.gif"
+                      src={
+                        user && user.avatar ? user.avatar : "/pics/avatar.gif"
+                      }
                       alt="avatar"
                       className="mx-auto"
                     />
@@ -159,7 +187,7 @@ export const Profile = () => {
                     CREW
                   </div>
                   <p className="text-left text-white font-bold text-sm">
-                    sealife22312 is not in a crew at the moment
+                    {user && user.name} is not in a crew at the moment
                   </p>
                   <div className="my-1 bg-dark-primary text-sm font-bold text-white text-bold text-center mt-3">
                     SUPPLIES
