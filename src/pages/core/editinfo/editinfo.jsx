@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Header, Menu } from "../../../common/components";
 import {
+  getUserInfo,
   updateAvatar,
   updateCharacterType,
   updateEmail,
@@ -10,7 +11,7 @@ import {
   updateProfileInfo,
   updateYoutube,
 } from "../../../api/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const EditInfo = () => {
   const [newEmail, setNewEmail] = useState("");
@@ -27,7 +28,13 @@ export const EditInfo = () => {
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(450);
   const [avatar, setAvatar] = useState(null);
 
+  const user = useSelector(({ auth }) => auth.user);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    getUserInfo(dispatch);
+  }, []);
 
   const changeEmailSubmit = () => {
     console.log(newEmail);
@@ -235,6 +242,7 @@ export const EditInfo = () => {
                   <input
                     className="flex-1 ml-5"
                     onChange={(e) => setOldPassword(e.target.value)}
+                    type="password"
                   />
                 </div>
 
@@ -244,6 +252,7 @@ export const EditInfo = () => {
                   </span>
                   <input
                     className="flex-1 ml-5"
+                    type="password"
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
@@ -254,6 +263,7 @@ export const EditInfo = () => {
                   </span>
                   <input
                     className="flex-1 ml-5"
+                    type="password"
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </div>
@@ -266,7 +276,7 @@ export const EditInfo = () => {
                     Your current E-mail is:
                   </span>
                   <span className="text-white text-sm font-bold ml-5">
-                    floria428@gmail.com
+                    {user && user.email}
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -291,7 +301,7 @@ export const EditInfo = () => {
                     Your current Name is:
                   </span>
                   <span className="text-white text-sm font-bold ml-5">
-                    sealife1124
+                    {user && user.name}
                   </span>
                 </div>
                 <div className="flex justify-between">
