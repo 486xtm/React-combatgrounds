@@ -15,6 +15,7 @@ import {
   EditInfo,
   HallOfFame,
   HeadQuarter,
+  NukeCountry,
   Profile,
   Rankings,
   StatMisc,
@@ -43,6 +44,7 @@ const App = () => {
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/editinfo" element={<EditInfo />} />
         <Route exact path="/statmisc" element={<StatMisc />} />
+        <Route exact path="/nukecountry" element={<NukeCountry />} />
         <Route
           exact
           path="/secret"
