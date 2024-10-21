@@ -39,7 +39,7 @@ const countries = [
 
 export const NukeCountry = () => {
   return (
-    <Layout>
+    <Layout currentActiveTab={"headquarters"} isHeaderFull={true}>
       <div className="flex flex-col flex-1">
         <img src="pics/nuke.gif" width="500" className="mx-auto" />
         <p className="text-center text-white text-sm">

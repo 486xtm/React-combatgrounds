@@ -6,7 +6,11 @@ import { Header } from "../header/header";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../api/auth";
 
-export const Layout = ({ children }) => {
+export const Layout = ({
+  children,
+  currentActiveTab,
+  isHeaderFull = false,
+}) => {
   const user = useSelector(({ auth }) => auth.user);
 
   const dispatch = useDispatch();
@@ -17,7 +21,8 @@ export const Layout = ({ children }) => {
 
   return (
     <div className={styles["layout-container"]}>
-      <Header currentActiveTab="hall-of-fame" />
+      {isHeaderFull && <img src="./images/index_r1_c1.jpg" width="880" />}
+      <Header currentActiveTab={currentActiveTab} />
       <div className="flex flex-col w-[870px] border-primary border-2 bg-black">
         <div className={styles["status-bar"]}>
           <div className="flex flex-col w-[680px]">
