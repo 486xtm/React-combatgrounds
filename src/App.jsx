@@ -23,7 +23,8 @@ import {
   MailCenter,
   FAQ,
   BattleField,
-  Recruit
+  Recruit,
+  RaiseFund,
 } from "./pages/core";
 
 const ProtectedRoute = ({ children }) => {
@@ -55,6 +56,7 @@ const App = () => {
         <Route exact path="/faq" element={<FAQ />} />
         <Route exact path="/territories" element={<BattleField />} />
         <Route exact path="/recruit" element={<Recruit />} />
+        <Route exact path="/raisefunds" element={<RaiseFund />} />
         <Route
           exact
           path="/secret"
