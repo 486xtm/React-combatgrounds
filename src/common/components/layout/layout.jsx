@@ -10,6 +10,7 @@ export const Layout = ({
   children,
   currentActiveTab,
   isHeaderFull = false,
+  isMenuShow = true
 }) => {
   const user = useSelector(({ auth }) => auth.user);
 
@@ -24,6 +25,7 @@ export const Layout = ({
       {isHeaderFull && <img src="./images/index_r1_c1.jpg" width="880" />}
       <Header currentActiveTab={currentActiveTab} />
       <div className="flex flex-col w-[870px] border-primary border-2 bg-black">
+        {isMenuShow && <>
         <div className={styles["status-bar"]}>
           <div className="flex flex-col w-[680px]">
             <div className="flex pt-1">
@@ -66,8 +68,9 @@ export const Layout = ({
           <div className={styles["buy-turns"]} />
           <div className={styles["subscribe"]} />
         </div>
+        </>}
         <div className="flex min-h-[625px] w-full bg-black pb-[20px]">
-          <Menu />
+          {isMenuShow && <Menu />}
           {children}
         </div>
       </div>

@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { ChooseHelper } from "./pages/core/choosehelper/choosehelper";
 import {
+  AttackLog,
   EditInfo,
   HallOfFame,
   HeadQuarter,
@@ -20,7 +21,11 @@ import {
   Rankings,
   StatMisc,
 } from "./pages/core";
+<<<<<<< HEAD
 import { MailCenter } from "./pages/core/mailcenter/mailcenter";
+=======
+import { FAQ } from "./pages/core/faq/faq";
+>>>>>>> main
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
@@ -47,6 +52,8 @@ const App = () => {
         <Route exact path="/statmisc" element={<StatMisc />} />
         <Route exact path="/nukecountry" element={<NukeCountry />} />
         <Route exact path="/mailcenter" element={<MailCenter />} />
+        <Route exact path="/attacklog" element={<AttackLog />} />
+        <Route exact path="/faq" element={<FAQ />} />
         <Route
           exact
           path="/secret"
