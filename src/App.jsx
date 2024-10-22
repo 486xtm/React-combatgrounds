@@ -20,6 +20,7 @@ import {
   Rankings,
   StatMisc,
 } from "./pages/core";
+import { FAQ } from "./pages/core/faq/faq";
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
@@ -45,6 +46,7 @@ const App = () => {
         <Route exact path="/editinfo" element={<EditInfo />} />
         <Route exact path="/statmisc" element={<StatMisc />} />
         <Route exact path="/nukecountry" element={<NukeCountry />} />
+        <Route exact path="/faq" element={<FAQ />} />
         <Route
           exact
           path="/secret"
