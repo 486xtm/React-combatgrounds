@@ -1,0 +1,37 @@
+.attack-log {
+  background-color: rgb(51, 51, 51);
+  margin-left: 60px;
+  width: 100%;
+  margin-right: 60px;
+}
+
+.attack-log td,
+th {
+  line-height: 2.2;
+  color: white;
+  padding: 0px;
+  text-align: center;
+  border: 1px solid white;
+  font-size: 14px;
+}
+
+.attack-log th {
+  padding: 5px 0px;
+}
+
+.attack-log td {
+  font-size: 14px;
+}
+
+.attack-log th:first-child {
+  width: 18%;
+}
+
+.attack-log th:nth-child(2) {
+  width: 15%;
+}
+
+.attack-log th:nth-child(3),
+.attack-log th:nth-child(4) {
+  width: 25%;
+}
