@@ -20,12 +20,9 @@ import {
   Profile,
   Rankings,
   StatMisc,
+  MailCenter,
+  FAQ,
 } from "./pages/core";
-<<<<<<< HEAD
-import { MailCenter } from "./pages/core/mailcenter/mailcenter";
-=======
-import { FAQ } from "./pages/core/faq/faq";
->>>>>>> main
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
