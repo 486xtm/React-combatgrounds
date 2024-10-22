@@ -1,0 +1,23 @@
+.training-layout {
+  width: 400px;
+  height: 350px;
+  background-image: url("/pics/boot_full.gif");
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 140px;
+  font-size: 14px;
+}
+
+.training-layout input {
+  background-color: black;
+  border: 1px solid white;
+  margin-left: 5px;
+  color: white;
+  padding-left: 0.4rem;
+  outline: none;
+}

@@ -12,3 +12,5 @@ export * from "./faq/faq";
 export * from "./battlefield/battlefield";
 export * from "./recruit/recruit";
 export * from "./raisefund/raisefund";
+export * from "./training/training";
+export * from './homeleave/homeleave';
