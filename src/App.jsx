@@ -22,6 +22,7 @@ import {
   StatMisc,
   MailCenter,
   FAQ,
+  BattleField,
 } from "./pages/core";
 
 const ProtectedRoute = ({ children }) => {
@@ -51,6 +52,7 @@ const App = () => {
         <Route exact path="/mailcenter" element={<MailCenter />} />
         <Route exact path="/attacklog" element={<AttackLog />} />
         <Route exact path="/faq" element={<FAQ />} />
+        <Route exact path="/territories" element={<BattleField />} />
         <Route
           exact
           path="/secret"

@@ -9,3 +9,4 @@ export * from "./nukecountry/nukecountry";
 export * from "./attacklog/attacklog";
 export * from "./mailcenter/mailcenter";
 export * from "./faq/faq";
+export * from "./battlefield/battlefield";
