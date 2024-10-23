@@ -22,6 +22,11 @@ import {
   StatMisc,
   MailCenter,
   FAQ,
+  BattleField,
+  Recruit,
+  RaiseFund,
+  HomeLeave,
+  Training,
 } from "./pages/core";
 
 const ProtectedRoute = ({ children }) => {
@@ -51,6 +56,12 @@ const App = () => {
         <Route exact path="/mailcenter" element={<MailCenter />} />
         <Route exact path="/attacklog" element={<AttackLog />} />
         <Route exact path="/faq" element={<FAQ />} />
+        <Route exact path="/territories" element={<BattleField />} />
+        <Route exact path="/recruit" element={<Recruit />} />
+        <Route exact path="/raisefunds" element={<RaiseFund />} />
+        <Route exact path="/bootcamp" element={<Training />} />
+        <Route exact path="/homelve" element={<HomeLeave />} />
+
         <Route
           exact
           path="/secret"

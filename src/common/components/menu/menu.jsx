@@ -63,20 +63,23 @@ export const Menu = () => {
         </Link>
       </div>
 
-      <div className="/flex flex-col">
+      <div className="flex flex-col">
         <Link
           to="missions"
-          className="text-white font-bold underline ml-1 text-xs"
+          className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
         >
           MISSIONS
         </Link>
         <Link
           to="shop"
-          className="text-white font-bold underline ml-1  text-xs"
+          className="text-white font-bold underline ml-1  text-xs hover:text-secondary"
         >
           SHOP
         </Link>
-        <Link to="bank" className="text-white font-bold underline ml-1 text-xs">
+        <Link
+          to="bank"
+          className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
+        >
           BANK
         </Link>
       </div>
