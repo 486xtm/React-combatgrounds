@@ -136,4 +136,30 @@ export const getUserInfo = async (dispatch) => {
   }
 };
 
+export const addBlockUser = async (data, dispatch) => {
+  try {
+    const userInfo = await axios.patch(`${basicURL}/user/add_blockuser`, data);
+    console.log("userinfo===>", userInfo.data);
+    dispatch(login(userInfo.data));
+    dispatch(setLoginError(null));
+  } catch (err) {
+    console.log(err);
+    dispatch(setLoginError(err.message));
+  }
+};
+
+export const removeBlockUser = async (data, dispatch) => {
+  try {
+    const userInfo = await axios.patch(
+      `${basicURL}/user/remove_blockuser`,
+      data
+    );
+    dispatch(login(userInfo.data));
+    dispatch(setLoginError(null));
+  } catch (err) {
+    console.log(err);
+    dispatch(setLoginError(err.message));
+  }
+};
+
 export const signOut = async () => {};
