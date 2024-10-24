@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import styles from "./styles.module.css";
 import { Header, Layout, Menu } from "../../../common/components";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserInfo } from "../../../api/auth";
+import { getUserInfo } from "../../../api/user";
 
 export const Profile = () => {
-  const user = useSelector(({ auth }) => auth.user);
+  const user = useSelector(({ user }) => user.user);
   console.log("user===>", user);
 
   const dispatch = useDispatch();
