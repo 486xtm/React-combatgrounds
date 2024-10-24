@@ -19,7 +19,7 @@ export const Menu = () => {
         <Link to="/attacklog" className={styles["link"]}>
           - <u>ATTACK LOG (0)</u>
         </Link>
-        <Link to="/mail" className={styles["link"]}>
+        <Link to="/mailcenter" className={styles["link"]}>
           - <u>MAIL CENTER (0)</u>
         </Link>
       </div>

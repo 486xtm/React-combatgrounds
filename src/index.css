@@ -84,3 +84,11 @@ button {
   opacity: 0;
   transition: opacity 0.3s; /* Smooth transition for showing/hiding */
 }
+
+input {
+  outline: none;
+}
+
+select {
+  outline: none;
+}
