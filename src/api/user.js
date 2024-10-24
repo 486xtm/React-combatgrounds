@@ -132,3 +132,15 @@ export const recruit = async (data, dispatch) => {
     dispatch(setUpdateError(err.message));
   }
 };
+
+export const raiseFund = async (data, dispatch) => {
+  try {
+    console.log("ttt===>", data.turn, typeof data.turn);
+    const res = await axios.patch(`${basicURL}/user/raise_fund`, data);
+    dispatch(setUser(res.data.user));
+    dispatch(setUpdateError(null));
+  } catch (err) {
+    console.log(err);
+    dispatch(setUpdateError(err.message));
+  }
+};

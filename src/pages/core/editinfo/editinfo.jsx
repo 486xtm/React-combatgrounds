@@ -183,6 +183,7 @@ export const EditInfo = () => {
             >
               <option>Soldier</option>
               <option>Navyseal</option>
+              <option>Terrorist</option>
             </select>
             <button className="ml-auto" onClick={changeCharacterTypeSubmit}>
               submit
