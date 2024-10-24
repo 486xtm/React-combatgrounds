@@ -4,7 +4,7 @@ import { Menu } from "../menu/menu";
 import { Header } from "../header/header";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getUserInfo } from "../../../api/auth";
+import { getUserInfo } from "../../../api/user";
 
 export const Layout = ({
   children,
@@ -12,7 +12,7 @@ export const Layout = ({
   isHeaderFull = false,
   isMenuShow = true,
 }) => {
-  const user = useSelector(({ auth }) => auth.user);
+  const user = useSelector(({ user }) => user.user);
 
   const dispatch = useDispatch();
 

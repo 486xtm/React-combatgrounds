@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { Layout } from "../../../common/components";
+import { recruit } from "../../../api/user";
+import { useDispatch } from "react-redux";
 
 export const Recruit = () => {
-  const [usedTurns, setUsedTurns] = useState();
+  const [turn, setTurn] = useState();
+
+  const dispatch = useDispatch();
+
+  const handleRecruit = () => {
+    recruit({ turn }, dispatch);
+  };
 
   return (
     <Layout>
@@ -29,7 +37,7 @@ export const Recruit = () => {
             </p>
             <input
               className="rounded w-[120px] text-sm"
-              onChange={(e) => setUsedTurns(e.target.value)}
+              onChange={(e) => setTurn(e.target.value)}
             />
           </div>
           <div className="flex gap-3">
@@ -44,7 +52,12 @@ export const Recruit = () => {
               <option>French Legion</option>
             </select>
           </div>
-          <button className="ml-[230px] w-[120px] rounded">Recruit!</button>
+          <button
+            className="ml-[230px] w-[120px] rounded"
+            onClick={handleRecruit}
+          >
+            Recruit!
+          </button>
         </div>
       </div>
     </Layout>
