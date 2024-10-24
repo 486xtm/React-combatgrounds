@@ -67,7 +67,7 @@ export const AttackLog = () => {
   return (
     <Layout currentActiveTab={"headquarters"}>
       <div className="flex-1 flex flex-col">
-        <p className="text-center font-bold text-xxl text-red-600 my-5">
+        <p className="text-center font-bold text-xxl text-[red] my-5">
           Attack log
         </p>
         <div className="flex justify-around mx-5 my-3 px-5">

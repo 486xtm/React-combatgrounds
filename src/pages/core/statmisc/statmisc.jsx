@@ -8,7 +8,7 @@ export const StatMisc = () => {
       <div className="flex-1 flex flex-col mx-[40px] py-3 gap-4">
         <div className="flex">
           <div className="flex flex-col flex-1 gap-1">
-            <p className="ml-[200px] text-red-600 text-sm font-bold">
+            <p className="ml-[200px] text-[red] text-sm font-bold">
               Attack won
             </p>
             {[
@@ -28,7 +28,7 @@ export const StatMisc = () => {
             })}
           </div>
           <div className="flex flex-col flex-1 gap-1">
-            <p className="ml-[200px] text-red-600 text-sm font-bold">
+            <p className="ml-[200px] text-[red] text-sm font-bold">
               Attack defended
             </p>
             {[
@@ -50,7 +50,7 @@ export const StatMisc = () => {
         </div>
         <div className="flex">
           <div className="flex flex-col flex-1 gap-1">
-            <p className="ml-[200px] text-red-600 text-sm font-bold">Power</p>
+            <p className="ml-[200px] text-[red] text-sm font-bold">Power</p>
             {[
               10, 25, 33, 42, 51, 60, 71, 80, 91, 102, 114, 120, 160, 200, 300,
               400, 550, 551, 552, 552, 567, 568, 569, 600, 604,
@@ -68,7 +68,7 @@ export const StatMisc = () => {
             })}
           </div>
           <div className="flex flex-col flex-1 gap-1">
-            <p className="ml-[200px] text-red-600 text-sm font-bold">Level</p>
+            <p className="ml-[200px] text-[red] text-sm font-bold">Level</p>
             {[
               10, 25, 33, 42, 51, 60, 71, 80, 91, 102, 114, 120, 160, 200, 300,
               400, 550, 551, 552, 552, 567, 568, 569, 600, 604,

@@ -317,7 +317,7 @@ export const MailCenter = () => {
             className="flex flex-col mx-5 border border-white p-3 gap-3"
             style={{ backgroundColor: "rgb(51,51,51)" }}
           >
-            <p className="font-bold text-sm text-red-600 rounded">
+            <p className="font-bold text-sm text-[red] rounded">
               <u>CAUTION</u>: NEVER GIVE OUT YOUR GAME ACCOUNT PASSWORD OR EMAIL
               PASSWORD TO ANYONE. SCAMMERS CAN USE IT TO GAIN ACCESS TO YOUR
               PAYPAL ACCOUNT OR OTHER IMPORTANT PRIVATE DATA.

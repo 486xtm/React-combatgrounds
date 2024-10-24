@@ -132,7 +132,7 @@ export const EditInfo = () => {
               />
             </div>
             <div className="flex justify-between">
-              <span className="text-red-600 text=xs font-bold">
+              <span className="text-[red] text=xs font-bold">
                 Only GIF's-max 300*300/60k
               </span>
               <button onClick={changeAvatar}>Submit</button>
@@ -243,7 +243,7 @@ export const EditInfo = () => {
               />
             </div>
             <div className="flex justify-between">
-              <span className="text-red-600 font-bold text-sm">
+              <span className="text-[red] font-bold text-sm">
                 An account activation Email is sent
               </span>
               <button onClick={changeEmailSubmit}>submit</button>
@@ -268,7 +268,7 @@ export const EditInfo = () => {
               />
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-red-600 font-bold">
+              <span className="text-sm text-[red] font-bold">
                 You can change your name only on the first day of a round
               </span>
               <button onClick={changeNameSubmit}>submit</button>
