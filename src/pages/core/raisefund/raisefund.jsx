@@ -20,7 +20,9 @@ export const RaiseFund = () => {
                     Exploit
                   </button>
                 </div>
-                <span className="text-red-600 text-xs text-center">You need recruits.</span>
+                <span className="text-[red] text-xs text-center">
+                  You need recruits.
+                </span>
               </div>
               <div className="flex flex-col items-center gap-1 flex-1">
                 <img src="pics/industry.jpg" width="145" height="108" />
@@ -35,7 +37,7 @@ export const RaiseFund = () => {
                     Collect
                   </button>
                 </div>
-                <span className="text-red-600 text-xs text-center">
+                <span className="text-[red] text-xs text-center">
                   You need recruits and level.
                 </span>
               </div>
@@ -52,7 +54,7 @@ export const RaiseFund = () => {
                     Deliver
                   </button>
                 </div>
-                <span className="text-red-600 text-xs text-center">
+                <span className="text-[red] text-xs text-center">
                   You need recruits.<br></br> You earn level.
                 </span>
               </div>
@@ -69,7 +71,7 @@ export const RaiseFund = () => {
                     Protect
                   </button>
                 </div>
-                <span className="text-red-600 text-xs text-center">
+                <span className="text-[red] text-xs text-center">
                   You need recruits and defense weapons.
                 </span>
               </div>

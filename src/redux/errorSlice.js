@@ -5,6 +5,7 @@ const initialState = {
   register: null,
   update: null,
   message: null,
+  nuke: null,
 };
 
 const errorSlice = createSlice({
@@ -21,7 +22,10 @@ const errorSlice = createSlice({
       state.update = action.payload;
     },
     setMessageError: (state, action) => {
-      state.error = action.payload;
+      state.message = action.payload;
+    },
+    setNukeCountryError: (state, action) => {
+      state.nuke = action.payload;
     },
   },
 });
@@ -31,5 +35,6 @@ export const {
   setRegisterError,
   setUpdateError,
   setMessageError,
+  setNukeCountryError,
 } = errorSlice.actions;
 export default errorSlice.reducer;

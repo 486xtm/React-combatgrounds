@@ -1,50 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles.module.css";
 import { Layout } from "../../../common/components";
-
-const countries = [
-  {
-    name: "Albena",
-    level: 10,
-  },
-  {
-    name: "Ethiopia",
-    level: 13,
-  },
-  {
-    name: "Thailand",
-    level: 16,
-  },
-  {
-    name: "New Caledonia",
-    level: 20,
-  },
-  {
-    name: "Afghanistan",
-    level: 40,
-  },
-  {
-    name: "Puerto Rico",
-    level: 60,
-  },
-  {
-    name: "Yugoslavia",
-    level: 100,
-  },
-  {
-    name: "Iraq",
-    level: 150,
-  },
-];
+import { getCountryInfo, nukeCountry } from "../../../api/country";
+import { useDispatch, useSelector } from "react-redux";
 
 export const NukeCountry = () => {
+  const user = useSelector(({ auth }) => auth.user);
+  const countries = useSelector(({ nuke }) => nuke.countries);
+
+  const dispatch = useDispatch();
+
+  const handleNuke = (type, countryId) => {
+    nukeCountry({ type, countryId }, dispatch);
+  };
+
+  useEffect(() => {
+    getCountryInfo(dispatch);
+  }, []);
+
+  useEffect(() => {
+    console.log("c==>", countries);
+  }, [countries]);
+
   return (
     <Layout currentActiveTab={"headquarters"} isHeaderFull={true}>
       <div className="flex flex-col flex-1">
         <img src="pics/nuke.gif" width="500" className="mx-auto" />
         <p className="text-center text-white text-sm">
-          Nuke Country will cost you{" "}
-          <span className="text-red-600">$1,000,000,000</span>.
+          Nuke Country will cost you
+          <span className="text-[red]"> $1,000,000,000</span>.
         </p>
         <p className="text-center text-white text-sm">
           You must have at least thelevel as it says next to the country.
@@ -53,18 +37,20 @@ export const NukeCountry = () => {
           Each country can only be attacked once a day.
         </p>
         <p className="text-center text-white text-sm">
-          The maximum number of turns to use is{" "}
-          <span className="text-red-600">50</span>.
+          The maximum number of turns to use is
+          <span className="text-[red]"> 50</span>.
         </p>
         <p className="text-center text-secondary text-lg font-bold my-3">
           Your Level is 151
         </p>
         <table className={styles["nuke-country-table"]}>
           <thead>
-            <th>Country</th>
-            <th>Level</th>
-            <th>Troops</th>
-            <th>Cash</th>
+            <tr>
+              <th>Country</th>
+              <th>Level</th>
+              <th>Troops</th>
+              <th>Cash</th>
+            </tr>
           </thead>
           <tbody>
             {countries &&
@@ -72,8 +58,26 @@ export const NukeCountry = () => {
                 <tr key={`nuke_country_${id}`}>
                   <td>{country.name}</td>
                   <td>{country.level}</td>
-                  <td>{country.troops}</td>
-                  <td>{country.cash}</td>
+                  <td>
+                    {!user || !country || country.level > user.level ? null : (
+                      <button
+                        className="bg-gray-300 text-[red]"
+                        onClick={() => handleNuke("troops", country._id)}
+                      >
+                        Nuke!
+                      </button>
+                    )}
+                  </td>
+                  <td>
+                    {!user || !country || country.level > user.level ? null : (
+                      <button
+                        className="bg-gray-300 text-[red]"
+                        onClick={() => handleNuke("cash", country._id)}
+                      >
+                        Nuke!
+                      </button>
+                    )}
+                  </td>
                 </tr>
               ))}
           </tbody>

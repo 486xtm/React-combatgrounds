@@ -1,7 +1,7 @@
 import axios from "./axios";
 const basicURL = "http://localhost:5000/api";
 import { setMessageError } from "../redux/errorSlice";
-import { setMails, setReceivedMails, setSentMails } from "../redux/mailSlice";
+import { setMails } from "../redux/mailSlice";
 
 export const sendMessage = async (data, dispatch) => {
   try {
