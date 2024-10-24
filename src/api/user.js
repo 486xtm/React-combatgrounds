@@ -121,3 +121,14 @@ export const removeBlockUser = async (data, dispatch) => {
     dispatch(setUpdateError(err.message));
   }
 };
+
+export const recruit = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/user/recruit`, data);
+    dispatch(setUser(res.data.user));
+    dispatch(setUpdateError(null));
+  } catch (err) {
+    console.log(err);
+    dispatch(setUpdateError(err.message));
+  }
+};
