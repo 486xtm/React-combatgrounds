@@ -28,6 +28,7 @@ import {
   HomeLeave,
   Training,
   UserGuide,
+  Shop
 } from "./pages/core";
 
 const ProtectedRoute = ({ children }) => {
@@ -63,6 +64,7 @@ const App = () => {
         <Route exact path="/bootcamp" element={<Training />} />
         <Route exact path="/homelve" element={<HomeLeave />} />
         <Route exact path="/userguide" element={<UserGuide/>} />
+        <Route exact path="/shop" element={<Shop/>} />
         <Route
           exact
           path="/secret"
