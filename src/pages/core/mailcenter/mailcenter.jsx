@@ -5,7 +5,7 @@ import { Layout } from "../../../common/components";
 import styles from "./styles.module.css";
 import { deleteMessages, getMessage, sendMessage } from "../../../api/message";
 import { useDispatch, useSelector } from "react-redux";
-import { addBlockUser, removeBlockUser } from "../../../api/auth";
+import { addBlockUser, removeBlockUser } from "../../../api/user";
 
 export const MailCenter = () => {
   const [viewType, setViewType] = useState("Inbox");
@@ -18,7 +18,7 @@ export const MailCenter = () => {
   const [detailedViewMessage, setDetailedViewMessage] = useState(null);
   const [blockUserName, setBlockUserName] = useState("");
   const [unblockUserId, setUnblockUserId] = useState(null);
-  const user = useSelector(({ auth }) => auth.user);
+  const user = useSelector(({ user }) => user.user);
 
   const dispatch = useDispatch();
   const sentMessage = useSelector(({ mail }) => mail.sent);

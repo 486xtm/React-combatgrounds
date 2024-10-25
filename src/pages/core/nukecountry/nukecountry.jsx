@@ -5,7 +5,7 @@ import { getCountryInfo, nukeCountry } from "../../../api/country";
 import { useDispatch, useSelector } from "react-redux";
 
 export const NukeCountry = () => {
-  const user = useSelector(({ auth }) => auth.user);
+  const user = useSelector(({ user }) => user.user);
   const countries = useSelector(({ nuke }) => nuke.countries);
 
   const dispatch = useDispatch();

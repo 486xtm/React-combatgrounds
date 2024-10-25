@@ -10,7 +10,7 @@ import {
   updatePassword,
   updateProfileInfo,
   updateYoutube,
-} from "../../../api/auth";
+} from "../../../api/user";
 import { useDispatch, useSelector } from "react-redux";
 
 export const EditInfo = () => {
@@ -28,7 +28,7 @@ export const EditInfo = () => {
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(450);
   const [avatar, setAvatar] = useState(null);
 
-  const user = useSelector(({ auth }) => auth.user);
+  const user = useSelector(({ user }) => user.user);
 
   const dispatch = useDispatch();
 
