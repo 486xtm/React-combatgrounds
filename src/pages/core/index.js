@@ -13,6 +13,10 @@ export * from "./battlefield/battlefield";
 export * from "./recruit/recruit";
 export * from "./raisefund/raisefund";
 export * from "./training/training";
+export * from "./homeleave/homeleave";
+export * from "./userguide/userguide";
+export * from "./battlefieldmap/battlefieldmap";
+export * from "./battlefieldregion/battlefieldregion";
 export * from './homeleave/homeleave';
 export * from './userguide/userguide'
 export * from './shop/shop'

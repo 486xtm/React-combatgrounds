@@ -30,13 +30,13 @@ export const RaiseFund = () => {
   return (
     <Layout>
       <div className="flex flex-1 flex-col items-center">
-        <img width="500" height="100" src="pics/raisefunds.gif" />
+        <img width="500" height="100" src="/pics/raisefunds.gif" />
         <div className="flex w-full px-[100px]">
           <div className="flex flex-col flex-1 gap-[80px]">
             <div className="flex justify-between">
               <div className="flex flex-col items-center gap-1 flex-1">
                 <img
-                  src={isTerrorist ? "pics/drugs.jpg" : "pics/refinery.jpg"}
+                  src={isTerrorist ? "/pics/drugs.jpg" : "/pics/refinery.jpg"}
                   width="145"
                   height="108"
                 />
@@ -66,7 +66,7 @@ export const RaiseFund = () => {
               </div>
               <div className="flex flex-col items-center gap-1 flex-1">
                 <img
-                  src={isTerrorist ? "pics/sponsor.jpg" : "pics/industry.jpg"}
+                  src={isTerrorist ? "/pics/sponsor.jpg" : "/pics/industry.jpg"}
                   width="145"
                   height="108"
                 />
@@ -98,7 +98,7 @@ export const RaiseFund = () => {
             <div className="flex justify-between">
               <div className="flex flex-col items-center gap-1 flex-1">
                 <img
-                  src={isTerrorist ? "pics/hitmen.jpg" : "pics/trainingRF.jpg"}
+                  src={isTerrorist ? "/pics/hitmen.jpg" : "/pics/trainingRF.jpg"}
                   width="145"
                   height="108"
                 />
@@ -126,7 +126,7 @@ export const RaiseFund = () => {
               </div>
               <div className="flex flex-col items-center gap-1 flex-1">
                 <img
-                  src={isTerrorist ? "pics/guns.jpg" : "pics/protect.jpg"}
+                  src={isTerrorist ? "/pics/guns.jpg" : "/pics/protect.jpg"}
                   width="145"
                   height="108"
                 />

@@ -4,6 +4,7 @@ import errorReducer from "./errorSlice";
 import mailReducer from "./mailSlice";
 import nukeReducer from "./nukeSlice";
 import userReducer from "./userSlice";
+import battleFieldReducer from "./battlefieldSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     mail: mailReducer,
     nuke: nukeReducer,
     user: userReducer,
+    battleField: battleFieldReducer,
   },
 });

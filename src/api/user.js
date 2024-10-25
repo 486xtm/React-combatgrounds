@@ -3,11 +3,13 @@ const basicURL = "http://localhost:5000/api";
 
 import { setUser } from "../redux/userSlice";
 import { setUpdateError } from "../redux/errorSlice";
+import { login } from "../redux/authSlice";
 
 export const getUserInfo = async (dispatch) => {
   try {
     const userInfo = await axios.get(`${basicURL}/user/infor`);
     dispatch(setUser(userInfo.data));
+    dispatch(login());
     dispatch(setUpdateError(null));
   } catch (err) {
     console.log(err);

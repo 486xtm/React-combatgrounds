@@ -16,7 +16,7 @@ export const Recruit = () => {
     <Layout>
       <div className="flex flex-col flex-1">
         <img
-          src="pics/recruit.gif"
+          src="/pics/recruit.gif"
           width="500"
           height="50"
           className="ml-auto my-5"

@@ -6,7 +6,12 @@ export const Training = () => {
   return (
     <Layout>
       <div className="flex flex-col flex-1 gap-2">
-        <img width="450" height="100" src="pics/boot.gif" className="mx-auto" />
+        <img
+          width="450"
+          height="100"
+          src="/pics/boot.gif"
+          className="mx-auto"
+        />
         <p className="text-center text-sm text-[red] font-bold">
           Invalid amount of money!
         </p>

@@ -28,6 +28,8 @@ import {
   HomeLeave,
   Training,
   UserGuide,
+  BattleFieldMap,
+  BattleFieldRegion,
   Shop
 } from "./pages/core";
 
@@ -63,6 +65,13 @@ const App = () => {
         <Route exact path="/raisefunds" element={<RaiseFund />} />
         <Route exact path="/bootcamp" element={<Training />} />
         <Route exact path="/homelve" element={<HomeLeave />} />
+        <Route exact path="/userguide" element={<UserGuide />} />
+        <Route exact path="/map" element={<BattleFieldMap />} />
+        <Route
+          exact
+          path="/battlefield/:region"
+          element={<BattleFieldRegion />}
+        />
         <Route exact path="/userguide" element={<UserGuide/>} />
         <Route exact path="/shop" element={<Shop/>} />
         <Route
