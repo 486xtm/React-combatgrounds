@@ -65,7 +65,7 @@ export const Menu = () => {
 
       <div className="flex flex-col">
         <Link
-          to="/missions"
+          to="/#missions"
           className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
         >
           MISSIONS
@@ -76,22 +76,22 @@ export const Menu = () => {
         >
           SHOP
         </Link>
-        <Link
+        {/* <Link
           to="/bank"
           className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
         >
           BANK
-        </Link>
+        </Link> */}
       </div>
       <div className={styles["menu-item"]}>CREW</div>
       <div className={styles["sub-menu"]}>
-        <Link to="/rolldice" className={styles["link"]}>
+        <Link to="/headquarter/#crew-invite" className={styles["link"]}>
           - <u>CREW_INVITES</u>
         </Link>
-        <Link to="/roulette" className={styles["link"]}>
+        <Link to="/headquarter/#crew-create" className={styles["link"]}>
           - <u>CREATE_CREW</u>
         </Link>
-        <Link to="/roulette" className={styles["link"]}>
+        <Link to="/headquarter/#crew-ads" className={styles["link"]}>
           - <u>CREW_ADS</u>
         </Link>
       </div>
@@ -104,13 +104,13 @@ export const Menu = () => {
           ONLINE_PLAYERS
         </Link>
         <Link
-          to="/shop"
+          to="https://discord.com/channels/1040013836566138992/1298837422054047815"
           className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
         >
           LIVE_CHAT
         </Link>
         <Link
-          to="/bank"
+          to="https://discord.com/channels/1040013836566138992/1283030820763992116"
           className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
         >
           SUPPORT

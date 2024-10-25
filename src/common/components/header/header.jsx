@@ -48,7 +48,13 @@ export const Header = ({ currentActiveTab = "headquarters" }) => {
         className={classNames(styles["news"], {
           [styles["active"]]: currentActiveTab === "news",
         })}
-        onClick={() => navigate("/news")}
+        onClick={() => {
+          window.location.href =
+            "https://discordapp.com/channels/1040013836566138992/1265903715068543007";
+          // navigate(
+          //   "https://discordapp.com/channels/1040013836566138992/1265903715068543007"
+          // );
+        }}
       />
     </div>
   );

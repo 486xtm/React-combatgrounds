@@ -7,7 +7,7 @@ export const HeadQuarter = () => {
   return (
     <Layout currentActiveTab={"headquarters"}>
       <div className="flex-1 flex flex-col">
-        <Link to="/news">
+        <Link to="https://discord.com/channels/1040013836566138992/1265903715068543007">
           <p className="text-xl underline text-white font-bold text-center my-5">
             Click here for News
           </p>
