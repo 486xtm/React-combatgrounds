@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { ChooseHelper } from "./pages/core/choosehelper/choosehelper";
 import {
+  AttackLog,
   EditInfo,
   HallOfFame,
   HeadQuarter,
@@ -19,6 +20,13 @@ import {
   Profile,
   Rankings,
   StatMisc,
+  MailCenter,
+  FAQ,
+  BattleField,
+  Recruit,
+  RaiseFund,
+  HomeLeave,
+  Training,
   FAQ,
   UserGuid
 } from "./pages/core";
@@ -47,8 +55,16 @@ const App = () => {
         <Route exact path="/editinfo" element={<EditInfo />} />
         <Route exact path="/statmisc" element={<StatMisc />} />
         <Route exact path="/nukecountry" element={<NukeCountry />} />
+        <Route exact path="/mailcenter" element={<MailCenter />} />
+        <Route exact path="/attacklog" element={<AttackLog />} />
         <Route exact path="/faq" element={<FAQ />} />
-        <Route exact path="/userguide" element={<UserGuid />} />
+        <Route exact path="/territories" element={<BattleField />} />
+        <Route exact path="/recruit" element={<Recruit />} />
+        <Route exact path="/raisefunds" element={<RaiseFund />} />
+        <Route exact path="/bootcamp" element={<Training />} />
+        <Route exact path="/homelve" element={<HomeLeave />} />
+        <Route exact path="/faq" element={<FAQ/>}/>
+        <Route exact path="/userguide" element={<UserGuid/>} />
         <Route
           exact
           path="/secret"

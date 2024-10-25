@@ -3,6 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   login: null,
   register: null,
+  update: null,
+  message: null,
+  nuke: null,
 };
 
 const errorSlice = createSlice({
@@ -18,9 +21,20 @@ const errorSlice = createSlice({
     setUpdateError: (state, action) => {
       state.update = action.payload;
     },
+    setMessageError: (state, action) => {
+      state.message = action.payload;
+    },
+    setNukeCountryError: (state, action) => {
+      state.nuke = action.payload;
+    },
   },
 });
 
-export const { setLoginError, setRegisterError, setUpdateError } =
-  errorSlice.actions;
+export const {
+  setLoginError,
+  setRegisterError,
+  setUpdateError,
+  setMessageError,
+  setNukeCountryError,
+} = errorSlice.actions;
 export default errorSlice.reducer;

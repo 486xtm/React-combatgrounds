@@ -192,7 +192,7 @@ export const HallOfFame = () => {
         <div className="flex w-full justify-center gap-20 my-5">
           <p className="text-sm text-secondary">Go to Round:</p>
           <input className="w-[50px]" />
-          <div className="text-red-500 font-bold px-1 btn bg-gray-100">Go!</div>
+          <div className="text-[red] font-bold px-1 btn bg-gray-100">Go!</div>
         </div>
         <p className="text-center text-secondary text-sm font-bold">Round</p>
         <p className="text-white text-xs text-center py-2 mb-3">

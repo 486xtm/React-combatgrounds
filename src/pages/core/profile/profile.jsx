@@ -24,7 +24,7 @@ export const Profile = () => {
               <p className="text-sm text-secondary text-bold">
                 {user && user.name}
               </p>
-              <p className="text-sm text-red-500 text-bold">
+              <p className="text-sm text-[red] text-bold">
                 Net worth: {user && user.netWorth ? user.netWorth : 0}
               </p>
             </div>
@@ -53,9 +53,7 @@ export const Profile = () => {
                   </tr>
                   <tr>
                     <td>Total Recruits</td>
-                    <td>
-                      {user && user.totalRecruits ? user.totalRecruits : 0}
-                    </td>
+                    <td>{user && user.recruits ? user.recruits : 0}</td>
                   </tr>
                   <tr>
                     <td>Directly Recruits Today</td>
@@ -128,7 +126,7 @@ export const Profile = () => {
               <p className="text-center text-white font-bold text-sm mt-3">
                 MONEY banked:
               </p>
-              <p className="text-center text-red-600 font-bold">$0</p>
+              <p className="text-center text-[red] font-bold">$0</p>
               <div className="my-1 bg-dark-primary text-sm font-bold text-white text-bold text-center mt-3">
                 CREW
               </div>
@@ -140,7 +138,7 @@ export const Profile = () => {
               </div>
               <div className="flex">
                 <div className="flex flex-col w-[70px]">
-                  <p className="text-red-600 text-xs font-bold border-gray-900 border-2 text-center">
+                  <p className="text-[red] text-xs font-bold border-gray-900 border-2 text-center">
                     Attack items
                   </p>
                   <img

@@ -6,5 +6,13 @@ export * from "./profile/profile";
 export * from "./editinfo/editinfo";
 export * from "./statmisc/statmisc";
 export * from "./nukecountry/nukecountry";
+export * from "./attacklog/attacklog";
+export * from "./mailcenter/mailcenter";
+export * from "./faq/faq";
+export * from "./battlefield/battlefield";
+export * from "./recruit/recruit";
+export * from "./raisefund/raisefund";
+export * from "./training/training";
+export * from './homeleave/homeleave';
 export * from './userguide/userguide'
 export * from './faq/faq'

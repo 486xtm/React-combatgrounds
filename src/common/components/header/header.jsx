@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
 
-export const Header = ({ currentActiveTab = "rankings" }) => {
+export const Header = ({ currentActiveTab = "headquarters" }) => {
   const navigate = useNavigate();
 
   return (
