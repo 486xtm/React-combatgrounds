@@ -1,9 +1,10 @@
 import axios from "./axios";
-const basicURL = "http://localhost:5000/api";
+const basicURL = "http://89.111.170.43:5000/api";
 
 import { setUser } from "../redux/userSlice";
 import { setUpdateError } from "../redux/errorSlice";
 import { login } from "../redux/authSlice";
+import { setToast } from "../redux/toastSlice";
 
 export const getUserInfo = async (dispatch) => {
   try {
@@ -11,6 +12,7 @@ export const getUserInfo = async (dispatch) => {
     dispatch(setUser(userInfo.data));
     dispatch(login());
     dispatch(setUpdateError(null));
+    // dispatch(setToast({ type: "error", msg: "" }));
   } catch (err) {
     console.log(err);
     dispatch(setUpdateError(err.message));

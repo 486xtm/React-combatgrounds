@@ -1,5 +1,5 @@
 import axios from "./axios";
-const basicURL = "http://localhost:5000/api";
+const basicURL = "http://89.111.170.43:5000/api";
 import { setNukeCountryError } from "../redux/errorSlice";
 import { setCountries } from "../redux/nukeSlice";
 import { login } from "../redux/authSlice";

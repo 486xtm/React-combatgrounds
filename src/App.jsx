@@ -30,7 +30,7 @@ import {
   UserGuide,
   BattleFieldMap,
   BattleFieldRegion,
-  Shop
+  Shop,
 } from "./pages/core";
 
 const ProtectedRoute = ({ children }) => {
@@ -72,8 +72,8 @@ const App = () => {
           path="/battlefield/:region"
           element={<BattleFieldRegion />}
         />
-        <Route exact path="/userguide" element={<UserGuide/>} />
-        <Route exact path="/shop" element={<Shop/>} />
+        <Route exact path="/userguide" element={<UserGuide />} />
+        <Route exact path="/shop" element={<Shop />} />
         <Route
           exact
           path="/secret"

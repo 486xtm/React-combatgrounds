@@ -1,6 +1,6 @@
 import axios from "./axios";
-const basicURL = "http://localhost:5000/api";
-import { login } from "../redux/authSlice";
+const basicURL = "http://89.111.170.43:5000/api";
+
 import {
   setLoginError,
   setRegisterError,
