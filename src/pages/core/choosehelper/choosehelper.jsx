@@ -15,7 +15,14 @@ export const ChooseHelper = () => {
               Get some help
             </p>
             <div className="w-full h-1 bg-white" />
-            <Link className="text-xl text-white font-bold my-1 pb-2" to="/news">
+            <Link
+              className="text-xl text-white font-bold my-1 pb-2"
+              // to="https://discordapp.com/channels/1040013836566138992/1265903715068543007"
+              onClick={() => {
+                window.location.href =
+                  "https://discordapp.com/channels/1040013836566138992/1265903715068543007";
+              }}
+            >
               <u>Click here for News</u>
             </Link>
             <div className="text-tiny text-white flex flex-col leading-tight">
