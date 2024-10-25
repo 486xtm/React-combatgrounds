@@ -88,7 +88,7 @@ export const MailCenter = () => {
   return (
     <Layout>
       <div className="flex flex-col flex-1">
-        <img src="pics/mail.gif" width="500" height="150" className="mx-auto" />
+        <img src="/pics/mail.gif" width="500" height="150" className="mx-auto" />
         <div
           className="flex px-3 py-2 justify-between border border-white mx-5"
           style={{ backgroundColor: "rgb(51,51,51)" }}

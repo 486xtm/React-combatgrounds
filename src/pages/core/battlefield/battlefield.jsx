@@ -1,5 +1,6 @@
 import React from "react";
 import { Layout } from "../../../common/components";
+import { Link } from "react-router-dom";
 
 export const BattleField = () => {
   return (
@@ -36,11 +37,12 @@ export const BattleField = () => {
             Please choose one of the two options:
           </p>
           <div className="flex mx-5 gap-5 p-5">
-            <select className="rounded text-xs">
-              <option>Low-Risk Battlefield</option>
-              <option>High-Risk Battlefield</option>
-            </select>
-            <button>Submmit</button>
+            <Link
+              to={"/map"}
+              className="text-black text-lg rounded bg-gray-300 px-2 font-bold"
+            >
+              Go to the Map
+            </Link>
           </div>
         </div>
       </div>

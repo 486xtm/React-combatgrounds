@@ -8,7 +8,7 @@ import { getUserInfo } from "../../../api/user";
 
 export const Layout = ({
   children,
-  currentActiveTab,
+  currentActiveTab = "headquarters",
   isHeaderFull = false,
   isMenuShow = true,
 }) => {

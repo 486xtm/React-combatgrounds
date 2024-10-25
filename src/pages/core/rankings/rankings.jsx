@@ -259,7 +259,7 @@ export const Rankings = ({}) => {
                   >
                     <td>
                       <img
-                        src={`pics/${item.online ? "yellow" : "white"}.gif`}
+                        src={`/pics/${item.online ? "yellow" : "white"}.gif`}
                         alt="online"
                         w="10"
                         h="10"
