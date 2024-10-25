@@ -65,19 +65,19 @@ export const Menu = () => {
 
       <div className="flex flex-col">
         <Link
-          to="missions"
+          to="/missions"
           className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
         >
           MISSIONS
         </Link>
         <Link
-          to="shop"
+          to="/shop"
           className="text-white font-bold underline ml-1  text-xs hover:text-secondary"
         >
           SHOP
         </Link>
         <Link
-          to="bank"
+          to="/bank"
           className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
         >
           BANK
@@ -98,7 +98,7 @@ export const Menu = () => {
 
       <div className="flex flex-col">
         <Link
-          to="missions"
+          to="/missions"
           className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
         >
           ONLINE_PLAYERS
