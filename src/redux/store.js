@@ -5,6 +5,7 @@ import mailReducer from "./mailSlice";
 import nukeReducer from "./nukeSlice";
 import userReducer from "./userSlice";
 import battleFieldReducer from "./battlefieldSlice";
+import roundReducer from "./roundSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     mail: mailReducer,
     nuke: nukeReducer,
     user: userReducer,
+    round: roundReducer,
     battleField: battleFieldReducer,
   },
 });
