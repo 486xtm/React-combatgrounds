@@ -15,4 +15,3 @@ export * from "./raisefund/raisefund";
 export * from "./training/training";
 export * from './homeleave/homeleave';
 export * from './userguide/userguide'
-export * from './faq/faq'

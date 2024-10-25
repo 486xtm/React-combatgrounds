@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout } from "../../../common/components/layout/layout";
-export const UserGuid = () => {
+export const UserGuide = () => {
   return (
     <Layout isMenuShow={false} isHeaderFull={true} currentActiveTab={"faq"}>
       <div className="flex flex-col flex-1 py-[20px]">
