@@ -2,7 +2,7 @@ import axios from "axios";
 
 class ApiService {
   constructor() {
-    this.baseURL = "http://localhost:5000/api"; // Set your base URL here
+    this.baseURL = "http://89.111.170.43:5000/api"; // Set your base URL here
     this.axiosInstance = axios.create({
       baseURL: this.baseURL,
     });

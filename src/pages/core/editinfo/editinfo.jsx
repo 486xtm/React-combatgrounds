@@ -12,6 +12,7 @@ import {
   updateYoutube,
 } from "../../../api/user";
 import { useDispatch, useSelector } from "react-redux";
+import { useToast } from "../../../ToastProvider";
 
 export const EditInfo = () => {
   const [newEmail, setNewEmail] = useState("");
@@ -27,6 +28,7 @@ export const EditInfo = () => {
   const [autoYoutube, setAutoYoutube] = useState(false);
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(450);
   const [avatar, setAvatar] = useState(null);
+  const { showSuccess, showError } = useToast();
 
   const user = useSelector(({ user }) => user.user);
 
