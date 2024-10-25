@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout } from "../../../common/components";
 import styles from "./styles.module.css";
 const shopItems = {
@@ -144,6 +144,30 @@ const shopItems = {
   ]
 }
 export const Shop = () => {
+  const handleBuyAttack = () => {
+    console.log("buy attack");
+  }
+  const handleSellAttack = () => {
+    console.log("sell attack");
+  }
+  const handleBuyDefence = () => {
+    console.log("buy defence");
+  }
+  const handleSellDefence = () => {
+    console.log("sell defence");
+  }
+  const handleBuyCombo = () => {
+    console.log("buy Combo");
+  }
+  const handleSellCombo = () => {
+    console.log("sell Combo");
+  }
+  const handleBuyIncome = () => {
+    console.log("buy Income");
+  }
+  const handleSellIncome = () => {
+    console.log("sell Income");
+  }
   return (
     <Layout currentActiveTab={"headquarters"} isHeaderFull={true}>
       <div className="flex flex-col flex-1 my-3 mx-5">
@@ -180,8 +204,8 @@ export const Shop = () => {
             <tr>
               <td colSpan={4}></td>
               <td className="flex gap-2 justify-center items-center">
-                <button className="bg-[white] text-black w-10">buy</button>
-                <button className="bg-[white] text-black w-10">Sell</button>
+                <button onClick={handleBuyAttack} className="bg-[white] text-black w-10">buy</button>
+                <button onClick={handleSellAttack} className="bg-[white] text-black w-10">Sell</button>
               </td>
             </tr>
             <tr><td colSpan={5} className="bg-black"><img className="w-full p-0 m-0" src="/pics/defence.gif" alt="defence" /></td></tr>
@@ -199,8 +223,8 @@ export const Shop = () => {
             <tr>
               <td colSpan={4}></td>
               <td className="flex gap-2 justify-center items-center">
-                <button className="bg-[white] text-black w-10">buy</button>
-                <button className="bg-[white] text-black w-10">Sell</button>
+                <button onClick={handleBuyDefence} className="bg-[white] text-black w-10">buy</button>
+                <button onClick={handleSellDefence} className="bg-[white] text-black w-10">Sell</button>
               </td>
             </tr>
             <tr><td colSpan={5} className="bg-black"><img className="w-full p-0 m-0" src="/pics/combo.gif" alt="combo" /></td></tr>
@@ -218,8 +242,8 @@ export const Shop = () => {
             <tr>
               <td colSpan={4}></td>
               <td className="flex gap-2 justify-center items-center">
-                <button className="bg-[white] text-black w-10">buy</button>
-                <button className="bg-[white] text-black w-10">Sell</button>
+                <button onClick = {handleBuyCombo}className="bg-[white] text-black w-10">buy</button>
+                <button onClick = {handleSellCombo}className="bg-[white] text-black w-10">Sell</button>
               </td>
             </tr>
             <tr><td colSpan={5} className="bg-black"><img className="w-full p-0 m-0" src="/pics/income.gif" alt="income" /></td></tr>
@@ -237,8 +261,8 @@ export const Shop = () => {
             <tr>
               <td colSpan={4}></td>
               <td className="flex gap-2 justify-center items-center">
-                <button className="bg-[white] text-black w-10">buy</button>
-                <button className="bg-[white] text-black w-10">Sell</button>
+                <button onClick={handleBuyIncome} className="bg-[white] text-black w-10">buy</button>
+                <button onClick={handleSellIncome} className="bg-[white] text-black w-10">Sell</button>
               </td>
             </tr>
           </tbody>
