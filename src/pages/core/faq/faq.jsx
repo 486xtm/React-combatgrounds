@@ -1,6 +1,5 @@
 import React from "react";
 import { Layout } from "../../../common/components/layout/layout";
-import styles from "./styles.module.css";
 const questions = {
   account: [
     {
@@ -167,11 +166,18 @@ const questions = {
       section: "M25",
     },
     {
+      id: "2.6",
+      question: "What are medals?",
+      content:
+        "At the end of each round, 8 different medals are given to the leaders.",
+      section: "M26",
+    },
+    {
       id: "2.7",
       section: "M27",
       question: "What are military grades?",
       content:
-        "Military grades are assigned to players depending on their level and recruits proficiency. Some weapons are available to graded players only.\n\n   >>    To become a Sergeant, you need 40,000 recruits and a level of 2000. At this point, you can buy Fighter aircrafts.\n\n   >>    To become a Lieutenant, you need 60,000 recruits and a level of 3500. At this point, you can buy Guided missiles.\n\n   >>    To become a Captain, you need 100,000 recruits and a level of 5000. At this point, you can buy Submarines.\n\n   >>    To become a Colonel, you need 250,000 recruits and a level of 7500. At this point, you can buy Neutron bombs.\n\n   >>    To become a General, you need 500,000 recruits and a level of 10000. At this point, you can buy Smart maps.",
+        "Military grades are assigned to players depending on their level and recruits proficiency. Some weapons are available to graded players only.",
     },
     {
       id: "2.8",
@@ -333,7 +339,7 @@ const questions = {
       section: "M230",
       question: "Which weapons are used when I attack?",
       content:
-        "Your best weapons are automatically used when you attack someone. You can tweak a bit how they are used by selecting the attack type: \n Invasive attack is better when you have attack weapons.\nPreventive attack is better when you have defense weapons.",
+        "Your best weapons are automatically used when you attack someone. You can tweak a bit how they are used by selecting the attack type:",
     },
   ],
   payment: [
@@ -439,6 +445,105 @@ export const FAQ = () => {
                   {val.id} - {val.question}
                 </div>
                 <div className="mb-3 leading-none">{val.content}</div>
+                {val.id == "2.5" ? (
+                  <div>
+                    <div className="w-2/3 mx-auto flex flex-wrap">
+                      <div className="border w-full  text-center font-bold border-[#201d1d]">Top Players</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 1</div><div className="w-3/4 border border-[#201d1d]">	Ultimate Medal and 25 points</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 2</div><div className="w-3/4 border border-[#201d1d]">		Medal of Honor and 16 points</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 3</div><div className="w-3/4 border border-[#201d1d]">		War Hero Medal and 12 points</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 4</div><div className="w-3/4 border border-[#201d1d]">	Elite Medal and 10 points</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 5</div><div className="w-3/4 border border-[#201d1d]">	Veteran's Medal and 8 points</div>
+                    </div>
+                    <br/>
+                    <div className="w-2/3 mx-auto flex flex-wrap">
+                      <div className="border w-full  text-center font-bold border-[#201d1d]">Top supporters</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 1</div><div className="w-3/4 border border-[#201d1d]">	Cash prize and 15,000 turns</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 2</div><div className="w-3/4 border border-[#201d1d]">			100,000 turns</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 3</div><div className="w-3/4 border border-[#201d1d]">			50,000 turns</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 4</div><div className="w-3/4 border border-[#201d1d]">		25,000 turns</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 5</div><div className="w-3/4 border border-[#201d1d]">		15,000 turns</div>
+                    </div>
+                    <br/>
+                    <div className="w-2/3 mx-auto flex flex-wrap">
+                      <div className="border w-full  text-center font-bold border-[#201d1d]">Top Free Players</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 1</div><div className="w-3/4 border border-[#201d1d]">		20,000 turns</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 2</div><div className="w-3/4 border border-[#201d1d]">			10,000 turns</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 3</div><div className="w-3/4 border border-[#201d1d]">			7,000 turns</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 4</div><div className="w-3/4 border border-[#201d1d]">		5,000 turns</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 5</div><div className="w-3/4 border border-[#201d1d]">		3,000 turns</div>
+                    </div>
+                    <br/>
+                    <div className="w-2/3 mx-auto flex flex-wrap">
+                      <div className="border w-full  text-center font-bold border-[#201d1d]">
+                      Top crews</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 1</div><div className="w-3/4 border border-[#201d1d]">			90,000 turns, Gold Medal and 16 points</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 2</div><div className="w-3/4 border border-[#201d1d]">				40,000 turns, Silver Medal and 12 points</div>
+                      <div className="w-1/4 border border-[#201d1d]">Rank# 3</div><div className="w-3/4 border border-[#201d1d]">		15,000 turns, Bronze medal and 8 points</div>
+                    </div>
+                    <br/>
+                  </div>
+                ) : (
+                  ""
+                )}
+                {val.id == "2.6" ? (
+                  <div className="ml-4">
+                    <br />
+                    &gt;&gt; Ultimate Medal <br />
+                    &gt;&gt; Medal of Honor <br />
+                    &gt;&gt; War Hero Medal <br />
+                    &gt;&gt; Elite Medal <br />
+                    &gt;&gt; Veteran's Medal <br />
+                    &gt;&gt; Gold Medal <br />
+                    &gt;&gt; Silver Medal
+                    <br />
+                    &gt;&gt; Bronze Medal
+                    <br />
+                    <br />
+                  </div>
+                ) : (
+                  ""
+                )}
+                {val.id == "2.7" ? (
+                  <div className="ml-4">
+                    <br />
+                    &gt;&gt; To become a <b>Sergeant,</b> you need 40,000
+                    recruits and a level of 2000. At this point, you can buy
+                    Fighter aircrafts. <br /> <br />
+                    &gt;&gt; To become a <b>Lieutenant,</b> you need 60,000
+                    recruits and a level of 3500. At this point, you can buy
+                    Guided missiles. <br /> <br />
+                    &gt;&gt; To become a <b>Captain,</b> you need 100,000
+                    recruits and a level of 5000. At this point, you can buy
+                    Submarines. <br /> <br />
+                    &gt;&gt; To become a <b>Colonel,</b> you need 250,000
+                    recruits and a level of 7500. At this point, you can buy
+                    Neutron bombs. <br /> <br />
+                    &gt;&gt; To become a <b>General,</b> you need 500,000
+                    recruits and a level of 10000. At this point, you can buy
+                    Smart maps. <br /> <br />
+                  </div>
+                ) : (
+                  ""
+                )}
+                {val.id == "2.30" ? (
+                  <ul className="list-outside list-disc ml-10">
+                    <br />
+                    <li>
+                      Invasive attack is better when you have attack weapons.
+                    </li>
+                    <li>
+                      Preventive attack is better when you have defense weapons.
+                    </li>
+                    <li>
+                      Unexpected attack is better when you have both defense and
+                      attack weapons.
+                    </li>
+                    <br />
+                  </ul>
+                ) : (
+                  ""
+                )}
               </section>
             ))}
           </div>

@@ -6,3 +6,5 @@ export * from "./profile/profile";
 export * from "./editinfo/editinfo";
 export * from "./statmisc/statmisc";
 export * from "./nukecountry/nukecountry";
+export * from './userguide/userguide'
+export * from './faq/faq'
