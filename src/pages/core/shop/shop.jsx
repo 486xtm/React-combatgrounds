@@ -146,7 +146,7 @@ const shopItems = {
 export const Shop = () => {
   return (
     <Layout currentActiveTab={"headquarters"} isHeaderFull={true}>
-      <div className="flex flex-col w-full my-3 mx-5">
+      <div className="flex flex-col flex-1 my-3 mx-5">
         <div className="mx-auto">
           <img src="/pics/shop.gif" alt="shop" />
         </div>
