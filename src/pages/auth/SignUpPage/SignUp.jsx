@@ -62,10 +62,11 @@ const SignUpPage = () => {
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
-        navigate("/choosehelper");
+        navigate("/headquarter");
       }, 5000);
     }
   }, [isAuthenticated]);
+
   useEffect(() => {
     if (loginError) {
       navigate("/register");

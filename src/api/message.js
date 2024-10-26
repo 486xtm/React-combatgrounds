@@ -1,8 +1,8 @@
 import axios from "./axios";
-const basicURL = "";
 import { setMessageError } from "../redux/errorSlice";
 import { setMails } from "../redux/mailSlice";
 import { setToast } from "../redux/toastSlice";
+import { basicURL } from "../common/constant";
 
 export const sendMessage = async (data, dispatch) => {
   try {

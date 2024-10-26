@@ -1,8 +1,9 @@
 import axios from "./axios";
-const basicURL = "";
+
 import { setUpdateError } from "../redux/errorSlice";
 import { setBattleField } from "../redux/battlefieldSlice";
 import { setUser } from "../redux/userSlice";
+import { basicURL } from "../common/constant";
 
 export const conquerRegion = async (data, dispatch, navigate) => {
   try {

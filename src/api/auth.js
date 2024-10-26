@@ -1,12 +1,8 @@
 import axios from "./axios";
-const basicURL = "";
 
-import {
-  setLoginError,
-  setRegisterError,
-  setUpdateError,
-} from "../redux/errorSlice";
+import { setLoginError, setRegisterError } from "../redux/errorSlice";
 import { getUserInfo } from "./user";
+import { basicURL } from "../common/constant";
 
 // const basicURL = process.env.basicURL;
 export const signIn = async (data, dispatch) => {

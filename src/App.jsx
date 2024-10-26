@@ -1,14 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignIn from "./pages/auth/SignInPage/SignIn";
 import SignUp from "./pages/auth/SignUpPage/SignUp";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { ChooseHelper } from "./pages/core/choosehelper/choosehelper";
 import {
@@ -32,23 +27,66 @@ import {
   BattleFieldRegion,
   Shop,
 } from "./pages/core";
+import { getUserInfo } from "./api/user";
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
   let location = useLocation();
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/" state={{ from: location }} replace />;
+  }
+
+  return children;
+};
+
+const AuthRoute = ({ children }) => {
+  const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
+  let location = useLocation();
+
+  if (isAuthenticated) {
+    return <Navigate to="/headquarter" state={{ from: location }} replace />;
   }
   return children;
 };
+
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getUserInfo(dispatch);
+  }, []);
+
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<SignIn />} />
-        <Route exact path="/login" element={<SignIn />} />
-        <Route exact path="/register" element={<SignUp />} />
+        <Route
+          exact
+          path="/"
+          element={
+            <AuthRoute>
+              <SignIn />
+            </AuthRoute>
+          }
+        />
+        <Route
+          exact
+          path="/login"
+          element={
+            <AuthRoute>
+              <SignIn />
+            </AuthRoute>
+          }
+        />
+        <Route
+          exact
+          path="/register"
+          element={
+            <AuthRoute>
+              <SignUp />
+            </AuthRoute>
+          }
+        />
         <Route
           exact
           path="/choosehelper"
