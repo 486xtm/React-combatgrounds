@@ -1,8 +1,9 @@
 import axios from "axios";
+import { basicURL } from "../../common/constant";
 
 class ApiService {
   constructor() {
-    this.baseURL = ""; // Set your base URL here
+    this.baseURL = basicURL; // Set your base URL here
     this.axiosInstance = axios.create({
       baseURL: this.baseURL,
     });

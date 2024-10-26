@@ -1,10 +1,10 @@
 import axios from "./axios";
-const basicURL = "";
 
 import { setUser } from "../redux/userSlice";
 import { setUpdateError } from "../redux/errorSlice";
 import { login } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
+import { basicURL } from "../common/constant";
 
 export const getUserInfo = async (dispatch) => {
   try {

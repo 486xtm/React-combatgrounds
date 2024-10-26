@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import Loading from '../../../common/components/Loading'
+import Loading from "../../../common/components/Loading";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { signIn } from "../../../api/auth";
@@ -9,9 +9,9 @@ const MyComponent = () => {
   // Preload images on component mount
 
   const navigate = useNavigate();
-  const isInitial = useSelector(({auth}) => auth.isInitial);
-  const isAuthenticated = useSelector(({auth}) => auth.isAuthenticated);
-  const loginError = useSelector(({error}) => error.login);
+  const isInitial = useSelector(({ auth }) => auth.isInitial);
+  const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
+  const loginError = useSelector(({ error }) => error.login);
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -19,23 +19,26 @@ const MyComponent = () => {
   const [hoverFag, setHoverFag] = useState(false);
   const [hoverUserGuid, setHoverUserGuid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const handleLogin = async() => {
-    await signIn({username, password}, dispatch);
+
+  const handleLogin = async () => {
+    await signIn({ username, password }, dispatch);
   };
+
   useEffect(() => {
-    if(isAuthenticated){
+    if (isAuthenticated) {
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
-        navigate("/choosehelper")
+        navigate("/headquarter");
       }, 5000);
     }
-  },[isAuthenticated])
+  }, [isAuthenticated]);
+
   useEffect(() => {
-    if(loginError) {
-      navigate('/register');
+    if (loginError) {
+      navigate("/register");
     }
-  }, [loginError])
+  }, [loginError]);
   useEffect(() => {
     const preloadImages = (imageArray) => {
       imageArray.forEach((src) => {
@@ -63,8 +66,7 @@ const MyComponent = () => {
       document.removeEventListener("contextmenu", disableContextMenu);
     };
   }, []);
-  if(isLoading)
-    return <Loading />
+  if (isLoading) return <Loading />;
   return (
     <div className={styles["sign-in-container"]}>
       <div align="center">
@@ -267,37 +269,39 @@ const MyComponent = () => {
                 />
               </td>
               <td colSpan="7" valign="center" align="center">
-                {
-                  isInitial ? <div className="desc text-left leading-4 w-[320px]">
-                  Combat Grounds is a text-based multiplayer strategy game for
-                  those who want to jump into a world of politics and dominate
-                  the battlefield through words and strength.
-                  <br />
-                  <br />
-                  At Combat Grounds you can become a Navy Seal, a Soldier, or
-                  a Terrorist. Where is the enemy? Who are your allies? In an
-                  environment where the only certainty you have is yourself,
-                  can you survive?
-                  <a href="intro.htm" className="text-white">
-                    {" "}
-                    [+]
-                  </a>
-                </div> : (<span><p>&nbsp;</p>
-                <span
-                  style={{
-                    color: "#FF0000",
-                    fontSize: "2",
-                    fontFamily: "Verdana",
-                  }}
-                >
-                  <div className="desc error">
-                    <b>You must be logged in to view that page.</b>
+                {isInitial ? (
+                  <div className="desc text-left leading-4 w-[320px]">
+                    Combat Grounds is a text-based multiplayer strategy game for
+                    those who want to jump into a world of politics and dominate
+                    the battlefield through words and strength.
+                    <br />
+                    <br />
+                    At Combat Grounds you can become a Navy Seal, a Soldier, or
+                    a Terrorist. Where is the enemy? Who are your allies? In an
+                    environment where the only certainty you have is yourself,
+                    can you survive?
+                    <a href="intro.htm" className="text-white">
+                      {" "}
+                      [+]
+                    </a>
                   </div>
-                  
-                </span></span>)
-                }
+                ) : (
+                  <span>
+                    <p>&nbsp;</p>
+                    <span
+                      style={{
+                        color: "#FF0000",
+                        fontSize: "2",
+                        fontFamily: "Verdana",
+                      }}
+                    >
+                      <div className="desc error">
+                        <b>You must be logged in to view that page.</b>
+                      </div>
+                    </span>
+                  </span>
+                )}
                 {/*  */}
-                
               </td>
               <td rowSpan="2">
                 <img

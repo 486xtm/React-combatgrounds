@@ -1,7 +1,7 @@
 import axios from "./axios";
-const basicURL = "";
 import { setRound } from "../redux/roundSlice";
 import { setUpdateError } from "../redux/errorSlice";
+import { basicURL } from "../common/constant";
 
 export const getRound = async (dispatch) => {
   try {

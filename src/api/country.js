@@ -1,8 +1,8 @@
 import axios from "./axios";
-const basicURL = "";
 import { setNukeCountryError } from "../redux/errorSlice";
 import { setCountries } from "../redux/nukeSlice";
 import { login } from "../redux/authSlice";
+import { basicURL } from "../common/constant";
 
 export const nukeCountry = async (data, dispatch) => {
   try {
