@@ -4,6 +4,7 @@ const basicURL = "http://89.111.170.43:5000/api";
 import { setUser } from "../redux/userSlice";
 import { setUpdateError } from "../redux/errorSlice";
 import { login } from "../redux/authSlice";
+import { setToast } from "../redux/toastSlice";
 
 export const getUserInfo = async (dispatch) => {
   try {
@@ -39,6 +40,7 @@ export const updateName = async (data, dispatch) => {
     );
     dispatch(setUpdateError(null));
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -52,6 +54,7 @@ export const updateProfileInfo = async (data, dispatch) => {
     );
     dispatch(setUpdateError(null));
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -65,6 +68,7 @@ export const updatePassword = async (data, dispatch) => {
       setToast({ type: "succuess", msg: "Your Password Successfully Changed!" })
     );
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -75,6 +79,7 @@ export const updateYoutube = async (data, dispatch) => {
     await axios.patch(`${basicURL}/user/update_youtube`, reqData);
     dispatch(setUpdateError(null));
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -92,6 +97,7 @@ export const updateCharacterType = async (data, dispatch) => {
       })
     );
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -115,6 +121,7 @@ export const updateAvatar = async (data, dispatch) => {
       setToast({ type: "succuess", msg: "Your Avatar Successfully Changed!" })
     );
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -129,6 +136,7 @@ export const addBlockUser = async (data, dispatch) => {
     dispatch(setToast({ type: "succuess", msg: "You Successfully Block!" }));
   } catch (err) {
     console.log(err);
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError(err.message));
   }
 };
@@ -144,6 +152,7 @@ export const removeBlockUser = async (data, dispatch) => {
     dispatch(setToast({ type: "succuess", msg: "You Successfully UnBlock!" }));
   } catch (err) {
     console.log(err);
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError(err.message));
   }
 };
@@ -155,6 +164,7 @@ export const recruit = async (data, dispatch) => {
     dispatch(setUpdateError(null));
   } catch (err) {
     console.log(err);
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError(err.message));
   }
 };
@@ -167,6 +177,7 @@ export const raiseFund = async (data, dispatch) => {
     dispatch(setUpdateError(null));
   } catch (err) {
     console.log(err);
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError(err.message));
   }
 };

@@ -2,6 +2,7 @@ import axios from "./axios";
 const basicURL = "http://89.111.170.43:5000/api";
 import { setMessageError } from "../redux/errorSlice";
 import { setMails } from "../redux/mailSlice";
+import { setToast } from "../redux/toastSlice";
 
 export const sendMessage = async (data, dispatch) => {
   try {
@@ -11,8 +12,10 @@ export const sendMessage = async (data, dispatch) => {
       receiverName: data.receiver,
     };
     await axios.post(`${basicURL}/message/send`, reqData);
+    dispatch(setToast({ type: "success", msg: "Message Successfully Sent" }));
     dispatch(setMessageError(null));
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setMessageError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -32,9 +35,13 @@ export const deleteMessages = async (data, dispatch) => {
     const res = await axios.delete(`${basicURL}/message/delete`, data);
     // if (data.viewType === "sender") dispatch(setReceivedMails(res.data));
     // else dispatch(setSentMails(res.data));
+    dispatch(
+      setToast({ type: "success", msg: "Message Deleted Successfully" })
+    );
     getMessage(dispatch);
     dispatch(setMessageError({ msg: null }));
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setMessageError({ msg: err.response?.data.msg || err.message }));
   }
 };
