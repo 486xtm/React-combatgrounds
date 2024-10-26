@@ -49,37 +49,192 @@ const App = () => {
         <Route exact path="/" element={<SignIn />} />
         <Route exact path="/login" element={<SignIn />} />
         <Route exact path="/register" element={<SignUp />} />
-        <Route exact path="/choosehelper" element={<ChooseHelper />} />
-        <Route exact path="/headquarter" element={<HeadQuarter />} />
-        <Route exact path="/hof" element={<HallOfFame />} />
-        <Route exact path="/ranking" element={<Rankings />} />
-        <Route exact path="/profile" element={<Profile />} />
-        <Route exact path="/editinfo" element={<EditInfo />} />
-        <Route exact path="/statmisc" element={<StatMisc />} />
-        <Route exact path="/nukecountry" element={<NukeCountry />} />
-        <Route exact path="/mailcenter" element={<MailCenter />} />
-        <Route exact path="/attacklog" element={<AttackLog />} />
-        <Route exact path="/faq" element={<FAQ />} />
-        <Route exact path="/territories" element={<BattleField />} />
-        <Route exact path="/recruit" element={<Recruit />} />
-        <Route exact path="/raisefunds" element={<RaiseFund />} />
-        <Route exact path="/bootcamp" element={<Training />} />
-        <Route exact path="/homelve" element={<HomeLeave />} />
-        <Route exact path="/userguide" element={<UserGuide />} />
-        <Route exact path="/map" element={<BattleFieldMap />} />
+        <Route
+          exact
+          path="/choosehelper"
+          element={
+            <ProtectedRoute>
+              <ChooseHelper />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/headquarter"
+          element={
+            <ProtectedRoute>
+              <HeadQuarter />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/hof"
+          element={
+            <ProtectedRoute>
+              <HallOfFame />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/ranking"
+          element={
+            <ProtectedRoute>
+              <Rankings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/editinfo"
+          element={
+            <ProtectedRoute>
+              <EditInfo />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/statmisc"
+          element={
+            <ProtectedRoute>
+              <StatMisc />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/nukecountry"
+          element={
+            <ProtectedRoute>
+              <NukeCountry />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/mailcenter"
+          element={
+            <ProtectedRoute>
+              <MailCenter />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/attacklog"
+          element={
+            <ProtectedRoute>
+              <AttackLog />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/faq"
+          element={
+            <ProtectedRoute>
+              <FAQ />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/territories"
+          element={
+            <ProtectedRoute>
+              <BattleField />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/recruit"
+          element={
+            <ProtectedRoute>
+              <Recruit />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/raisefunds"
+          element={
+            <ProtectedRoute>
+              <RaiseFund />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/bootcamp"
+          element={
+            <ProtectedRoute>
+              <Training />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/homelve"
+          element={
+            <ProtectedRoute>
+              <HomeLeave />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/userguide"
+          element={
+            <ProtectedRoute>
+              <UserGuide />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/map"
+          element={
+            <ProtectedRoute>
+              <BattleFieldMap />
+            </ProtectedRoute>
+          }
+        />
         <Route
           exact
           path="/battlefield/:region"
-          element={<BattleFieldRegion />}
-        />
-        <Route exact path="/userguide" element={<UserGuide />} />
-        <Route exact path="/shop" element={<Shop />} />
-        <Route
-          exact
-          path="/secret"
           element={
             <ProtectedRoute>
-              <SignUp />
+              <BattleFieldRegion />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/userguide"
+          element={
+            <ProtectedRoute>
+              <UserGuide />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/shop"
+          element={
+            <ProtectedRoute>
+              <Shop />
             </ProtectedRoute>
           }
         />

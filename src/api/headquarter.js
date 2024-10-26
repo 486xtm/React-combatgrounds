@@ -1,5 +1,5 @@
 import axios from "./axios";
-const basicURL = "http://89.111.170.43:5000/api";
+const basicURL = "";
 import { setRound } from "../redux/roundSlice";
 import { setUpdateError } from "../redux/errorSlice";
 
