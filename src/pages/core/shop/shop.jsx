@@ -145,28 +145,28 @@ const shopItems = {
 }
 export const Shop = () => {
   const handleBuyAttack = () => {
-    console.log("buy attack");
+    console.log("buy attack shop");
   }
   const handleSellAttack = () => {
-    console.log("sell attack");
+    console.log("sell attack shop");
   }
   const handleBuyDefence = () => {
-    console.log("buy defence");
+    console.log("buy defence shop");
   }
   const handleSellDefence = () => {
-    console.log("sell defence");
+    console.log("sell defence shop");
   }
   const handleBuyCombo = () => {
-    console.log("buy Combo");
+    console.log("buy Combo shop");
   }
   const handleSellCombo = () => {
-    console.log("sell Combo");
+    console.log("sell Combo shop");
   }
   const handleBuyIncome = () => {
-    console.log("buy Income");
+    console.log("buy Income shop");
   }
   const handleSellIncome = () => {
-    console.log("sell Income");
+    console.log("sell Income shop");
   }
   return (
     <Layout currentActiveTab={"headquarters"} isHeaderFull={true}>
