@@ -13,6 +13,7 @@ import {
 } from "../../../api/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "../../../ToastProvider";
+import { setToast } from "../../../redux/toastSlice";
 
 export const EditInfo = () => {
   const [newEmail, setNewEmail] = useState("");
@@ -28,6 +29,9 @@ export const EditInfo = () => {
   const [autoYoutube, setAutoYoutube] = useState(false);
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(450);
   const [avatar, setAvatar] = useState(null);
+
+  const toast = useSelector(({ toast }) => toast);
+
   const { showSuccess, showError } = useToast();
 
   const user = useSelector(({ user }) => user.user);
@@ -37,6 +41,17 @@ export const EditInfo = () => {
   useEffect(() => {
     getUserInfo(dispatch);
   }, []);
+
+  useEffect(() => {
+    if (!toast || !toast.msg) return;
+    if (toast.type === "success") {
+      showSuccess(toast.msg);
+      dispatch(setToast({}));
+    } else {
+      showError(toast.msg);
+      dispatch(setToast({}));
+    }
+  }, [toast]);
 
   const changeEmailSubmit = () => {
     console.log(newEmail);

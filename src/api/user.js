@@ -12,7 +12,6 @@ export const getUserInfo = async (dispatch) => {
     dispatch(setUser(userInfo.data));
     dispatch(login());
     dispatch(setUpdateError(null));
-    // dispatch(setToast({ type: "error", msg: "" }));
   } catch (err) {
     console.log(err);
     dispatch(setUpdateError(err.message));
@@ -20,6 +19,9 @@ export const getUserInfo = async (dispatch) => {
 };
 
 export const updateEmail = async (data, dispatch) => {
+  dispatch(
+    setToast({ type: "succuess", msg: "Your Email Successfully Changed!" })
+  );
   try {
     const reqData = data;
     await axios.patch(`${basicURL}/user/update_useremail`, reqData);
@@ -33,8 +35,12 @@ export const updateName = async (data, dispatch) => {
   try {
     const reqData = data;
     await axios.patch(`${basicURL}/user/update_username`, reqData);
+    dispatch(
+      setToast({ type: "succuess", msg: "Your Name Successfully Changed!" })
+    );
     dispatch(setUpdateError(null));
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -43,8 +49,12 @@ export const updateProfileInfo = async (data, dispatch) => {
   try {
     const reqData = data;
     await axios.patch(`${basicURL}/user/update_profile`, reqData);
+    dispatch(
+      setToast({ type: "succuess", msg: "Your Profile Successfully Changed!" })
+    );
     dispatch(setUpdateError(null));
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -54,7 +64,11 @@ export const updatePassword = async (data, dispatch) => {
     const reqData = data;
     await axios.patch(`${basicURL}/user/update_password`, reqData);
     dispatch(setUpdateError(null));
+    dispatch(
+      setToast({ type: "succuess", msg: "Your Password Successfully Changed!" })
+    );
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -65,6 +79,7 @@ export const updateYoutube = async (data, dispatch) => {
     await axios.patch(`${basicURL}/user/update_youtube`, reqData);
     dispatch(setUpdateError(null));
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -75,7 +90,14 @@ export const updateCharacterType = async (data, dispatch) => {
     console.log("reqData==>", reqData);
     await axios.patch(`${basicURL}/user/update_characterType`, reqData);
     dispatch(setUpdateError(null));
+    dispatch(
+      setToast({
+        type: "succuess",
+        msg: "Your CharacterType Successfully Changed!",
+      })
+    );
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -84,7 +106,7 @@ export const updateAvatar = async (data, dispatch) => {
   try {
     const { avatar } = data;
     if (!avatar) {
-      alert("Please select a file first!");
+      dispatch(setToast({ type: "error", msg: "Please Select Avatar First!" }));
       return;
     }
 
@@ -95,7 +117,11 @@ export const updateAvatar = async (data, dispatch) => {
       "Content-Type": "multipart/form-data",
     });
     dispatch(setUpdateError(null));
+    dispatch(
+      setToast({ type: "succuess", msg: "Your Avatar Successfully Changed!" })
+    );
   } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -106,8 +132,11 @@ export const addBlockUser = async (data, dispatch) => {
     console.log("userinfo===>", userInfo.data);
     dispatch(setUser(userInfo.data));
     dispatch(setUpdateError(null));
+
+    dispatch(setToast({ type: "succuess", msg: "You Successfully Block!" }));
   } catch (err) {
     console.log(err);
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError(err.message));
   }
 };
@@ -120,8 +149,10 @@ export const removeBlockUser = async (data, dispatch) => {
     );
     dispatch(setUser(userInfo.data));
     dispatch(setUpdateError(null));
+    dispatch(setToast({ type: "succuess", msg: "You Successfully UnBlock!" }));
   } catch (err) {
     console.log(err);
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError(err.message));
   }
 };
@@ -133,18 +164,19 @@ export const recruit = async (data, dispatch) => {
     dispatch(setUpdateError(null));
   } catch (err) {
     console.log(err);
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError(err.message));
   }
 };
 
 export const raiseFund = async (data, dispatch) => {
   try {
-    console.log("ttt===>", data.turn, typeof data.turn);
     const res = await axios.patch(`${basicURL}/user/raise_fund`, data);
     dispatch(setUser(res.data.user));
     dispatch(setUpdateError(null));
   } catch (err) {
     console.log(err);
+    dispatch(setToast({ type: "error", msg: err.message }));
     dispatch(setUpdateError(err.message));
   }
 };

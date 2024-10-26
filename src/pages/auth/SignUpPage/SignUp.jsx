@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../../common/components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { signIn, signUp } from "../../../api/auth";
+import { useToast } from "../../../ToastProvider";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -26,6 +27,8 @@ const SignUpPage = () => {
   const [agreeCheck, setAgreeCheck] = useState(false);
   const [accountCheck, setAccountCheck] = useState(false);
 
+  const { showSuccess, showError } = useToast();
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     await signIn({ username: user, password: pass }, dispatch);
@@ -35,10 +38,14 @@ const SignUpPage = () => {
     e.preventDefault();
     console.log(accountCheck, agreeCheck);
     if (!agreeCheck) {
-      alert("You must accept the terms of use.");
+      // alert("You must accept the terms of use.");
+      showError("You must accept the terms of use.");
       return;
     } else if (!accountCheck) {
-      alert(
+      // alert(
+      //   "You must confirm that this is your only CombatGroudns.com account."
+      // );
+      showError(
         "You must confirm that this is your only CombatGroudns.com account."
       );
       return;
@@ -66,7 +73,7 @@ const SignUpPage = () => {
   }, [loginError]);
   useEffect(() => {
     if (registerError) {
-      alert(registerError.msg);
+      showError(registerError.msg);
     }
   }, [registerError]);
   if (isLoading) return <Loading />;
