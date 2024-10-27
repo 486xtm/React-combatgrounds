@@ -12,7 +12,7 @@ export const Header = ({ currentActiveTab = "headquarters" }) => {
         className={classNames(styles["main-page"], {
           [styles["active"]]: currentActiveTab === "main-page",
         })}
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/headquarter")}
       />
       <div
         className={classNames(styles["headquarters"], {
