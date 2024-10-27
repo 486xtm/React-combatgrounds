@@ -5,6 +5,7 @@ import { Header } from "../header/header";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../api/user";
+import { useNavigate } from "react-router-dom";
 
 export const Layout = ({
   children,
@@ -13,12 +14,6 @@ export const Layout = ({
   isMenuShow = true,
 }) => {
   const user = useSelector(({ user }) => user.user);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    getUserInfo(dispatch);
-  }, []);
 
   return (
     <div className={styles["layout-container"]}>

@@ -115,15 +115,16 @@ export const Menu = () => {
         >
           SUPPORT
         </Link>
-        <Link
-          to="/login"
+        <span
+          // to="/login"
           onClick={() => {
+            localStorage.removeItem("ACCESS_TOKEN");
             dispatch(logout());
           }}
-          className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
+          className="text-white font-bold underline ml-1 text-xs cursor-pointer hover:text-secondary"
         >
           LOGOUT
-        </Link>
+        </span>
       </div>
     </div>
   );

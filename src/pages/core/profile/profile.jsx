@@ -6,13 +6,6 @@ import { getUserInfo } from "../../../api/user";
 
 export const Profile = () => {
   const user = useSelector(({ user }) => user.user);
-  console.log("user===>", user);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    getUserInfo(dispatch);
-  }, []);
 
   return (
     <Layout currentActiveTab={"headquarters"}>

@@ -39,10 +39,6 @@ export const EditInfo = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getUserInfo(dispatch);
-  }, []);
-
-  useEffect(() => {
     if (!toast || !toast.msg) return;
     if (toast.type === "success") {
       showSuccess(toast.msg);

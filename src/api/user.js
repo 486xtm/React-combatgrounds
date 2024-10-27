@@ -6,15 +6,17 @@ import { login } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
 import { basicURL } from "../common/constant";
 
-export const getUserInfo = async (dispatch) => {
+export const getUserInfo = async (dispatch, navigate) => {
   try {
     const userInfo = await axios.get(`${basicURL}/user/infor`);
+    console.log("_______________userInfo", userInfo);
     dispatch(setUser(userInfo.data));
     dispatch(login());
     dispatch(setUpdateError(null));
   } catch (err) {
     console.log(err);
     dispatch(setUpdateError(err.message));
+    navigate('/login');
   }
 };
 

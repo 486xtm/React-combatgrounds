@@ -14,7 +14,6 @@ export const signIn = async (data, dispatch) => {
     });
 
     const { refresh_token } = response.data;
-
     // Store the token securely
     localStorage.setItem("ACCESS_TOKEN", refresh_token);
     getUserInfo(dispatch);

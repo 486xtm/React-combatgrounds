@@ -25,7 +25,8 @@ const MyComponent = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    const token = localStorage.getItem("ACCESS_TOKEN");
+    if (isAuthenticated && token) {
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);

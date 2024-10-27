@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import SignIn from "./pages/auth/SignInPage/SignIn";
 import SignUp from "./pages/auth/SignUpPage/SignUp";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,66 +27,37 @@ import {
   BattleFieldRegion,
   Shop,
 } from "./pages/core";
+import NotFound from "./pages/NotFound";
 import { getUserInfo } from "./api/user";
 
 const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
-  let location = useLocation();
-
-  if (!isAuthenticated) {
-    return <Navigate to="/" state={{ from: location }} replace />;
-  }
-
-  return children;
-};
-
-const AuthRoute = ({ children }) => {
-  const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
-  let location = useLocation();
-
-  if (isAuthenticated) {
-    return <Navigate to="/headquarter" state={{ from: location }} replace />;
-  }
-  return children;
-};
-
-const App = () => {
   const dispatch = useDispatch();
 
+  const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
+  let location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
-    getUserInfo(dispatch);
+    const token = localStorage.getItem("ACCESS_TOKEN");
+    if (token) getUserInfo(dispatch, navigate);
   }, []);
+  const token = localStorage.getItem("ACCESS_TOKEN");
+  if (!isAuthenticated && !token) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  if(isAuthenticated && token)
+    return children;
+};
+// const AuthRoute = ({children}) => {
 
+// }
+
+const App = () => {
   return (
     <Router>
       <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <AuthRoute>
-              <SignIn />
-            </AuthRoute>
-          }
-        />
-        <Route
-          exact
-          path="/login"
-          element={
-            <AuthRoute>
-              <SignIn />
-            </AuthRoute>
-          }
-        />
-        <Route
-          exact
-          path="/register"
-          element={
-            <AuthRoute>
-              <SignUp />
-            </AuthRoute>
-          }
-        />
+        <Route exact path="/" element={<SignIn />} />
+        <Route exact path="/login" element={<SignIn />} />
+        <Route exact path="/register" element={<SignUp />} />
         <Route
           exact
           path="/choosehelper"
@@ -276,6 +247,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
