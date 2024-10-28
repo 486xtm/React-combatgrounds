@@ -15,7 +15,7 @@ export const sendMessage = async (data, dispatch) => {
     dispatch(setToast({ type: "success", msg: "Message Successfully Sent" }));
     dispatch(setMessageError(null));
   } catch (err) {
-    dispatch(setToast({ type: "error", msg: err.message }));
+    dispatch(setToast({ type: "error", msg: err.response?.data.msg || err.message }));
     dispatch(setMessageError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -41,7 +41,7 @@ export const deleteMessages = async (data, dispatch) => {
     getMessage(dispatch);
     dispatch(setMessageError({ msg: null }));
   } catch (err) {
-    dispatch(setToast({ type: "error", msg: err.message }));
+    dispatch(setToast({ type: "error", msg: err.response?.data.msg || err.message }));
     dispatch(setMessageError({ msg: err.response?.data.msg || err.message }));
   }
 };

@@ -47,7 +47,6 @@ export const BattleFieldRegion = () => {
   }, [region, dispatch]);
 
   useEffect(() => {
-    console.log("battle==>", battleField);
   }, [battleField]);
 
   return (

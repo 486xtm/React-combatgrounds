@@ -10,7 +10,6 @@ export const Rankings = ({}) => {
 
   useEffect(() => {
     //fetch_datac
-    console.log("type===>", type);
     if (type === "free")
       setData([
         {
@@ -204,7 +203,6 @@ export const Rankings = ({}) => {
             className="text-transparent text-lg font-bold mx-auto cursor-pointer"
             onClick={() => {
               setType("supporter");
-              console.log("oka");
             }}
           >
             AAAAAAAAAAAA
@@ -239,7 +237,7 @@ export const Rankings = ({}) => {
           </div>
         </div>
 
-        <table className="text-white mx-auto">
+        {type !== "" && <table className="text-white mx-auto">
           <thead>
             <td className="w-[30px] text-white" />
             <td className="w-[250px] text-lg font-bold border-b border-b-gray-100 border-solid border-transparent border-0 py-2">
@@ -274,7 +272,7 @@ export const Rankings = ({}) => {
                 );
               })}
           </tbody>
-        </table>
+        </table>}
       </div>
     </Layout>
   );

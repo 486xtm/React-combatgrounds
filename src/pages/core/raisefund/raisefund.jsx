@@ -19,7 +19,6 @@ export const RaiseFund = () => {
   };
 
   const handleFund = (fundType) => {
-    console.log(fundType, turns[fundType]);
     raiseFund({ fundType, turn: turns[fundType] }, dispatch);
   };
 

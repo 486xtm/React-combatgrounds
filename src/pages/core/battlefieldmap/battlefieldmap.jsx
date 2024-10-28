@@ -12,7 +12,6 @@ export const BattleFieldMap = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // console.log("again");
     if (!selectedRegion) return;
     entryRegion({ regionId: selectedRegion }, dispatch, navigate);
   }, [selectedRegion]);

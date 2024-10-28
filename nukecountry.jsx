@@ -53,8 +53,8 @@ export const NukeCountry = () => {
             {countries &&
               countries.map((country, id) => (
                 <tr key={`nuke_country_${id}`}>
-                  <td>{country.name.toLocaleString('en-US')}</td>
-                  <td>{country.level.toLocaleString('en-US')}</td>
+                  <td>{country.name}</td>
+                  <td>{country.level}</td>
                   <td>
                     {!user || !country || country.level > user.level ? null : (
                       <button

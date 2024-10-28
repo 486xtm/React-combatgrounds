@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Header, Layout, Menu } from "../../../common/components";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,19 +6,47 @@ import { getUserInfo } from "../../../api/user";
 
 export const Profile = () => {
   const user = useSelector(({ user }) => user.user);
+  const [imageSrc, setImageSrc] = useState(null);
+  
+  useEffect(() => {
+    if(!user) return
+    const fetchImage = async () => {
+        try {
+            const response = await fetch(`http://78.138.0.79:5000/${user.avatar}`, {
+                method: 'GET',
+                headers: {
+                    'Cross-Origin-Resource-Policy': 'cross-origin', // or 'same-site'
+                },
+                mode: 'cors', // Ensure CORS mode is enabled
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const imageBlob = await response.blob();
+            const imageObjectURL = URL.createObjectURL(imageBlob);
+            setImageSrc(imageObjectURL);
+        } catch (error) {
+            console.error('There has been a problem with your fetch operation:', error);
+        }
+    };
+
+    fetchImage();
+}, [user.avatar]);
 
   return (
     <Layout currentActiveTab={"headquarters"}>
       <div className="flex-1">
         <img src="/pics/user.gif" alt="user.gif" className="block" />
         <div className="mx-3 border-2 border-primary flex flex-col">
-          <div className="flex flex-col py-4 px-3 py-4">
+          <div className="flex flex-col px-3 py-4">
             <div className="flex justify-between">
               <p className="text-sm text-secondary text-bold">
                 {user && user.name}
               </p>
               <p className="text-sm text-[red] text-bold">
-                Net worth: {user && user.netWorth ? user.netWorth : 0}
+                Net worth: {user && user.netWorth ? user.netWorth.toLocaleString('en-US') : 0}
               </p>
             </div>
             <img src="/images/onlineimg.gif" alt="online" className="mx-auto" />
@@ -42,11 +70,11 @@ export const Profile = () => {
                   </tr>
                   <tr>
                     <td>Lavel</td>
-                    <td>{user && user.level ? user.level : 1}</td>
+                    <td>{user && user.level ? user.level.toLocaleString('en-US') : 1}</td>
                   </tr>
                   <tr>
                     <td>Total Recruits</td>
-                    <td>{user && user.recruits ? user.recruits : 0}</td>
+                    <td>{user && user.recruits ? user.recruits.toLocaleString('en-US') : 0}</td>
                   </tr>
                   <tr>
                     <td>Directly Recruits Today</td>
@@ -60,28 +88,28 @@ export const Profile = () => {
                   src="/images/winsmastery.jpg"
                   alt="a"
                   className="my-5"
-                  title={`wins: ${user && user.wins ? user.wins : 0}`}
+                  title={`wins: ${user && user.wins ? user.wins.toLocaleString('en-US') : 0}`}
                 />
                 <img
                   src="/images/clicksmastery.jpg"
                   alt="b"
                   className="my-5"
                   title={`Recruits: ${
-                    user && user.recruits ? user.recruits : 0
+                    user && user.recruits ? user.recruits.toLocaleString('en-US') : 0
                   }`}
                 />
                 <img
                   src="/images/levelmastery.jpg"
                   alt="c"
                   className="my-5"
-                  title={`Level: ${user && user.level ? user.level : 1}`}
+                  title={`Level: ${user && user.level ? user.level.toLocaleString('en-US') : 1}`}
                 />
                 <img
                   src="/images/defensemastery.jpg"
                   alt="d"
                   className="my-5"
                   title={`Defended Attacks: ${
-                    user && user.defended_attacks ? user.defended_attacks : 1
+                    user && user.defended_attacks ? user.defended_attacks.toLocaleString('en-US') : 1
                   }`}
                 />
               </div>
@@ -102,7 +130,7 @@ export const Profile = () => {
               </div>
               <div>
                 <img
-                  src={user && user.avatar ? user.avatar : "/pics/avatar.gif"}
+                  src={user && user.avatar ? imageSrc : "/pics/avatar.gif"}
                   alt="avatar"
                   className="mx-auto"
                 />
@@ -114,7 +142,7 @@ export const Profile = () => {
                 MONEY available:
               </p>
               <p className="text-center text-green-600 font-bold">
-                $428,242,356
+                ${user && user.money.toLocaleString('en-US')}
               </p>
               <p className="text-center text-white font-bold text-sm mt-3">
                 MONEY banked:

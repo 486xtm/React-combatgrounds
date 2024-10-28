@@ -12,8 +12,7 @@ import {
   updateYoutube,
 } from "../../../api/user";
 import { useDispatch, useSelector } from "react-redux";
-import { useToast } from "../../../ToastProvider";
-import { setToast } from "../../../redux/toastSlice";
+import { useNavigate } from "react-router-dom";
 
 export const EditInfo = () => {
   const [newEmail, setNewEmail] = useState("");
@@ -30,37 +29,20 @@ export const EditInfo = () => {
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(450);
   const [avatar, setAvatar] = useState(null);
 
-  const toast = useSelector(({ toast }) => toast);
-
-  const { showSuccess, showError } = useToast();
-
   const user = useSelector(({ user }) => user.user);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!toast || !toast.msg) return;
-    if (toast.type === "success") {
-      showSuccess(toast.msg);
-      dispatch(setToast({}));
-    } else {
-      showError(toast.msg);
-      dispatch(setToast({}));
-    }
-  }, [toast]);
+  const navigate = useNavigate();
 
   const changeEmailSubmit = () => {
-    console.log(newEmail);
     updateEmail({ newEmail }, dispatch);
   };
 
   const changeNameSubmit = () => {
-    console.log(newName);
     updateName({ newName }, dispatch);
   };
 
   const changePasswordSubmit = () => {
-    console.log(password, confirmPassword, oldPassword);
     updatePassword(
       {
         oldPassword,
@@ -72,17 +54,14 @@ export const EditInfo = () => {
   };
 
   const changeCharacterTypeSubmit = () => {
-    console.log(characterType);
     updateCharacterType({ characterType }, dispatch);
   };
 
   const changeBioSubmit = () => {
-    console.log(aimName, description);
     updateProfileInfo({ aimName, description }, dispatch);
   };
 
   const changeYoutubeSubmit = () => {
-    console.log(youtube, enableYoutube, autoYoutube);
     updateYoutube(
       { youtube: { youtube, enableYoutube, autoYoutube } },
       dispatch
@@ -90,7 +69,6 @@ export const EditInfo = () => {
   };
 
   const changeAvatar = () => {
-    console.log("avatar===>", avatar);
     updateAvatar({ avatar }, dispatch);
   };
 

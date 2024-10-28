@@ -49,11 +49,9 @@ export const MailCenter = () => {
       { checkedItems, viewType: viewType !== "Inbox" ? "sender" : "receiver" },
       dispatch
     );
-    console.log(checkedItems, " are deleted!");
   };
 
   const handleUnread = () => {
-    console.log(checkedItems, " are unread!");
   };
 
   const handleBlock = () => {
@@ -72,11 +70,9 @@ export const MailCenter = () => {
   useEffect(() => {
     setMessages(viewType === "Inbox" ? receivedMessage : sentMessage);
     setCheckedItems([]);
-    console.log("messages", messages);
   }, [viewType, receivedMessage, sentMessage]);
 
   useEffect(() => {
-    console.log("checkedItems==>", checkedItems);
   }, [checkedItems]);
 
   useEffect(() => {
@@ -166,7 +162,6 @@ export const MailCenter = () => {
                             type="checkbox"
                             checked={checkedItems.indexOf(msg._id) !== -1}
                             onChange={() => {
-                              console.log(msg._id, " checked");
                               setCheckedItems(
                                 checkedItems.indexOf(msg._id) === -1
                                   ? [...checkedItems, msg._id]
@@ -220,7 +215,6 @@ export const MailCenter = () => {
                     className="my-auto text-xs w-[180px] rounded p-1"
                     onChange={(e) => {
                       setUnblockUserId(e.target.value);
-                      console.log(e.target.value);
                     }}
                   >
                     {user && user.blocks && user.blocks.length === 0 && (

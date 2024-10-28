@@ -29,6 +29,7 @@ import {
 } from "./pages/core";
 import NotFound from "./pages/NotFound";
 import { getUserInfo } from "./api/user";
+import { useToast } from "./ToastProvider";
 
 const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch();
@@ -52,6 +53,22 @@ const ProtectedRoute = ({ children }) => {
 // }
 
 const App = () => {
+  
+  const toast = useSelector(({ toast }) => toast);
+
+  const { showError, showSuccess } = useToast();
+
+  useEffect(() => {
+    if (!toast || !toast.msg || typeof showSuccess !== 'function' || typeof showError !== 'function') {
+      return;
+    }
+    if (toast.type === 'success') {
+      showSuccess(toast.msg);
+    } else {
+      showError(toast.msg);
+    }
+  }, [toast]);
+
   return (
     <Router>
       <Routes>

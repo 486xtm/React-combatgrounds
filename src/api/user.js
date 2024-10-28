@@ -8,41 +8,49 @@ import { basicURL } from "../common/constant";
 
 export const getUserInfo = async (dispatch, navigate) => {
   try {
-    const userInfo = await axios.get(`${basicURL}/user/infor`);
-    console.log("_______________userInfo", userInfo);
-    dispatch(setUser(userInfo.data));
+    const res = await axios.get(`${basicURL}/user/infor`);
+    dispatch(setUser(res.data));
     dispatch(login());
     dispatch(setUpdateError(null));
   } catch (err) {
-    console.log(err);
     dispatch(setUpdateError(err.message));
-    navigate('/login');
+    navigate("/login");
   }
 };
 
 export const updateEmail = async (data, dispatch) => {
-  dispatch(
-    setToast({ type: "succuess", msg: "Your Email Successfully Changed!" })
-  );
   try {
     const reqData = data;
-    await axios.patch(`${basicURL}/user/update_useremail`, reqData);
+
+    const res = await axios.patch(`${basicURL}/user/update_useremail`, reqData);
+    const { user } = res.data;
+    dispatch(setToast({ type: "success", msg: "Email Changed Successfully!" }));
+    dispatch(setUser(user));
     dispatch(setUpdateError(null));
   } catch (err) {
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
   }
 };
 
 export const updateName = async (data, dispatch) => {
   try {
     const reqData = data;
-    await axios.patch(`${basicURL}/user/update_username`, reqData);
+
+    const res = await axios.patch(`${basicURL}/user/update_username`, reqData);
+    const { user } = res.data;
+
     dispatch(
-      setToast({ type: "succuess", msg: "Your Name Successfully Changed!" })
+      setToast({ type: "success", msg: "Your Name Successfully Changed!" })
     );
+    dispatch(setUser(user));
     dispatch(setUpdateError(null));
   } catch (err) {
-    dispatch(setToast({ type: "error", msg: err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -50,13 +58,18 @@ export const updateName = async (data, dispatch) => {
 export const updateProfileInfo = async (data, dispatch) => {
   try {
     const reqData = data;
-    await axios.patch(`${basicURL}/user/update_profile`, reqData);
+
+    const res = await axios.patch(`${basicURL}/user/update_profile`, reqData);
+    const { user } = res.data;
     dispatch(
-      setToast({ type: "succuess", msg: "Your Profile Successfully Changed!" })
+      setToast({ type: "success", msg: "Your Profile Successfully Changed!" })
     );
+    dispatch(setUser(user));
     dispatch(setUpdateError(null));
   } catch (err) {
-    dispatch(setToast({ type: "error", msg: err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -67,10 +80,12 @@ export const updatePassword = async (data, dispatch) => {
     await axios.patch(`${basicURL}/user/update_password`, reqData);
     dispatch(setUpdateError(null));
     dispatch(
-      setToast({ type: "succuess", msg: "Your Password Successfully Changed!" })
+      setToast({ type: "success", msg: "Your Password Successfully Changed!" })
     );
   } catch (err) {
-    dispatch(setToast({ type: "error", msg: err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -78,10 +93,18 @@ export const updatePassword = async (data, dispatch) => {
 export const updateYoutube = async (data, dispatch) => {
   try {
     const reqData = data;
-    await axios.patch(`${basicURL}/user/update_youtube`, reqData);
+
+    const res = await axios.patch(`${basicURL}/user/update_youtube`, reqData);
+    const { user } = res.data;
     dispatch(setUpdateError(null));
+    dispatch(
+      setToast({ type: "success", msg: "Youtube link changed successfully!" })
+    );
+    dispatch(setUser(user));
   } catch (err) {
-    dispatch(setToast({ type: "error", msg: err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -89,17 +112,24 @@ export const updateYoutube = async (data, dispatch) => {
 export const updateCharacterType = async (data, dispatch) => {
   try {
     const reqData = data;
-    console.log("reqData==>", reqData);
-    await axios.patch(`${basicURL}/user/update_characterType`, reqData);
+
+    const res = await axios.patch(
+      `${basicURL}/user/update_characterType`,
+      reqData
+    );
+    const { user } = res.data;
     dispatch(setUpdateError(null));
+    dispatch(setUser(user));
     dispatch(
       setToast({
-        type: "succuess",
-        msg: "Your CharacterType Successfully Changed!",
+        type: "success",
+        msg: "CharacterType Changed Successfully!",
       })
     );
   } catch (err) {
-    dispatch(setToast({ type: "error", msg: err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -115,46 +145,52 @@ export const updateAvatar = async (data, dispatch) => {
     const formData = new FormData();
     formData.append("file", avatar);
 
-    await axios.post(`${basicURL}/upload/update_avatar`, formData, {
+    const res = await axios.post(`${basicURL}/upload/update_avatar`, formData, {
       "Content-Type": "multipart/form-data",
     });
+    const { user } = res.data;
     dispatch(setUpdateError(null));
+    dispatch(setUser(user));
     dispatch(
-      setToast({ type: "succuess", msg: "Your Avatar Successfully Changed!" })
+      setToast({ type: "success", msg: "Your Avatar Successfully Changed!" })
     );
   } catch (err) {
-    dispatch(setToast({ type: "error", msg: err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
   }
 };
 
 export const addBlockUser = async (data, dispatch) => {
   try {
-    const userInfo = await axios.patch(`${basicURL}/user/add_blockuser`, data);
-    console.log("userinfo===>", userInfo.data);
-    dispatch(setUser(userInfo.data));
+    const res = await axios.patch(`${basicURL}/user/add_blockuser`, data);
+    const {user} = res.data;
+    dispatch(setUser(user));
     dispatch(setUpdateError(null));
-
-    dispatch(setToast({ type: "succuess", msg: "You Successfully Block!" }));
+    dispatch(setToast({ type: "success", msg: "Block Successfully!" }));
   } catch (err) {
-    console.log(err);
-    dispatch(setToast({ type: "error", msg: err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setUpdateError(err.message));
   }
 };
 
 export const removeBlockUser = async (data, dispatch) => {
   try {
-    const userInfo = await axios.patch(
+    const res = await axios.patch(
       `${basicURL}/user/remove_blockuser`,
       data
     );
-    dispatch(setUser(userInfo.data));
+    const {user} = res.data;
+    dispatch(setUser(user));
     dispatch(setUpdateError(null));
-    dispatch(setToast({ type: "succuess", msg: "You Successfully UnBlock!" }));
+    dispatch(setToast({ type: "success", msg: "UnBlock Successfully!" }));
   } catch (err) {
-    console.log(err);
-    dispatch(setToast({ type: "error", msg: err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setUpdateError(err.message));
   }
 };
@@ -165,8 +201,9 @@ export const recruit = async (data, dispatch) => {
     dispatch(setUser(res.data.user));
     dispatch(setUpdateError(null));
   } catch (err) {
-    console.log(err);
-    dispatch(setToast({ type: "error", msg: err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setUpdateError(err.message));
   }
 };
@@ -177,8 +214,9 @@ export const raiseFund = async (data, dispatch) => {
     dispatch(setUser(res.data.user));
     dispatch(setUpdateError(null));
   } catch (err) {
-    console.log(err);
-    dispatch(setToast({ type: "error", msg: err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setUpdateError(err.message));
   }
 };
