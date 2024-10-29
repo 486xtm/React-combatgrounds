@@ -165,7 +165,7 @@ export const updateAvatar = async (data, dispatch) => {
 export const addBlockUser = async (data, dispatch) => {
   try {
     const res = await axios.patch(`${basicURL}/user/add_blockuser`, data);
-    const {user} = res.data;
+    const { user } = res.data;
     dispatch(setUser(user));
     dispatch(setUpdateError(null));
     dispatch(setToast({ type: "success", msg: "Block Successfully!" }));
@@ -179,11 +179,8 @@ export const addBlockUser = async (data, dispatch) => {
 
 export const removeBlockUser = async (data, dispatch) => {
   try {
-    const res = await axios.patch(
-      `${basicURL}/user/remove_blockuser`,
-      data
-    );
-    const {user} = res.data;
+    const res = await axios.patch(`${basicURL}/user/remove_blockuser`, data);
+    const { user } = res.data;
     dispatch(setUser(user));
     dispatch(setUpdateError(null));
     dispatch(setToast({ type: "success", msg: "UnBlock Successfully!" }));
@@ -199,6 +196,7 @@ export const recruit = async (data, dispatch) => {
   try {
     const res = await axios.patch(`${basicURL}/user/recruit`, data);
     dispatch(setUser(res.data.user));
+    dispatch(setToast({ type: "success", msg: res.data.msg }));
     dispatch(setUpdateError(null));
   } catch (err) {
     dispatch(
