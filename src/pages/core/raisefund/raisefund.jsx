@@ -60,7 +60,7 @@ export const RaiseFund = () => {
                   </button>
                 </div>
                 <span className="text-[red] text-xs text-center">
-                  You need recruits.
+                  You need recruits and earn Cash
                 </span>
               </div>
               <div className="flex flex-col items-center gap-1 flex-1">
@@ -97,7 +97,9 @@ export const RaiseFund = () => {
             <div className="flex justify-between">
               <div className="flex flex-col items-center gap-1 flex-1">
                 <img
-                  src={isTerrorist ? "/pics/hitmen.jpg" : "/pics/trainingRF.jpg"}
+                  src={
+                    isTerrorist ? "/pics/hitmen.jpg" : "/pics/trainingRF.jpg"
+                  }
                   width="145"
                   height="108"
                 />

@@ -2,8 +2,11 @@ import React from "react";
 import { Header, Menu } from "../../../common/components";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const ChooseHelper = () => {
+  const user = useSelector(({ user }) => user.user);
+
   return (
     <div className={styles["choose-helper-container"]}>
       <Header currentActiveTab="headquarters" />
@@ -17,16 +20,19 @@ export const ChooseHelper = () => {
             <div className="w-full h-1 bg-white" />
             <Link
               className="text-xl text-white font-bold my-1 pb-2"
-              // to="https://discordapp.com/channels/1040013836566138992/1265903715068543007"
-              onClick={() => {
-                window.location.href =
-                  "https://discordapp.com/channels/1040013836566138992/1265903715068543007";
-              }}
+              to={
+                "https://discordapp.com/channels/1040013836566138992/1265903715068543007"
+              }
             >
               <u>Click here for News</u>
             </Link>
             <div className="text-tiny text-white flex flex-col leading-tight">
-              <b>Welcome sealife22312!</b>
+              <b>
+                Welcome{" "}
+                <span className="font-bold text-lg text-secondary underline">
+                  {user && `@${user.name}!`}
+                </span>
+              </b>
               <p>
                 Combat Grounds is a free, strategic role-playing game that you
                 can play daily using only your Web browser. It is text based and

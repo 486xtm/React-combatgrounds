@@ -210,6 +210,7 @@ export const raiseFund = async (data, dispatch) => {
   try {
     const res = await axios.patch(`${basicURL}/user/raise_fund`, data);
     dispatch(setUser(res.data.user));
+    dispatch(setToast({ type: "success", msg: res.data.msg }));
     dispatch(setUpdateError(null));
   } catch (err) {
     dispatch(

@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import SignIn from "./pages/auth/SignInPage/SignIn";
 import SignUp from "./pages/auth/SignUpPage/SignUp";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,6 +35,7 @@ import {
 import NotFound from "./pages/NotFound";
 import { getUserInfo } from "./api/user";
 import { useToast } from "./ToastProvider";
+import { setToast } from "./redux/toastSlice";
 
 const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch();
@@ -45,27 +51,33 @@ const ProtectedRoute = ({ children }) => {
   if (!isAuthenticated && !token) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
-  if(isAuthenticated && token)
-    return children;
+  if (isAuthenticated && token) return children;
 };
 // const AuthRoute = ({children}) => {
 
 // }
 
 const App = () => {
-  
   const toast = useSelector(({ toast }) => toast);
 
   const { showError, showSuccess } = useToast();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!toast || !toast.msg || typeof showSuccess !== 'function' || typeof showError !== 'function') {
+    if (
+      !toast ||
+      !toast.msg ||
+      typeof showSuccess !== "function" ||
+      typeof showError !== "function"
+    ) {
       return;
     }
-    if (toast.type === 'success') {
+    if (toast.type === "success") {
       showSuccess(toast.msg);
+      dispatch(setToast({}));
     } else {
       showError(toast.msg);
+      dispatch(setToast({}));
     }
   }, [toast]);
 
@@ -264,7 +276,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-         <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

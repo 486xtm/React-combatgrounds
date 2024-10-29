@@ -34,7 +34,7 @@ export const BattleFieldRegion = () => {
   };
   const handleTakeAllClick = () => {
     if (!battleField) return;
-    takeAll({ battleFieldId: battleField._id }, dispatch);
+    takeAll({ battleFieldId: battleField._id }, dispatch, navigate);
   };
 
   const handleGoClick = (operationType) => {
@@ -46,8 +46,7 @@ export const BattleFieldRegion = () => {
     getBattleField({ region_id: region }, dispatch);
   }, [region, dispatch]);
 
-  useEffect(() => {
-  }, [battleField]);
+  useEffect(() => {}, [battleField]);
 
   return (
     <Layout>
