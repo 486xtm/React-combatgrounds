@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 
 import styles from "./styles.module.css";
 import { useDispatch } from "react-redux";
-import { logout } from "../../../redux/authSlice";
+import { signOut } from '../../../api/auth'
+import { useNavigate } from "react-router-dom";
 export const Menu = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <div className={styles["menu-container"]}>
       <div className={styles["menu-item"]}>MEMBERS</div>
@@ -118,8 +120,7 @@ export const Menu = () => {
         <span
           // to="/login"
           onClick={() => {
-            localStorage.removeItem("ACCESS_TOKEN");
-            dispatch(logout());
+            signOut(dispatch, navigate);
           }}
           className="text-white font-bold underline ml-1 text-xs cursor-pointer hover:text-secondary"
         >
