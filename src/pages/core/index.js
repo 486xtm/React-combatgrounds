@@ -18,5 +18,6 @@ export * from "./userguide/userguide";
 export * from "./battlefieldmap/battlefieldmap";
 export * from "./battlefieldregion/battlefieldregion";
 export * from './homeleave/homeleave';
-export * from './userguide/userguide'
-export * from './shop/shop'
+export * from './userguide/userguide';
+export * from './shop/shop';
+export * from './onlinePlayer/online';
