@@ -7,7 +7,7 @@ export const RaiseFund = () => {
   const user = useSelector(({ user }) => user.user);
 
   const [isTerrorist, setIsTerrorist] = useState(false);
-  const [turns, setTruns] = useState([0, 0, 0, 0]);
+  const [turns, setTruns] = useState(["", "", "", ""]);
 
   const dispatch = useDispatch();
 
@@ -139,9 +139,10 @@ export const RaiseFund = () => {
                 <div className="flex items-center gap-1">
                   <span className="text-xs text-white">Use</span>
                   <input
-                    type="number"
                     className="w-12 border-white border bg-black rounded text-white text-xs px-1 outline-0 focus:border-gray-500"
-                    onChange={(e) => handleTurnChange(3, e.target.value)}
+                    onChange={(e) =>
+                      handleTurnChange(3, e.target.value.replace(/[^0-9]/g, ""))
+                    }
                   />
                   <span className="text-xs text-white">turns</span>
                   <button

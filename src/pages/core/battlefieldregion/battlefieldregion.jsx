@@ -17,8 +17,8 @@ export const BattleFieldRegion = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [takeTroops, setTakeTroops] = useState(0);
-  const [putTroops, setPutTroops] = useState(0);
+  const [takeTroops, setTakeTroops] = useState("");
+  const [putTroops, setPutTroops] = useState("");
 
   const handlePutGoClick = () => {
     if (!battleField) return;
@@ -66,9 +66,11 @@ export const BattleFieldRegion = () => {
               Put in troops:
             </p>
             <input
-              type="number"
+              value={Number(putTroops).toLocaleString("en-US")}
               className="text-sm w-[100px] rounded px-1"
-              onChange={(e) => setPutTroops(e.target.value)}
+              onChange={(e) => {
+                setPutTroops(e.target.value.replace(/[^0-9]/g, ""));
+              }}
             />
             <button
               className="text-[red] text-sm font-bold w-[50px]"
@@ -88,9 +90,11 @@ export const BattleFieldRegion = () => {
               Pull out troops:
             </p>
             <input
-              type="number"
               className="text-sm w-[100px] rounded px-1"
-              onChange={(e) => setTakeTroops(e.target.value)}
+              value={Number(takeTroops).toLocaleString("en-US")}
+              onChange={(e) => {
+                setTakeTroops(e.target.value.replace(/[^0-9]/g, ""));
+              }}
             />
             <button
               className="text-[red] text-sm font-bold w-[50px]"
