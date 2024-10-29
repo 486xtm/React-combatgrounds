@@ -41,7 +41,7 @@
 
 .custom-table {
   color: white;
-  border: 2px solid gray;
+  border: 2px solid rgb(129, 132, 60);
 }
 
 .custom-table td {
@@ -63,6 +63,57 @@
   background-color: rgb(129, 132, 60);
   color: black;
 }
+
+.navyseal-table {
+  color: white;
+  border: 2px solid rgb(108, 108, 255);
+}
+
+.navyseal-table td {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 15px;
+  padding: 4px;
+}
+
+.navyseal-table tr td:first-child {
+  width: 50%;
+}
+
+.navyseal-table tr:nth-child(odd) {
+  background-color: rgb(0, 0, 111);
+}
+
+.navyseal-table tr:nth-child(even) {
+  background-color: rgb(108, 108, 255);
+  color: black;
+}
+
+.terrorist-table {
+  color: white;
+  border: 2px solid rgb(211, 100, 53);
+}
+
+.terrorist-table td {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 15px;
+  padding: 4px;
+}
+
+.terrorist-table tr td:first-child {
+  width: 50%;
+}
+
+.terrorist-table tr:nth-child(odd) {
+  background-color: rgb(136, 0, 0);
+}
+
+.terrorist-table tr:nth-child(even) {
+  background-color: rgb(211, 100, 53);
+  color: black;
+}
+
 
 .item {
   width: 70px;

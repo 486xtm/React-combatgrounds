@@ -100,7 +100,7 @@ export const Menu = () => {
 
       <div className="flex flex-col">
         <Link
-          to="/missions"
+          to="/online"
           className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
         >
           ONLINE_PLAYERS

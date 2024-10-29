@@ -15,21 +15,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export const EditInfo = () => {
+  const user = useSelector(({ user }) => user.user);
+
   const [newEmail, setNewEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [characterType, setCharacterType] = useState("Solider");
+  const [characterType, setCharacterType] = useState(user.characterType);
   const [newName, setNewName] = useState("");
   const [oldPassword, setOldPassword] = useState("");
-  const [aimName, setAIMName] = useState("");
-  const [description, setDescription] = useState("");
-  const [youtube, setYoutube] = useState("");
-  const [enableYoutube, setEnableYoutube] = useState(false);
-  const [autoYoutube, setAutoYoutube] = useState(false);
+  const [aimName, setAIMName] = useState(user.aimName);
+  const [description, setDescription] = useState(user.description);
+  const [youtube, setYoutube] = useState(user.youtube.youtube);
+  const [enableYoutube, setEnableYoutube] = useState(user.youtube.enableYoutube);
+  const [autoYoutube, setAutoYoutube] = useState(user.youtube.autoYoutube);
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(450);
   const [avatar, setAvatar] = useState(null);
 
-  const user = useSelector(({ user }) => user.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -86,10 +87,11 @@ export const EditInfo = () => {
           <div className="flex flex-col p-3">
             <div className="flex gap=30px">
               <span className="text-white font-bold text-sm w-[110px]">
-                AIM screen name:
+                Discord name:
               </span>
               <input
                 className="flex-1 text-sm px-2 py-1"
+                value={aimName}
                 onChange={(e) => setAIMName(e.target.value)}
               />
             </div>
@@ -101,6 +103,7 @@ export const EditInfo = () => {
                 className="flex-1 text-sm px-2 py-1"
                 maxLength={450}
                 rows={10}
+                value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
@@ -137,6 +140,7 @@ export const EditInfo = () => {
               <input
                 placeholder="example: www.youtube.com/watch?v=abcdef"
                 className="min-w-[400px] text-xs px-1"
+                value={youtube}
                 onChange={(e) => setYoutube(e.target.value)}
               />
             </div>
@@ -147,6 +151,7 @@ export const EditInfo = () => {
               <input
                 type="checkbox"
                 className="ml-5"
+                checked={enableYoutube}
                 onChange={(e) => setEnableYoutube(e.target.checked)}
               />
             </div>
@@ -157,6 +162,7 @@ export const EditInfo = () => {
               <input
                 type="checkbox"
                 className="ml-5"
+                checked={autoYoutube}
                 onChange={(e) => setAutoYoutube(e.target.checked)}
               />
             </div>
@@ -170,11 +176,12 @@ export const EditInfo = () => {
             </span>
             <select
               className="text-sm rounded"
+              value={characterType}
               onChange={(e) => setCharacterType(e.target.value)}
             >
-              <option>Soldier</option>
-              <option>Navyseal</option>
-              <option>Terrorist</option>
+              <option value="Soldier">Soldier</option>
+              <option value="Navyseal">Navyseal</option>
+              <option value="Terrorist">Terrorist</option>
             </select>
             <button className="ml-auto" onClick={changeCharacterTypeSubmit}>
               submit

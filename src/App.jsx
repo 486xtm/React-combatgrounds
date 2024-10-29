@@ -31,6 +31,7 @@ import {
   BattleFieldMap,
   BattleFieldRegion,
   Shop,
+  OnlinePlayers,
 } from "./pages/core";
 import NotFound from "./pages/NotFound";
 import { getUserInfo } from "./api/user";
@@ -277,6 +278,15 @@ const App = () => {
           }
         />
         <Route path="*" element={<NotFound />} />
+        <Route
+          exact
+          path="/online"
+          element={
+            <ProtectedRoute>
+              <OnlinePlayers />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );

@@ -5,7 +5,7 @@ import { setUpdateError } from "../redux/errorSlice";
 import { login } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
 import { basicURL } from "../common/constant";
-
+import { setOnlinePlayers } from "../redux/onlineSlice";
 export const getUserInfo = async (dispatch, navigate) => {
   try {
     const res = await axios.get(`${basicURL}/user/infor`);
@@ -219,3 +219,11 @@ export const raiseFund = async (data, dispatch) => {
     dispatch(setUpdateError(err.message));
   }
 };
+export const getOnlinePlayers = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/user/online`);
+    dispatch(setOnlinePlayers(res.data.users));
+  } catch (err) {
+    console.log(err.response?.data.msg || err.message);
+  }
+}
