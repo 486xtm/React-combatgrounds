@@ -14,6 +14,10 @@ export default {
         "custom-gray": "rgb(51, 51, 51)",
         "custom-green": "#4F6D26",
         "custom-light-green": "rgb(102, 153, 51)",
+        "navyseal" : "rgb(108, 108, 255)",
+        "dark-navyseal": "rgb(0, 0, 111)",
+        "terrorist" : "rgb(211, 100, 53)",
+        "dark-terrorist" : "rgb(136, 0, 0)"
       },
       fontSize: {
         xxl: "1.7rem",
