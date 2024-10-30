@@ -27,11 +27,7 @@ const Modal = ({ isOpen, onClose, children }) => {
       }`}
       onClick={handleOverlayClick}
     >
-      <div
-        className={`bg-[#000000] text-white border-double border-2 border-[white] p-4 rounded shadow-2xl shadow-[red] transform transition-transform duration-300 ${
-          isOpen ? "scale-100" : "scale-90"
-        }`}
-      >
+      <div className={`bg-[white] p-4 rounded shadow-lg transform transition-transform duration-300 ${isOpen ? 'scale-100' : 'scale-90'}`}>
         {children}
       </div>
     </div>

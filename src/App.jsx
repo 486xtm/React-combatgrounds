@@ -54,15 +54,12 @@ const ProtectedRoute = ({ children }) => {
   }
   if (isAuthenticated && token) return children;
 };
-// const AuthRoute = ({children}) => {
-
-// }
 
 const App = () => {
   const toast = useSelector(({ toast }) => toast);
+  const dispatch = useDispatch();
 
   const { showError, showSuccess } = useToast();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (
@@ -80,6 +77,9 @@ const App = () => {
       showError(toast.msg);
       dispatch(setToast({}));
     }
+    dispatch(
+      setToast({ })
+    );
   }, [toast]);
 
   return (
