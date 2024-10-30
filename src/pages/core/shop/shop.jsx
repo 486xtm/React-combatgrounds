@@ -404,11 +404,11 @@ export const Shop = () => {
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <div className="w-[450px]">
-          <div className="text-[18px] mb-3 ml-2 text-[#0d160d]">Item Info</div>
+          <div className="text-[18px] mb-3 ml-2 text-[#338f33]">Item Info</div>
           <div className="border-2 border-b-0 w-full flex">
-            <div className="w-2/5 text-center text-red-500">Name</div>
-            <div className="w-[30%] text-center border-x-2 text-red-500">Max</div>
-            <div className="w-[30%] text-center text-red-500">Cost</div>
+            <div className="w-2/5 text-center text-red-500 font-medium">Name</div>
+            <div className="w-[30%] text-center border-x-2 text-red-500 font-medium">Max</div>
+            <div className="w-[30%] text-center text-red-500 font-medium">Cost</div>
           </div>
           <div className="border-2 w-full flex border-b-0">
             <div className="w-2/5 text-center">{selectedItem.name}</div>
@@ -416,9 +416,9 @@ export const Shop = () => {
             <div className="w-[30%] text-center">{Number(selectedItem.cost).toLocaleString("en-US")}</div>
           </div>
           <div className="border-2 border-b-0 w-full flex ">
-            <div className="w-2/5 text-center text-red-500">Attack Bonus</div>
-            <div className="w-[30%] text-center border-x-2 text-red-500">Defence Bonus</div>
-            <div className="w-[30%] text-center text-red-500">Income Bonus</div>
+            <div className="w-2/5 text-center text-red-500 font-medium">Attack Bonus</div>
+            <div className="w-[30%] text-center border-x-2 text-red-500 font-medium">Defence Bonus</div>
+            <div className="w-[30%] text-center text-red-500 font-medium">Income Bonus</div>
           </div>
           <div className="border-2 border-b-0 w-full flex ">
             <div className="w-2/5 text-center">40</div>
@@ -426,8 +426,8 @@ export const Shop = () => {
             <div className="w-[30%] text-center">0</div>
           </div>
           <div className="border-2 border-b-0 w-full flex ">
-            <div className="w-2/5 text-center text-red-500">picture</div>
-            <div className="w-[60%] text-center border-l-2 text-red-500">Description</div>
+            <div className="w-2/5 text-center text-red-500 font-medium">picture</div>
+            <div className="w-[60%] text-center border-l-2 text-red-500 font-medium">Description</div>
           </div>
           <div className="border-2 w-full flex ">
             <div className="w-2/5 flex items-center justify-center"><img src = "/images/items/5.gif"/></div>
