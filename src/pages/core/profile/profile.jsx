@@ -44,7 +44,6 @@ export const Profile = () => {
     user && user.youtube && user.youtube.youtube
       ? user.youtube.youtube.split("v=")[1]
       : "";
-  console.log(video_id, user.youtube);
   return (
     <Layout currentActiveTab={"headquarters"}>
       <div className="flex-1">
