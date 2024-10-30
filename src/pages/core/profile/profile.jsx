@@ -4,6 +4,7 @@ import { Header, Layout, Menu } from "../../../common/components";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../api/user";
 import { useLocation } from "react-router-dom";
+
 export const Profile = () => {
   const location = useLocation();
   const [imageSrc, setImageSrc] = useState(null);

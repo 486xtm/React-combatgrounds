@@ -31,7 +31,7 @@ import {
 import NotFound from "./pages/NotFound";
 import { getUserInfo } from "./api/user";
 import { useToast } from "./ToastProvider";
-
+import { setToast } from "./redux/toastSlice";
 const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch();
 
@@ -56,6 +56,7 @@ const ProtectedRoute = ({ children }) => {
 const App = () => {
   
   const toast = useSelector(({ toast }) => toast);
+  const dispatch = useDispatch();
 
   const { showError, showSuccess } = useToast();
 
@@ -68,6 +69,9 @@ const App = () => {
     } else {
       showError(toast.msg);
     }
+    dispatch(
+      setToast({ })
+    );
   }, [toast]);
 
   return (

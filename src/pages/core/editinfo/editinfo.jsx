@@ -20,14 +20,14 @@ export const EditInfo = () => {
   const [newEmail, setNewEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [characterType, setCharacterType] = useState(user.characterType);
+  const [characterType, setCharacterType] = useState(user.characterType || "Soldier");
   const [newName, setNewName] = useState("");
   const [oldPassword, setOldPassword] = useState("");
-  const [aimName, setAIMName] = useState(user.aimName);
-  const [description, setDescription] = useState(user.description);
-  const [youtube, setYoutube] = useState(user.youtube.youtube);
-  const [enableYoutube, setEnableYoutube] = useState(user.youtube.enableYoutube);
-  const [autoYoutube, setAutoYoutube] = useState(user.youtube.autoYoutube);
+  const [aimName, setAIMName] = useState(user.aimName || "");
+  const [description, setDescription] = useState(user.description || "");
+  const [youtube, setYoutube] = useState(user.youtube.youtube || "");
+  const [enableYoutube, setEnableYoutube] = useState(user.youtube.enableYoutube|| false);
+  const [autoYoutube, setAutoYoutube] = useState(user.youtube.autoYoutube|| false);
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(450);
   const [avatar, setAvatar] = useState(null);
 
