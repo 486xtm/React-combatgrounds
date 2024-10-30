@@ -11,6 +11,7 @@ export const Profile = () => {
   const onlinePlayer = location.state;
   const currentUser = useSelector(({ user }) => user.user);
   const user = onlinePlayer ? onlinePlayer : currentUser;
+
   useEffect(() => {
     if (!user) return;
     const fetchImage = async () => {
@@ -40,10 +41,18 @@ export const Profile = () => {
 
     fetchImage();
   }, [user.avatar]);
+
   const video_id =
     user && user.youtube && user.youtube.youtube
       ? user.youtube.youtube.split("v=")[1]
       : "";
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getUserInfo(dispatch);
+  }, []);
+
   return (
     <Layout currentActiveTab={"headquarters"}>
       <div className="flex-1">
@@ -288,76 +297,65 @@ export const Profile = () => {
                   <p className="text-[red] text-xs font-bold border-gray-900 border-2 text-center">
                     Attack items
                   </p>
-                  <img
-                    src="/images/items/3.gif"
-                    alt="3"
-                    className={styles["item"]}
-                  />
-                  <img
-                    src="/images/items/5.gif"
-                    alt="5"
-                    className={styles["item"]}
-                  />
-                  <img
-                    src="/images/items/8.gif"
-                    alt="8"
-                    className={styles["item"]}
-                  />
+                  {user &&
+                    user.items
+                      .filter((i) => i.item.type === "attack")
+                      .map(({ item }, id) => (
+                        <img
+                          src={`/images/items/${item.pic}`}
+                          alt={item.pic}
+                          className={styles["item"]}
+                          key={`attack_item_${id}`}
+                        />
+                      ))}
                 </div>
                 <div className="flex flex-col w-[70px]">
                   <p className="text-blue-800 text-xs font-bold border-gray-900 border-2 text-center">
                     Defense items
                   </p>
-                  <img
-                    src="/images/items/1.gif"
-                    alt="1"
-                    className={styles["item"]}
-                  />
-                  <img
-                    src="/images/items/6.gif"
-                    alt="6"
-                    className={styles["item"]}
-                  />
-                  <img
-                    src="/images/items/2.gif"
-                    alt="2"
-                    className={styles["item"]}
-                  />
-                  <img
-                    src="/images/items/18.gif"
-                    alt="18"
-                    className={styles["item"]}
-                  />
+                  {user &&
+                    user.items
+                      .filter((i) => i.item.type === "defence")
+                      .map(({ item }, id) => (
+                        <img
+                          src={`/images/items/${item.pic}`}
+                          alt={item.pic}
+                          className={styles["item"]}
+                          key={`defence_item_${id}`}
+                        />
+                      ))}
                 </div>
                 <div className="flex flex-col w-[70px]">
                   <p className="text-white text-xs font-bold border-gray-900 border-2 text-center">
                     Combo items
                   </p>
-                  <img
-                    src="/images/items/4.gif"
-                    alt="4"
-                    className={styles["item"]}
-                  />
-                  <img
-                    src="/images/items/15.gif"
-                    alt="5"
-                    className={styles["item"]}
-                  />
+                  {user &&
+                    user.items
+                      .filter((i) => i.item.type === "combo")
+                      .map(({ item }, id) => (
+                        <img
+                          src={`/images/items/${item.pic}`}
+                          alt={item.pic}
+                          className={styles["item"]}
+                          key={`combo_item_${id}`}
+                        />
+                      ))}
                 </div>
                 <div className="flex flex-col w-[70px]">
-                  <p className="text-green-500 text-xs font-bold border-gray-900 border-2 text-center">
+                  <p className="text-white text-xs font-bold border-gray-900 border-2 text-center">
                     Income items
                   </p>
-                  <img
-                    src="/images/items/12.gif"
-                    alt="12"
-                    className={styles["item"]}
-                  />
-                  <img
-                    src="/images/items/13.gif"
-                    alt="13"
-                    className={styles["item"]}
-                  />
+                  {user &&
+                    user.items
+                      .filter((i) => i.item.type === "income")
+                      .map(({ item }, id) => (
+                        <img
+                          src={`/images/items/${item.pic}`}
+                          alt={item.pic}
+                          className={styles["item"]}
+                          key={`combo_item_${id}`}
+                        />
+                      ))}
                 </div>
               </div>
             </div>
@@ -374,7 +372,10 @@ export const Profile = () => {
             }`}
           >
             {user.youtube.enableYoutube ? (
-              <YouTube videoId={video_id} className="youtube" />
+              <YouTube
+                videoId={video_id}
+                className="youtube flex justify-center"
+              />
             ) : (
               ""
             )}
