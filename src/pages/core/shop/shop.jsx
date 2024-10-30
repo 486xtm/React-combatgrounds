@@ -306,12 +306,18 @@ export const Shop = () => {
             <div className="w-[30%] text-center text-[red] font-bold">Cost</div>
           </div>
           <div className="border-2 w-full flex border-b-0">
-            <div className="w-2/5 text-center">{selectedItem.name}</div>
+            <div className="w-2/5 text-center">
+              {selectedItem && selectedItem.name}
+            </div>
             <div className="w-[30%] text-center border-x-2">
-              {Number(selectedItem.max).toLocaleString("en-US")}
+              {Number(selectedItem && selectedItem.maxCount).toLocaleString(
+                "en-US"
+              )}
             </div>
             <div className="w-[30%] text-center">
-              {Number(selectedItem.cost).toLocaleString("en-US")}
+              {Number(selectedItem && selectedItem.cost).toLocaleString(
+                "en-US"
+              )}
             </div>
           </div>
           <div className="border-2 border-b-0 w-full flex ">
@@ -326,9 +332,15 @@ export const Shop = () => {
             </div>
           </div>
           <div className="border-2 border-b-0 w-full flex ">
-            <div className="w-2/5 text-center">40</div>
-            <div className="w-[30%] text-center border-x-2">0</div>
-            <div className="w-[30%] text-center">0</div>
+            <div className="w-2/5 text-center">
+              {selectedItem && selectedItem.attackBonus}
+            </div>
+            <div className="w-[30%] text-center border-x-2">
+              {selectedItem && selectedItem.defenceBonus}
+            </div>
+            <div className="w-[30%] text-center">
+              {selectedItem && selectedItem.incomeBonus}
+            </div>
           </div>
           <div className="border-2 border-b-0 w-full flex ">
             <div className="w-2/5 text-center text-[red] font-bold">
@@ -340,18 +352,17 @@ export const Shop = () => {
           </div>
           <div className="border-2 w-full flex ">
             <div className="w-2/5 flex items-center justify-center">
-              <img src="/images/items/5.gif" />
+              <img src={`/images/items/${selectedItem && selectedItem.pic}`} />
             </div>
             <div className="w-[60%] text-center border-l-2">
-              You will find the Beretta guns very useful in close-combat
-              situations.
+              {selectedItem && selectedItem.description}
             </div>
           </div>
           <button
             onClick={closeModal}
-            className="mt-4 bg-red-500 text-white px-2 py-1 float-right rounded"
+            className="mt-4 bg-red-500 text-white px-3 py-1 float-right rounded"
           >
-            Close Modal
+            Close
           </button>
         </div>
       </Modal>
