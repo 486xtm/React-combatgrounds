@@ -4,7 +4,7 @@ import { Header, Layout, Menu } from "../../../common/components";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../api/user";
 import { useLocation } from "react-router-dom";
-
+import YouTube from "react-youtube";
 export const Profile = () => {
   const location = useLocation();
   const [imageSrc, setImageSrc] = useState(null);
@@ -40,7 +40,11 @@ export const Profile = () => {
 
     fetchImage();
   }, [user.avatar]);
-
+  const video_id =
+    user && user.youtube && user.youtube.youtube
+      ? user.youtube.youtube.split("v=")[1]
+      : "";
+  console.log(video_id);
   return (
     <Layout currentActiveTab={"headquarters"}>
       <div className="flex-1">
@@ -358,6 +362,20 @@ export const Profile = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className={`border-t-2 ${
+            user.characterType === "Soldier"
+              ? "border-primary"
+              : user.characterType === "Navyseal"
+              ? "border-navyseal"
+              : user.characterType === "Terrorist"
+              ? "border-terrorist"
+              : "border-primary"
+          }`}>
+            {
+              user.youtube.enableYoutube ?  <YouTube videoId={video_id} className="youtube" /> : ""
+            }
+           
           </div>
         </div>
       </div>
