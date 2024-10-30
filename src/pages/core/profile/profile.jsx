@@ -3,11 +3,13 @@ import styles from "./styles.module.css";
 import { Header, Layout, Menu } from "../../../common/components";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../api/user";
-
+import { useLocation } from "react-router-dom";
 export const Profile = () => {
-  const user = useSelector(({ user }) => user.user);
+  const location = useLocation();
   const [imageSrc, setImageSrc] = useState(null);
-  
+  const onlinePlayer = location.state;
+  const currentUser =  useSelector(({ user }) => user.user);
+  const user = onlinePlayer ? onlinePlayer : currentUser
   useEffect(() => {
     if(!user) return
     const fetchImage = async () => {
