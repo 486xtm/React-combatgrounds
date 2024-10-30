@@ -7,7 +7,9 @@ import userReducer from "./userSlice";
 import battleFieldReducer from "./battlefieldSlice";
 import roundReducer from "./roundSlice";
 import toastReducer from "./toastSlice";
-import onlineReducer from './onlineSlice'
+import onlineReducer from "./onlineSlice";
+import shopReducer from "./shopSlice";
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,
@@ -19,5 +21,6 @@ export const store = configureStore({
     toast: toastReducer,
     battleField: battleFieldReducer,
     online: onlineReducer,
+    shop: shopReducer,
   },
 });

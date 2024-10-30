@@ -348,7 +348,7 @@ export const UserGuide = () => {
               <br />
               <br />
               Note: You will not receive any additional turns every 10 minutes
-              if you already have more than 1500 turns (or 2000 turns if you are
+              if you already have more than 1,500 turns (or 2000 turns if you are
               a VIP player).
             </div>
             <div className="font-bold">1.4 - Quick Start</div>

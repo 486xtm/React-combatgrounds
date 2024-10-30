@@ -7,7 +7,7 @@ export const RaiseFund = () => {
   const user = useSelector(({ user }) => user.user);
 
   const [isTerrorist, setIsTerrorist] = useState(false);
-  const [turns, setTruns] = useState([0, 0, 0, 0]);
+  const [turns, setTruns] = useState(["", "", "", ""]);
 
   const dispatch = useDispatch();
 
@@ -60,7 +60,7 @@ export const RaiseFund = () => {
                   </button>
                 </div>
                 <span className="text-[red] text-xs text-center">
-                  You need recruits.
+                  You need recruits and earn Cash
                 </span>
               </div>
               <div className="flex flex-col items-center gap-1 flex-1">
@@ -97,7 +97,9 @@ export const RaiseFund = () => {
             <div className="flex justify-between">
               <div className="flex flex-col items-center gap-1 flex-1">
                 <img
-                  src={isTerrorist ? "/pics/hitmen.jpg" : "/pics/trainingRF.jpg"}
+                  src={
+                    isTerrorist ? "/pics/hitmen.jpg" : "/pics/trainingRF.jpg"
+                  }
                   width="145"
                   height="108"
                 />
@@ -137,9 +139,10 @@ export const RaiseFund = () => {
                 <div className="flex items-center gap-1">
                   <span className="text-xs text-white">Use</span>
                   <input
-                    type="number"
                     className="w-12 border-white border bg-black rounded text-white text-xs px-1 outline-0 focus:border-gray-500"
-                    onChange={(e) => handleTurnChange(3, e.target.value)}
+                    onChange={(e) =>
+                      handleTurnChange(3, e.target.value.replace(/[^0-9]/g, ""))
+                    }
                   />
                   <span className="text-xs text-white">turns</span>
                   <button

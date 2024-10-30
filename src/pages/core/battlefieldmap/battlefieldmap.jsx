@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Layout } from "../../../common/components";
 import styles from "./styles.module.css";
 import { conquerRegion, entryRegion } from "../../../api/battlefield";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export const BattleFieldMap = () => {
   const [selectedRegion, setSelectedRegion] = useState(0);
+
+  const isConqueredByOthers = useSelector(
+    ({ battleField }) => battleField.isConqueredByOthers
+  );
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,7 +21,11 @@ export const BattleFieldMap = () => {
   }, [selectedRegion]);
 
   const handleConquer = () => {
-    conquerRegion({ regionId: selectedRegion }, dispatch, navigate);
+    conquerRegion(
+      { regionId: selectedRegion, type: isConqueredByOthers },
+      dispatch,
+      navigate
+    );
   };
 
   return (
@@ -40,7 +48,7 @@ export const BattleFieldMap = () => {
               <tr>
                 <td align="center" className="leading-2 h-[50px]">
                   <p className="text-center text-lg text-white font-bold">
-                    Switch to Low-Risk BattleField
+                    {/* Switch to Low-Risk BattleField */}
                   </p>
                 </td>
               </tr>
@@ -157,9 +165,13 @@ export const BattleFieldMap = () => {
               className="bg-gray-200 px-2 text-sm font-bold text-[red] my-3"
               onClick={handleConquer}
             >
-              Conquer Territory!
+              {isConqueredByOthers ? "Challenge!" : "Conquer Territory!"}
             </button>
-            <p className="text-white text-xs">This option uses 15 turns</p>
+            <p className="text-white text-xs">
+              {isConqueredByOthers
+                ? "This option uses 7 turns"
+                : "This option uses 15 turns"}
+            </p>
           </>
         )}
       </div>

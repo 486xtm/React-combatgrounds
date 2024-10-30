@@ -44,7 +44,6 @@ export const Profile = () => {
     user && user.youtube && user.youtube.youtube
       ? user.youtube.youtube.split("v=")[1]
       : "";
-  console.log(video_id);
   return (
     <Layout currentActiveTab={"headquarters"}>
       <div className="flex-1">
@@ -363,19 +362,22 @@ export const Profile = () => {
               </div>
             </div>
           </div>
-          <div className={`border-t-2 ${
-            user.characterType === "Soldier"
-              ? "border-primary"
-              : user.characterType === "Navyseal"
-              ? "border-navyseal"
-              : user.characterType === "Terrorist"
-              ? "border-terrorist"
-              : "border-primary"
-          }`}>
-            {
-              user.youtube.enableYoutube ?  <YouTube videoId={video_id} className="youtube" /> : ""
-            }
-           
+          <div
+            className={`border-t-2 ${
+              user.characterType === "Soldier"
+                ? "border-primary"
+                : user.characterType === "Navyseal"
+                ? "border-navyseal"
+                : user.characterType === "Terrorist"
+                ? "border-terrorist"
+                : "border-primary"
+            }`}
+          >
+            {user.youtube.enableYoutube ? (
+              <YouTube videoId={video_id} className="youtube" />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>

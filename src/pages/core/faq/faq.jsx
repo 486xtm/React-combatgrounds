@@ -148,7 +148,7 @@ const questions = {
       id: "2.3",
       question: "What are turns?",
       content:
-        "Turns are required to perform any action in the game: Attack, Recruit, Missions, and so on. Free players receive 15 turns every 10 minutes as long as they have less than 1500 turns. Players can always buy turns with the 'buy turns' option or subscribe as VIP to receive 25 turns instead of 15 and raise their max turns buildup to 2000. Turns help keep this site running; bandwidth and server fees are not cheap. Therefore, instead of advertising, loading banners, etc., all over the site, we sell turns to keep providing great entertainment. If you purchase turns, your account status changes from normal to supporter, allowing you to join the supporters round and win prizes. Supporter status also gives you more available options in the game, like Hire Spies.",
+        "Turns are required to perform any action in the game: Attack, Recruit, Missions, and so on. Free players receive 15 turns every 10 minutes as long as they have less than 1,500 turns. Players can always buy turns with the 'buy turns' option or subscribe as VIP to receive 25 turns instead of 15 and raise their max turns buildup to 2000. Turns help keep this site running; bandwidth and server fees are not cheap. Therefore, instead of advertising, loading banners, etc., all over the site, we sell turns to keep providing great entertainment. If you purchase turns, your account status changes from normal to supporter, allowing you to join the supporters round and win prizes. Supporter status also gives you more available options in the game, like Hire Spies.",
       section: "M23",
     },
     {

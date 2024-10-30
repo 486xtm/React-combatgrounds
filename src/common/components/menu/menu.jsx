@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./styles.module.css";
 import { useDispatch } from "react-redux";
-import { signOut } from '../../../api/auth'
+import { signOut } from "../../../api/auth";
 import { useNavigate } from "react-router-dom";
 export const Menu = () => {
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ export const Menu = () => {
         <Link to="/attack" className={styles["link"]}>
           - <u>ATTACK</u>
         </Link>
-        <Link to="/territories" className={styles["link"]}>
+        <Link to="/map" className={styles["link"]}>
           - <u>BATTLEFIELD</u>
         </Link>
         <Link to="/raisefunds" className={styles["link"]}>

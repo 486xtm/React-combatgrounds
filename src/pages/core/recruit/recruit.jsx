@@ -5,11 +5,12 @@ import { useDispatch } from "react-redux";
 
 export const Recruit = () => {
   const [turn, setTurn] = useState();
+  const [type, setType] = useState("Russian Forces");
 
   const dispatch = useDispatch();
 
   const handleRecruit = () => {
-    recruit({ turn }, dispatch);
+    recruit({ turn, type }, dispatch);
   };
 
   return (
@@ -44,7 +45,10 @@ export const Recruit = () => {
             <p className="text-white text-sm w-[45%] text-right">
               Select a place:
             </p>
-            <select className="rounded text-sm w-[120px] ">
+            <select
+              className="rounded text-sm w-[120px]"
+              onChange={(e) => setType(e.target.value)}
+            >
               <option>Russian Forces</option>
               <option>US Army</option>
               <option>British Military</option>

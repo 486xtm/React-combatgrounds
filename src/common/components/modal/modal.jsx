@@ -1,6 +1,6 @@
 // Modal.js
-import React from 'react';
-import { useEffect } from 'react';
+import React from "react";
+import { useEffect } from "react";
 
 const Modal = ({ isOpen, onClose, children }) => {
   const [isAnimating, setIsAnimating] = React.useState(false);
@@ -22,10 +22,16 @@ const Modal = ({ isOpen, onClose, children }) => {
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300 ${
+        isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
       onClick={handleOverlayClick}
     >
-      <div className={`bg-[white] p-4 rounded shadow-lg transform transition-transform duration-300 ${isOpen ? 'scale-100' : 'scale-90'}`}>
+      <div
+        className={`bg-[#000000] text-white border-double border-2 border-[white] p-4 rounded shadow-2xl shadow-[red] transform transition-transform duration-300 ${
+          isOpen ? "scale-100" : "scale-90"
+        }`}
+      >
         {children}
       </div>
     </div>
