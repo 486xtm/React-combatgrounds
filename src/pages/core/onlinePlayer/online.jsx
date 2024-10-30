@@ -53,7 +53,7 @@ export const OnlinePlayers = () => {
                   {user.characterType || "--"}
                 </div>
                 <div className="w-[30%] border-[#FFFF00] border-[1px] leading-7">
-                  {user.level || "--"}
+                  {Number(user.level).toLocaleString("en-US") || "--"}
                 </div>
               </div>
             ))
