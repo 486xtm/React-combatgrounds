@@ -404,7 +404,7 @@ export const Shop = () => {
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <div className="w-[450px]">
-          <div className="text-[18px] mb-3 ml-2 text-[#338f33]">Item Info</div>
+          <div className="text-[18px] mb-3 ml-2 text-[#338f33] font-bold">Item Info</div>
           <div className="border-2 border-b-0 w-full flex">
             <div className="w-2/5 text-center text-red-500 font-medium">Name</div>
             <div className="w-[30%] text-center border-x-2 text-red-500 font-medium">Max</div>
