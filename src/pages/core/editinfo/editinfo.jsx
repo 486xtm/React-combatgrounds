@@ -26,11 +26,12 @@ export const EditInfo = () => {
   const [aimName, setAIMName] = useState(user.aimName);
   const [description, setDescription] = useState(user.description);
   const [youtube, setYoutube] = useState(user.youtube.youtube);
-  const [enableYoutube, setEnableYoutube] = useState(user.youtube.enableYoutube);
+  const [enableYoutube, setEnableYoutube] = useState(
+    user.youtube.enableYoutube
+  );
   const [autoYoutube, setAutoYoutube] = useState(user.youtube.autoYoutube);
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(450);
   const [avatar, setAvatar] = useState(null);
-
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -74,6 +75,7 @@ export const EditInfo = () => {
   };
 
   useEffect(() => {
+    if (!description) return; 
     setDescriptionReaminLetters(450 - description.length);
   }, [description]);
 
