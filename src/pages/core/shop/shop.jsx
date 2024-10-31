@@ -404,11 +404,11 @@ export const Shop = () => {
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <div className="w-[450px]">
-          <div className="text-[18px] mb-3 ml-2 text-[#338f33] font-bold">Item Info</div>
+          <div className="text-[18px] mb-3 ml-2 text-[#f0ff25] font-bold underline ">Item Info</div>
           <div className="border-2 border-b-0 w-full flex">
-            <div className="w-2/5 text-center text-red-500 font-medium">Name</div>
-            <div className="w-[30%] text-center border-x-2 text-red-500 font-medium">Max</div>
-            <div className="w-[30%] text-center text-red-500 font-medium">Cost</div>
+            <div className="w-2/5 text-center text-[red] font-bold">Name</div>
+            <div className="w-[30%] text-center border-x-2 text-[red] font-bold">Max</div>
+            <div className="w-[30%] text-center text-[red] font-bold">Cost</div>
           </div>
           <div className="border-2 w-full flex border-b-0">
             <div className="w-2/5 text-center">{selectedItem.name}</div>
@@ -416,9 +416,9 @@ export const Shop = () => {
             <div className="w-[30%] text-center">{Number(selectedItem.cost).toLocaleString("en-US")}</div>
           </div>
           <div className="border-2 border-b-0 w-full flex ">
-            <div className="w-2/5 text-center text-red-500 font-medium">Attack Bonus</div>
-            <div className="w-[30%] text-center border-x-2 text-red-500 font-medium">Defence Bonus</div>
-            <div className="w-[30%] text-center text-red-500 font-medium">Income Bonus</div>
+            <div className="w-2/5 text-center text-[red] font-bold">Attack Bonus</div>
+            <div className="w-[30%] text-center border-x-2 text-[red] font-bold">Defence Bonus</div>
+            <div className="w-[30%] text-center text-[red] font-bold">Income Bonus</div>
           </div>
           <div className="border-2 border-b-0 w-full flex ">
             <div className="w-2/5 text-center">40</div>
@@ -426,8 +426,8 @@ export const Shop = () => {
             <div className="w-[30%] text-center">0</div>
           </div>
           <div className="border-2 border-b-0 w-full flex ">
-            <div className="w-2/5 text-center text-red-500 font-medium">picture</div>
-            <div className="w-[60%] text-center border-l-2 text-red-500 font-medium">Description</div>
+            <div className="w-2/5 text-center text-[red] font-bold">picture</div>
+            <div className="w-[60%] text-center border-l-2 text-[red] font-bold">Description</div>
           </div>
           <div className="border-2 w-full flex ">
             <div className="w-2/5 flex items-center justify-center"><img src = "/images/items/5.gif"/></div>
