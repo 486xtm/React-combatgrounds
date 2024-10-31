@@ -16,8 +16,11 @@ export const NukeCountry = () => {
 
   useEffect(() => {
     getCountryInfo(dispatch);
-  }, []);
+  }, [user]);
 
+  // useEffect(() => {
+  //   console.log("cou===>", countries);
+  // }, [countries]);
 
   return (
     <Layout currentActiveTab={"headquarters"} isHeaderFull={true}>
@@ -38,7 +41,7 @@ export const NukeCountry = () => {
           <span className="text-[red]"> 50</span>.
         </p>
         <p className="text-center text-secondary text-lg font-bold my-3">
-          Your Level is 151
+          Your Level is {user && user.level.toLocaleString("en-US")}
         </p>
         <table className={styles["nuke-country-table"]}>
           <thead>
@@ -53,25 +56,35 @@ export const NukeCountry = () => {
             {countries &&
               countries.map((country, id) => (
                 <tr key={`nuke_country_${id}`}>
-                  <td>{country.name.toLocaleString('en-US')}</td>
-                  <td>{country.level.toLocaleString('en-US')}</td>
+                  <td>{country.name}</td>
+                  <td>{country.level.toLocaleString("en-US")}</td>
                   <td>
                     {!user || !country || country.level > user.level ? null : (
                       <button
-                        className="bg-gray-300 text-[red]"
+                        className="bg-gray-300 text-[red] w-[80px] disabled:bg-gray-400"
                         onClick={() => handleNuke("troops", country._id)}
+                        disabled={!!country.type}
                       >
-                        Nuke!
+                        {country.type === "troops"
+                          ? `Nuked`
+                          : country.type === "cash"
+                          ? "N/A"
+                          : "Nuke!"}
                       </button>
                     )}
                   </td>
                   <td>
                     {!user || !country || country.level > user.level ? null : (
                       <button
-                        className="bg-gray-300 text-[red]"
+                        className="bg-gray-300 text-[red] w-[80px] disabled:bg-gray-400"
                         onClick={() => handleNuke("cash", country._id)}
+                        disabled={!!country.type}
                       >
-                        Nuke!
+                        {country.type === "cash"
+                          ? `Nuked`
+                          : country.type === "troops"
+                          ? "N/A"
+                          : "Nuke!"}
                       </button>
                     )}
                   </td>

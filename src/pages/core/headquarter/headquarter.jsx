@@ -32,7 +32,7 @@ export const HeadQuarter = () => {
           </p>
           <p className="text-secondary text-center text-tiny mt-3">
             You get turns, money and recruits every 10 minutes as long as you
-            have less than 1500 turns
+            have less than 1,500 turns
           </p>
 
           <p className="text-center text-white text-sm mt-3 font-bold">
