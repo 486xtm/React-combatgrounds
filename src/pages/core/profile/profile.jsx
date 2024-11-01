@@ -5,14 +5,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../api/user";
 import { useLocation } from "react-router-dom";
 import YouTube from "react-youtube";
+import Hover from "../../../common/components/hover/hover";
 export const Profile = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const location = useLocation();
   const onlinePlayer = location.state;
   const currentUser = useSelector(({ user }) => user.user);
   const user = onlinePlayer ? onlinePlayer : currentUser;
-
-
+  const [showHover, setShowHover] = useState(false);
+  const [itemInfo, setItemInfo] = useState({});
+  const handleMouseOver = (item) => {
+    setShowHover(true);
+    setItemInfo(item);
+  };
+  const handleMouseLeave = () => {
+    setShowHover(false);
+    setItemInfo({});
+  };
   useEffect(() => {
     if (!user) return;
     const fetchImage = async () => {
@@ -298,12 +307,11 @@ export const Profile = () => {
                     user.items
                       .filter((i) => i.item.type === "attack")
                       .map(({ item }, id) => (
-                        <div
-                          key={`attack_item_${id}`}
-                          className="relative"
-                        >
+                        <div key={`attack_item_${id}`} className="relative">
                           <img
                             src={`/images/items/${item.pic}`}
+                            onMouseOver={() => handleMouseOver(item)}
+                            onMouseLeave={() => handleMouseLeave()}
                             alt={item.pic}
                             className={styles["item"]}
                           />
@@ -321,6 +329,8 @@ export const Profile = () => {
                         <img
                           src={`/images/items/${item.pic}`}
                           alt={item.pic}
+                          onMouseOver={() => handleMouseOver(item)}
+                          onMouseLeave={() => handleMouseLeave()}
                           className={styles["item"]}
                           key={`defence_item_${id}`}
                         />
@@ -337,6 +347,8 @@ export const Profile = () => {
                         <img
                           src={`/images/items/${item.pic}`}
                           alt={item.pic}
+                          onMouseOver={() => handleMouseOver(item)}
+                          onMouseLeave={() => handleMouseLeave()}
                           className={styles["item"]}
                           key={`combo_item_${id}`}
                         />
@@ -353,6 +365,8 @@ export const Profile = () => {
                         <img
                           src={`/images/items/${item.pic}`}
                           alt={item.pic}
+                          onMouseOver={() => handleMouseOver(item)}
+                          onMouseLeave={() => handleMouseLeave()}
                           className={styles["item"]}
                           key={`combo_item_${id}`}
                         />
@@ -383,6 +397,12 @@ export const Profile = () => {
           </div>
         </div>
       </div>
+      {showHover && (
+        <Hover type={itemInfo.type}>
+          <div className="text-white">{itemInfo.name}</div>
+          <div>{itemInfo.count}/</div>
+        </Hover>
+      )}
     </Layout>
   );
 };
