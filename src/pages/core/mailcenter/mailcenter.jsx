@@ -63,7 +63,17 @@ export const MailCenter = () => {
   const handleUnblock = () => {
     removeBlockUser({ unblockUserId }, dispatch);
   };
-
+  const handleReply = (sender) => {
+    setViewType("Compose");
+    localStorage.setItem("MAILTYPE", "Compose");
+    setReceiver(sender);
+  }
+  const handleSetType =(type) => {
+    setViewType(type);
+    localStorage.setItem("MAILTYPE", type);
+    setDetailedViewMessage(null);
+    setReceiver("");
+  }
   useEffect(() => {
     getMessage(dispatch);
   }, [viewType]);
@@ -95,11 +105,7 @@ export const MailCenter = () => {
               className={`text-${
                 viewType === "Inbox" ? "white" : "secondary"
               } text-lg font-bold mx-3 cursor-pointer`}
-              onClick={() => {
-                setViewType("Inbox");
-                localStorage.setItem("MAILTYPE", "Inbox");
-                setDetailedViewMessage(null);
-              }}
+              onClick={() => handleSetType("Inbox")}
             >
               [<u>In Box</u>]
             </span>
@@ -107,11 +113,7 @@ export const MailCenter = () => {
               className={`text-${
                 viewType === "Compose" ? "white" : "secondary"
               } text-lg font-bold mx-3 cursor-pointer`}
-              onClick={() => {
-                setViewType("Compose");
-                localStorage.setItem("MAILTYPE", "Compose");
-                setDetailedViewMessage(null);
-              }}
+              onClick={() => handleSetType("Compose")}
             >
               [<u>Compose</u>]
             </span>
@@ -119,11 +121,7 @@ export const MailCenter = () => {
               className={`text-${
                 viewType === "Sent" ? "white" : "secondary"
               } text-lg font-bold mx-3 cursor-pointer`}
-              onClick={() => {
-                setViewType("Sent");
-                localStorage.setItem("MAILTYPE", "Sent");
-                setDetailedViewMessage(null);
-              }}
+              onClick={() => handleSetType("Sent")}
             >
               [<u>Sent</u>]
             </span>
@@ -307,7 +305,7 @@ export const MailCenter = () => {
                   {detailedViewMessage.content}
                 </textarea>
               </div>
-              <button className="ml-[100px]">reply</button>
+              <button onClick = {() => handleReply(detailedViewMessage.sender.name)} className="ml-[100px]">reply</button>
             </div>
           )
         ) : (
@@ -326,6 +324,7 @@ export const MailCenter = () => {
               </span>
               <input
                 className="rounded flex-1"
+                value={receiver}
                 onChange={(e) => setReceiver(e.target.value)}
               />
             </div>
