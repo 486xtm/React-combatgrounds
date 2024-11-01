@@ -24,9 +24,11 @@ const contents = [
     id: "Actions",
     section: "M3",
     title: [
-      "2.1 - Horizontal menu",
-      "2.2 - Control Panel",
-      "2.3 - Stats table",
+      "3.1 - Attack",
+      "3.2 - Raise funds",
+      "3.3 - Battlefield",
+      "3.4 - Nuke country",
+      "3.5 - Hire spies",
     ],
   },
   {
@@ -100,8 +102,8 @@ export const UserGuide = () => {
         <div className="text-center text-[#81843C] text-[30px] font-bold">
           Combat Grounds User Guide
         </div>
-        <div className="bg-[#81843C] w-[630px] border-[1px] mx-auto px-[20px] py-[40px] space-y-4">
-          <div className="underline font-bold text-[16px] mb-3">
+        <div className="bg-[#81843C] w-[630px] border-[1px] mx-auto px-[20px] py-[30px] space-y-4">
+          <div className="underline font-bold text-[20px] text-[yellow] text-center mb-5">
             Table of Contents
           </div>
           {contents.map((val, index) => (
@@ -116,8 +118,10 @@ export const UserGuide = () => {
                 {val.id}
               </a>
               {val.title.map((list, i) => (
-                <div className="ml-5" key={i}>
+                <div key={i} >
+                <a className="ml-5 font-medium underline" href = {`#${val.section}_${i+1}`}>
                   {list}
+                </a>
                 </div>
               ))}
             </div>
@@ -127,7 +131,7 @@ export const UserGuide = () => {
           <br />
           <section id="M1" className="space-y-4">
             <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">1 - Introduction</div>
-            <div className="font-bold">1.1 - Overview</div>
+            <section id="M1_1" className="font-bold">1.1 - Overview</section>
             <div>
               Combat Grounds is a free, strategic Role-Play Game that you can
               play daily using only your web browser. The game is text based and
@@ -148,7 +152,7 @@ export const UserGuide = () => {
               report them to the administrators by sending a support ticket
               (Support link under the control panel) or an E-mail to the admin.
             </div>
-            <div className="font-bold">1.2 - Prizes at the end of a round</div>
+            <section id="M1_2"className="font-bold">1.2 - Prizes at the end of a round</section>
             <div>
               At the end of each round, prizes are given to best players and
               best crews. The players who have the greatest number of points are
@@ -270,7 +274,7 @@ export const UserGuide = () => {
               </div>
               <br />
             </div>
-            <div className="font-bold">1.3 - Getting Started</div>
+            <section id="M1_3" className="font-bold">1.3 - Getting Started</section>
             <div>
               You start with 4000 turns, 200 recruits and $50,000,000. There are
               several strategies to play. When first starting out, you can
@@ -351,7 +355,7 @@ export const UserGuide = () => {
               if you already have more than 1,500 turns (or 2000 turns if you are
               a VIP player).
             </div>
-            <div className="font-bold">1.4 - Quick Start</div>
+            <section id="M1_4" className="font-bold">1.4 - Quick Start</section>
             <ul className="list-outside list-decimal ml-10">
               <li>Go to the Recruit option to engage troops.</li>
               <li>
@@ -417,7 +421,7 @@ export const UserGuide = () => {
           </section>
           <section id="M2" className="space-y-4">
             <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer"> 2 - Layout</div>
-            <div className="font-bold"> 2 - 1 Horizontal menu</div>
+            <section id="M2_1" className="font-bold"> 2 - 1 Horizontal menu</section>
             <div>
               Main Page - This is the main page, here you can login to the game.
               It contains some game statistics such as the number of players
@@ -439,7 +443,7 @@ export const UserGuide = () => {
               <br />
               News - Announcements about the game are posted here.
             </div>
-            <div className="font-bold">2.2 - Control Panel</div>
+            <section id="M2_2" className="font-bold">2.2 - Control Panel</section>
             <div>
               Members
               <br />
@@ -534,7 +538,7 @@ export const UserGuide = () => {
               Logout - To logout from the game.
               <br />
             </div>
-            <div className="font-bold">2.3 - Stats table</div>
+            <section id="M2_3" className="font-bold">2.3 - Stats table</section>
             <div>
               It is at the top of all in-game pages. It shows your important
               statistics such as your money, net worth, recruits, recruits'
@@ -543,7 +547,7 @@ export const UserGuide = () => {
           </section>
           <section id="M3" className="space-y-4">
             <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">3 - Actions</div>
-            <div className="font-bold">3 - Attack</div>
+            <section id = "M3_1" className="font-bold">3.1 - Attack</section>
             <ul className="list-disc list-outside ml-10">
               <li>Click on "attack" in your control panel.</li>
               <li>Look for an opponent using one of the search options.</li>
@@ -583,7 +587,7 @@ export const UserGuide = () => {
                 attack the player.
               </li>
             </ul>
-            <div className="font-bold">3.2 - Raise funds</div>
+            <section id = "M3_2" className="font-bold">3.2 - Raise funds</section>
 
             <div>
               This is the safest way to collect money. You have four different
@@ -592,7 +596,7 @@ export const UserGuide = () => {
               having some of them leave you.
             </div>
 
-            <div className="font-bold">3.3 - Battlefield</div>
+            <section id = "M3_3" className="font-bold">3.3 - Battlefield</section>
             <div>
               If a region is free, you can conquer it and bring in your troops.
               You can then exploit its resources or recruit massively. The more
@@ -602,7 +606,7 @@ export const UserGuide = () => {
               successfully, your level increases.
             </div>
 
-            <div className="font-bold">3.4 - Nuke country</div>
+            <section id = "M3_4" className="font-bold">3.4 - Nuke country</section>
             <div>
               To nuke a country, you need $1,000,000,000 and a certain level.
               When you Nuke a country you receive money or recruits. You can
@@ -610,7 +614,7 @@ export const UserGuide = () => {
               proportional to the number of turns you use and the level you
               have.
             </div>
-            <div className="font-bold">3.5 - Hire spies</div>
+            <section id = "M3_5" className="font-bold">3.5 - Hire spies</section>
             <div>
               If you are a supporter, you can obtain here secret information
               about your opponents.
@@ -618,13 +622,13 @@ export const UserGuide = () => {
           </section>
           <section id="M4" className="space-y-4">
             <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">4 - Manage troops</div>
-            <div className="font-bold">4.1 - Recruit</div>
+            <section id = "M4_1" className="font-bold">4.1 - Recruit</section>
             <div>
               To enlarge your troops and become more powerful. The more turns
               you use, the more you can recruit. The number of troops and their
               training level depends on where you recruit them.
             </div>
-            <div className="font-bold">4.2 - Training</div>
+            <section id = "M4_2" className="font-bold">4.2 - Training</section>
             <div>
               To keep your troops ready for the battle, you always need to train
               them. When your troops are well trained, they are more efficient
@@ -637,7 +641,7 @@ export const UserGuide = () => {
               their best. The number of recruits who receive the training
               increases with the amount of money you pay.
             </div>
-            <div className="font-bold">4.3 - Home leave</div>
+            <section id = "M4_3" className="font-bold">4.3 - Home leave</section>
             <div>
               Your recruits get tired when you do actions. You should send them
               home to recuperate and come back stronger. The number of recruits
@@ -736,13 +740,13 @@ export const UserGuide = () => {
           <section id="M9" className="space-y-4">
             <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">9 - Casino</div>
 
-            <div className="font-bold">9.1 - Roll Dice</div>
+            <section id = "M9_1" className="font-bold">9.1 - Roll Dice</section>
             <div>
               You bet a certain amount of money, and guess a number between 1
               and 6 for each die. If you win, you receive money depending on the
               cash and the number of turns you bet.
             </div>
-            <div className="font-bold">9.2 - Russian roulette</div>
+            <section id = "M9_2" className="font-bold">9.2 - Russian roulette</section>
             <div>
               In this game, you guess a number from 1 to 3. It costs $1,000,000
               to play and you may win money or recruits.
@@ -767,20 +771,20 @@ export const UserGuide = () => {
               Crews are like teams or groups of people. They can attack crew
               bosses, host meetings, and declare war to other crews.
             </div>
-            <div className="font-bold"> 11.1 - Joining a crew</div>
+            <section id = "M11_1" className="font-bold"> 11.1 - Joining a crew</section>
             <div>
               To join a crew you must receive an Invitation from the crew. You
               can ask for a crew invite in the crew ads or ask players directly.
               To view your crew invitations go to Crew Invites in the Control
               panel.
             </div>
-            <div className="font-bold">11.2 - Creating a crew</div>
+            <section id = "M11_2" className="font-bold">11.2 - Creating a crew</section>
             <div>
               Under the Crew submenu, click on Create Crew. Follow the
               instructions to create your crew. You cannot create a crew if
               you're already in one.
             </div>
-            <div className="font-bold">11.3 - Crew Bosses</div>
+            <section id = "M11_3" className="font-bold">11.3 - Crew Bosses</section>
             <div>
               The crew leader or a rank 1 member can attack each Crew Boss once
               a day: It takes $2,000,000,000 from the Crew bank. If you win,

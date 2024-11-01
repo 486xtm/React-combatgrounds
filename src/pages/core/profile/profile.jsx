@@ -6,8 +6,8 @@
   import { useLocation } from "react-router-dom";
   import YouTube from "react-youtube";
   export const Profile = () => {
-    const location = useLocation();
     const [imageSrc, setImageSrc] = useState(null);
+    const location = useLocation();
     const onlinePlayer = location.state;
     const currentUser = useSelector(({ user }) => user.user);
     const user = onlinePlayer ? onlinePlayer : currentUser;
@@ -259,10 +259,6 @@
                 <p className="text-center text-green-600 font-bold">
                   ${user && user.money.toLocaleString("en-US")}
                 </p>
-                <p className="text-center text-white font-bold text-sm mt-3">
-                  MONEY banked:
-                </p>
-                <p className="text-center text-[red] font-bold">$0</p>
                 <div
                   className={`my-1 ${
                     user.characterType === "Soldier"

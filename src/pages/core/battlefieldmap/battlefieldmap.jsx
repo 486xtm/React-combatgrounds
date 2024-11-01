@@ -3,11 +3,10 @@ import { Layout } from "../../../common/components";
 import styles from "./styles.module.css";
 import { conquerRegion, entryRegion } from "../../../api/battlefield";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const BattleFieldMap = () => {
   const [selectedRegion, setSelectedRegion] = useState(0);
-
   const isConqueredByOthers = useSelector(
     ({ battleField }) => battleField.isConqueredByOthers
   );
@@ -19,7 +18,6 @@ export const BattleFieldMap = () => {
     if (!selectedRegion) return;
     entryRegion({ regionId: selectedRegion }, dispatch, navigate);
   }, [selectedRegion]);
-
   const handleConquer = () => {
     conquerRegion(
       { regionId: selectedRegion, type: isConqueredByOthers },
