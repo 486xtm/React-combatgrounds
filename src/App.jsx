@@ -37,6 +37,7 @@ import NotFound from "./pages/NotFound";
 import { getUserInfo } from "./api/user";
 import { useToast } from "./ToastProvider";
 import { setToast } from "./redux/toastSlice";
+import { signOut } from "./api/auth";
 
 const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch();
