@@ -1,8 +1,7 @@
-// Modal.js
 import React from "react";
 import { useEffect } from "react";
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({ isOpen, onClose, children, type = "attack" }) => {
   const [isAnimating, setIsAnimating] = React.useState(false);
 
   useEffect(() => {
@@ -27,7 +26,11 @@ const Modal = ({ isOpen, onClose, children }) => {
       }`}
       onClick={handleOverlayClick}
     >
-      <div className={`bg-[white] p-4 rounded shadow-lg transform transition-transform duration-300 ${isOpen ? 'scale-100' : 'scale-90'}`}>
+      <div
+        className={`bg-[#000000] text-white ${type == "attack" ? "shadow-[red]" : type == "defence" ? 'shadow-[blue]' : type == "combo" ? "shadow-[purple]" : "shadow-[green]"} border-double border-2 border-[white] p-4 rounded shadow-2xl transform transition-transform duration-300 ${
+          isOpen ? "scale-100" : "scale-90"
+        }`}
+      >
         {children}
       </div>
     </div>

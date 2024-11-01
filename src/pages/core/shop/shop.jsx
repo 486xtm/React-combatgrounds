@@ -293,7 +293,7 @@ export const Shop = () => {
           </table>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} type={selectedItem.type}>
         <div className="w-[450px]">
           <div className="text-[18px] mb-3 ml-2 text-[#f0ff25] font-bold underline ">
             Item Info
