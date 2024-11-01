@@ -46,8 +46,49 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
-  display: flex;
-  flex-direction: column;
   gap: 58px;
-  padding: 50px;
+  padding: 42px 45px 0 40px;
+}
+
+/* "w-[155px] h-[35px] cursor-pointer ml-[105px] hover:border-2 border-dark-secondary hover:border-l-0 hover:border-r-0 */
+/* w-[95px] h-[35px] cursor-pointer hover:border-2 border-dark-secondary hover:border-l-0 hover:border-r-0 */
+/* w-[95px] h-[35px] cursor-pointer ml-[175px]  hover:border-2 border-dark-secondary hover:border-l-0 hover:border-r-0 */
+/* w-[70px] h-[35px] cursor-pointer hover:border-2 border-dark-secondary hover:border-l-0 hover:border-r-0 */
+/* w-[70px] h-[35px] cursor-pointer ml-[85px] hover:border-2 border-dark-secondary hover:border-l-0 hover:border-r-0 */
+.top-supporters {
+  width: 155px;
+  height: 35px;
+  cursor: pointer;
+  margin-left: 105px;
+}
+
+.top-free-players,
+.top-players {
+  width: 95px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.top-players {
+  margin-left: 175px;
+}
+
+.top-crews,
+.other-stats {
+  width: 70px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.other-stats {
+  margin-left: 85px;
+}
+.top-supporters:hover,
+.top-free-players:hover,
+.top-players:hover,
+.other-stats:hover,
+.top-crews:hover,
+.active {
+  border-width: 2px 0;
+  border-color: rgb(210, 180, 140);
 }

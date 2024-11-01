@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   info: null,
-  isConqueredByOthers: false,
 };
 
 const battleFieldSlice = createSlice({
@@ -12,12 +11,8 @@ const battleFieldSlice = createSlice({
     setBattleField: (state, action) => {
       state.info = action.payload;
     },
-    setIsConqueredByOthers: (state, action) => {
-      state.isConqueredByOthers = action.payload;
-    },
   },
 });
 
-export const { setBattleField, setIsConqueredByOthers } =
-  battleFieldSlice.actions;
+export const { setBattleField } = battleFieldSlice.actions;
 export default battleFieldSlice.reducer;

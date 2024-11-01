@@ -248,7 +248,7 @@ const App = () => {
         />
         <Route
           exact
-          path="/battlefield/:region"
+          path="/battlefield/:region_id"
           element={
             <ProtectedRoute>
               <BattleFieldRegion />
