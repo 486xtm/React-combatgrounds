@@ -29,6 +29,7 @@ export const Shop = () => {
   };
   const handleBuy = (type) => {
     console.log("buy attack shop");
+    setVals({});
     buyItems({ vals, type }, dispatch);
   };
   const handleSell = (type) => {
@@ -37,7 +38,6 @@ export const Shop = () => {
   };
 
   const handleChange = (id, val) => {
-    console.log("id===>", id, val);
     setVals({
       ...vals,
       [id]: val,
@@ -109,6 +109,7 @@ export const Shop = () => {
                           onChange={(e) =>
                             handleChange(item._id, e.target.value)
                           }
+                          value={vals[item._id] ? vals[item._id] : ""}
                         />
                       </td>
                     </tr>
@@ -162,6 +163,7 @@ export const Shop = () => {
                           onChange={(e) =>
                             handleChange(item._id, e.target.value)
                           }
+                          value={vals[item._id] ? vals[item._id] : ""}
                         />
                       </td>
                     </tr>
@@ -215,6 +217,7 @@ export const Shop = () => {
                           onChange={(e) =>
                             handleChange(item._id, e.target.value)
                           }
+                          value={vals[item._id] ? vals[item._id] : ""}
                         />
                       </td>
                     </tr>
@@ -268,6 +271,7 @@ export const Shop = () => {
                           onChange={(e) =>
                             handleChange(item._id, e.target.value)
                           }
+                          value={vals[item._id] ? vals[item._id] : ""}
                         />
                       </td>
                     </tr>

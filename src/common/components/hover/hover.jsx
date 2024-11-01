@@ -26,7 +26,7 @@ const Hover = ({ children, type = "attack", show = false }) => {
     <div
       className={`transition-opacity duration-300 ${
         show ? "opacity-100" : "opacity-0 pointer-events-none"
-      } w-[200px]  rounded-lg bg-[black] shadow-lg border-[1px] text-center px-1 pt-1 pb-2 ${
+      } w-[200px]  rounded-lg bg-[black] shadow-lg border-[1px] text-center px-1 py-2 ${
         type == "attack"
           ? "shadow-[red] border-[red]"
           : type == "defence"
@@ -39,7 +39,7 @@ const Hover = ({ children, type = "attack", show = false }) => {
     >
       {children}
     </div>
-  ); // Example content
+  );
 };
 
 export default Hover;

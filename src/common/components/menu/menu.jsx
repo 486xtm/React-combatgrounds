@@ -21,7 +21,7 @@ export const Menu = () => {
         <Link to="/attacklog" className={styles["link"]}>
           - <u>ATTACK LOG (0)</u>
         </Link>
-        <Link to="/mailcenter" className={styles["link"]}>
+        <Link to="/mailcenter" onClick = {() => localStorage.setItem("MAILTYPE", "Inbox")} className={styles["link"]}>
           - <u>MAIL CENTER (0)</u>
         </Link>
       </div>
@@ -67,7 +67,7 @@ export const Menu = () => {
 
       <div className="flex flex-col">
         <Link
-          to="/#missions"
+          to="/missions"
           className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
         >
           MISSIONS
