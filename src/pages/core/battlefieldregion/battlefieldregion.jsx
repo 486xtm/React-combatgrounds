@@ -12,8 +12,9 @@ import {
 } from "../../../api/battlefield";
 
 export const BattleFieldRegion = () => {
+  const { region_id } = useParams();
   const battleField = useSelector(({ battleField }) => battleField.info);
-  const { region } = useParams();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,10 +44,8 @@ export const BattleFieldRegion = () => {
   };
 
   useEffect(() => {
-    getBattleField({ region_id: region }, dispatch);
-  }, [region, dispatch]);
-
-  useEffect(() => {}, [battleField]);
+    getBattleField({ region_id }, dispatch);
+  }, [region_id, dispatch]);
 
   return (
     <Layout>

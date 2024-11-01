@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Header, Layout, Menu } from "../../../common/components";
 import { useNavigate } from "react-router-dom";
+import classNames from "classnames";
 
 export const Rankings = ({}) => {
   const [type, setType] = useState("");
@@ -200,79 +201,81 @@ export const Rankings = ({}) => {
       <div className="flex flex-col flex-1">
         <div className={styles["ranking-actions"]}>
           <div
-            className="text-transparent text-lg font-bold mx-auto cursor-pointer"
+            className={classNames(styles["top-supporters"], {
+              [styles["active"]]: type === "supporter",
+            })}
             onClick={() => {
               setType("supporter");
             }}
-          >
-            AAAAAAAAAAAA
-          </div>
-          <div className="flex justify-center">
+          ></div>
+          <div className="flex justify-center mt-[50px]">
             <div
-              className="text-transparent text-lg font-bold cursor-pointer"
+              className={classNames(styles["top-free-players"], {
+                [styles["active"]]: type === "free",
+              })}
               onClick={() => setType("free")}
-            >
-              BBBBBBBB
-            </div>
+            ></div>
             <div
-              className="text-transparent text-lg font-bold ml-[175px] cursor-pointer"
+              className={classNames(styles["top-players"], {
+                [styles["active"]]: type === "player",
+              })}
               onClick={() => setType("player")}
-            >
-              CCCCCCCC
-            </div>
+            ></div>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-[62px]">
             <div
-              className="text-transparent text-lg font-bold cursor-pointer"
+              className={classNames(styles["top-crews"], {
+                [styles["active"]]: type === "crew",
+              })}
               onClick={() => setType("crew")}
-            >
-              DDDDD
-            </div>
+            ></div>
             <div
-              className="text-transparent text-lg font-bold ml-[100px] cursor-pointer"
+              className={styles["other-stats"]}
               onClick={() => navigate("/statmisc")}
-            >
-              EEEEEEE
-            </div>
+            ></div>
           </div>
         </div>
 
-        {type !== "" && <table className="text-white mx-auto">
-          <thead>
-            <td className="w-[30px] text-white" />
-            <td className="w-[250px] text-lg font-bold border-b border-b-gray-100 border-solid border-transparent border-0 py-2">
-              Name
-            </td>
-            <td className="w-[150px] text-lg font-bold border-b border-b-gray-100 border-solid border-transparent border-0 py-2">
-              Net Worth
-            </td>
-          </thead>
-          <tbody>
-            {data &&
-              data.map((item, id) => {
-                return (
-                  <tr
-                    key={`ranking_table_${id}`}
-                    className="first:h-[40px] align-bottom"
-                  >
-                    <td>
-                      <img
-                        src={`/pics/${item.online ? "yellow" : "white"}.gif`}
-                        alt="online"
-                        w="10"
-                        h="10"
-                      />
-                    </td>
-                    <td className="text-sm py-1 text-secondary">
-                      <span className="text-white">{id}. </span>
-                      <u>{item.name}</u>
-                    </td>
-                    <td className="text-sm py-1">{item.worth}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>}
+        {type !== "" && (
+          <table className="text-white mx-auto">
+            <thead>
+              <tr>
+                <td className="w-[30px] text-white" />
+                <td className="w-[250px] text-lg font-bold border-b border-b-gray-100 border-solid border-transparent border-0 py-2">
+                  Name
+                </td>
+                <td className="w-[150px] text-lg font-bold border-b border-b-gray-100 border-solid border-transparent border-0 py-2">
+                  Net Worth
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              {data &&
+                data.map((item, id) => {
+                  return (
+                    <tr
+                      key={`ranking_table_${id}`}
+                      className="first:h-[40px] align-bottom"
+                    >
+                      <td>
+                        <img
+                          src={`/pics/${item.online ? "yellow" : "white"}.gif`}
+                          alt="online"
+                          w="10"
+                          h="10"
+                        />
+                      </td>
+                      <td className="text-sm py-1 text-secondary">
+                        <span className="text-white">{id}. </span>
+                        <u>{item.name}</u>
+                      </td>
+                      <td className="text-sm py-1">{item.worth}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        )}
       </div>
     </Layout>
   );
