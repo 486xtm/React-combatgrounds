@@ -11,6 +11,8 @@ export const BattleFieldMap = () => {
     ({ battleField }) => battleField.isConqueredByOthers
   );
 
+  const battlefieldInfo = useSelector(({ battleField }) => battleField.info);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -158,7 +160,7 @@ export const BattleFieldMap = () => {
               width="350"
               height="150"
             />
-            <p className="text-[red] text-xl font-bold my-5">Free Territory</p>
+            <p className="text-[red] text-xl font-bold my-5">{!isConqueredByOthers ? 'Free Territory' : `${battlefieldInfo && battlefieldInfo.player.name} conquered this region with ${battlefieldInfo && battlefieldInfo.recruits} troops `}</p>
             <button
               className="bg-gray-200 px-2 text-sm font-bold text-[red] my-3"
               onClick={handleConquer}

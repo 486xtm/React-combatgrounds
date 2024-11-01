@@ -39,12 +39,10 @@ export const entryRegion = async (data, dispatch, navigate) => {
     // const { user } = res.data;
     const { isAlreadyConquered, battleField, isOwnerOfRegion } = res.data;
     dispatch(setUpdateError(null));
+    dispatch(setBattleField(battleField));
+    dispatch(setIsConqueredByOthers(!isOwnerOfRegion));
     if (isOwnerOfRegion) {
-      dispatch(setBattleField(battleField));
-      dispatch(setIsConqueredByOthers(false));
       navigate(`/battlefield/${battleField.region._id}`);
-    } else if (isAlreadyConquered) {
-      dispatch(setIsConqueredByOthers(true));
     }
   } catch (err) {
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
