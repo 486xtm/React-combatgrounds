@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addBlockUser, removeBlockUser } from "../../../api/user";
 
 export const MailCenter = () => {
-  const [viewType, setViewType] = useState("Inbox");
+  const mailType = localStorage.getItem("MAILTYPE") || "Inbox";
+  const [viewType, setViewType] = useState(mailType);
 
   const [receiver, setReceiver] = useState(null);
   const [subject, setSubject] = useState("");
@@ -96,6 +97,7 @@ export const MailCenter = () => {
               } text-lg font-bold mx-3 cursor-pointer`}
               onClick={() => {
                 setViewType("Inbox");
+                localStorage.setItem("MAILTYPE", "Inbox");
                 setDetailedViewMessage(null);
               }}
             >
@@ -107,6 +109,7 @@ export const MailCenter = () => {
               } text-lg font-bold mx-3 cursor-pointer`}
               onClick={() => {
                 setViewType("Compose");
+                localStorage.setItem("MAILTYPE", "Compose");
                 setDetailedViewMessage(null);
               }}
             >
@@ -118,6 +121,7 @@ export const MailCenter = () => {
               } text-lg font-bold mx-3 cursor-pointer`}
               onClick={() => {
                 setViewType("Sent");
+                localStorage.setItem("MAILTYPE", "Sent");
                 setDetailedViewMessage(null);
               }}
             >

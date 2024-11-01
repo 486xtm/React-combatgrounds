@@ -39,7 +39,7 @@ const Hover = ({ children, type = "attack", show = false }) => {
     >
       {children}
     </div>
-  ); // Example content
+  );
 };
 
 export default Hover;
