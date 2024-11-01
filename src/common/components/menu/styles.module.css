@@ -1,5 +1,5 @@
 .menu-container {
-  height: 470px;
+  height: 530px;
   width: 166px;
   vertical-align: top;
   background-color: black;
@@ -11,27 +11,33 @@
 
 .menu-item {
   font-family: Verdana;
-  font-size: 13px;
+  font-size: 15px;
   color: #ffff00;
   font-weight: bold;
   line-height: 16px;
   margin-left: 0.25rem;
+  line-height: 18px;
+
 }
 
 .sub-menu {
   font-family: Verdana;
-  font-size: 10px;
+  font-size: 12px;
   color: #ffffff;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
+  line-height: 18px;
+
 }
 
 .link {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 12px;
   /* text-decoration: underline; */
   margin: 0;
+  line-height: 18px;
+
 }
 
 .link:hover {

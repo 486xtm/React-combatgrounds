@@ -4,6 +4,7 @@ import Loading from "../../../common/components/Loading";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { signIn } from "../../../api/auth";
+import { socket } from "../../../App";
 const MyComponent = () => {
   // Preload images on component mount
 
@@ -18,7 +19,7 @@ const MyComponent = () => {
   const [hoverFag, setHoverFag] = useState(false);
   const [hoverUserGuid, setHoverUserGuid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const user = useSelector(({user}) => user.user);
   const handleLogin = async () => {
     await signIn({ username, password }, dispatch);
   };
@@ -31,6 +32,7 @@ const MyComponent = () => {
         setIsLoading(false);
         navigate("/headquarter");
       }, 5000);
+      socket.emit('login', user);
     }
   }, [isAuthenticated]);
 

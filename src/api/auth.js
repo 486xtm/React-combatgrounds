@@ -44,12 +44,12 @@ export const signUp = async (data, dispatch, navigate) => {
   }
 };
 
-export const signOut = async (dispatch, navigate) => {
+export const signOut = async (dispatch, navigate, socket) => {
   try {
-    await axios.post(`${basicURL}/user/logout`);
     localStorage.removeItem("ACCESS_TOKEN");
     dispatch(logout());
     navigate("/login");
+    socket.disconnect();
   } catch (err) {
     console.log( err.response?.data.msg || err.message);
   }

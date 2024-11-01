@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import { useDispatch } from "react-redux";
 import { signOut } from "../../../api/auth";
 import { useNavigate } from "react-router-dom";
+import { socket } from "../../../App";
 export const Menu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -54,9 +55,9 @@ export const Menu = () => {
 
       <div className={styles["menu-item"]}>MANAGE TROOPS</div>
       <div className={styles["sub-menu"]}>
-        <Link to="/recruit" className={styles["link"]}>
+        {/* <Link to="/recruit" className={styles["link"]}>
           - <u>RECRUIT</u>
-        </Link>
+        </Link> */}
         <Link to="/bootcamp" className={styles["link"]}>
           - <u>TRAINING</u>
         </Link>
@@ -120,7 +121,7 @@ export const Menu = () => {
         <span
           // to="/login"
           onClick={() => {
-            signOut(dispatch, navigate);
+            signOut(dispatch, navigate, socket);
           }}
           className="text-white font-bold underline ml-1 text-xs cursor-pointer hover:text-secondary"
         >
