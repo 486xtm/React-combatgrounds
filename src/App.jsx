@@ -77,9 +77,7 @@ const App = () => {
       showError(toast.msg);
       dispatch(setToast({}));
     }
-    dispatch(
-      setToast({ })
-    );
+    dispatch(setToast({}));
   }, [toast]);
 
   return (
@@ -178,15 +176,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          exact
-          path="/faq"
-          element={
-            <ProtectedRoute>
-              <FAQ />
-            </ProtectedRoute>
-          }
-        />
+        <Route exact path="/faq" element={<FAQ />} />
         <Route
           exact
           path="/territories"
@@ -232,15 +222,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          exact
-          path="/userguide"
-          element={
-            <ProtectedRoute>
-              <UserGuide />
-            </ProtectedRoute>
-          }
-        />
+        <Route exact path="/userguide" element={<UserGuide />} />
         <Route
           exact
           path="/map"

@@ -44,7 +44,7 @@ const Loading = () => {
       </div>
 
       <footer className="text-center">
-        <b>Copyright © 2005-2006 CombatGrounds.com. All rights reserved.</b>
+        <b>Copyright © 2024-2025 CombatGrounds.com. All rights reserved.</b>
         <br />
         <a
           className="underline decoration-white hover:decoration-yellow-400"

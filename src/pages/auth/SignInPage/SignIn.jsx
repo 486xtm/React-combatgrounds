@@ -4,7 +4,6 @@ import Loading from "../../../common/components/Loading";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { signIn } from "../../../api/auth";
-
 const MyComponent = () => {
   // Preload images on component mount
 
@@ -340,7 +339,7 @@ const MyComponent = () => {
               </td>
               <td>
                 <Link
-                  to="faq"
+                  to="/faq"
                   onMouseOver={() => setHoverFag(true)}
                   onMouseLeave={() => setHoverFag(false)}
                 >
@@ -358,7 +357,7 @@ const MyComponent = () => {
               </td>
               <td colSpan="2">
                 <Link
-                  to="userguide"
+                  to="/userguide"
                   onMouseOver={() => setHoverUserGuid(true)}
                   onMouseLeave={() => setHoverUserGuid(false)}
                 >
