@@ -118,5 +118,6 @@
   width: 70px;
   height: 60px;
   border: 2px solid rgb(32, 31, 31);
+  cursor: pointer;
 }
 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const Hover = ({ children, type = "attack" }) => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+const Hover = ({ children, type = "attack", show = false }) => {
+  const [position, setPosition] = useState({ x: -200, y: -200 });
 
   const handleMouseMove = (event) => {
-    setPosition({ x: event.clientX, y: event.clientY });
+    setPosition({ x: event.clientX, y: event.clientY + window.pageYOffset });
   };
 
   useEffect(() => {
@@ -19,12 +19,14 @@ const Hover = ({ children, type = "attack" }) => {
     position: "absolute",
     left: position.x,
     top: position.y,
-    transform: "translate(-50%, 20px)",
+    transform: "translate(-50%, 30px)",
   };
 
   return (
     <div
-      className={`w-[150px] h-[80px] rounded-lg bg-[black] shadow-lg border-[1px] text-center p-1 ${
+      className={`transition-opacity duration-300 ${
+        show ? "opacity-100" : "opacity-0 pointer-events-none"
+      } w-[200px]  rounded-lg bg-[black] shadow-lg border-[1px] text-center px-1 pt-1 pb-2 ${
         type == "attack"
           ? "shadow-[red] border-[red]"
           : type == "defence"

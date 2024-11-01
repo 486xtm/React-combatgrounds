@@ -4,6 +4,7 @@ import { Header, Layout, Menu } from "../../../common/components";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../api/user";
 import { useLocation } from "react-router-dom";
+import Modal from "../../../common/components/modal/modal";
 import YouTube from "react-youtube";
 import Hover from "../../../common/components/hover/hover";
 export const Profile = () => {
@@ -14,13 +15,23 @@ export const Profile = () => {
   const user = onlinePlayer ? onlinePlayer : currentUser;
   const [showHover, setShowHover] = useState(false);
   const [itemInfo, setItemInfo] = useState({});
+  const [selectedItem , setSelectedItem]  = useState({});
+  const [showModal, setShowModal] = useState(false)
   const handleMouseOver = (item) => {
     setShowHover(true);
     setItemInfo(item);
+    console.log(item)
   };
   const handleMouseLeave = () => {
     setShowHover(false);
     setItemInfo({});
+  };
+  const handleMuseDown = (item) => {
+    setSelectedItem(item)
+    setShowModal(true)
+  }
+  const closeModal = () => {
+    setShowModal(false);
   };
   useEffect(() => {
     if (!user) return;
@@ -76,7 +87,7 @@ export const Profile = () => {
               : user.characterType === "Terrorist"
               ? "border-terrorist"
               : "border-primary"
-          } flex flex-col`}
+          } flex flex-col mb-10`}
         >
           <div className={`flex flex-col px-3 py-4`}>
             <div className="flex justify-between">
@@ -282,7 +293,7 @@ export const Profile = () => {
               >
                 CREW
               </div>
-              <p className="text-left text-white font-bold text-sm">
+              <p className="text-center text-white font-bold text-sm">
                 {user && user.name} is not in a crew at the moment
               </p>
               <div
@@ -298,7 +309,7 @@ export const Profile = () => {
               >
                 SUPPLIES
               </div>
-              <div className="flex">
+              <div className="flex mb-[20px] mx-auto mt-1">
                 <div className="flex flex-col w-[70px]">
                   <p className="text-[red] text-xs font-bold border-gray-900 border-2 text-center">
                     Attack items
@@ -306,12 +317,13 @@ export const Profile = () => {
                   {user &&
                     user.items
                       .filter((i) => i.item.type === "attack")
-                      .map(({ item }, id) => (
+                      .map(({ item, count }, id) => (
                         <div key={`attack_item_${id}`} className="relative">
                           <img
                             src={`/images/items/${item.pic}`}
-                            onMouseOver={() => handleMouseOver(item)}
+                            onMouseOver={() => handleMouseOver({...item, count})}
                             onMouseLeave={() => handleMouseLeave()}
+                            onMouseDown={() => handleMuseDown({...item,count})}
                             alt={item.pic}
                             className={styles["item"]}
                           />
@@ -325,12 +337,13 @@ export const Profile = () => {
                   {user &&
                     user.items
                       .filter((i) => i.item.type === "defence")
-                      .map(({ item }, id) => (
+                      .map(({ item, count }, id) => (
                         <img
                           src={`/images/items/${item.pic}`}
                           alt={item.pic}
-                          onMouseOver={() => handleMouseOver(item)}
+                          onMouseOver={() => handleMouseOver({...item, count})}
                           onMouseLeave={() => handleMouseLeave()}
+                          onMouseDown={() => handleMuseDown({...item,count})}
                           className={styles["item"]}
                           key={`defence_item_${id}`}
                         />
@@ -343,30 +356,32 @@ export const Profile = () => {
                   {user &&
                     user.items
                       .filter((i) => i.item.type === "combo")
-                      .map(({ item }, id) => (
+                      .map(({ item, count }, id) => (
                         <img
                           src={`/images/items/${item.pic}`}
                           alt={item.pic}
-                          onMouseOver={() => handleMouseOver(item)}
+                          onMouseOver={() => handleMouseOver({...item, count})}
                           onMouseLeave={() => handleMouseLeave()}
+                          onMouseDown={() => handleMuseDown({...item,count})}
                           className={styles["item"]}
                           key={`combo_item_${id}`}
                         />
                       ))}
                 </div>
                 <div className="flex flex-col w-[70px]">
-                  <p className="text-white text-xs font-bold border-gray-900 border-2 text-center">
+                  <p className="text-green-500 text-xs font-bold border-gray-900 border-2 text-center">
                     Income items
                   </p>
                   {user &&
                     user.items
                       .filter((i) => i.item.type === "income")
-                      .map(({ item }, id) => (
+                      .map(({ item, count }, id) => (
                         <img
                           src={`/images/items/${item.pic}`}
                           alt={item.pic}
-                          onMouseOver={() => handleMouseOver(item)}
+                          onMouseOver={() => handleMouseOver({...item, count})}
                           onMouseLeave={() => handleMouseLeave()}
+                          onMouseDown={() => handleMuseDown({...item,count})}
                           className={styles["item"]}
                           key={`combo_item_${id}`}
                         />
@@ -397,12 +412,86 @@ export const Profile = () => {
           </div>
         </div>
       </div>
-      {showHover && (
-        <Hover type={itemInfo.type}>
-          <div className="text-white">{itemInfo.name}</div>
-          <div>{itemInfo.count}/</div>
+        <Hover show = {showHover} type={itemInfo.type}>
+        {showHover && <div>
+          <div className="text-white ">{itemInfo.name}</div>
+          <div className="text-white leading-none">{itemInfo.count}.00 / <span className="text-[red]">5000</span></div>
+          <div className="text-white text-[13px] leading-none">{itemInfo.description}</div>
+          </div>}
         </Hover>
-      )}
+        <Modal isOpen={showModal} onClose={closeModal} type={selectedItem.type}>
+        <div className="w-[450px]">
+          <div className="text-[18px] mb-3 ml-2 text-[#f0ff25] font-bold underline ">
+            Item Info
+          </div>
+          <div className="border-2 border-b-0 w-full flex">
+            <div className="w-2/5 text-center text-[red] font-bold">Name</div>
+            <div className="w-[30%] text-center border-x-2 text-[red] font-bold">
+              Max
+            </div>
+            <div className="w-[30%] text-center text-[red] font-bold">Cost</div>
+          </div>
+          <div className="border-2 w-full flex border-b-0">
+            <div className="w-2/5 text-center">
+              {selectedItem && selectedItem.name}
+            </div>
+            <div className="w-[30%] text-center border-x-2">
+              {Number(selectedItem && selectedItem.maxCount).toLocaleString(
+                "en-US"
+              )}
+            </div>
+            <div className="w-[30%] text-center">
+              {Number(selectedItem && selectedItem.cost).toLocaleString(
+                "en-US"
+              )}
+            </div>
+          </div>
+          <div className="border-2 border-b-0 w-full flex ">
+            <div className="w-2/5 text-center text-[red] font-bold">
+              Attack Bonus
+            </div>
+            <div className="w-[30%] text-center border-x-2 text-[red] font-bold">
+              Defence Bonus
+            </div>
+            <div className="w-[30%] text-center text-[red] font-bold">
+              Income Bonus
+            </div>
+          </div>
+          <div className="border-2 border-b-0 w-full flex ">
+            <div className="w-2/5 text-center">
+              {selectedItem && selectedItem.attackBonus}
+            </div>
+            <div className="w-[30%] text-center border-x-2">
+              {selectedItem && selectedItem.defenceBonus}
+            </div>
+            <div className="w-[30%] text-center">
+              {selectedItem && selectedItem.incomeBonus}
+            </div>
+          </div>
+          <div className="border-2 border-b-0 w-full flex ">
+            <div className="w-2/5 text-center text-[red] font-bold">
+              picture
+            </div>
+            <div className="w-[60%] text-center border-l-2 text-[red] font-bold">
+              Description
+            </div>
+          </div>
+          <div className="border-2 w-full flex ">
+            <div className="w-2/5 flex items-center justify-center">
+              <img src={`/images/items/${selectedItem && selectedItem.pic}`} />
+            </div>
+            <div className="w-[60%] text-center border-l-2">
+              {selectedItem && selectedItem.description}
+            </div>
+          </div>
+          <button
+            onClick={closeModal}
+            className="mt-4 bg-red-500 text-white px-3 py-1 float-right rounded"
+          >
+            Close
+          </button>
+        </div>
+      </Modal>
     </Layout>
   );
 };
