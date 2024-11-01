@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../../common/components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { signIn, signUp } from "../../../api/auth";
-
+import { setToast } from "../../../redux/toastSlice";
 const SignUpPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,12 +34,10 @@ const SignUpPage = () => {
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     if (!agreeCheck) {
-      // alert("You must accept the terms of use.");
+      dispatch(setToast({type: "error", msg: "You must accept the terms of use."}))
       return;
     } else if (!accountCheck) {
-      // alert(
-      //   "You must confirm that this is your only CombatGroudns.com account."
-      // );
+      dispatch(setToast({type: "error", msg: "You must confirm that this is your only CombatGroudns.com account."}))
       return;
     } else {
       await signUp(

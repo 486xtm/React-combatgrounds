@@ -4,6 +4,7 @@ import { setLoginError, setRegisterError } from "../redux/errorSlice";
 import { getUserInfo } from "./user";
 import { basicURL } from "../common/constant";
 import { logout } from "../redux/authSlice";
+import { setToast } from "../redux/toastSlice";
 // const basicURL = process.env.basicURL;
 export const signIn = async (data, dispatch) => {
   try {
@@ -18,6 +19,7 @@ export const signIn = async (data, dispatch) => {
     localStorage.setItem("ACCESS_TOKEN", refresh_token);
     getUserInfo(dispatch);
   } catch (err) {
+    dispatch(setToast({type: "error", msg: err.response?.data.msg || err.message}))
     dispatch(setLoginError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -37,6 +39,7 @@ export const signUp = async (data, dispatch, navigate) => {
     dispatch(setRegisterError(null));
     navigate("/login");
   } catch (err) {
+    dispatch(setToast({type: "error", msg: err.response?.data.msg || err.message}))
     dispatch(setRegisterError({ msg: err.response?.data.msg || err.message }));
   }
 };
