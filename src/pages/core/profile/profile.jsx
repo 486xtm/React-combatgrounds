@@ -15,21 +15,22 @@ export const Profile = () => {
   const user = onlinePlayer ? onlinePlayer : currentUser;
   const [showHover, setShowHover] = useState(false);
   const [itemInfo, setItemInfo] = useState({});
-  const [selectedItem , setSelectedItem]  = useState({});
-  const [showModal, setShowModal] = useState(false)
-  const handleMouseOver = (item) => {
+  const [selectedItem, setSelectedItem] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [hoverType , setHoverType] = useState(1);
+  const handleMouseOver = (item ,type) => {
     setShowHover(true);
     setItemInfo(item);
-    console.log(item)
+    setHoverType(type);
   };
   const handleMouseLeave = () => {
     setShowHover(false);
     setItemInfo({});
   };
   const handleMuseDown = (item) => {
-    setSelectedItem(item)
-    setShowModal(true)
-  }
+    setSelectedItem(item);
+    setShowModal(true);
+  };
   const closeModal = () => {
     setShowModal(false);
   };
@@ -63,11 +64,11 @@ export const Profile = () => {
     fetchImage();
   }, [user.avatar]);
 
-  const video_id =
+  const video_data =
     user && user.youtube && user.youtube.youtube
-      ? user.youtube.youtube.split("v=")[1].split("&")[0]
+      ? user.youtube.youtube.split("v=")[1]
       : "";
-
+  const video_id = video_data ? video_data.split("&")[0] : "";
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -176,37 +177,49 @@ export const Profile = () => {
                   src="/images/winsmastery.jpg"
                   alt="a"
                   className="my-5"
-                  title={`wins: ${
+                  onMouseOver={() =>
+                    handleMouseOver({ msg: `wins: ${
                     user && user.wins ? user.wins.toLocaleString("en-US") : 0
-                  }`}
+                  }` }, 2)
+                  }
+                  onMouseLeave={() => handleMouseLeave()}
                 />
                 <img
                   src="/images/clicksmastery.jpg"
                   alt="b"
                   className="my-5"
-                  title={`Recruits: ${
+                  onMouseOver={() =>
+                    handleMouseOver({ msg: `Recruits: ${
                     user && user.recruits
                       ? user.recruits.toLocaleString("en-US")
                       : 0
-                  }`}
+                  }` }, 2)
+                  }
+                  onMouseLeave={() => handleMouseLeave()}
                 />
                 <img
                   src="/images/levelmastery.jpg"
                   alt="c"
                   className="my-5"
-                  title={`Level: ${
+                  onMouseOver={() =>
+                    handleMouseOver({ msg: `Level: ${
                     user && user.level ? user.level.toLocaleString("en-US") : 1
-                  }`}
+                  }` }, 2)
+                  }
+                  onMouseLeave={() => handleMouseLeave()}
                 />
                 <img
                   src="/images/defensemastery.jpg"
                   alt="d"
                   className="my-5"
-                  title={`Defended Attacks: ${
+                  onMouseOver={() =>
+                    handleMouseOver({ msg: `Defended Attacks: ${
                     user && user.defended_attacks
                       ? user.defended_attacks.toLocaleString("en-US")
                       : 1
-                  }`}
+                  }` }, 2)
+                  }
+                  onMouseLeave={() => handleMouseLeave()}
                 />
               </div>
 
@@ -321,9 +334,13 @@ export const Profile = () => {
                         <div key={`attack_item_${id}`} className="relative">
                           <img
                             src={`/images/items/${item.pic}`}
-                            onMouseOver={() => handleMouseOver({...item, count})}
+                            onMouseOver={() =>
+                              handleMouseOver({ ...item, count }, 1)
+                            }
                             onMouseLeave={() => handleMouseLeave()}
-                            onMouseDown={() => handleMuseDown({...item,count})}
+                            onMouseDown={() =>
+                              handleMuseDown({ ...item, count })
+                            }
                             alt={item.pic}
                             className={styles["item"]}
                           />
@@ -341,9 +358,11 @@ export const Profile = () => {
                         <img
                           src={`/images/items/${item.pic}`}
                           alt={item.pic}
-                          onMouseOver={() => handleMouseOver({...item, count})}
+                          onMouseOver={() =>
+                            handleMouseOver({ ...item, count }, 1)
+                          }
                           onMouseLeave={() => handleMouseLeave()}
-                          onMouseDown={() => handleMuseDown({...item,count})}
+                          onMouseDown={() => handleMuseDown({ ...item, count })}
                           className={styles["item"]}
                           key={`defence_item_${id}`}
                         />
@@ -360,9 +379,11 @@ export const Profile = () => {
                         <img
                           src={`/images/items/${item.pic}`}
                           alt={item.pic}
-                          onMouseOver={() => handleMouseOver({...item, count})}
+                          onMouseOver={() =>
+                            handleMouseOver({ ...item, count }, 1)
+                          }
                           onMouseLeave={() => handleMouseLeave()}
-                          onMouseDown={() => handleMuseDown({...item,count})}
+                          onMouseDown={() => handleMuseDown({ ...item, count })}
                           className={styles["item"]}
                           key={`combo_item_${id}`}
                         />
@@ -379,9 +400,11 @@ export const Profile = () => {
                         <img
                           src={`/images/items/${item.pic}`}
                           alt={item.pic}
-                          onMouseOver={() => handleMouseOver({...item, count})}
+                          onMouseOver={() =>
+                            handleMouseOver({ ...item, count }, 1)
+                          }
                           onMouseLeave={() => handleMouseLeave()}
-                          onMouseDown={() => handleMuseDown({...item,count})}
+                          onMouseDown={() => handleMuseDown({ ...item, count })}
                           className={styles["item"]}
                           key={`combo_item_${id}`}
                         />
@@ -412,14 +435,25 @@ export const Profile = () => {
           </div>
         </div>
       </div>
-        <Hover show = {showHover} type={itemInfo.type}>
-        {showHover && <div>
-          <div className="text-white ">{itemInfo.name}</div>
-          <div className="text-white leading-none">{itemInfo.count}.00 / <span className="text-[red]">5000</span></div>
-          <div className="text-white text-[13px] leading-none">{itemInfo.description}</div>
-          </div>}
-        </Hover>
-        <Modal isOpen={showModal} onClose={closeModal} type={selectedItem.type}>
+      <Hover show={showHover} type={itemInfo.type}>
+        {showHover &&  hoverType == 1 && (
+          <div>
+            <div className="text-white ">{itemInfo.name}</div>
+            <div className="text-white leading-none">
+              {itemInfo.count}.00 / <span className="text-[red]">5000</span>
+            </div>
+            <div className="text-white text-[13px] leading-none">
+              {itemInfo.description}
+            </div>
+          </div>
+        )}
+        {showHover &&  hoverType == 2 && (
+          <div>
+            <div className="text-white ">{itemInfo.msg}</div>
+          </div>
+        )}
+      </Hover>
+      <Modal isOpen={showModal} onClose={closeModal} type={selectedItem.type}>
         <div className="w-[450px]">
           <div className="text-[18px] mb-3 ml-2 text-[#f0ff25] font-bold underline ">
             Item Info
