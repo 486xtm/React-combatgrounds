@@ -18,10 +18,6 @@ export const NukeCountry = () => {
     getCountryInfo(dispatch);
   }, [user]);
 
-  // useEffect(() => {
-  //   console.log("cou===>", countries);
-  // }, [countries]);
-
   return (
     <Layout currentActiveTab={"headquarters"} isHeaderFull={true}>
       <div className="flex flex-col flex-1">

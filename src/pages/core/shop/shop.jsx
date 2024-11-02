@@ -29,12 +29,10 @@ export const Shop = () => {
     setIsModalOpen(false);
   };
   const handleBuy = (type) => {
-    console.log("buy attack shop");
     setVals({});
     buyItems({ vals, type }, dispatch);
   };
   const handleSell = (type) => {
-    console.log("sell attack shop");
     sellItems({ vals, type }, dispatch);
   };
 
@@ -128,7 +126,7 @@ export const Shop = () => {
                     onClick={() => handleBuy("attack")}
                     className="bg-[white] text-black w-10"
                   >
-                    buy
+                    Buy
                   </button>
                   <button
                     onClick={() => handleSell("attack")}
@@ -188,7 +186,7 @@ export const Shop = () => {
                     onClick={() => handleBuy("defence")}
                     className="bg-[white] text-black w-10"
                   >
-                    buy
+                    Buy
                   </button>
                   <button
                     onClick={() => handleSell("defence")}
@@ -248,7 +246,7 @@ export const Shop = () => {
                     onClick={() => handleBuy("combo")}
                     className="bg-[white] text-black w-10"
                   >
-                    buy
+                    Buy
                   </button>
                   <button
                     onClick={() => handleSell("combo")}
@@ -308,7 +306,7 @@ export const Shop = () => {
                     onClick={() => handleBuy("income")}
                     className="bg-[white] text-black w-10"
                   >
-                    buy
+                    Buy
                   </button>
                   <button
                     onClick={() => handleSell("income")}

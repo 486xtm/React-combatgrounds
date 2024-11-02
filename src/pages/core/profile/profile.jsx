@@ -14,7 +14,6 @@ export const Profile = () => {
   const onlinePlayer = location.state;
   const currentUser = useSelector(({ user }) => user.user);
   const onlineRealPlayer = useSelector(({ user }) => user.other);
-  console.log("++++++++++++++", onlineRealPlayer);
   const user = onlinePlayer ? onlineRealPlayer || onlinePlayer : currentUser;
   const [showHover, setShowHover] = useState(false);
   const [itemInfo, setItemInfo] = useState({});
@@ -26,12 +25,6 @@ export const Profile = () => {
     setItemInfo(item);
     setHoverType(type);
   };
-
-  //test
-  useEffect(() => {
-    console.log("usr===>", onlineRealPlayer);
-  }, [onlineRealPlayer]);
-  //~test
   const handleMouseLeave = () => {
     setShowHover(false);
     setItemInfo({});
@@ -76,10 +69,7 @@ export const Profile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("step1");
     if (onlinePlayer) {
-      console.log("step2");
-
       getUserById({ id: onlinePlayer._id }, dispatch);
     } else getUserInfo(dispatch, navigate);
   }, []);

@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { ChooseHelper } from "./pages/core/choosehelper/choosehelper";
 import io from "socket.io-client";
-export const socket = io("http://localhost:5000");
 import {
   AttackLog,
   EditInfo,
@@ -41,6 +40,8 @@ import { useToast } from "./ToastProvider";
 import { setToast } from "./redux/toastSlice";
 import { setOnlinePlayers } from "./redux/onlineSlice";
 import { signOut } from "./api/auth";
+import { socketURL } from "./common/constant";
+export const socket = io(socketURL);
 const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch();
 
