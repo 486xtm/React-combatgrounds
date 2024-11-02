@@ -1,7 +1,11 @@
 import axios from "./axios";
 
 import { setUpdateError } from "../redux/errorSlice";
-import { setBattleField } from "../redux/battlefieldSlice";
+import {
+  setBattleField,
+  setIsRuler,
+  setRegion,
+} from "../redux/battlefieldSlice";
 import { setUser } from "../redux/userSlice";
 import { basicURL } from "../common/constant";
 import { setToast } from "../redux/toastSlice";
@@ -22,8 +26,10 @@ export const getBattleField = async (data, dispatch) => {
     const res = await axios.get(
       `${basicURL}/battlefield/get-battlefield?region_id=${data.region_id}`
     );
-    const { battleField } = res.data;
+    const { battleField, isRuler, region } = res.data;
     dispatch(setBattleField(battleField));
+    dispatch(setRegion(region));
+    dispatch(setIsRuler(isRuler));
   } catch (err) {
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
     dispatch(
@@ -35,14 +41,12 @@ export const getBattleField = async (data, dispatch) => {
 export const conquerRegion = async (data, dispatch, navigate) => {
   try {
     const res = await axios.post(`${basicURL}/battlefield/conquer`, data);
-    const { user, battleField } = res.data;
+    const { user, battleField, region, isRuler } = res.data;
     dispatch(setUser(user));
-    dispatch(setUpdateError(null));
+    dispatch(setRegion(region));
+    dispatch(setBattleField(battleField));
+    dispatch(setIsRuler(isRuler));
     dispatch(setToast({ type: "success", msg: res.data.msg }));
-    if (!data.type) {
-      dispatch(setBattleField(battleField));
-      navigate(`/battlefield/${battleField.region._id}`);
-    }
   } catch (err) {
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
     dispatch(
@@ -118,10 +122,10 @@ export const putGo = async (data, dispatch) => {
 export const go = async (data, dispatch) => {
   try {
     const res = await axios.post(`${basicURL}/battlefield/go`, data);
-    const { user } = res.data;
+    const { user, battleField } = res.data;
     dispatch(setUser(user));
+    dispatch(setBattleField(battleField));
     dispatch(setToast({ type: "success", msg: res.data.msg }));
-    dispatch(setUpdateError(null));
   } catch (err) {
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
     dispatch(

@@ -1,27 +1,37 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Header, Layout, Menu } from "../../../common/components";
-import {  useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "../../../common/components/modal/modal";
 import YouTube from "react-youtube";
 import Hover from "../../../common/components/hover/hover";
+import { getGradeString } from "../../../common/utils";
+import { getUserById, getUserInfo } from "../../../api/user";
 export const Profile = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const location = useLocation();
   const onlinePlayer = location.state;
   const currentUser = useSelector(({ user }) => user.user);
-  const user = onlinePlayer ? onlinePlayer : currentUser;
+  const onlineRealPlayer = useSelector(({ user }) => user.other);
+  console.log("++++++++++++++", onlineRealPlayer);
+  const user = onlinePlayer ? onlineRealPlayer || onlinePlayer : currentUser;
   const [showHover, setShowHover] = useState(false);
   const [itemInfo, setItemInfo] = useState({});
   const [selectedItem, setSelectedItem] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const [hoverType , setHoverType] = useState(1);
-  const handleMouseOver = (item ,type) => {
+  const [hoverType, setHoverType] = useState(1);
+  const handleMouseOver = (item, type) => {
     setShowHover(true);
     setItemInfo(item);
     setHoverType(type);
   };
+
+  //test
+  useEffect(() => {
+    console.log("usr===>", onlineRealPlayer);
+  }, [onlineRealPlayer]);
+  //~test
   const handleMouseLeave = () => {
     setShowHover(false);
     setItemInfo({});
@@ -62,13 +72,24 @@ export const Profile = () => {
 
     fetchImage();
   }, [user.avatar]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("step1");
+    if (onlinePlayer) {
+      console.log("step2");
+
+      getUserById({ id: onlinePlayer._id }, dispatch);
+    } else getUserInfo(dispatch, navigate);
+  }, []);
 
   const video_data =
     user && user.youtube && user.youtube.youtube
       ? user.youtube.youtube.split("v=")[1]
       : "";
   const video_id = video_data ? video_data.split("&")[0] : "";
-  
+
   return (
     <Layout currentActiveTab={"headquarters"}>
       <div className="flex-1">
@@ -96,7 +117,23 @@ export const Profile = () => {
                   : 0}
               </p>
             </div>
-            <img src="/images/onlineimg.gif" alt="online" className="mx-auto" />
+            <div className="flex px-2 relative mt-3">
+              {user && user.grade ? (
+                <img
+                  src={`/pics/${getGradeString(
+                    user.grade
+                  ).toLocaleLowerCase()}.gif`}
+                  alt={user.grade}
+                  height="30"
+                  className="my-auto absolute top-1/2 transform -translate-y-1/2"
+                />
+              ) : null}
+              <img
+                src="/images/onlineimg.gif"
+                alt="online"
+                className="mx-auto"
+              />
+            </div>
           </div>
           <div
             className={`flex border-t-2 ${
@@ -141,7 +178,7 @@ export const Profile = () => {
                   </tr>
                   <tr>
                     <td>Grade</td>
-                    <td>None</td>
+                    <td>{getGradeString(user && user.grade)}</td>
                   </tr>
                   <tr>
                     <td>Level</td>
@@ -170,51 +207,113 @@ export const Profile = () => {
                 <img
                   src="/images/winsmastery.jpg"
                   alt="a"
-                  className="my-5"
+                  className="my-3 cursor-pointer"
                   onMouseOver={() =>
-                    handleMouseOver({ msg: `wins: ${
-                    user && user.wins ? user.wins.toLocaleString("en-US") : 0
-                  }` }, 2)
+                    handleMouseOver(
+                      {
+                        msg: `${
+                          user && user.wins
+                            ? user.wins.toLocaleString("en-US")
+                            : 0
+                        } Wins`,
+                      },
+                      2
+                    )
                   }
                   onMouseLeave={() => handleMouseLeave()}
                 />
+                <div className="flex flex-wrap">
+                  {new Array(Math.ceil((user.wins || 0) / 70))
+                    .fill()
+                    .map((i, id) => (
+                      <img src="/images/winmast.jpg" key={`winmast_${id}`} />
+                    ))}
+                </div>
                 <img
                   src="/images/clicksmastery.jpg"
                   alt="b"
-                  className="my-5"
+                  className="my-3 cursor-pointer"
                   onMouseOver={() =>
-                    handleMouseOver({ msg: `Recruits: ${
-                    user && user.recruits
-                      ? user.recruits.toLocaleString("en-US")
-                      : 0
-                  }` }, 2)
+                    handleMouseOver(
+                      {
+                        msg: `${
+                          user && user.recruits
+                            ? user.recruits.toLocaleString("en-US")
+                            : 0
+                        } Recruits`,
+                      },
+                      2
+                    )
                   }
                   onMouseLeave={() => handleMouseLeave()}
                 />
+                <div className="flex flex-wrap">
+                  {new Array(Math.ceil((user.recruits || 0) / 150_000))
+                    .fill()
+                    .map((i, id) => (
+                      <img
+                        src="/images/clicksmast.jpg"
+                        key={`clickmast_${id}`}
+                      />
+                    ))}
+                </div>
                 <img
                   src="/images/levelmastery.jpg"
                   alt="c"
-                  className="my-5"
+                  className="my-3 cursor-pointer"
                   onMouseOver={() =>
-                    handleMouseOver({ msg: `Level: ${
-                    user && user.level ? user.level.toLocaleString("en-US") : 1
-                  }` }, 2)
+                    handleMouseOver(
+                      {
+                        msg: `${
+                          user && user.level
+                            ? user.level.toLocaleString("en-US")
+                            : 1
+                        } Level`,
+                      },
+                      2
+                    )
                   }
                   onMouseLeave={() => handleMouseLeave()}
                 />
+                <div className="flex flex-wrap">
+                  {new Array(Math.ceil((user.level || 0) / 102_000))
+                    .fill()
+                    .map((i, id) => (
+                      <img
+                        src="/images/levelmast.jpg"
+                        key={`levelmast_${id}`}
+                      />
+                    ))}
+                </div>
                 <img
                   src="/images/defensemastery.jpg"
                   alt="d"
-                  className="my-5"
+                  className="my-3 cursor-pointer"
                   onMouseOver={() =>
-                    handleMouseOver({ msg: `Defended Attacks: ${
-                    user && user.defended_attacks
-                      ? user.defended_attacks.toLocaleString("en-US")
-                      : 1
-                  }` }, 2)
+                    handleMouseOver(
+                      {
+                        msg: `${
+                          user && user.defended_attacks
+                            ? user.defended_attacks.toLocaleString("en-US")
+                            : 0
+                        } Defended Attacks`,
+                      },
+                      2
+                    )
                   }
                   onMouseLeave={() => handleMouseLeave()}
                 />
+
+                <div className="flex flex-wrap">
+                  {new Array(Math.ceil((user.defence_attacks || 0) / 10))
+                    .fill()
+                    .map((i, id) => (
+                      <img
+                        src="/images/defencemast.jpg"
+                        key={`defencemast_${id}`}
+                      />
+                    ))}
+                </div>
               </div>
 
               <div
@@ -430,7 +529,7 @@ export const Profile = () => {
         </div>
       </div>
       <Hover show={showHover} type={itemInfo.type}>
-        {showHover &&  hoverType == 1 && (
+        {showHover && hoverType == 1 && (
           <div>
             <div className="text-white ">{itemInfo.name}</div>
             <div className="text-white leading-none">
@@ -441,7 +540,7 @@ export const Profile = () => {
             </div>
           </div>
         )}
-        {showHover &&  hoverType == 2 && (
+        {showHover && hoverType == 2 && (
           <div>
             <div className="text-white ">{itemInfo.msg}</div>
           </div>
