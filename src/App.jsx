@@ -11,8 +11,8 @@ import SignUp from "./pages/auth/SignUpPage/SignUp";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { ChooseHelper } from "./pages/core/choosehelper/choosehelper";
-import io from 'socket.io-client';
-export const socket = io('http://localhost:5000');
+import io from "socket.io-client";
+export const socket = io("http://localhost:5000");
 import {
   AttackLog,
   EditInfo,
@@ -40,6 +40,7 @@ import { getUserInfo } from "./api/user";
 import { useToast } from "./ToastProvider";
 import { setToast } from "./redux/toastSlice";
 import { setOnlinePlayers } from "./redux/onlineSlice";
+import { signOut } from "./api/auth";
 const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch();
 
@@ -47,6 +48,9 @@ const ProtectedRoute = ({ children }) => {
   let location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
+    const expiration_date = localStorage.getItem("EXPIRATION_DATE");
+    const current_date = new Date().getTime();
+    if (current_date > expiration_date) signOut(dispatch, navigate, socket);
     const token = localStorage.getItem("ACCESS_TOKEN");
     if (token) getUserInfo(dispatch, navigate);
   }, []);
@@ -60,21 +64,19 @@ const ProtectedRoute = ({ children }) => {
 const App = () => {
   const toast = useSelector(({ toast }) => toast);
   const dispatch = useDispatch();
-  const user = useSelector(({user}) =>user.user);
+  const user = useSelector(({ user }) => user.user);
   const { showError, showSuccess } = useToast();
-  useEffect (() => {
-    
-    socket.on('onlinePlayer', (userList) => {
-      dispatch(setOnlinePlayers(Object.values(userList)))
+  useEffect(() => {
+    socket.on("onlinePlayer", (userList) => {
+      dispatch(setOnlinePlayers(Object.values(userList)));
     });
     return () => {
-      socket.off('onlinePlayer');
-    }
-  },[])
+      socket.off("onlinePlayer");
+    };
+  }, []);
   useEffect(() => {
-    if(user)
-      socket.emit("login",user);
-  }, [user])
+    if (user) socket.emit("login", user);
+  }, [user]);
   useEffect(() => {
     if (
       !toast ||

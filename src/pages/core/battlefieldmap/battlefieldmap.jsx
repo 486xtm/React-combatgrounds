@@ -2,12 +2,13 @@ import React from "react";
 import { Layout } from "../../../common/components";
 import { useNavigate } from "react-router-dom";
 import { entryRegion } from "../../../api/battlefield";
+import { useDispatch } from "react-redux";
 
 export const BattleFieldMap = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const handleClickRegion = (regionId) => {
-    entryRegion({ regionId }, navigate);
+    entryRegion({ regionId }, navigate,dispatch);
   };
 
   return (

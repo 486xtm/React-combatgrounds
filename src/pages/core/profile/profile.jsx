@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Header, Layout, Menu } from "../../../common/components";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserInfo } from "../../../api/user";
+import {  useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Modal from "../../../common/components/modal/modal";
 import YouTube from "react-youtube";
@@ -69,12 +68,7 @@ export const Profile = () => {
       ? user.youtube.youtube.split("v=")[1]
       : "";
   const video_id = video_data ? video_data.split("&")[0] : "";
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    getUserInfo(dispatch);
-  }, []);
-
+  
   return (
     <Layout currentActiveTab={"headquarters"}>
       <div className="flex-1">
@@ -251,7 +245,7 @@ export const Profile = () => {
               >
                 DESCRIPTION
               </div>
-              <div className="text-xs text-white">
+              <div className="text-xs text-white break-all">
                 {user && user.description}
               </div>
               <div
