@@ -219,11 +219,3 @@ export const raiseFund = async (data, dispatch) => {
     dispatch(setUpdateError(err.message));
   }
 };
-export const getOnlinePlayers = async (dispatch) => {
-  try {
-    const res = await axios.get(`${basicURL}/user/online`);
-    dispatch(setOnlinePlayers(res.data.users));
-  } catch (err) {
-    console.log(err.response?.data.msg || err.message);
-  }
-}

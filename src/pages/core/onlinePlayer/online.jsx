@@ -2,16 +2,10 @@ import React, { useEffect } from "react";
 import { Header, Layout, Menu } from "../../../common/components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getOnlinePlayers } from "../../../api/user";
 import { useNavigate } from "react-router-dom";
-
 export const OnlinePlayers = () => {
   const onlinePlayers = useSelector(({ online }) => online.onlinePlayers);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  useEffect(() => {
-    getOnlinePlayers(dispatch);
-  }, []);
   return (
     <Layout currentActiveTab={"headquarters"}>
       <div className="flex-1 mx-5">
