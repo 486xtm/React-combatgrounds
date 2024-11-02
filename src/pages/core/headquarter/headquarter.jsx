@@ -39,16 +39,8 @@ export const HeadQuarter = () => {
             Minutes Left:
           </p>
           <div className="flex mx-auto">
-            <img
-              src={`/images/${
-                round.time === 10 ? 1 : 0
-              }.gif`}
-            />
-            <img
-              src={`/images/${
-                round.time % 10
-              }.gif`}
-            />
+            <img src={`/images/${round.time === 10 ? 1 : 0}.gif`} />
+            <img src={`/images/${round.time % 10}.gif`} />
           </div>
           <div className="flex gap-[100px] justify-center">
             <div className="flex flex-col w-[280px]">
@@ -60,7 +52,7 @@ export const HeadQuarter = () => {
                   Cash next cycle
                 </div>
                 <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold">
-                  ${user && user.cycleRewards.toLocaleString('en-US')}
+                  ${user && user.cycleRewards.toLocaleString("en-US")}
                 </div>
               </div>
               <div className="flex w-full">

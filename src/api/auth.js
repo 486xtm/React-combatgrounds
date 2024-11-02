@@ -17,10 +17,15 @@ export const signIn = async (data, dispatch) => {
     const { refresh_token } = response.data;
     // Store the token securely
     localStorage.setItem("ACCESS_TOKEN", refresh_token);
-    localStorage.setItem("EXPIRATION_DATE", new Date().getTime() + 5 * 60 * 1000);
+    localStorage.setItem(
+      "EXPIRATION_DATE",
+      new Date().getTime() + 5 * 60 * 1000
+    );
     getUserInfo(dispatch);
   } catch (err) {
-    dispatch(setToast({type: "error", msg: err.response?.data.msg || err.message}))
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setLoginError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -40,7 +45,9 @@ export const signUp = async (data, dispatch, navigate) => {
     dispatch(setRegisterError(null));
     navigate("/login");
   } catch (err) {
-    dispatch(setToast({type: "error", msg: err.response?.data.msg || err.message}))
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setRegisterError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -52,8 +59,9 @@ export const signOut = async (dispatch, navigate, socket) => {
     localStorage.removeItem("MAILTYPE");
     dispatch(logout());
     navigate("/login");
-    socket.disconnect();
+    // socket.disconnect();
+    socket.emit("logout");
   } catch (err) {
-    console.log( err.response?.data.msg || err.message);
+    console.log(err.response?.data.msg || err.message);
   }
 };

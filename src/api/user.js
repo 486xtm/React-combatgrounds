@@ -1,6 +1,6 @@
 import axios from "./axios";
 
-import { setUser } from "../redux/userSlice";
+import { setOther, setUser } from "../redux/userSlice";
 import { setUpdateError } from "../redux/errorSlice";
 import { login } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
@@ -216,6 +216,15 @@ export const raiseFund = async (data, dispatch) => {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
     );
+    dispatch(setUpdateError(err.message));
+  }
+};
+
+export const getUserById = async (data, dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/user/get_user?id=${data.id}`);
+    dispatch(setOther(res.data.user));
+  } catch (err) {
     dispatch(setUpdateError(err.message));
   }
 };
