@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Header, Layout, Menu } from "../../../common/components";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Modal from "../../../common/components/modal/modal";
 import YouTube from "react-youtube";
@@ -245,7 +245,7 @@ export const Profile = () => {
               >
                 DESCRIPTION
               </div>
-              <div className="text-xs text-white">
+              <div className="text-xs text-white break-all">
                 {user && user.description}
               </div>
               <div

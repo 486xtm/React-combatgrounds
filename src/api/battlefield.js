@@ -6,7 +6,7 @@ import { setUser } from "../redux/userSlice";
 import { basicURL } from "../common/constant";
 import { setToast } from "../redux/toastSlice";
 
-export const entryRegion = async (data, navigate) => {
+export const entryRegion = async (data, navigate,dispatch) => {
   try {
     const res = await axios.get(
       `${basicURL}/battlefield/entry-region?regionId=${data.regionId}`
