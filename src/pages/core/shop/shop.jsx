@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import Modal from "../../../common/components/modal/modal";
 import { useDispatch, useSelector } from "react-redux";
 import { buyItems, getItems, sellItems } from "../../../api/shop";
+import { getGradeString } from "../../../common/utils";
 
 export const Shop = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -103,14 +104,20 @@ export const Shop = () => {
                       <td>{Number(item.owned).toLocaleString("en-US")}</td>
                       <td>{Number(item.maxCount).toLocaleString("en-US")}</td>
                       <td>
-                        <input
-                          className="text-black w-2/3 mx-[16.6%]"
-                          type="text"
-                          onChange={(e) =>
-                            handleChange(item._id, e.target.value)
-                          }
-                          value={vals[item._id] ? vals[item._id] : ""}
-                        />
+                        {user.grade >= item.requiredGrade ? (
+                          <input
+                            className="text-black w-2/3 mx-[16.6%]"
+                            type="text"
+                            onChange={(e) =>
+                              handleChange(item._id, e.target.value)
+                            }
+                            value={vals[item._id] ? vals[item._id] : ""}
+                          />
+                        ) : (
+                          <p className="text-[red] text-xs text-center">{`${getGradeString(
+                            item.requiredGrade
+                          )}s only!`}</p>
+                        )}
                       </td>
                     </tr>
                   ))}
@@ -157,14 +164,20 @@ export const Shop = () => {
                       <td>{Number(item.owned).toLocaleString("en-US")}</td>
                       <td>{Number(item.maxCount).toLocaleString("en-US")}</td>
                       <td>
-                        <input
-                          className="text-black w-2/3 mx-[16.6%]"
-                          type="text"
-                          onChange={(e) =>
-                            handleChange(item._id, e.target.value)
-                          }
-                          value={vals[item._id] ? vals[item._id] : ""}
-                        />
+                        {user.grade >= item.requiredGrade ? (
+                          <input
+                            className="text-black w-2/3 mx-[16.6%]"
+                            type="text"
+                            onChange={(e) =>
+                              handleChange(item._id, e.target.value)
+                            }
+                            value={vals[item._id] ? vals[item._id] : ""}
+                          />
+                        ) : (
+                          <p className="text-[red] text-xs text-center">{`${getGradeString(
+                            item.requiredGrade
+                          )}s only!`}</p>
+                        )}
                       </td>
                     </tr>
                   ))}
@@ -211,14 +224,20 @@ export const Shop = () => {
                       <td>{Number(item.owned).toLocaleString("en-US")}</td>
                       <td>{Number(item.maxCount).toLocaleString("en-US")}</td>
                       <td>
-                        <input
-                          className="text-black w-2/3 mx-[16.6%]"
-                          type="text"
-                          onChange={(e) =>
-                            handleChange(item._id, e.target.value)
-                          }
-                          value={vals[item._id] ? vals[item._id] : ""}
-                        />
+                        {user.grade >= item.requiredGrade ? (
+                          <input
+                            className="text-black w-2/3 mx-[16.6%]"
+                            type="text"
+                            onChange={(e) =>
+                              handleChange(item._id, e.target.value)
+                            }
+                            value={vals[item._id] ? vals[item._id] : ""}
+                          />
+                        ) : (
+                          <p className="text-[red] text-xs text-center">{`${getGradeString(
+                            item.requiredGrade
+                          )}s only!`}</p>
+                        )}
                       </td>
                     </tr>
                   ))}
@@ -265,14 +284,20 @@ export const Shop = () => {
                       <td>{Number(item.owned).toLocaleString("en-US")}</td>
                       <td>{Number(item.maxCount).toLocaleString("en-US")}</td>
                       <td>
-                        <input
-                          className="text-black w-2/3 mx-[16.6%]"
-                          type="text"
-                          onChange={(e) =>
-                            handleChange(item._id, e.target.value)
-                          }
-                          value={vals[item._id] ? vals[item._id] : ""}
-                        />
+                        {user.grade >= item.requiredGrade ? (
+                          <input
+                            className="text-black w-2/3 mx-[16.6%]"
+                            type="text"
+                            onChange={(e) =>
+                              handleChange(item._id, e.target.value)
+                            }
+                            value={vals[item._id] ? vals[item._id] : ""}
+                          />
+                        ) : (
+                          <p className="text-[red] text-xs text-center">{`${getGradeString(
+                            item.requiredGrade
+                          )}s only!`}</p>
+                        )}
                       </td>
                     </tr>
                   ))}

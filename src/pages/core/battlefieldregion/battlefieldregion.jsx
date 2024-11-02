@@ -9,11 +9,20 @@ import {
   takeAll,
   takeGo,
   go,
+  conquerRegion,
 } from "../../../api/battlefield";
+import {
+  setBattleField,
+  setIsRuler,
+  setRegion,
+} from "../../../redux/battlefieldSlice";
 
 export const BattleFieldRegion = () => {
   const { region_id } = useParams();
+
   const battleField = useSelector(({ battleField }) => battleField.info);
+  const isRuler = useSelector(({ battleField }) => battleField.isRuler);
+  const region = useSelector(({ battleField }) => battleField.region);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,13 +30,19 @@ export const BattleFieldRegion = () => {
   const [takeTroops, setTakeTroops] = useState("");
   const [putTroops, setPutTroops] = useState("");
 
+  const handleConquer = () => {
+    conquerRegion({ region_id, type: !!battleField }, dispatch, navigate);
+  };
+
   const handlePutGoClick = () => {
     if (!battleField) return;
     putGo({ putTroops, battleFieldId: battleField._id }, dispatch);
+    setPutTroops(0);
   };
   const handleTakeGoClick = () => {
     if (!battleField) return;
     takeGo({ takeTroops, battleFieldId: battleField._id }, dispatch);
+    setTakeTroops(0);
   };
   const handlePutAllClick = () => {
     if (!battleField) return;
@@ -47,9 +62,17 @@ export const BattleFieldRegion = () => {
     getBattleField({ region_id }, dispatch);
   }, [region_id, dispatch]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(setBattleField(null));
+      dispatch(setRegion(null));
+      dispatch(setIsRuler(null));
+    };
+  }, []);
+
   return (
     <Layout>
-      {!battleField || !battleField.region ? null : (
+      {battleField && isRuler ? (
         <div className="flex flex-col flex-1 items-center">
           <img
             src={`/pics/region${battleField.region.id}.gif`}
@@ -65,7 +88,7 @@ export const BattleFieldRegion = () => {
               Put in troops:
             </p>
             <input
-              value={Number(putTroops).toLocaleString("en-US")}
+              value={putTroops ? Number(putTroops).toLocaleString("en-US") : ""}
               className="text-sm w-[100px] rounded px-1"
               onChange={(e) => {
                 setPutTroops(e.target.value.replace(/[^0-9]/g, ""));
@@ -90,7 +113,9 @@ export const BattleFieldRegion = () => {
             </p>
             <input
               className="text-sm w-[100px] rounded px-1"
-              value={Number(takeTroops).toLocaleString("en-US")}
+              value={
+                takeTroops ? Number(takeTroops).toLocaleString("en-US") : ""
+              }
               onChange={(e) => {
                 setTakeTroops(e.target.value.replace(/[^0-9]/g, ""));
               }}
@@ -130,6 +155,39 @@ export const BattleFieldRegion = () => {
           </button>
           <p className="text-white text-xs">This option uses 200 turns</p>
         </div>
+      ) : (
+        region && (
+          <div className="flex flex-col flex-1 items-center mt-5">
+            <img
+              src={`/pics/region${region.id}.gif`}
+              width="350"
+              height="150"
+            />
+            <p className="text-[red] text-xl font-bold my-5">
+              {!battleField ? (
+                "Free Territory"
+              ) : (
+                <>
+                  <span className="text-secondary underline">
+                    {battleField.player.name}
+                  </span>
+                  {` conquered this region with ${battleField.recruits} troops`}
+                </>
+              )}
+            </p>
+            <button
+              className="bg-gray-200 px-2 text-sm font-bold text-[red] my-3"
+              onClick={handleConquer}
+            >
+              {battleField ? "Ambush!" : "Conquer Territory!"}
+            </button>
+            <p className="text-white text-xs">
+              {battleField
+                ? "This option uses 7 turns"
+                : "This option uses 15 turns"}
+            </p>
+          </div>
+        )
       )}
     </Layout>
   );
