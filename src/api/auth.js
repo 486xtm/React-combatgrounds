@@ -17,6 +17,7 @@ export const signIn = async (data, dispatch) => {
     const { refresh_token } = response.data;
     // Store the token securely
     localStorage.setItem("ACCESS_TOKEN", refresh_token);
+    localStorage.setItem("EXPIRATION_DATE", new Date().getTime() + 5 * 60 * 1000);
     getUserInfo(dispatch);
   } catch (err) {
     dispatch(setToast({type: "error", msg: err.response?.data.msg || err.message}))
@@ -47,6 +48,8 @@ export const signUp = async (data, dispatch, navigate) => {
 export const signOut = async (dispatch, navigate, socket) => {
   try {
     localStorage.removeItem("ACCESS_TOKEN");
+    localStorage.removeItem("EXPIRATION_DATE");
+    localStorage.removeItem("MAILTYPE");
     dispatch(logout());
     navigate("/login");
     socket.disconnect();
