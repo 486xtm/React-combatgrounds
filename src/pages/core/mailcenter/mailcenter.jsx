@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 import { deleteMessages, getMessage, sendMessage } from "../../../api/message";
 import { useDispatch, useSelector } from "react-redux";
 import { addBlockUser, removeBlockUser } from "../../../api/user";
-
+import { socket } from "../../../App";
 export const MailCenter = () => {
   const mailType = localStorage.getItem("MAILTYPE") || "Inbox";
   const [viewType, setViewType] = useState(mailType);
@@ -26,7 +26,7 @@ export const MailCenter = () => {
   const receivedMessage = useSelector(({ mail }) => mail.received);
 
   const handleSubmit = () => {
-    sendMessage({ receiver, subject, content }, dispatch);
+    sendMessage({ receiver, subject, content }, dispatch, socket);
   };
 
   const handleCheckAll = () => {

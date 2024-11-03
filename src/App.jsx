@@ -66,13 +66,17 @@ const App = () => {
   const toast = useSelector(({ toast }) => toast);
   const dispatch = useDispatch();
   const user = useSelector(({ user }) => user.user);
-  const { showError, showSuccess } = useToast();
+  const { showError, showSuccess, showInfo } = useToast();
   useEffect(() => {
     socket.on("onlinePlayer", (userList) => {
       dispatch(setOnlinePlayers(Object.values(userList)));
     });
+    socket.on("receive message", (data) => {
+      dispatch(setToast({type: 'info', msg: `New message arrived from ${data.from}`}));
+    })
     return () => {
       socket.off("onlinePlayer");
+      socket.off("receive message");
     };
   }, []);
   useEffect(() => {
@@ -83,12 +87,16 @@ const App = () => {
       !toast ||
       !toast.msg ||
       typeof showSuccess !== "function" ||
-      typeof showError !== "function"
+      typeof showError !== "function" ||
+      typeof showInfo !== "function"
     ) {
       return;
     }
     if (toast.type === "success") {
       showSuccess(toast.msg);
+      dispatch(setToast({}));
+    } else if(toast.type === "info") {
+      showInfo(toast.msg);
       dispatch(setToast({}));
     } else {
       showError(toast.msg);

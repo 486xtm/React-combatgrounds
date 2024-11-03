@@ -4,7 +4,7 @@ import { setMails } from "../redux/mailSlice";
 import { setToast } from "../redux/toastSlice";
 import { basicURL } from "../common/constant";
 
-export const sendMessage = async (data, dispatch) => {
+export const sendMessage = async (data, dispatch, socket) => {
   try {
     const reqData = {
       content: data.content,
@@ -13,6 +13,7 @@ export const sendMessage = async (data, dispatch) => {
     };
     await axios.post(`${basicURL}/message/send`, reqData);
     dispatch(setToast({ type: "success", msg: "Message Successfully Sent" }));
+    socket.emit("send message", data.receiver);
     dispatch(setMessageError(null));
   } catch (err) {
     dispatch(setToast({ type: "error", msg: err.response?.data.msg || err.message }));
