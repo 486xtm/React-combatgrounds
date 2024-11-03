@@ -2,13 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./styles.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../../api/auth";
 import { useNavigate } from "react-router-dom";
 import { socket } from "../../../App";
 export const Menu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const unreadMessagesCount = useSelector(({ mail }) => mail.unread);
+  console.log('ren', unreadMessagesCount);
   return (
     <div className={styles["menu-container"]}>
       <div className={styles["menu-item"]}>MEMBERS</div>
@@ -23,7 +26,7 @@ export const Menu = () => {
           - <u>ATTACK LOG (0)</u>
         </Link>
         <Link to="/mailcenter" onClick = {() => localStorage.setItem("MAILTYPE", "Inbox")} className={styles["link"]}>
-          - <u>MAIL CENTER (0)</u>
+          - <u>MAIL CENTER <span className={unreadMessagesCount ? 'text-secondary' : 'text-white'}>({unreadMessagesCount || 0})</span></u>
         </Link>
       </div>
 

@@ -3,7 +3,12 @@ import moment from "moment";
 
 import { Layout } from "../../../common/components";
 import styles from "./styles.module.css";
-import { deleteMessages, getMessage, sendMessage } from "../../../api/message";
+import {
+  checkMessage,
+  deleteMessages,
+  getMessage,
+  sendMessage,
+} from "../../../api/message";
 import { useDispatch, useSelector } from "react-redux";
 import { addBlockUser, removeBlockUser } from "../../../api/user";
 import { socket } from "../../../App";
@@ -19,6 +24,7 @@ export const MailCenter = () => {
   const [detailedViewMessage, setDetailedViewMessage] = useState(null);
   const [blockUserName, setBlockUserName] = useState("");
   const [unblockUserId, setUnblockUserId] = useState(null);
+  const [viewUnreadMessages, setViewUnreadMessages] = useState(false);
   const user = useSelector(({ user }) => user.user);
 
   const dispatch = useDispatch();
@@ -52,7 +58,9 @@ export const MailCenter = () => {
     );
   };
 
-  const handleUnread = () => {
+  const ToggleViewMessages = () => {
+    if (viewType !== "Inbox") return;
+    setViewUnreadMessages(!viewUnreadMessages);
   };
 
   const handleBlock = () => {
@@ -67,24 +75,23 @@ export const MailCenter = () => {
     setViewType("Compose");
     localStorage.setItem("MAILTYPE", "Compose");
     setReceiver(sender);
-  }
-  const handleSetType =(type) => {
+  };
+  const handleSetType = (type) => {
     setViewType(type);
     localStorage.setItem("MAILTYPE", type);
     setDetailedViewMessage(null);
     setReceiver("");
-  }
+  };
   useEffect(() => {
     getMessage(dispatch);
   }, [viewType]);
 
   useEffect(() => {
-    setMessages(viewType === "Inbox" ? receivedMessage : sentMessage);
+    setMessages(viewType === "Inbox" ? (viewUnreadMessages ? receivedMessage.filter((m) => !m.read) : receivedMessage) : sentMessage);
     setCheckedItems([]);
-  }, [viewType, receivedMessage, sentMessage]);
+  }, [viewType, receivedMessage, sentMessage, viewUnreadMessages]);
 
-  useEffect(() => {
-  }, [checkedItems]);
+  useEffect(() => {}, [checkedItems]);
 
   useEffect(() => {
     if (!user || !user.blocks || user.blocks.length === 0)
@@ -95,7 +102,12 @@ export const MailCenter = () => {
   return (
     <Layout>
       <div className="flex flex-col flex-1">
-        <img src="/pics/mail.gif" width="500" height="150" className="mx-auto" />
+        <img
+          src="/pics/mail.gif"
+          width="500"
+          height="150"
+          className="mx-auto"
+        />
         <div
           className="flex px-3 py-2 justify-between border border-white mx-5"
           style={{ backgroundColor: "rgb(51,51,51)" }}
@@ -105,7 +117,10 @@ export const MailCenter = () => {
               className={`text-${
                 viewType === "Inbox" ? "white" : "secondary"
               } text-lg font-bold mx-3 cursor-pointer`}
-              onClick={() => handleSetType("Inbox")}
+              onClick={() => {
+                handleSetType("Inbox");
+                setViewUnreadMessages(false);
+              }}
             >
               [<u>In Box</u>]
             </span>
@@ -140,7 +155,7 @@ export const MailCenter = () => {
               <u>clear all</u>
             </span>
             <button onClick={handleDelete}>Delete</button>
-            <button onClick={handleUnread}>Unread</button>
+            <button onClick={ToggleViewMessages} className="w-[46px]">{viewUnreadMessages ? 'All' : 'Unread'}</button>
           </div>
         </div>
         {viewType !== "Compose" ? (
@@ -184,7 +199,10 @@ export const MailCenter = () => {
                         <td>
                           <span
                             className="text-white text-sm font-bold underline cursor-pointer hover:text-secondary"
-                            onClick={() => setDetailedViewMessage(msg)}
+                            onClick={() => {
+                              checkMessage({ msgId: msg._id }, dispatch);
+                              setDetailedViewMessage(msg);
+                            }}
                           >
                             {msg.subject}
                           </span>
@@ -301,11 +319,18 @@ export const MailCenter = () => {
                 <span className="w-[100px] text-white font-bold text-lg">
                   Content:
                 </span>
-                <textarea className="flex-1 disabled:bg-white p-1" disabled>
-                  {detailedViewMessage.content}
-                </textarea>
+                <textarea
+                  className="flex-1 disabled:bg-white p-1"
+                  disabled
+                  defaultValue={detailedViewMessage.content}
+                />
               </div>
-              <button onClick = {() => handleReply(detailedViewMessage.sender.name)} className="ml-[100px]">reply</button>
+              <button
+                onClick={() => handleReply(detailedViewMessage.sender.name)}
+                className="ml-[100px]"
+              >
+                reply
+              </button>
             </div>
           )
         ) : (

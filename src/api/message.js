@@ -1,6 +1,6 @@
 import axios from "./axios";
 import { setMessageError } from "../redux/errorSlice";
-import { setMails } from "../redux/mailSlice";
+import { setMails, setUnreadMessagesCount } from "../redux/mailSlice";
 import { setToast } from "../redux/toastSlice";
 import { basicURL } from "../common/constant";
 
@@ -16,7 +16,9 @@ export const sendMessage = async (data, dispatch, socket) => {
     socket.emit("send message", data.receiver);
     dispatch(setMessageError(null));
   } catch (err) {
-    dispatch(setToast({ type: "error", msg: err.response?.data.msg || err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setMessageError({ msg: err.response?.data.msg || err.message }));
   }
 };
@@ -24,7 +26,8 @@ export const sendMessage = async (data, dispatch, socket) => {
 export const getMessage = async (dispatch) => {
   try {
     const res = await axios.get(`${basicURL}/message/read`);
-    dispatch(setMails(res.data));
+    dispatch(setMails(res.data.messages));
+    dispatch(setUnreadMessagesCount(res.data.unreadMessagesCount));
     dispatch(setMessageError({ msg: null }));
   } catch (err) {
     dispatch(setMessageError({ msg: err.response?.data.msg || err.message }));
@@ -42,7 +45,22 @@ export const deleteMessages = async (data, dispatch) => {
     getMessage(dispatch);
     dispatch(setMessageError({ msg: null }));
   } catch (err) {
-    dispatch(setToast({ type: "error", msg: err.response?.data.msg || err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+    dispatch(setMessageError({ msg: err.response?.data.msg || err.message }));
+  }
+};
+
+export const checkMessage = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/message/check-read`, data);
+    const { unreadMessagesCount } = res.data;
+    dispatch(setUnreadMessagesCount(unreadMessagesCount));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
     dispatch(setMessageError({ msg: err.response?.data.msg || err.message }));
   }
 };

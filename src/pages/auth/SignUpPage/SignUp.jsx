@@ -127,7 +127,7 @@ const SignUpPage = () => {
                             <tr>
                               <td width="105" align="left">
                                 <input
-                                  className="rounded-md bg-transparent outline-none"
+                                  className="ml-[14px] rounded-md bg-transparent outline-none"
                                   size="10"
                                   value={user}
                                   onChange={(ev) => setUser(ev.target.value)}
@@ -145,7 +145,7 @@ const SignUpPage = () => {
                                 <input
                                   type="password"
                                   size="10"
-                                  className="rounded-md bg-transparent outline-none"
+                                  className="ml-[14px] rounded-md bg-transparent outline-none"
                                   value={pass}
                                   onChange={(ev) => setPass(ev.target.value)}
                                 />

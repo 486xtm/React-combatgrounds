@@ -6,11 +6,14 @@ import { login } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
 import { basicURL } from "../common/constant";
 import { setOnlinePlayers } from "../redux/onlineSlice";
+import { setUnreadMessagesCount } from "../redux/mailSlice";
 export const getUserInfo = async (dispatch, navigate) => {
   try {
     const res = await axios.get(`${basicURL}/user/infor`);
-    dispatch(setUser(res.data));
+    const { user, unreadMessagesCount } = res.data;
+    dispatch(setUser(user));
     dispatch(login());
+    dispatch(setUnreadMessagesCount(unreadMessagesCount));
     dispatch(setUpdateError(null));
   } catch (err) {
     dispatch(setUpdateError(err.message));

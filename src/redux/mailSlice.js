@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   received: [],
   sent: [],
+  unread: 0
 };
 
 const mailSlice = createSlice({
@@ -19,8 +20,11 @@ const mailSlice = createSlice({
     setSentMails: (state, action) => {
       state.sent = action.payload;
     },
+    setUnreadMessagesCount: (state, action) => {
+      state.unread = action.payload;
+    }
   },
 });
 
-export const { setMails, setReceivedMails, setSentMails } = mailSlice.actions;
+export const { setMails, setReceivedMails, setSentMails, setUnreadMessagesCount } = mailSlice.actions;
 export default mailSlice.reducer;
