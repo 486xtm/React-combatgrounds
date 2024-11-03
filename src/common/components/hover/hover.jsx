@@ -27,13 +27,15 @@ const Hover = ({ children, type = "attack", show = false }) => {
       className={`transition-opacity duration-300 ${
         show ? "opacity-100" : "opacity-0 pointer-events-none"
       } w-[200px]  rounded-lg bg-[black] shadow-lg border-[1px] text-center px-1 py-2 ${
-        type == "attack"
+        type == "attack" || type == "level"
           ? "shadow-[red] border-[red]"
-          : type == "defence"
+          : type == "defence" || type == "defended"
           ? "shadow-[blue] border-[blue]"
           : type == "combo"
           ? "shadow-[purple] border-[purple]"
-          : "shadow-[green] border-[green]"
+          : type == "income" || type == "wins"
+          ? "shadow-[green] border-[green]"
+          : "shadow-[gray] border-[gray]"
       }`}
       style={style}
     >

@@ -17,14 +17,17 @@ export const OnlinePlayers = () => {
             <div className="w-[10%] border-[#FFFF00] border-[1px] leading-7">
               No
             </div>
-            <div className="w-[30%] border-[#FFFF00] border-[1px] leading-7">
+            <div className="w-[20%] border-[#FFFF00] border-[1px] leading-7">
               Name
             </div>
-            <div className="w-[30%] border-[#FFFF00] border-[1px] leading-7">
-              Character Type
+            <div className="w-[20%] border-[#FFFF00] border-[1px] leading-7">
+              Recruits
             </div>
-            <div className="w-[30%] border-[#FFFF00] border-[1px] leading-7">
+            <div className="w-[25%] border-[#FFFF00] border-[1px] leading-7">
               Level
+            </div>
+            <div className="w-[25%] border-[#FFFF00] border-[1px] leading-7">
+              Net Worth
             </div>
           </div>
           {onlinePlayers.length == 0 ? (
@@ -36,18 +39,21 @@ export const OnlinePlayers = () => {
                   {index + 1}
                 </div>
                 <a
-                  className="w-[30%] border-[#FFFF00] border-[1px] leading-7 underline cursor-pointer"
+                  className="w-[20%] border-[#FFFF00] border-[1px] leading-7 underline cursor-pointer"
                   onClick={() => {
-                    navigate("/profile", {state: user});
+                    navigate("/profile", { state: user });
                   }}
                 >
                   {user.name || "--"}
                 </a>
-                <div className="w-[30%] border-[#FFFF00] border-[1px] leading-7">
-                  {user.characterType || "--"}
+                <div className="w-[20%] border-[#FFFF00] border-[1px] leading-7">
+                  {user.recruits.toLocaleString("en-US") || "--"}
                 </div>
-                <div className="w-[30%] border-[#FFFF00] border-[1px] leading-7">
+                <div className="w-[25%] border-[#FFFF00] border-[1px] leading-7">
                   {Number(user.level).toLocaleString("en-US") || "--"}
+                </div>
+                <div className="w-[25%] border-[#FFFF00] border-[1px] leading-7">
+                  {Number(user.netWorth).toLocaleString("en-US") || "--"}
                 </div>
               </div>
             ))

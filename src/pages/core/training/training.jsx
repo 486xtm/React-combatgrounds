@@ -13,7 +13,7 @@ export const Training = () => {
           className="mx-auto"
         />
         <p className="text-center text-sm text-[red] font-bold">
-          Invalid amount of money!
+          {/* Invalid amount of money! */}
         </p>
         <div className={styles["training-layout"]}>
           <div className="flex justify-between">

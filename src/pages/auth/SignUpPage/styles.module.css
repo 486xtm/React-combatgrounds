@@ -7,3 +7,19 @@
 .fontset {
   font-family: Verdana;
 }
+.input_form {
+  width: 100%;
+  height: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  color: black;
+  padding-inline: 5px;
+}
+.submit_form {
+  background-image: url("/imgs/gun.jpg");
+  width: 100px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 5px;
+}

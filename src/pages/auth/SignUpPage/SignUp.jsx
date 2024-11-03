@@ -34,10 +34,17 @@ const SignUpPage = () => {
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     if (!agreeCheck) {
-      dispatch(setToast({type: "error", msg: "You must accept the terms of use."}))
+      dispatch(
+        setToast({ type: "error", msg: "You must accept the terms of use." })
+      );
       return;
     } else if (!accountCheck) {
-      dispatch(setToast({type: "error", msg: "You must confirm that this is your only CombatGroudns.com account."}))
+      dispatch(
+        setToast({
+          type: "error",
+          msg: "You must confirm that this is your only CombatGroudns.com account.",
+        })
+      );
       return;
     } else {
       await signUp(
@@ -62,7 +69,7 @@ const SignUpPage = () => {
       navigate("/register");
     }
   }, [loginError]);
-  
+
   if (isLoading) return <Loading />;
   return (
     <div className={"flex flex-col items-center bg-black " + styles["back"]}>
@@ -102,6 +109,7 @@ const SignUpPage = () => {
                         background="imgs/index_r4_c3.jpg"
                         valign="top"
                         width="100"
+                        height={100}
                       >
                         <table
                           id="table1"
@@ -119,7 +127,7 @@ const SignUpPage = () => {
                             <tr>
                               <td width="105" align="left">
                                 <input
-                                  className="rounded-lg"
+                                  className="rounded-md bg-transparent outline-none"
                                   size="10"
                                   value={user}
                                   onChange={(ev) => setUser(ev.target.value)}
@@ -137,7 +145,7 @@ const SignUpPage = () => {
                                 <input
                                   type="password"
                                   size="10"
-                                  className="rounded-lg"
+                                  className="rounded-md bg-transparent outline-none"
                                   value={pass}
                                   onChange={(ev) => setPass(ev.target.value)}
                                 />
@@ -265,15 +273,15 @@ const SignUpPage = () => {
               <div className="flex flex-col gap-1">
                 <div className="flex items-center">
                   <div className="w-[30%]">Username</div>
-                  <div className="w-[40%] pr-10">
+                  <div className="w-[40%]">
                     <input
                       type="text"
-                      className="w-full h-[20px] rounded-sm border-[1px] border-[#CCCCCC] text-black"
+                      className={styles["input_form"]}
                       value={username}
                       onChange={(ev) => setUsername(ev.target.value)}
                     />
                   </div>
-                  <div className="w-[30%] pr-3">
+                  <div className="w-[30%] px-2">
                     <div className={"leading-none text-[11px] text-[#CCCCCC] "}>
                       3-15 characters: a-Z 0-9.
                     </div>
@@ -284,7 +292,7 @@ const SignUpPage = () => {
                   <div className="w-[40%]">
                     <input
                       type="text"
-                      className="w-full h-[20px] rounded-sm border-[1px] border-[#CCCCCC] text-black"
+                      className={styles["input_form"]}
                       value={email}
                       onChange={(ev) => setEmail(ev.target.value)}
                     />
@@ -296,7 +304,7 @@ const SignUpPage = () => {
                     <input
                       type="text"
                       name="username"
-                      className="w-full h-[20px] rounded-sm border-[1px] border-[#CCCCCC] text-black"
+                      className={styles["input_form"]}
                       value={cemail}
                       onChange={(ev) => setCEmail(ev.target.value)}
                     />
@@ -304,15 +312,15 @@ const SignUpPage = () => {
                 </div>
                 <div className="flex items-center">
                   <div className="w-[30%]">Password</div>
-                  <div className="w-[40%] pr-10">
+                  <div className="w-[40%]">
                     <input
                       type="password"
-                      className="w-full h-[20px] rounded-sm border-[1px] border-[#CCCCCC] text-black"
+                      className={styles["input_form"]}
                       value={newPass}
                       onChange={(ev) => setNewPass(ev.target.value)}
                     />
                   </div>
-                  <div className="w-[30%] pr-3">
+                  <div className="w-[30%] px-2">
                     <div className={"leading-none text-[11px] text-[#CCCCCC] "}>
                       8-15 characters: a-Z and 0-9.
                     </div>
@@ -323,7 +331,7 @@ const SignUpPage = () => {
                   <div className="w-[40%]">
                     <input
                       type="password"
-                      className="w-full h-[20px] rounded-sm border-[1px] border-[#CCCCCC] text-black"
+                      className={styles["input_form"]}
                       value={cpass}
                       onChange={(ev) => setCPass(ev.target.value)}
                     />
@@ -332,7 +340,7 @@ const SignUpPage = () => {
                 <div className="flex items-center">
                   <div className="w-[30%]">Character type</div>
                   <select
-                    className="text-black"
+                    className="text-black w-[40%] p-1 rounded-md shadow-lg "
                     name="type"
                     value={characterType}
                     onChange={(ev) => setCharacterType(ev.target.value)}
@@ -343,7 +351,7 @@ const SignUpPage = () => {
                   </select>
                 </div>
               </div>
-              <div className="gap-4 my-4 flex flex-col">
+              <div className="gap-4 my-5 flex flex-col">
                 <div className="flex items-center space-x-2">
                   <input
                     name="terms"
@@ -353,7 +361,7 @@ const SignUpPage = () => {
                   />
                   <div>
                     I agree to the{" "}
-                    <Link to="/termsofuse">
+                    <Link to="/ ">
                       <b className="underline">terms of use</b>.
                     </Link>
                   </div>
@@ -368,29 +376,34 @@ const SignUpPage = () => {
                   <div>This is my ONLY CombatGrounds.com Account.</div>
                 </div>
               </div>
-              <input
-                className="bg-white text-black px-3 border-[1px] border-[#CCCCCC]"
-                type="submit"
-                name="Submit"
-                value="Submit"
-              />
+              <div className="flex flex-col">
+                <input
+                  className={
+                    styles["submit_form"] +
+                    " border-[1px] border-white cursor-pointer hover:shadow-[red] hover:border-[red] shadow-glow shadow-[white]"
+                  }
+                  type="submit"
+                  name="Submit"
+                  value=""
+                />
+              </div>
             </form>
           </div>
         </div>
       </div>
 
       <footer className="text-center">
-        <b>Copyright © 2005-2006 CombatGrounds.com. All rights reserved.</b>
+        <b>Copyright © 2024-2025 CombatGrounds.com. All rights reserved.</b>
         <br />
         <a
-          className="underline decoration-white hover:decoration-yellow-400"
+          className="underline font-bold hover:decoration-[yellow] hover:text-[yellow]"
           href="mailto:info@combatgrounds.com"
         >
           Contact us.
         </a>
         <br />
         <a
-          className="underline decoration-white hover:decoration-yellow-400"
+          className="underline font-bold hover:decoration-[yellow] hover:text-[yellow]"
           href="http://www.xmmorpg.com"
           target="_blank"
         >

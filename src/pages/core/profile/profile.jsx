@@ -27,7 +27,7 @@ export const Profile = () => {
   };
   const handleMouseLeave = () => {
     setShowHover(false);
-    setItemInfo({});
+    // setItemInfo({ ...itemInfo });
   };
   const handleMuseDown = (item) => {
     setSelectedItem(item);
@@ -114,7 +114,7 @@ export const Profile = () => {
                     user.grade
                   ).toLocaleLowerCase()}.gif`}
                   alt={user.grade}
-                  height="30"
+                  height="60"
                   className="my-auto absolute top-1/2 transform -translate-y-1/2"
                 />
               ) : null}
@@ -190,6 +190,12 @@ export const Profile = () => {
                     <td>Directly Recruits Today</td>
                     <td>0</td>
                   </tr>
+                  {user && user.aimName ? (
+                    <tr>
+                      <td>Discord name</td>
+                      <td>{user.aimName}</td>
+                    </tr>
+                  ) : null}
                 </tbody>
               </table>
 
@@ -206,6 +212,7 @@ export const Profile = () => {
                             ? user.wins.toLocaleString("en-US")
                             : 0
                         } Wins`,
+                        type: "wins",
                       },
                       2
                     )
@@ -231,6 +238,7 @@ export const Profile = () => {
                             ? user.recruits.toLocaleString("en-US")
                             : 0
                         } Recruits`,
+                        type: "recruits",
                       },
                       2
                     )
@@ -238,7 +246,7 @@ export const Profile = () => {
                   onMouseLeave={() => handleMouseLeave()}
                 />
                 <div className="flex flex-wrap">
-                  {new Array(Math.ceil((user.recruits || 0) / 150_000))
+                  {new Array(Math.ceil((user.recruits || 0) / 200_000))
                     .fill()
                     .map((i, id) => (
                       <img
@@ -259,6 +267,7 @@ export const Profile = () => {
                             ? user.level.toLocaleString("en-US")
                             : 1
                         } Level`,
+                        type: "level",
                       },
                       2
                     )
@@ -266,7 +275,7 @@ export const Profile = () => {
                   onMouseLeave={() => handleMouseLeave()}
                 />
                 <div className="flex flex-wrap">
-                  {new Array(Math.ceil((user.level || 0) / 102_000))
+                  {new Array(Math.ceil((user.level || 0) / 2_000))
                     .fill()
                     .map((i, id) => (
                       <img
@@ -287,6 +296,7 @@ export const Profile = () => {
                             ? user.defended_attacks.toLocaleString("en-US")
                             : 0
                         } Defended Attacks`,
+                        type: "defended",
                       },
                       2
                     )
@@ -519,18 +529,19 @@ export const Profile = () => {
         </div>
       </div>
       <Hover show={showHover} type={itemInfo.type}>
-        {showHover && hoverType == 1 && (
+        {hoverType == 1 && (
           <div>
             <div className="text-white ">{itemInfo.name}</div>
             <div className="text-white leading-none">
-              {itemInfo.count}.00 / <span className="text-[red]">5000</span>
+              {itemInfo.count}.00 /{" "}
+              <span className="text-[red]">{itemInfo.maxCount}</span>
             </div>
             <div className="text-white text-[13px] leading-none">
               {itemInfo.description}
             </div>
           </div>
         )}
-        {showHover && hoverType == 2 && (
+        {hoverType == 2 && (
           <div>
             <div className="text-white ">{itemInfo.msg}</div>
           </div>
