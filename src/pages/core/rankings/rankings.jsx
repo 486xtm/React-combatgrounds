@@ -3,198 +3,48 @@ import styles from "./styles.module.css";
 import { Header, Layout, Menu } from "../../../common/components";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
+import { useDispatch, useSelector } from "react-redux";
+import { getRankedUsers } from "../../../api/user";
 
 export const Rankings = ({}) => {
   const [type, setType] = useState("");
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
+  const onlinePlayers = useSelector(({ online }) => online.onlinePlayers);
+  const topPlayers = useSelector(({ user }) => user.rankedUsers);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     //fetch_datac
-    if (type === "free")
-      setData([
-        {
-          name: "A",
-          worth: "234,234,234",
-          online: true,
-        },
-        {
-          name: "B",
-          worth: "234,234,234",
-          online: false,
-        },
-        {
-          name: "wefs",
-          worth: "234,234,234",
-          online: true,
-        },
-
-        {
-          name: "A",
-          worth: "234,234,234",
-          online: true,
-        },
-        {
-          name: "B",
-          worth: "234,234,234",
-          online: false,
-        },
-        {
-          name: "wefs",
-          worth: "234,234,234",
-          online: true,
-        },
-
-        {
-          name: "A",
-          worth: "234,234,234",
-          online: true,
-        },
-        {
-          name: "B",
-          worth: "234,234,234",
-          online: false,
-        },
-        {
-          name: "wefs",
-          worth: "234,234,234",
-          online: true,
-        },
-      ]);
-    else if (type === "crew") {
-      setData([
-        {
-          name: "A",
-          worth: "234,234,234",
-          online: true,
-        },
-        {
-          name: "abs",
-          worth: "234,234,234",
-          online: false,
-        },
-      ]);
-    } else if (type === "") {
-      setData([]);
+    let tmp = [];
+    if (type === "free") {
+      tmp = topPlayers ? topPlayers.topFreePlayers : [];
+    } else if (type === "supporter") {
+      tmp = topPlayers ? topPlayers.topSupporters : [];
     } else if (type === "player") {
-      setData([
-        {
-          name: "A",
-          worth: "234,234,234",
-          online: true,
-        },
-        {
-          name: "abs",
-          worth: "234,234,234",
-          online: false,
-        },
-        {
-          name: "wefs",
-          worth: "234,234,234",
-          online: true,
-        },
-
-        {
-          name: "A",
-          worth: "234,234,234",
-          online: true,
-        },
-        {
-          name: "abs",
-          worth: "234,234,234",
-          online: false,
-        },
-        {
-          name: "wefs",
-          worth: "234,234,234",
-          online: true,
-        },
-      ]);
-    } else {
-      setData([
-        {
-          name: "webdde",
-          worth: "234,234,234",
-          online: true,
-        },
-        {
-          name: "abs",
-          worth: "234,234,234",
-          online: false,
-        },
-        {
-          name: "wefs",
-          worth: "234,234,234",
-          online: true,
-        },
-
-        {
-          name: "webdde",
-          worth: "234,234,234",
-          online: true,
-        },
-        {
-          name: "abs",
-          worth: "234,234,234",
-          online: false,
-        },
-        {
-          name: "wefs",
-          worth: "234,234,234",
-          online: true,
-        },
-
-        {
-          name: "webdde",
-          worth: "234,234,234",
-          online: true,
-        },
-        {
-          name: "abs",
-          worth: "234,234,234",
-          online: false,
-        },
-        {
-          name: "wefs",
-          worth: "234,234,234",
-          online: true,
-        },
-
-        {
-          name: "webdde",
-          worth: "234,234,234",
-          online: true,
-        },
-        {
-          name: "abs",
-          worth: "234,234,234",
-          online: false,
-        },
-        {
-          name: "wefs",
-          worth: "234,234,234",
-          online: true,
-        },
-
-        {
-          name: "webdde",
-          worth: "234,234,234",
-          online: true,
-        },
-        {
-          name: "abs",
-          worth: "234,234,234",
-          online: false,
-        },
-        {
-          name: "wefs",
-          worth: "234,234,234",
-          online: true,
-        },
-      ]);
+      tmp = topPlayers ? topPlayers.topPlayers : [];
+    } else tmp = [];
+    console.log("tmp==>", onlinePlayers, tmp);
+    if (onlinePlayers && onlinePlayers.length > 0 && tmp && tmp.length > 0) {
+      console.log(
+        onlinePlayers[0]._id,
+        tmp[0]._id,
+        typeof onlinePlayers[0]._id,
+        typeof tmp[0]._id
+      );
     }
-    // setData([]);
-  }, [type]);
+    setData(
+      tmp.map((u) => ({
+        ...u,
+        online: !!onlinePlayers.find((x) => x._id === u._id),
+      }))
+    );
+  }, [type, onlinePlayers]);
+
+  useEffect(() => {
+    getRankedUsers(dispatch);
+  }, []);
 
   return (
     <Layout currentActiveTab={"rankings"}>
@@ -265,11 +115,17 @@ export const Rankings = ({}) => {
                           h="10"
                         />
                       </td>
-                      <td className="text-sm py-1 text-secondary">
+                      <td className="text-sm py-1 text-secondary cursor-pointer">
                         <span className="text-white">{id}. </span>
-                        <u>{item.name}</u>
+                        <u
+                          onClick={() => navigate("/profile", { state: item })}
+                        >
+                          {item.name}
+                        </u>
                       </td>
-                      <td className="text-sm py-1">{item.worth}</td>
+                      <td className="text-sm py-1">
+                        {item.netWorth.toLocaleString("en-US")}
+                      </td>
                     </tr>
                   );
                 })}

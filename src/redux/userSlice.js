@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
-  other: null
+  other: null,
+  rankedUsers: [],
 };
 
 const userSlice = createSlice({
@@ -14,9 +15,12 @@ const userSlice = createSlice({
     },
     setOther: (state, action) => {
       state.other = action.payload;
-    }
+    },
+    setRankedUsers: (state, action) => {
+      state.rankedUsers = action.payload;
+    },
   },
 });
 
-export const { setUser, setOther } = userSlice.actions;
+export const { setUser, setOther, setRankedUsers } = userSlice.actions;
 export default userSlice.reducer;

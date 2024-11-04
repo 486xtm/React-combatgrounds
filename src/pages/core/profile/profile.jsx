@@ -8,6 +8,7 @@ import YouTube from "react-youtube";
 import Hover from "../../../common/components/hover/hover";
 import { getGradeString } from "../../../common/utils";
 import { getUserById, getUserInfo } from "../../../api/user";
+import { socketURL } from "../../../common/constant";
 export const Profile = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const location = useLocation();
@@ -40,7 +41,7 @@ export const Profile = () => {
     if (!user) return;
     const fetchImage = async () => {
       try {
-        const response = await fetch(`http://78.138.0.79:5000/${user.avatar}`, {
+        const response = await fetch(`${socketURL}/${user.avatar}`, {
           method: "GET",
           headers: {
             "Cross-Origin-Resource-Policy": "cross-origin", // or 'same-site'
@@ -423,7 +424,7 @@ export const Profile = () => {
                   {user &&
                     user.items
                       .filter((i) => i.item.type === "attack")
-                      .sort((x, y) => x.cost - y.cost)
+                      .sort((x, y) => x.item.cost - y.item.cost)
                       .map(({ item, count }, id) => (
                         <div key={`attack_item_${id}`} className="relative">
                           <img
@@ -448,7 +449,7 @@ export const Profile = () => {
                   {user &&
                     user.items
                       .filter((i) => i.item.type === "defence")
-                      .sort((x, y) => x.cost - y.cost)
+                      .sort((x, y) => x.item.cost - y.item.cost)
                       .map(({ item, count }, id) => (
                         <img
                           src={`/images/items/${item.pic}`}
@@ -470,7 +471,7 @@ export const Profile = () => {
                   {user &&
                     user.items
                       .filter((i) => i.item.type === "combo")
-                      .sort((x, y) => x.cost - y.cost)
+                      .sort((x, y) => x.item.cost - y.item.cost)
                       .map(({ item, count }, id) => (
                         <img
                           src={`/images/items/${item.pic}`}
@@ -492,7 +493,7 @@ export const Profile = () => {
                   {user &&
                     user.items
                       .filter((i) => i.item.type === "income")
-                      .sort((x, y) => x.cost - y.cost)
+                      .sort((x, y) => x.item.cost - y.item.cost)
                       .map(({ item, count }, id) => (
                         <img
                           src={`/images/items/${item.pic}`}
