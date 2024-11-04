@@ -218,7 +218,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/* <Route
           exact
           path="/recruit"
           element={
@@ -226,7 +226,7 @@ const App = () => {
               <Recruit />
             </ProtectedRoute>
           }
-        />
+        /> */}
         <Route
           exact
           path="/raisefunds"
