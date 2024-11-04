@@ -101,90 +101,40 @@ const SignUpPage = () => {
                   {loginError.msg}
                 </div>
               ) : null}
-              <form name="loginform" method="post" onSubmit={handleLoginSubmit}>
-                <table width="100%" border="0" cellPadding="0" cellSpacing="0">
-                  <tbody>
-                    <tr>
-                      <td
-                        background="imgs/index_r4_c3.jpg"
-                        valign="top"
-                        width="100"
-                        height={100}
-                      >
-                        <table
-                          id="table1"
-                          width="117"
-                          height="88"
-                          style={{ borderCollapse: "collapse" }}
-                        >
-                          <tbody>
-                            <tr>
-                              <td width="14" rowSpan="3" align="left"></td>
-                              <td width="105" height="30">
-                                &nbsp;
-                              </td>
-                            </tr>
-                            <tr>
-                              <td width="105" align="left">
-                                <input
-                                  className="ml-[14px] rounded-md bg-transparent outline-none"
-                                  size="10"
-                                  value={user}
-                                  onChange={(ev) => setUser(ev.target.value)}
-                                />
-                              </td>
-                            </tr>
-                            <tr>
-                              <td width="105" height="18">
-                                &nbsp;
-                              </td>
-                            </tr>
-                            <tr>
-                              <td width="14" align="left"></td>
-                              <td width="105" align="left">
-                                <input
-                                  type="password"
-                                  size="10"
-                                  className="ml-[14px] rounded-md bg-transparent outline-none"
-                                  value={pass}
-                                  onChange={(ev) => setPass(ev.target.value)}
-                                />
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                      <td>
-                        <input
-                          type="image"
-                          onClick={handleLoginSubmit}
-                          src="imgs/index_r4_c6_f2.jpg"
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <Link
-                          to="/forgotpass"
-                          onMouseOver={() => setHover(true)}
-                          onMouseLeave={() => setHover(false)}
-                        >
-                          <img
-                            name="index_r5_c6"
-                            src={
-                              hover
-                                ? "imgs/index_r5_c6_f2.jpg"
-                                : "imgs/index_r5_c6.jpg"
-                            }
-                            width="96"
-                            height="31"
-                            alt=""
-                          />
-                        </Link>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+              <form name="loginform" method="post" className="ml-5" onSubmit={handleLoginSubmit}>
+                <div className="flex items-center mt-3 gap-3">
+                  <div className="flex-col flex">
+                    <div className="text-white font-bold">UserName</div>
+                    <input
+                      className="rounded-md outline-none border-[3px] px-1 py-[1px] text-sm border-[#81843C] "
+                      size="10"
+                      value={user}
+                      onChange={(ev) => setUser(ev.target.value)}
+                    />
+                    <div className="text-white font-bold">Password</div>
+                    <input
+                      type="password"
+                      size="10"
+                      className="rounded-md outline-none border-[3px] px-1 py-[1px] text-sm border-[#81843C] "
+                      value={pass}
+                      onChange={(ev) => setPass(ev.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="image"
+                      onClick={handleLoginSubmit}
+                      src="imgs/index_r4_c6_f2.jpg"
+                    />
+                  </div>
+                </div>
+                <Link
+                  to="/forgotpass"
+                  className="text-center text-white font-bold text-[11px] leading-none flex items-center justify-center flex-col w-[30%] hover:text-[yellow] my-1"
+                >
+                  <span>FORGOT YOUR</span>
+                  <span>PASSWORD?</span>
+                </Link>
               </form>
             </div>
           </div>
