@@ -25,7 +25,6 @@ export const Rankings = ({}) => {
     } else if (type === "player") {
       tmp = topPlayers ? topPlayers.topPlayers : [];
     } else tmp = [];
-    console.log("tmp==>", onlinePlayers, tmp);
     if (onlinePlayers && onlinePlayers.length > 0 && tmp && tmp.length > 0) {
       console.log(
         onlinePlayers[0]._id,

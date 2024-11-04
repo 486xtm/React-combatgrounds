@@ -11,7 +11,6 @@ export const Menu = () => {
   const navigate = useNavigate();
 
   const unreadMessagesCount = useSelector(({ mail }) => mail.unread);
-  console.log("ren", unreadMessagesCount);
   return (
     <div className={styles["menu-container"]}>
       <div className={styles["menu-item"]}>MEMBERS</div>

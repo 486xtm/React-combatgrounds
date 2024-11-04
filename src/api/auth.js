@@ -6,7 +6,7 @@ import { basicURL } from "../common/constant";
 import { logout } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
 // const basicURL = process.env.basicURL;
-export const signIn = async (data, dispatch,socket) => {
+export const signIn = async (data, dispatch) => {
   try {
     const { username, password } = data;
     const response = await axios.post(`${basicURL}/user/login`, {
@@ -22,7 +22,6 @@ export const signIn = async (data, dispatch,socket) => {
       new Date().getTime() + 5 * 60 * 1000
     );
     getUserInfo(dispatch);
-    socket.emit('login', user);
 
   } catch (err) {
     dispatch(
