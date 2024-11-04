@@ -11,7 +11,7 @@ export const Menu = () => {
   const navigate = useNavigate();
 
   const unreadMessagesCount = useSelector(({ mail }) => mail.unread);
-  console.log('ren', unreadMessagesCount);
+  console.log("ren", unreadMessagesCount);
   return (
     <div className={styles["menu-container"]}>
       <div className={styles["menu-item"]}>MEMBERS</div>
@@ -25,8 +25,20 @@ export const Menu = () => {
         <Link to="/attacklog" className={styles["link"]}>
           - <u>ATTACK LOG (0)</u>
         </Link>
-        <Link to="/mailcenter" onClick = {() => localStorage.setItem("MAILTYPE", "Inbox")} className={styles["link"]}>
-          - <u>MAIL CENTER <span className={unreadMessagesCount ? 'text-secondary' : 'text-white'}>({unreadMessagesCount || 0})</span></u>
+        <Link
+          to="/mailcenter"
+          onClick={() => localStorage.setItem("MAILTYPE", "Inbox")}
+          className={styles["link"]}
+        >
+          -{" "}
+          <u>
+            MAIL CENTER{" "}
+            <span
+              className={unreadMessagesCount ? "text-secondary" : "text-white"}
+            >
+              ({unreadMessagesCount || 0})
+            </span>
+          </u>
         </Link>
       </div>
 
@@ -72,13 +84,13 @@ export const Menu = () => {
       <div className="flex flex-col">
         <Link
           to="/missions"
-          className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
+          className="text-white font-bold underline ml-1 hover:text-secondary"
         >
           MISSIONS
         </Link>
         <Link
           to="/shop"
-          className="text-white font-bold underline ml-1  text-xs hover:text-secondary"
+          className="text-white font-bold underline ml-1  hover:text-secondary"
         >
           SHOP
         </Link>
