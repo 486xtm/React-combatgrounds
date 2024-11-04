@@ -68,7 +68,7 @@ export const HeadQuarter = () => {
                   Turns per cycle
                 </div>
                 <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold">
-                  15
+                  {user && user.role ? 25 : 15}
                 </div>
               </div>
             </div>
