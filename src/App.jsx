@@ -41,6 +41,7 @@ import { setToast } from "./redux/toastSlice";
 import { setOnlinePlayers } from "./redux/onlineSlice";
 import { signOut } from "./api/auth";
 import { socketURL } from "./common/constant";
+import { setUnreadMessagesCount } from "./redux/mailSlice";
 export const socket = io(socketURL);
 const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch();
@@ -67,13 +68,19 @@ const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(({ user }) => user.user);
   const { showError, showSuccess, showInfo } = useToast();
+  const unreadMessagesCount = useSelector(({ mail }) => mail.unread);
+
   useEffect(() => {
     socket.on("onlinePlayer", (userList) => {
       dispatch(setOnlinePlayers(Object.values(userList)));
     });
+
     socket.on("receive message", (data) => {
-      dispatch(setToast({type: 'info', msg: `New message arrived from ${data.from}`}));
-    })
+      dispatch(setUnreadMessagesCount((unreadMessagesCount || 0) + 1));
+      dispatch(
+        setToast({ type: "info", msg: `New message arrived from ${data.from}` })
+      );
+    });
     return () => {
       socket.off("onlinePlayer");
       socket.off("receive message");
@@ -95,7 +102,7 @@ const App = () => {
     if (toast.type === "success") {
       showSuccess(toast.msg);
       dispatch(setToast({}));
-    } else if(toast.type === "info") {
+    } else if (toast.type === "info") {
       showInfo(toast.msg);
       dispatch(setToast({}));
     } else {

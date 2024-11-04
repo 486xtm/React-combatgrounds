@@ -423,6 +423,7 @@ export const Profile = () => {
                   {user &&
                     user.items
                       .filter((i) => i.item.type === "attack")
+                      .sort((x, y) => x.cost - y.cost)
                       .map(({ item, count }, id) => (
                         <div key={`attack_item_${id}`} className="relative">
                           <img
@@ -447,6 +448,7 @@ export const Profile = () => {
                   {user &&
                     user.items
                       .filter((i) => i.item.type === "defence")
+                      .sort((x, y) => x.cost - y.cost)
                       .map(({ item, count }, id) => (
                         <img
                           src={`/images/items/${item.pic}`}
@@ -468,6 +470,7 @@ export const Profile = () => {
                   {user &&
                     user.items
                       .filter((i) => i.item.type === "combo")
+                      .sort((x, y) => x.cost - y.cost)
                       .map(({ item, count }, id) => (
                         <img
                           src={`/images/items/${item.pic}`}
@@ -489,6 +492,7 @@ export const Profile = () => {
                   {user &&
                     user.items
                       .filter((i) => i.item.type === "income")
+                      .sort((x, y) => x.cost - y.cost)
                       .map(({ item, count }, id) => (
                         <img
                           src={`/images/items/${item.pic}`}
