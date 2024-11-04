@@ -95,7 +95,7 @@ export const EditInfo = () => {
                 Discord name:
               </span>
               <input
-                className="flex-1 text-sm px-2 py-1"
+                className="flex-1 text-sm px-2 py-1 rounded-md"
                 value={aimName}
                 onChange={(e) => setAIMName(e.target.value)}
               />
@@ -105,7 +105,7 @@ export const EditInfo = () => {
                 Profile description
               </span>
               <textarea
-                className="flex-1 text-sm px-2 py-1"
+                className="flex-1 text-sm px-2 py-1 rounded-md"
                 maxLength={450}
                 rows={10}
                 value={description}
@@ -126,7 +126,7 @@ export const EditInfo = () => {
               </span>
               <input
                 type="file"
-                className="text-xs min-w-[400px]"
+                className="text-xs min-w-[400px] "
                 onChange={(e) => setAvatar(e.target.files[0])}
               />
             </div>
@@ -144,7 +144,7 @@ export const EditInfo = () => {
               </span>
               <input
                 placeholder="example: www.youtube.com/watch?v=abcdef"
-                className="min-w-[400px] text-xs px-1"
+                className="min-w-[400px] text-xs px-1 rounded-md"
                 value={youtube}
                 onChange={(e) => setYoutube(e.target.value)}
               />
@@ -198,7 +198,7 @@ export const EditInfo = () => {
                 Old password:
               </span>
               <input
-                className="flex-1 ml-5"
+                className="flex-1 ml-5 rounded-md"
                 onChange={(e) => setOldPassword(e.target.value)}
                 type="password"
               />
@@ -209,18 +209,18 @@ export const EditInfo = () => {
                 New password:
               </span>
               <input
-                className="flex-1 ml-5"
+                className="flex-1 ml-5 rounded-md"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
             <div className="flex justify-between">
-              <span className="text-white text-sm font-bold min-w-[200px]">
+              <span className="text-white text-sm font-bold min-w-[200px] ">
                 Confirm password:
               </span>
               <input
-                className="flex-1 ml-5"
+                className="flex-1 ml-5 rounded-md"
                 type="password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
@@ -242,7 +242,7 @@ export const EditInfo = () => {
                 Change E-mail:
               </span>
               <input
-                className="flex=1 ml-5"
+                className="flex=1 ml-5 rounded-md"
                 onChange={(e) => setNewEmail(e.target.value)}
               />
             </div>
@@ -267,7 +267,7 @@ export const EditInfo = () => {
                 Change your current name:
               </span>
               <input
-                className="flex-1 ml-5"
+                className="flex-1 ml-5 rounded-md"
                 onChange={(e) => setNewName(e.target.value)}
               />
             </div>

@@ -91,10 +91,10 @@ export const Rankings = ({}) => {
             <thead>
               <tr>
                 <td className="w-[30px] text-white" />
-                <td className="w-[250px] text-lg font-bold border-b border-b-gray-100 border-solid border-transparent border-0 py-2">
+                <td className="w-[200px] text-lg font-bold border-b border-b-gray-100 border-solid border-transparent border-0 py-2">
                   Name
                 </td>
-                <td className="w-[150px] text-lg font-bold border-b border-b-gray-100 border-solid border-transparent border-0 py-2">
+                <td className="w-[100px] text-lg font-bold border-b border-b-gray-100 border-solid border-transparent border-0 py-2">
                   Net Worth
                 </td>
               </tr>
@@ -105,9 +105,9 @@ export const Rankings = ({}) => {
                   return (
                     <tr
                       key={`ranking_table_${id}`}
-                      className="first:h-[40px] align-bottom"
+                      className=""
                     >
-                      <td>
+                      <td className="flex items-center mt-1">
                         <img
                           src={`/pics/${item.online ? "yellow" : "white"}.gif`}
                           alt="online"
@@ -132,6 +132,12 @@ export const Rankings = ({}) => {
             </tbody>
           </table>
         )}
+        {type!== "" && <div className="flex gap-2 h-[20px] mx-auto mt-auto mt-min-5 items-center"><img
+                          src={`/pics/yellow.gif`}
+                          alt="online"
+                          w="10"
+                          h="10"
+                        /><span className="text-white">= online</span></div>}
       </div>
     </Layout>
   );

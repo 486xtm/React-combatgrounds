@@ -320,7 +320,7 @@ export const MailCenter = () => {
                   Content:
                 </span>
                 <textarea
-                  className="flex-1 disabled:bg-white p-1"
+                  className="flex-1 disabled:bg-white p-1 rounded-md"
                   disabled
                   defaultValue={detailedViewMessage.content}
                 />
@@ -344,11 +344,11 @@ export const MailCenter = () => {
               PAYPAL ACCOUNT OR OTHER IMPORTANT PRIVATE DATA.
             </p>
             <div className="flex">
-              <span className="w-[100px] font-bold text-lg text-white">
+              <span className="w-[100px] font-bold text-lg text-white ">
                 To:
               </span>
               <input
-                className="rounded flex-1"
+                className="rounded flex-1 px-2"
                 value={receiver}
                 onChange={(e) => setReceiver(e.target.value)}
               />
@@ -358,14 +358,14 @@ export const MailCenter = () => {
                 Subject:
               </span>
               <input
-                className="rounded flex-1"
+                className="rounded flex-1 px-2"
                 onChange={(e) => setSubject(e.target.value)}
               />
             </div>
             <div />
             <textarea
               rows="10"
-              className="ml-[100px] rounded"
+              className="ml-[100px] rounded px-2 py-1"
               onChange={(e) => setContent(e.target.value)}
             ></textarea>
             <button className="ml-[100px]" onClick={handleSubmit}>

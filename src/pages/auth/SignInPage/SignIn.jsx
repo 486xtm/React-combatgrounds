@@ -21,7 +21,7 @@ const MyComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector(({user}) => user.user);
   const handleLogin = async () => {
-    await signIn({ username, password }, dispatch);
+    await signIn({ username, password }, dispatch,socket);
   };
 
   useEffect(() => {
@@ -32,7 +32,6 @@ const MyComponent = () => {
         setIsLoading(false);
         navigate("/headquarter");
       }, 5000);
-      socket.emit('login', user);
     }
   }, [isAuthenticated]);
 
