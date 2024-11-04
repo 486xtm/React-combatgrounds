@@ -25,14 +25,6 @@ export const Rankings = ({}) => {
     } else if (type === "player") {
       tmp = topPlayers ? topPlayers.topPlayers : [];
     } else tmp = [];
-    if (onlinePlayers && onlinePlayers.length > 0 && tmp && tmp.length > 0) {
-      console.log(
-        onlinePlayers[0]._id,
-        tmp[0]._id,
-        typeof onlinePlayers[0]._id,
-        typeof tmp[0]._id
-      );
-    }
     setData(
       tmp.map((u) => ({
         ...u,
@@ -115,7 +107,7 @@ export const Rankings = ({}) => {
                         />
                       </td>
                       <td className="text-sm py-1 text-secondary cursor-pointer">
-                        <span className="text-white">{id}. </span>
+                        <span className="text-white">{id + 1}. </span>
                         <u
                           onClick={() => navigate("/profile", { state: item })}
                         >

@@ -32,7 +32,7 @@ export const HeadQuarter = () => {
           </p>
           <p className="text-secondary text-center text-tiny mt-3">
             You get turns, money and recruits every 10 minutes as long as you
-            have less than 1,500 turns
+            have less than {user && user.role ? "2,000": "1,500"} turns
           </p>
 
           <p className="text-center text-white text-sm mt-3 font-bold">
@@ -48,63 +48,63 @@ export const HeadQuarter = () => {
                 CYCLE STATS (10 minutes)
               </div>
               <div className="flex w-full">
-                <div className="text-white w-[60%] border border-gray-100 bg-primary">
+                <div className="text-white w-[60%] border border-gray-100 bg-primary px-2">
                   Cash next cycle
                 </div>
-                <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold">
+                <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold px-2">
                   ${user && user.cycleRewards.toLocaleString("en-US")}
                 </div>
               </div>
               <div className="flex w-full">
-                <div className="text-white w-[60%] border border-gray-100 bg-dark-primary">
+                <div className="text-white w-[60%] border border-gray-100 bg-dark-primary px-2">
                   Soldiers per cycle
                 </div>
-                <div className="text-white border border-gray-100 text-sm flex-1 bg-dark-primary font-bold">
+                <div className="text-white border border-gray-100 text-sm flex-1 bg-dark-primary font-bold px-2">
                   5
                 </div>
               </div>
               <div className="flex w-full">
-                <div className="text-white w-[60%] border border-gray-100 bg-primary">
+                <div className="text-white w-[60%] border border-gray-100 bg-primary px-2">
                   Turns per cycle
                 </div>
-                <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold">
+                <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold px-2">
                   {user && user.role ? 25 : 15}
                 </div>
               </div>
             </div>
             <div className="flex flex-col w-[280px]">
-              <div className="text-dark-secondary border border-gray-100 text-sm text-center font-bold py-1">
+              <div className="text-dark-secondary border border-gray-100 text-sm text-center font-bold py-1 ">
                 ATTACK SUMMARY
               </div>
               <div className="flex w-full">
-                <div className="text-white w-[90%] border border-gray-100 bg-primary">
+                <div className="text-white w-[90%] border border-gray-100 bg-primary px-2">
                   Attacks won
                 </div>
-                <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold">
+                <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold text-center">
                   0
                 </div>
               </div>
               <div className="flex w-full">
-                <div className="text-white w-[90%] border border-gray-100 bg-dark-primary">
+                <div className="text-white w-[90%] border border-gray-100 bg-dark-primary px-2">
                   Attacks lost
                 </div>
-                <div className="text-white border border-gray-100 text-sm flex-1 bg-dark-primary font-bold">
+                <div className="text-white border border-gray-100 text-sm flex-1 bg-dark-primary font-bold text-center">
                   0
                 </div>
               </div>
               <div className="flex w-full">
-                <div className="text-white w-[90%] border border-gray-100 bg-primary">
+                <div className="text-white w-[90%] border border-gray-100 bg-primary px-2">
                   Successful defends
                 </div>
-                <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold">
+                <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold text-center">
                   0
                 </div>
               </div>
               <div className="flex w-full">
-                <div className="text-white w-[90%] border border-gray-100 bg-dark-primary">
+                <div className="text-white w-[90%] border border-gray-100 bg-dark-primary px-2">
                   Unsuccessful defends
                 </div>
-                <div className="text-white border border-gray-100 text-sm flex-1 bg-dark-primary font-bold">
+                <div className="text-white border border-gray-100 text-sm flex-1 bg-dark-primary font-bold text-center">
                   0
                 </div>
               </div>
