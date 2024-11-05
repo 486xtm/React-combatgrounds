@@ -28,7 +28,6 @@ export const Profile = () => {
   };
   const handleMouseLeave = () => {
     setShowHover(false);
-    // setItemInfo({ ...itemInfo });
   };
   const handleMuseDown = (item) => {
     setSelectedItem(item);
@@ -63,8 +62,8 @@ export const Profile = () => {
         );
       }
     };
-
-    fetchImage();
+    if(user.avatar)
+      fetchImage();
   }, [user.avatar]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -326,13 +325,13 @@ export const Profile = () => {
                     : user.characterType === "Terrorist"
                     ? "bg-dark-terrorist"
                     : "bg-dark-primary"
-                } text-sm font-bold text-white text-center my-3 `}
+                } text-sm font-bold text-white text-center my-5 `}
               >
                 MEDALS
               </div>
               {user && user.medals && (
-                <div className="flex w-[75%] ml-[12.5%]">
-                  <div className="w-1/3">
+                <div className="flex w-[80%] ml-[10%]">
+                  <div className="w-1/3 flex flex-col gap-4">
                     {user.medals
                       .filter((i) => i.medal.type === 0)
                       .map((item, index) => (
@@ -344,7 +343,7 @@ export const Profile = () => {
                         />
                       ))}
                   </div>
-                  <div className="w-1/3">
+                  <div className="w-1/3  flex flex-col gap-4">
                     {user.medals
                       .filter((i) => i.medal.type === 1)
                       .map((item, index) => (
@@ -356,7 +355,7 @@ export const Profile = () => {
                       />
                       ))}
                   </div>
-                  <div className="w-1/3">
+                  <div className="w-1/3  flex flex-col gap-4">
                     {user.medals
                       .filter((i) => i.medal.type === 2)
                       .map((item, index) => (
@@ -573,7 +572,7 @@ export const Profile = () => {
           </div>
         </div>
       </div>
-      <Hover show={showHover} type={itemInfo.type}>
+       <Hover show={showHover} type={itemInfo.type}>
         {hoverType == 1 && (
           <div>
             <div className="text-white ">{itemInfo.name}</div>
@@ -593,9 +592,9 @@ export const Profile = () => {
         )}
         {hoverType == 3 && (
           <div>
-            <div className="text-white leading-none">{itemInfo.name}</div>
-            <div className="text-white leading-none">({itemInfo.count})</div>
-            <div className="text-white">{itemInfo.description}</div>
+            <div className="text-white text-xs leading-none">{itemInfo.name}</div>
+            <div className="text-[yellow] text-xs leading-none">({itemInfo.count})</div>
+            <div className="text-white text-xs">{itemInfo.description}</div>
           </div>
         )}
       </Hover>
