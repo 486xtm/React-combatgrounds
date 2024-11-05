@@ -345,7 +345,7 @@ export const Profile = () => {
               >
                 DESCRIPTION
               </div>
-              <div className="text-xs text-white break-all">
+              <div className="text-xs text-white hyphens-auto">
                 {user && user.description}
               </div>
               <div
