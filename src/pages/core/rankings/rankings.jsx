@@ -25,10 +25,11 @@ export const Rankings = ({}) => {
     } else if (type === "player") {
       tmp = topPlayers ? topPlayers.topPlayers : [];
     } else tmp = [];
+    
     setData(
       tmp.map((u) => ({
         ...u,
-        online: !!onlinePlayers.find((x) => x._id === u._id),
+        online: onlinePlayers ? !!onlinePlayers.find((x) => x._id === u._id) : false,
       }))
     );
   }, [type, onlinePlayers]);
@@ -39,7 +40,7 @@ export const Rankings = ({}) => {
 
   return (
     <Layout currentActiveTab={"rankings"}>
-      <div className="flex flex-col flex-1">
+      {topPlayers && <div className="flex flex-col flex-1">
         <div className={styles["ranking-actions"]}>
           <div
             className={classNames(styles["top-supporters"], {
@@ -129,7 +130,7 @@ export const Rankings = ({}) => {
                           w="10"
                           h="10"
                         /><span className="text-white">= online</span></div>}
-      </div>
+      </div>}
     </Layout>
   );
 };

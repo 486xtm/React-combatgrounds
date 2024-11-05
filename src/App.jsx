@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import React from "react";
+import { useEffect } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -24,7 +24,6 @@ import {
   MailCenter,
   FAQ,
   BattleField,
-  Recruit,
   RaiseFund,
   HomeLeave,
   Training,
@@ -42,26 +41,36 @@ import { setOnlinePlayers } from "./redux/onlineSlice";
 import { signOut } from "./api/auth";
 import { socketURL } from "./common/constant";
 import { setUnreadMessagesCount } from "./redux/mailSlice";
-export const socket = io(socketURL);
-const ProtectedRoute = ({ children }) => {
-  const dispatch = useDispatch();
 
+export const socket = io(socketURL);
+
+const ProtectedRoute = React.memo(({ children }) => {
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
-  let location = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
+
   useEffect(() => {
-    const expiration_date = localStorage.getItem("EXPIRATION_DATE");
-    const current_date = new Date().getTime();
-    if (current_date > expiration_date) signOut(dispatch, navigate, socket);
+    const expirationDate = localStorage.getItem("EXPIRATION_DATE");
+    const currentDate = new Date().getTime();
+
+    if (currentDate > expirationDate) {
+      signOut(dispatch, navigate, socket);
+    }
+
     const token = localStorage.getItem("ACCESS_TOKEN");
-    if (token) getUserInfo(dispatch, navigate);
-  }, []);
+    if (token) {
+      getUserInfo(dispatch, navigate);
+    }
+  }, [dispatch, navigate]);
+
   const token = localStorage.getItem("ACCESS_TOKEN");
   if (!isAuthenticated && !token) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
-  if (isAuthenticated && token) return children;
-};
+
+  return isAuthenticated && token ? children : null;
+});
 
 const App = () => {
   const toast = useSelector(({ toast }) => toast);
@@ -74,43 +83,40 @@ const App = () => {
     socket.on("onlinePlayer", (userList) => {
       dispatch(setOnlinePlayers(Object.values(userList)));
     });
-
     socket.on("receive message", (data) => {
       dispatch(setUnreadMessagesCount((unreadMessagesCount || 0) + 1));
       dispatch(
         setToast({ type: "info", msg: `New message arrived from ${data.from}` })
       );
     });
+
     return () => {
       socket.off("onlinePlayer");
       socket.off("receive message");
     };
-  }, []);
+  }, [dispatch]);
+
   useEffect(() => {
-    if (user) socket.emit("login", user);
+    if (user) {
+      socket.emit("login", user);
+    }
   }, [user]);
+
   useEffect(() => {
-    if (
-      !toast ||
-      !toast.msg ||
-      typeof showSuccess !== "function" ||
-      typeof showError !== "function" ||
-      typeof showInfo !== "function"
-    ) {
-      return;
-    }
-    if (toast.type === "success") {
-      showSuccess(toast.msg);
-      dispatch(setToast({}));
-    } else if (toast.type === "info") {
-      showInfo(toast.msg);
-      dispatch(setToast({}));
-    } else {
-      showError(toast.msg);
+    if (toast && toast.msg) {
+      switch (toast.type) {
+        case "success":
+          showSuccess(toast.msg);
+          break;
+        case "info":
+          showInfo(toast.msg);
+          break;
+        default:
+          showError(toast.msg);
+      }
       dispatch(setToast({}));
     }
-    dispatch(setToast({}));
-  }, [toast]);
+  }, [toast, dispatch, showSuccess, showError, showInfo]);
 
   return (
     <Router>
@@ -218,15 +224,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        {/* <Route
-          exact
-          path="/recruit"
-          element={
-            <ProtectedRoute>
-              <Recruit />
-            </ProtectedRoute>
-          }
-        /> */}
         <Route
           exact
           path="/raisefunds"
@@ -275,15 +272,6 @@ const App = () => {
         />
         <Route
           exact
-          path="/userguide"
-          element={
-            <ProtectedRoute>
-              <UserGuide />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          exact
           path="/shop"
           element={
             <ProtectedRoute>
@@ -291,7 +279,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="*" element={<NotFound />} />
         <Route
           exact
           path="/online"
@@ -301,9 +288,10 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
 };
 
-export default App;
+export default React.memo(App);

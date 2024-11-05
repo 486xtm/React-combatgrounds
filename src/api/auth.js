@@ -3,7 +3,7 @@ import axios from "./axios";
 import { setLoginError, setRegisterError } from "../redux/errorSlice";
 import { getUserInfo } from "./user";
 import { basicURL } from "../common/constant";
-import { logout } from "../redux/authSlice";
+import { login, logout } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
 // const basicURL = process.env.basicURL;
 export const signIn = async (data, dispatch) => {
@@ -21,7 +21,8 @@ export const signIn = async (data, dispatch) => {
       "EXPIRATION_DATE",
       new Date().getTime() + 5 * 60 * 1000
     );
-    getUserInfo(dispatch);
+    
+    dispatch(login());
 
   } catch (err) {
     dispatch(
@@ -58,10 +59,8 @@ export const signOut = async (dispatch, navigate, socket) => {
     localStorage.removeItem("ACCESS_TOKEN");
     localStorage.removeItem("EXPIRATION_DATE");
     localStorage.removeItem("MAILTYPE");
-    dispatch(logout());
-    navigate("/login");
-    // socket.disconnect();
     socket.emit("logout");
+    dispatch(logout());
   } catch (err) {
     console.log(err.response?.data.msg || err.message);
   }

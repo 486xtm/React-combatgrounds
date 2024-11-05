@@ -3,9 +3,8 @@ import { Header, Layout, Menu } from "../../../common/components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getRound } from "../../../api/headquarter";
-import moment from "moment";
 
-export const HeadQuarter = () => {
+export const HeadQuarter = React.memo(() => {
   const user = useSelector(({ user }) => user.user);
   const round = useSelector(({ round }) => round.info);
 
@@ -114,4 +113,4 @@ export const HeadQuarter = () => {
       )}
     </Layout>
   );
-};
+});

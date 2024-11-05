@@ -10,11 +10,12 @@ class ApiService {
   }
 
   setAuthHeader(headers = {}) {
-    const accessToken = localStorage.getItem("ACCESS_TOKEN"); // Use `getItem` instead of `get`
     localStorage.setItem(
       "EXPIRATION_DATE",
       new Date().getTime() + 5 * 60 * 1000
     );
+    const accessToken = localStorage.getItem("ACCESS_TOKEN");
+
     if (accessToken) {
       headers["Authorization"] = `Bearer ${accessToken}`;
     }
