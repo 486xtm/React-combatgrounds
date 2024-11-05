@@ -38,14 +38,27 @@ export const getBattleField = async (data, dispatch) => {
   }
 };
 
-export const conquerRegion = async (data, dispatch, navigate) => {
+export const conquerRegion = async (data, dispatch, navigate, socket) => {
   try {
     const res = await axios.post(`${basicURL}/battlefield/conquer`, data);
-    const { user, battleField, region, isRuler } = res.data;
+    const {
+      user,
+      battleField,
+      region,
+      isRuler,
+      ambushType,
+      amount,
+      _msg,
+      oldOwner,
+      region_id,
+    } = res.data;
     dispatch(setUser(user));
     dispatch(setRegion(region));
     dispatch(setBattleField(battleField));
     dispatch(setIsRuler(isRuler));
+    if (data.type) {
+      socket.emit("ambush", { ambushType, amount, _msg, oldOwner, region_id });
+    }
     dispatch(setToast({ type: "success", msg: res.data.msg }));
   } catch (err) {
     dispatch(

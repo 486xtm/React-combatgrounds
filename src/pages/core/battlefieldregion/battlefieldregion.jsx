@@ -11,6 +11,8 @@ import {
   go,
   conquerRegion,
 } from "../../../api/battlefield";
+import { socket } from "../../../App";
+
 import {
   setBattleField,
   setIsRuler,
@@ -31,7 +33,7 @@ export const BattleFieldRegion = () => {
   const [putTroops, setPutTroops] = useState("");
 
   const handleConquer = () => {
-    conquerRegion({ region_id, type: !!battleField }, dispatch, navigate);
+    conquerRegion({ region_id, type: !!battleField }, dispatch, navigate, socket);
   };
 
   const handlePutGoClick = () => {

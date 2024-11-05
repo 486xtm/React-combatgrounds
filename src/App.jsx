@@ -90,10 +90,25 @@ const App = () => {
         setToast({ type: "info", msg: `New message arrived from ${data.from}` })
       );
     });
-
+    socket.on("_ambush", (data) => {
+      dispatch(setToast({ type: "info", msg: data._msg }));
+      if (data.ambushType === 1) {
+        if (window.location.pathname === `/battlefield/${data.region_id}`) {
+          setTimeout(() => {
+            window.location.reload();
+          },500);
+        }
+      }
+      if(data.ambushType === 2) {
+        setTimeout(() => {
+          window.location.reload();
+        },500);
+      }
+    });
     return () => {
       socket.off("onlinePlayer");
       socket.off("receive message");
+      socket.off("_ambush");
     };
   }, [dispatch]);
 
