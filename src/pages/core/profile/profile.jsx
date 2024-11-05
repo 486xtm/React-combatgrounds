@@ -221,7 +221,7 @@ export const Profile = () => {
                   onMouseLeave={() => handleMouseLeave()}
                 />
                 <div className="flex flex-wrap">
-                  {new Array(Math.ceil((user.wins || 0) / 70))
+                  {new Array(Math.floor((user.wins || 0) / 70))
                     .fill()
                     .map((i, id) => (
                       <img src="/images/winmast.jpg" key={`winmast_${id}`} />
@@ -247,7 +247,7 @@ export const Profile = () => {
                   onMouseLeave={() => handleMouseLeave()}
                 />
                 <div className="flex flex-wrap">
-                  {new Array(Math.ceil((user.recruits || 0) / 200_000))
+                  {new Array(Math.floor((user.recruits || 0) / 200_000))
                     .fill()
                     .map((i, id) => (
                       <img
@@ -276,7 +276,7 @@ export const Profile = () => {
                   onMouseLeave={() => handleMouseLeave()}
                 />
                 <div className="flex flex-wrap">
-                  {new Array(Math.ceil((user.level || 0) / 2_000))
+                  {new Array(Math.floor((user.level || 0) / 2_000))
                     .fill()
                     .map((i, id) => (
                       <img
@@ -306,7 +306,7 @@ export const Profile = () => {
                 />
 
                 <div className="flex flex-wrap">
-                  {new Array(Math.ceil((user.defence_attacks || 0) / 10))
+                  {new Array(Math.floor((user.defence_attacks || 0) / 10))
                     .fill()
                     .map((i, id) => (
                       <img
@@ -326,10 +326,50 @@ export const Profile = () => {
                     : user.characterType === "Terrorist"
                     ? "bg-dark-terrorist"
                     : "bg-dark-primary"
-                } text-sm font-bold text-white text-center mt-3`}
+                } text-sm font-bold text-white text-center my-3 `}
               >
                 MEDALS
               </div>
+              {user && user.medals && (
+                <div className="flex w-[75%] ml-[12.5%]">
+                  <div className="w-1/3">
+                    {user.medals
+                      .filter((i) => i.medal.type === 0)
+                      .map((item, index) => (
+                        <img
+                          onMouseOver={() => handleMouseOver({...item.medal, count: item.count}, 3)}
+                          onMouseLeave={() => handleMouseLeave()}
+                          key={`medal_${item.medal.type}_${index}`}
+                          src={`/images/medals/medal${item.medal.id}.png`}
+                        />
+                      ))}
+                  </div>
+                  <div className="w-1/3">
+                    {user.medals
+                      .filter((i) => i.medal.type === 1)
+                      .map((item, index) => (
+                        <img
+                        onMouseOver={() => handleMouseOver({...item.medal, count: item.count}, 3)}
+                        onMouseLeave={() => handleMouseLeave()}
+                        key={`medal_${item.medal.type}_${index}`}
+                        src={`/images/medals/medal${item.medal.id}.png`}
+                      />
+                      ))}
+                  </div>
+                  <div className="w-1/3">
+                    {user.medals
+                      .filter((i) => i.medal.type === 2)
+                      .map((item, index) => (
+                        <img
+                          onMouseOver={() => handleMouseOver({...item.medal, count: item.count}, 3)}
+                          onMouseLeave={() => handleMouseLeave()}
+                          key={`medal_${item.medal.type}_${index}`}
+                          src={`/images/medals/medal${item.medal.id}.png`}
+                        />
+                      ))}
+                  </div>
+                </div>
+              )}
             </div>
             <div className="flex flex-col px-3 py-2 flex-1">
               <div
@@ -549,6 +589,13 @@ export const Profile = () => {
         {hoverType == 2 && (
           <div>
             <div className="text-white ">{itemInfo.msg}</div>
+          </div>
+        )}
+        {hoverType == 3 && (
+          <div>
+            <div className="text-white leading-none">{itemInfo.name}</div>
+            <div className="text-white leading-none">({itemInfo.count})</div>
+            <div className="text-white">{itemInfo.description}</div>
           </div>
         )}
       </Hover>
