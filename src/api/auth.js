@@ -1,20 +1,19 @@
 import axios from "./axios";
 
 import { setLoginError, setRegisterError } from "../redux/errorSlice";
-import { getUserInfo } from "./user";
 import { basicURL } from "../common/constant";
 import { login, logout } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
-// const basicURL = process.env.basicURL;
+
 export const signIn = async (data, dispatch) => {
   try {
     const { username, password } = data;
-    const response = await axios.post(`${basicURL}/user/login`, {
+    const res = await axios.post(`${basicURL}/user/login`, {
       name: username,
       password,
     });
 
-    const { refresh_token } = response.data;
+    const { refresh_token } = res.data;
     // Store the token securely
     localStorage.setItem("ACCESS_TOKEN", refresh_token);
     localStorage.setItem(
@@ -26,9 +25,9 @@ export const signIn = async (data, dispatch) => {
 
   } catch (err) {
     dispatch(
-      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+      setToast({ type: "error", msg: err.res?.data.msg || err.message })
     );
-    dispatch(setLoginError({ msg: err.response?.data.msg || err.message }));
+    dispatch(setLoginError({ msg: err.res?.data.msg || err.message }));
   }
 };
 
