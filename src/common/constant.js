@@ -33,6 +33,7 @@ export const ROUTES = {
     BATTLE_FIELD: '/battlefield/:region_id',
     SHOP: '/shop',
     ONLINE: '/online',
-    BUY_TURNS: "/buyturns"
+    BUY_TURNS: "/buyturns",
+    SUBSCRIBE: "/vip",
   }
 }

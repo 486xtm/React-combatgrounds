@@ -62,7 +62,7 @@ export const Layout = ({
             </div>
             <div className="flex">
               <div className={styles["buy-turns"]} onClick={() => navigate(ROUTES.MAIN_ROUTES.BUY_TURNS)} />
-              <div className={styles["subscribe"]} />
+              <div className={styles["subscribe"]} onClick={() => navigate(ROUTES.MAIN_ROUTES.SUBSCRIBE)} />
             </div>
           </>
         )}
