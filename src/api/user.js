@@ -239,3 +239,4 @@ export const getUserById = async (data, dispatch) => {
     dispatch(setUpdateError(err.message));
   }
 };
+

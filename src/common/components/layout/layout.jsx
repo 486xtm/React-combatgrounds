@@ -6,7 +6,7 @@ import { Header } from "../header/header";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../api/user";
 import { useNavigate } from "react-router-dom";
-
+import { ROUTES } from "../../constant";
 export const Layout = ({
   children,
   currentActiveTab = "headquarters",
@@ -14,7 +14,7 @@ export const Layout = ({
   isMenuShow = true,
 }) => {
   const user = useSelector(({ user }) => user.user);
-
+  const navigate = useNavigate();
   return (
     <div className={styles["layout-container"]}>
       {isHeaderFull && <img src="./images/index_r1_c1.jpg" width="880" />}
@@ -61,7 +61,7 @@ export const Layout = ({
               </div>
             </div>
             <div className="flex">
-              <div className={styles["buy-turns"]} />
+              <div className={styles["buy-turns"]} onClick={() => navigate(ROUTES.MAIN_ROUTES.BUY_TURNS)} />
               <div className={styles["subscribe"]} />
             </div>
           </>

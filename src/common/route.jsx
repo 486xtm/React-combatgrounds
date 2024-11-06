@@ -22,6 +22,7 @@ import {
   Training,
   UserGuide,
 } from "../pages/core";
+import BuyTurns from "../pages/core/buyturns/buyturns";
 import { ROUTES } from "./constant";
 
 export const routes = {
@@ -112,5 +113,9 @@ export const routes = {
       path: ROUTES.MAIN_ROUTES.ONLINE,
       element: <OnlinePlayers />,
     },
+    {
+      path: ROUTES.MAIN_ROUTES.BUY_TURNS,
+      element: <BuyTurns />
+    }
   ],
 };
