@@ -29,20 +29,27 @@ export const Layout = ({
                     {user && user.name}
                   </span>
                   <span className="text-secondary text-sm pl-3 font-bold">
-                    {user && user.turn.toLocaleString('en-US')}
+                    {user && user.turn.toLocaleString("en-US")}
                   </span>
                 </div>
                 <div className="flex pt-1">
                   <span className="text-secondary text-sm pl-[200px] font-bold w-[460px]">
-                    {user && user.recruits ? user.recruits.toLocaleString('en-US') : 0}
+                    {user && user.recruits
+                      ? user.recruits.toLocaleString("en-US")
+                      : 0}
                   </span>
                   <span className="text-secondary text-sm pl-3 font-bold">
-                    {user && user.netWorth ? user.netWorth.toLocaleString('en-US') : 0}
+                    {user && user.netWorth
+                      ? user.netWorth.toLocaleString("en-US")
+                      : 0}
                   </span>
                 </div>
                 <div className="flex pt-1">
                   <span className="text-secondary text-sm pl-[472px] font-bold">
-                    ${user && user.money ? user.money.toLocaleString('en-US') : 0}
+                    $
+                    {user && user.money
+                      ? user.money.toLocaleString("en-US")
+                      : 0}
                   </span>
                 </div>
                 <div className="flex pt-1">
@@ -52,17 +59,25 @@ export const Layout = ({
                     </div>
                   </div>
                   <span className="text-secondary text-sm pl-[182px] font-bold">
-                    {user && user.level ? user.level.toLocaleString('en-US') : 1}
+                    {user && user.level
+                      ? user.level.toLocaleString("en-US")
+                      : 1}
                   </span>
                 </div>
               </div>
               <div className="text-xxl font-bold text-secondary mt-[50px] w-[125px] text-center">
-                {user && user.rank ? user.rank.toLocaleString('en-US') : 325}
+                {user && user.rank ? user.rank.toLocaleString("en-US") : 325}
               </div>
             </div>
             <div className="flex">
-              <div className={styles["buy-turns"]} onClick={() => navigate(ROUTES.MAIN_ROUTES.BUY_TURNS)} />
-              <div className={styles["subscribe"]} onClick={() => navigate(ROUTES.MAIN_ROUTES.SUBSCRIBE)} />
+              <div
+                className={styles["buy-turns"]}
+                onClick={() => navigate(ROUTES.MAIN_ROUTES.BUY_TURNS)}
+              />
+              <div
+                className={styles["subscribe"]}
+                onClick={() => navigate(ROUTES.MAIN_ROUTES.SUBSCRIBE)}
+              />
             </div>
           </>
         )}

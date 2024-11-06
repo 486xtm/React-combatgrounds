@@ -2,6 +2,8 @@ import react, { useState, useEffect } from "react";
 import { Layout } from "../../../common/components";
 import { CLIENT_ID, APP_SECRET } from "../../../common/constant";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { useDispatch } from "react-redux";
+import { subscribe } from "../../../api/payment";
 const Subscribe = () => {
   const [show, setShow] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
@@ -10,8 +12,11 @@ const Subscribe = () => {
     setShow(false);
     setTimeout(() => {
       setShow(true);
-    },10)
+    }, 10);
   };
+
+  const dispatch = useDispatch();
+
   const createOrder = (data, actions) => {
     return actions.order
       .create({
@@ -34,8 +39,7 @@ const Subscribe = () => {
   // check Approval
   const onApprove = (data, actions) => {
     return actions.order.capture().then(function (details) {
-      const { payer } = details;
-      alert("Payment successful!!");
+      subscribe({ orderID: data.orderID }, dispatch);
     });
   };
 
@@ -72,13 +76,13 @@ const Subscribe = () => {
             <ul className="list-outside text-left list-disc ml-10 leading-none">
               <br />
               <li>
-                <b>10 extra-turns every 10 minutes</b> - That means you're going to
-                receive 25 turns every 10 minutes!
+                <b>10 extra-turns every 10 minutes</b> - That means you're going
+                to receive 25 turns every 10 minutes!
               </li>
               <li>
-                <b>Max turns build up raised by 500</b> - You will keep receiving
-                additional turns every 10 minutes until you accumulate 2,000
-                turns.
+                <b>Max turns build up raised by 500</b> - You will keep
+                receiving additional turns every 10 minutes until you accumulate
+                2,000 turns.
               </li>
               <li>
                 <b>Support ticket priority</b> - Your support tickets will be
@@ -86,8 +90,13 @@ const Subscribe = () => {
               </li>
               <br />
             </ul>
-            <div className="text-xl font-bold mb-4">10 Extra-Turns every 10 minutes!</div>
-            <div className="text-left text-xs">Note: You can cancel your membership at any time directly via your PayPal account.</div>
+            <div className="text-xl font-bold mb-4">
+              10 Extra-Turns every 10 minutes!
+            </div>
+            <div className="text-left text-xs">
+              Note: You can cancel your membership at any time directly via your
+              PayPal account.
+            </div>
           </div>
           {show && (
             <div

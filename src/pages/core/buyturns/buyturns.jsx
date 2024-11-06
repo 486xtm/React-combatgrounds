@@ -2,6 +2,8 @@ import react, { useState, useEffect } from "react";
 import { Layout } from "../../../common/components";
 import { CLIENT_ID, APP_SECRET } from "../../../common/constant";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { transfer, verifyPaymentOrder } from "../../../api/payment";
+import { useDispatch, useSelector } from "react-redux";
 const buyInfo = [
   {
     total: 1000,
@@ -70,13 +72,23 @@ const BuyTurns = () => {
   const [ErrorMessage, setErrorMessage] = useState("");
   const [orderID, setOrderID] = useState(false);
   const [buyTurn, setBuyTurn] = useState({});
+  const [transferTurn, setTransferTurn] = useState("");
+
   const handleBuy = (buy) => {
     setShow(false);
     setTimeout(() => {
       setBuyTurn(buy);
       setShow(true);
-    },100);
+    }, 100);
   };
+
+  const user = useSelector(({ user }) => user.user);
+  const dispatch = useDispatch();
+
+  const handleTransfer = () => {
+    transfer({ transferTurn }, dispatch);
+  };
+
   const createOrder = (data, actions) => {
     return actions.order
       .create({
@@ -91,31 +103,26 @@ const BuyTurns = () => {
         ],
       })
       .then((orderID) => {
-        setOrderID(orderID);
         return orderID;
       });
   };
 
   // check Approval
-  const onApprove = (data, actions) => {
+  const onApprove = async (data, actions) => {
     return actions.order.capture().then(function (details) {
       const { payer } = details;
+      console.log("payer", payer);
       setSuccess(true);
+      verifyPaymentOrder({ orderID: data.orderID, buyTurn }, dispatch);
     });
   };
 
   //capture likely error
   const onError = (data, actions) => {
     setErrorMessage("An Error occured with your payment ");
+    console.log("ERROR!", data, actions);
   };
 
-  useEffect(() => {
-    if (success) {
-      
-      // alert("Payment successful!!");
-      // console.log("Order successful . Your order id is--", orderID);
-    }
-  }, [success]);
   return (
     <PayPalScriptProvider options={{ "client-id": CLIENT_ID }}>
       <Layout>
@@ -135,12 +142,27 @@ const BuyTurns = () => {
             <img src="/images/paypalverified.gif" />
           </div>
           <div className="text-[yellow] text-xl font-bold mb-5">
-            You currently have 0 purchased turns to transfer to
+            You currently have {user && user.bankedTurn ? user.bankedTurn : 0}{" "}
+            purchased turns to transfer to
             <br /> your account
           </div>
           <div className="flex gap-5 justify-center mb-10">
-            Number of turns : <input className="rounded-md px-2 text-black" />{" "}
-            <button className="text-black px-5 bg-white">Transfer</button>
+            Number of turns :{" "}
+            <input
+              className="rounded-md px-2 text-black"
+              onChange={(e) =>
+                setTransferTurn(e.target.value.replace(/[^0-9]/g, ""))
+              }
+              value={
+                transferTurn ? Number(transferTurn).toLocaleString("en-US") : ""
+              }
+            />{" "}
+            <button
+              className="text-black px-5 bg-white"
+              onClick={handleTransfer}
+            >
+              Transfer
+            </button>
           </div>
           <div className="mb-5">
             If you are purchasing turns for another player, please enter his
@@ -192,7 +214,11 @@ const BuyTurns = () => {
             ))}
           </div>
           {show && (
-            <div className={`transition-opacity duration-300 ${show ? 'animate-fadeIn' : 'animate-fadeOut'}`}>
+            <div
+              className={`transition-opacity duration-300 ${
+                show ? "animate-fadeIn" : "animate-fadeOut"
+              }`}
+            >
               <PayPalButtons
                 className="transition-all duration-300"
                 style={{ layout: "vertical" }}
