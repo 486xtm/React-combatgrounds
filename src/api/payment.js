@@ -7,13 +7,13 @@ export const verifyPaymentOrder = async (data, dispatch) => {
   try {
     const res = await axios.post(`${basicURL}/payment/verify`, data);
     const { user } = res.data;
-    dispatch(setUser(user));
+    if (!data.receiver) dispatch(setUser(user));
     dispatch(
       setToast({
         type: "success",
         msg: `You've just purchased ${data.buyTurn.total.toLocaleString(
           "en-US"
-        )} turns successfully!`,
+        )} turns ${data.receiver ? `for ${data.receiver} ` : ""}successfully!`,
       })
     );
   } catch (err) {
