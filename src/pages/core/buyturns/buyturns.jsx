@@ -1,9 +1,11 @@
 import react, { useState, useEffect } from "react";
 import { Layout } from "../../../common/components";
-import { CLIENT_ID, APP_SECRET } from "../../../common/constant";
+import { CLIENT_ID, APP_SECRET, basicURL } from "../../../common/constant";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { transfer, verifyPaymentOrder } from "../../../api/payment";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "../../../api/axios";
+import { setToast } from "../../../redux/toastSlice";
 const buyInfo = [
   {
     total: 1000,
@@ -73,6 +75,8 @@ const BuyTurns = () => {
   const [orderID, setOrderID] = useState(false);
   const [buyTurn, setBuyTurn] = useState({});
   const [transferTurn, setTransferTurn] = useState("");
+  const [receiver, setReceiver] = useState("");
+  const [agent, setAgent] = useState(localStorage.getItem("agent"));
 
   const handleBuy = (buy) => {
     setShow(false);
@@ -85,6 +89,18 @@ const BuyTurns = () => {
   const user = useSelector(({ user }) => user.user);
   const dispatch = useDispatch();
 
+  const handleSetReceiver = async () => {
+    // if (receiver)
+    try {
+      await axios.post(`${basicURL}/payment/agent`, { receiver });
+      setAgent(receiver);
+      localStorage.setItem("agent", receiver);
+      dispatch(setToast({ type: "success", msg: `Success!` }));
+    } catch (err) {
+      dispatch(setToast({ type: "erorr", msg: "No User Found!" }));
+      setReceiver(null);
+    }
+  };
   const handleTransfer = () => {
     transfer({ transferTurn }, dispatch);
   };
@@ -113,7 +129,10 @@ const BuyTurns = () => {
       const { payer } = details;
       console.log("payer", payer);
       setSuccess(true);
-      verifyPaymentOrder({ orderID: data.orderID, buyTurn }, dispatch);
+      verifyPaymentOrder(
+        { orderID: data.orderID, buyTurn, receiver: agent },
+        dispatch
+      );
     });
   };
 
@@ -169,9 +188,36 @@ const BuyTurns = () => {
             account user name:
           </div>
           <div className="flex gap-5 justify-center mb-5">
-            <input className="rounded-md px-2 text-black" />{" "}
-            <button className="text-black px-5 bg-white">Set</button>
+            <input
+              className="rounded-md px-2 text-black"
+              onChange={(e) => setReceiver(e.target.value)}
+            />{" "}
+            <button
+              className="text-black px-5 bg-white"
+              onClick={handleSetReceiver}
+            >
+              Set
+            </button>
+            {agent && (
+              <button
+                className="text-black px-5 bg-white"
+                onClick={() => {
+                  localStorage.removeItem("agent");
+                  setAgent(null);
+                }}
+              >
+                Reset
+              </button>
+            )}
           </div>
+          {agent && (
+            <p className="text-center text-secondary text-lg mb-3">
+              You purchase turns for{" "}
+              <b>
+                <u>@{agent}</u>
+              </b>
+            </p>
+          )}
           <div className="w-full flex text-center font-bold">
             <div className="w-[20%] border-[gray] border-[1px] leading-7">
               Total turns
