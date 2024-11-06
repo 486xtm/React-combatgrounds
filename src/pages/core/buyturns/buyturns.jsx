@@ -2,6 +2,7 @@ import react, { useState, useEffect } from "react";
 import { Layout } from "../../../common/components";
 import { CLIENT_ID, APP_SECRET } from "../../../common/constant";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { verifyPaymentOrder } from "../../../api/payment";
 const buyInfo = [
   {
     total: 1000,
@@ -75,7 +76,7 @@ const BuyTurns = () => {
     setTimeout(() => {
       setBuyTurn(buy);
       setShow(true);
-    },100);
+    }, 100);
   };
   const createOrder = (data, actions) => {
     return actions.order
@@ -97,10 +98,12 @@ const BuyTurns = () => {
   };
 
   // check Approval
-  const onApprove = (data, actions) => {
+  const onApprove = async (data, actions) => {
     return actions.order.capture().then(function (details) {
       const { payer } = details;
+      console.log("payer", payer);
       setSuccess(true);
+      verifyPaymentOrder({ orderID, buyTurn });
     });
   };
 
@@ -111,7 +114,6 @@ const BuyTurns = () => {
 
   useEffect(() => {
     if (success) {
-      
       // alert("Payment successful!!");
       // console.log("Order successful . Your order id is--", orderID);
     }
@@ -192,7 +194,11 @@ const BuyTurns = () => {
             ))}
           </div>
           {show && (
-            <div className={`transition-opacity duration-300 ${show ? 'animate-fadeIn' : 'animate-fadeOut'}`}>
+            <div
+              className={`transition-opacity duration-300 ${
+                show ? "animate-fadeIn" : "animate-fadeOut"
+              }`}
+            >
               <PayPalButtons
                 className="transition-all duration-300"
                 style={{ layout: "vertical" }}
