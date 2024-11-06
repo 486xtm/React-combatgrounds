@@ -23,6 +23,7 @@ import {
   UserGuide,
 } from "../pages/core";
 import BuyTurns from "../pages/core/buyturns/buyturns";
+import Subscribe from "../pages/core/subscribe/subscribe";
 import { ROUTES } from "./constant";
 
 export const routes = {
@@ -116,6 +117,10 @@ export const routes = {
     {
       path: ROUTES.MAIN_ROUTES.BUY_TURNS,
       element: <BuyTurns />
+    },
+    {
+      path: ROUTES.MAIN_ROUTES.SUBSCRIBE,
+      element: <Subscribe />
     }
   ],
 };
