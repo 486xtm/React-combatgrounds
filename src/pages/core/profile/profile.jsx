@@ -12,10 +12,12 @@ import { socketURL } from "../../../common/constant";
 export const Profile = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const location = useLocation();
-  const onlinePlayer = location.state;
+  const otherUser = location.state;
   const currentUser = useSelector(({ user }) => user.user);
-  const onlineRealPlayer = useSelector(({ user }) => user.other);
-  const user = onlinePlayer ? onlineRealPlayer || onlinePlayer : currentUser;
+  const otherUserInfoAll = useSelector(({ user }) => user.other);
+  const user = otherUser ? otherUserInfoAll || otherUser : currentUser;
+  const onlinePlayers = useSelector(({ online }) => online.onlinePlayers);
+  const onlineStatus = onlinePlayers ? !!onlinePlayers.find((x) => x._id === user._id) : false
   const [showHover, setShowHover] = useState(false);
   const [itemInfo, setItemInfo] = useState({});
   const [selectedItem, setSelectedItem] = useState({});
@@ -69,8 +71,8 @@ export const Profile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (onlinePlayer) {
-      getUserById({ id: onlinePlayer._id }, dispatch);
+    if (otherUser) {
+      getUserById({ id: otherUser._id }, dispatch);
     } else getUserInfo(dispatch, navigate);
   }, []);
 
@@ -114,12 +116,12 @@ export const Profile = () => {
                     user.grade
                   ).toLocaleLowerCase()}.gif`}
                   alt={user.grade}
-                  height="60"
+                  height="40"
                   className="my-auto absolute top-1/2 transform -translate-y-1/2"
                 />
               ) : null}
               <img
-                src="/images/onlineimg.gif"
+                src={`/images/${onlineStatus ? 'onlineimg.gif': 'offlineimg.gif' }`}
                 alt="online"
                 className="mx-auto"
               />
