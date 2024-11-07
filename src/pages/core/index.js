@@ -21,3 +21,5 @@ export * from './homeleave/homeleave';
 export * from './userguide/userguide';
 export * from './shop/shop';
 export * from './onlinePlayer/online';
+export * from './buyturns/buyturns';
+export * from './subscribe/subscribe';

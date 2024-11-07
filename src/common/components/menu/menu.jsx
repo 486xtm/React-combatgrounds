@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../../api/auth";
 import { useNavigate } from "react-router-dom";
 import { socket } from "../../../App";
+import { ROUTES } from "../../constant";
 export const Menu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -102,13 +103,13 @@ export const Menu = () => {
       </div>
       <div className={styles["menu-item"]}>CREW</div>
       <div className={styles["sub-menu"]}>
-        <Link to="/headquarter/#crew-invite" className={styles["link"]}>
+        <Link to={ROUTES.MAIN_ROUTES.CREW_INVITES} className={styles["link"]}>
           - <u>CREW_INVITES</u>
         </Link>
-        <Link to="/headquarter/#crew-create" className={styles["link"]}>
+        <Link to={ROUTES.MAIN_ROUTES.CREW_CREATE} className={styles["link"]}>
           - <u>CREATE_CREW</u>
         </Link>
-        <Link to="/headquarter/#crew-ads" className={styles["link"]}>
+        <Link to={ROUTES.MAIN_ROUTES.CREW_ADS} className={styles["link"]}>
           - <u>CREW_ADS</u>
         </Link>
       </div>

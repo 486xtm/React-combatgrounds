@@ -35,5 +35,8 @@ export const ROUTES = {
     ONLINE: '/online',
     BUY_TURNS: "/buyturns",
     SUBSCRIBE: "/vip",
+    CREW_INVITES: "/crew_invites",
+    CREW_ADS: "/crew_ads",
+    CREW_CREATE: "/crew_create"
   }
 }

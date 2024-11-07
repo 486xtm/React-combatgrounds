@@ -4,7 +4,7 @@ import { CLIENT_ID, APP_SECRET } from "../../../common/constant";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useDispatch } from "react-redux";
 import { subscribe } from "../../../api/payment";
-const Subscribe = () => {
+export const Subscribe = () => {
   const [show, setShow] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
   const [orderID, setOrderID] = useState(false);
@@ -118,4 +118,3 @@ const Subscribe = () => {
     </PayPalScriptProvider>
   );
 };
-export default Subscribe;

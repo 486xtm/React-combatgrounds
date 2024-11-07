@@ -21,9 +21,10 @@ import {
   StatMisc,
   Training,
   UserGuide,
+  BuyTurns,
+  Subscribe,
 } from "../pages/core";
-import BuyTurns from "../pages/core/buyturns/buyturns";
-import Subscribe from "../pages/core/subscribe/subscribe";
+import {Invites, Create, Ads} from '../pages/crew'
 import { ROUTES } from "./constant";
 
 export const routes = {
@@ -121,6 +122,18 @@ export const routes = {
     {
       path: ROUTES.MAIN_ROUTES.SUBSCRIBE,
       element: <Subscribe />
+    },
+    {
+      path: ROUTES.MAIN_ROUTES.CREW_INVITES,
+      element: <Invites />
+    },
+    {
+      path: ROUTES.MAIN_ROUTES.CREW_CREATE,
+      element: <Create />
+    },
+    {
+      path: ROUTES.MAIN_ROUTES.CREW_ADS,
+      element: <Ads />
     }
   ],
 };

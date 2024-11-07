@@ -68,7 +68,7 @@ const buyInfo = [
     cost: 500,
   },
 ];
-const BuyTurns = () => {
+export const BuyTurns = () => {
   const [show, setShow] = useState(false);
   const [success, setSuccess] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
@@ -299,4 +299,3 @@ const BuyTurns = () => {
     </PayPalScriptProvider>
   );
 };
-export default BuyTurns;
