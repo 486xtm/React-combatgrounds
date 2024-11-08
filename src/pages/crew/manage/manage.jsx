@@ -35,7 +35,7 @@ const mockdata = [
   },
 ];
 export const CrewManage = () => {
-  const [tab, setTab] = useState(1);
+  const [tab, setTab] = useState(0);
 
   const [invite, setInviter] = useState("");
   const [crewAvatar, setCrewAvatar] = useState("");
