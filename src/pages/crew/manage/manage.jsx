@@ -13,26 +13,6 @@ const mockdata = [
     rank: "leader",
     cash: 200000,
   },
-  {
-    name: "sealife",
-    rank: "leader",
-    cash: 200000,
-  },
-  {
-    name: "sealife",
-    rank: "leader",
-    cash: 200000,
-  },
-  {
-    name: "sealife",
-    rank: "leader",
-    cash: 200000,
-  },
-  {
-    name: "sealife",
-    rank: "leader",
-    cash: 200000,
-  },
 ];
 export const CrewManage = () => {
   const [tab, setTab] = useState(0);
@@ -93,7 +73,7 @@ export const CrewManage = () => {
                       {Number(member.cash).toLocaleString()}
                     </div>
                     <div className="w-[40%] py-1  px-1 ">
-                      {false ? (
+                      {true ? (
                         <div className="flex justify-between">
                           <button
                             onClick={() => {
