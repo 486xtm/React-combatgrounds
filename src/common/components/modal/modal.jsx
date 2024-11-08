@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 
-const Modal = ({ isOpen, onClose, children, type = "attack" }) => {
+const Modal = ({ isOpen, onClose, children, type = "attack"}) => {
   const [isAnimating, setIsAnimating] = React.useState(false);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Modal = ({ isOpen, onClose, children, type = "attack" }) => {
       onClick={handleOverlayClick}
     >
       <div
-        className={`bg-[#000000] text-white ${type == "attack" ? "shadow-[red]" : type == "defence" ? 'shadow-[blue]' : type == "combo" ? "shadow-[purple]" : "shadow-[green]"} border-double border-2 border-[white] p-4 rounded shadow-2xl transform transition-transform duration-300 ${
+        className={`bg-[#000000] text-white ${type == 'crew_ads' ? `shadow-[#666630]`: type == "attack" ? "shadow-[red]" : type == "defence" ? 'shadow-[blue]' : type == "combo" ? "shadow-[purple]" : "shadow-[green]"} border-double border-2 border-[white] p-4 rounded shadow-2xl transform transition-transform duration-300 ${
           isOpen ? "scale-100" : "scale-90"
         }`}
       >

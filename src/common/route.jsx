@@ -24,7 +24,7 @@ import {
   BuyTurns,
   Subscribe,
 } from "../pages/core";
-import {Invites, Create, Ads} from '../pages/crew'
+import {Invites, Create, Ads, CrewBank, CrewBoard, CrewBosses, CrewProfile, CrewManage} from '../pages/crew'
 import { ROUTES } from "./constant";
 
 export const routes = {
@@ -134,6 +134,26 @@ export const routes = {
     {
       path: ROUTES.MAIN_ROUTES.CREW_ADS,
       element: <Ads />
+    },
+    {
+      path: ROUTES.MAIN_ROUTES.CREW_BANK,
+      element: <CrewBank />
+    },
+    {
+      path: ROUTES.MAIN_ROUTES.CREW_BOARD,
+      element: <CrewBoard />
+    },
+    {
+      path: ROUTES.MAIN_ROUTES.CREW_BOSSES,
+      element: <CrewBosses />
+    },
+    {
+      path: ROUTES.MAIN_ROUTES.CREW_PROFILE,
+      element: <CrewProfile />
+    },
+    {
+      path: ROUTES.MAIN_ROUTES.CREW_MANAGE,
+      element: <CrewManage />
     }
   ],
 };

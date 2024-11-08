@@ -12,7 +12,7 @@ export const CrewLayout = ({ children, title = "Invites" }) => {
           src="/crew/footer.svg"
         />
         <div className="absolute w-full px-2 h-[420px]">
-          <div className="text-[#2FC1EF] text-xl mb-6">{title}</div>
+          <div className="text-[#FFF] font-bold text-xl mb-6">{title}</div>
           {children}
         </div>
       </div>

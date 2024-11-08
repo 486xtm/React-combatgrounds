@@ -1,0 +1,5 @@
+.create_button {
+  width: 152px; /* Adjust width as needed */
+  height: 32px; /* Adjust height as needed */
+  background-image: url('/crew/button.svg');
+}

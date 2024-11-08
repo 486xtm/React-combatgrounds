@@ -13,6 +13,7 @@ body {
   scroll-behavior: smooth;
 }
 
+
 img {
   border-top-width: 0px;
   border-bottom-width: 0px;
@@ -105,4 +106,29 @@ input {
 
 input, textarea {
   outline: none;
+}
+
+
+::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+  height: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666630; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color on hover */
+}
+
+/* For Firefox */
+.scrollbar {
+  scrollbar-width: thin; /* Options: auto | thin */
+  scrollbar-color: #888 #f1f1f1; /* Thumb color and track color */
 }

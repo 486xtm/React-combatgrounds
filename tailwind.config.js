@@ -18,6 +18,7 @@ export default {
         "dark-navyseal": "rgb(0, 0, 111)",
         terrorist: "rgb(211, 100, 53)",
         "dark-terrorist": "rgb(136, 0, 0)",
+        "secondary-green" : "#666630"
       },
       fontSize: {
         xxl: "1.7rem",
@@ -25,6 +26,7 @@ export default {
       },
       boxShadow: {
         glow: "0 0 12px rgba(255, 255, 255, 0.5)",
+        glow_small: "0 0 5px rgba(255, 255, 255, 0.5)",
       },
       animation: {
         fadeIn: 'fadeIn 0.5s ease-in-out',

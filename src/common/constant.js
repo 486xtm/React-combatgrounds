@@ -37,6 +37,12 @@ export const ROUTES = {
     SUBSCRIBE: "/vip",
     CREW_INVITES: "/crew_invites",
     CREW_ADS: "/crew_ads",
-    CREW_CREATE: "/crew_create"
+    CREW_CREATE: "/crew_create",
+    
+    CREW_PROFILE: "/crew_profile",
+    CREW_MANAGE: "/crew_manage",
+    CREW_BANK: "/crew_bank",
+    CREW_BOSSES: "/crew_bosses",
+    CREW_BOARD: "/crew_board",
   }
 }
