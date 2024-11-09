@@ -3,6 +3,8 @@ import { Layout } from "../../../common/components";
 import styles from "../styles.module.css";
 import CrewLayout from "../layout/crew_layout";
 import Modal from "../../../common/components/modal/modal";
+import { create_ads, getCrewAds } from "../../../api/crew";
+import { useDispatch, useSelector } from "react-redux";
 const posts = [
   {
     name: "sealife22",
@@ -38,23 +40,32 @@ export const Ads = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(350);
   const [description, setDescription] = useState("");
-  const closeModal = () => {
+
+  const ads = useSelector(({ crew }) => crew.ads);
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = () => {
+    create_ads({ content: description }, dispatch);
     setIsModalOpen(false);
   };
-  const handleSubmit =() => {
-    setIsModalOpen(false);
-  }
+
   useEffect(() => {
     setDescriptionReaminLetters(350 - description.length);
   }, [description]);
+
+  useEffect(() => {
+    getCrewAds(dispatch);
+  }, []);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <CrewLayout title="Crew Ads">
       <div
-        className={
-          // styles["create_button"] +
-          " " +
-          "flex items-center justify-center cursor-pointer hover:shadow-glow_small absolute top-0 right-0 hover:shadow-[green] font-medium mt-3 mr-[15%] hover:mr-[13%] w-[152px] border-[1px] rounded-md hover:w-[180px] transition-all duration-150"
-        }
+        className="flex items-center justify-center cursor-pointer hover:shadow-glow_small absolute top-0 right-0 hover:shadow-[green] font-medium mt-3 mr-[15%] hover:mr-[13%] w-[152px] border-[1px] rounded-md hover:w-[180px] transition-all duration-150"
         onClick={() => {
           setIsModalOpen(true);
         }}
@@ -62,17 +73,18 @@ export const Ads = () => {
         Post a Crew Ads
       </div>
       <div className="w-full flex flex-col text-white px-2 overflow-y-auto h-[320px]">
-        {posts.map((post, index) => (
-          <div
-            className="flex w-full border-b-[1px] border-secondary-green py-1"
-            key={`crew_ads_${index}`}
-          >
-            <div className="w-[90px] text-yellow-200">{post.name} :</div>
-            <div className="flex-1">{post.content}</div>
-          </div>
-        ))}
+        {ads &&
+          ads.map((ad, index) => (
+            <div
+              className="flex w-full border-b-[1px] border-secondary-green py-1"
+              key={`crew_ads_${index}`}
+            >
+              <div className="w-[90px] text-yellow-200">{ad.author.name} :</div>
+              <div className="flex-1">{ad.content}</div>
+            </div>
+          ))}
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} type = "crew_ads" >
+      <Modal isOpen={isModalOpen} onClose={closeModal} type="crew_ads">
         <div className="text-center">
           <div className="text-center mb-2 text-xl">Post a Crew Ad</div>
           <textarea
