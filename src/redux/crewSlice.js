@@ -4,6 +4,9 @@ const initialState = {
   crew: null,
   ads: [],
   bosses: [],
+  invites: [],
+  members: [],
+  info: null,
 };
 
 const crweSlice = createSlice({
@@ -22,8 +25,26 @@ const crweSlice = createSlice({
     setBosses: (state, action) => {
       state.bosses = action.payload;
     },
+    setInvites: (state, action) => {
+      state.invites = action.payload;
+    },
+    setMembers: (state, action) => {
+      state.members = action.payload;
+    },
+    setInfo: (state, action) => {
+      state.info = action.payload;
+    },
   },
 });
 
-export const { setCrew, setCrewAds, setBank, setBosses } = crweSlice.actions;
+export const {
+  setCrew,
+  setCrewAds,
+  setBank,
+  setBosses,
+  setInvites,
+  setMembers,
+  setInfo,
+} = crweSlice.actions;
+
 export default crweSlice.reducer;

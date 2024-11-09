@@ -1,4 +1,5 @@
 import { basicURL } from "../common/constant";
+import { setInfo, setInvites, setMembers } from "../redux/crewSlice";
 import { setBank, setBosses, setCrew, setCrewAds } from "../redux/crewSlice";
 import { setToast } from "../redux/toastSlice";
 import { setUser } from "../redux/userSlice";
@@ -69,6 +70,17 @@ export const getCrew = async (dispatch) => {
   }
 };
 
+export const getCrewMembers = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/crew/crew_members`);
+    dispatch(setMembers(res.data.members));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
 export const getBosses = async (dispatch) => {
   try {
     const res = await axios.get(`${basicURL}/crew/crew_bosses`);
@@ -87,6 +99,111 @@ export const attackBoss = async (data, dispatch) => {
     const { bosses } = res.data;
     dispatch(setBosses(bosses));
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const getInvites = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/crew/invites`);
+    const { invites } = res.data;
+    dispatch(setInvites(invites));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const createInvite = async (data, dispatch) => {
+  try {
+    const res = await axios.post(`${basicURL}/crew/create_invites`, data);
+    const { invites } = res.data;
+    dispatch(setInvites(invites));
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const dealInvite = async (data, dispatch) => {
+  try {
+    const res = await axios.post(`${basicURL}/crew/deal_invites`, data);
+    const { invites } = res.data;
+    dispatch(setInvites(invites));
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const leaveCrew = async (dispatch, navigate) => {
+  try {
+    const res = await axios.delete(`${basicURL}/crew/leave_crew`);
+    navigate("/invites");
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const bootMember = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/crew/boot_member`, data);
+    const { members } = res.data;
+    dispatch(setMembers(members));
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const makeLeader = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/crew/change_leader`, data);
+    const { members } = res.data;
+    dispatch(setMembers(members));
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const uplaodAvatar = async (data, dispatch) => {
+  try {
+    const formData = new FormData();
+    formData.append("file", data.crewAvatar);
+
+    const res = await axios.post(`${basicURL}/upload/upload_avatar`, formData, {
+      "Content-Type": "multipart/form-data",
+    });
+
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const getCrewInfo = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/crew/crew_info`);
+    const { info, crewNetworth, averageNetworth } = res.data;
+    dispatch(setInfo({ ...info, netWorth: crewNetworth, averageNetworth }));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })

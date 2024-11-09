@@ -3,6 +3,9 @@ import CrewLayout from "../layout/crew_layout";
 import styles from "../styles.module.css";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../common/constant";
+import { useDispatch, useSelector } from "react-redux";
+import { dealInvite, getInvites } from "../../../api/crew";
+import moment from "moment";
 const mockdata = [
   {
     date: "2013/2/2",
@@ -13,72 +16,96 @@ const mockdata = [
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
-  },{
+  },
+  {
     date: "2013/2/2",
     name: "Sealife22312",
     rank: "Rank1",
   },
 ];
+
 export const Invites = () => {
   const navigate = useNavigate();
-  const handleAccept = () => {
-    console.log("accept")
-  }
-  const handleDeny = () => {
-    console.log("Deny");
-  }
+  const dispatch = useDispatch();
+
+  const handleAccept = (invite_id) => {
+    dealInvite({ invite_id, type: 1 }, dispatch);
+  };
+  const handleDeny = (invite_id) => {
+    dealInvite({ invite_id, type: 0 }, dispatch);
+  };
+
+  const invites = useSelector(({ crew }) => crew.invites);
+
+  useEffect(() => {
+    getInvites(dispatch);
+  }, []);
+
   return (
     <CrewLayout title="Invites">
       <div className="w-full relative h-[300px]">
@@ -90,19 +117,36 @@ export const Invites = () => {
             <div className="w-[20%] py-1">Action</div>
           </div>
           <div className="h-[210px] overflow-y-auto">
-          {mockdata &&
-            mockdata.map((data, index) => (
-              <div className="flex w-full text-center border-b-[1px] border-secondary-green " key= {`crew_invite_${index}`}>
-                <div className="w-[20%] py-1">{data.date}</div>
-                <div className="w-[30%] py-1">{data.name}</div>
-                <div className="w-[30%] py-1">{data.rank}</div>
-                <div className="w-[20%] py-1 flex justify-center gap-2">
-                  <div className="underline text-yellow-300 cursor-pointer hover:text-white" onClick = {handleAccept}>Accept</div> 
-                  <div className="underline text-yellow-300 cursor-pointer hover:text-white" onClick={handleDeny}>Deny</div>
+            {invites &&
+              invites.map((invite, index) => (
+                <div
+                  className="flex w-full text-center border-b-[1px] border-secondary-green items-center"
+                  key={`crew_invite_${index}`}
+                >
+                  <div className="w-[20%] py-1 text-xs">
+                    {moment(invite.updatedAt).format("MMMM Do, YYYY, h:mm A")}
+                  </div>
+                  <div className="w-[30%] py-1">{invite.crew.name}</div>
+                  <div className="w-[30%] py-1">
+                    {invite.crew.roles[invite.role]}
+                  </div>
+                  <div className="w-[20%] py-1 flex justify-center gap-2">
+                    <div
+                      className="underline text-yellow-300 cursor-pointer hover:text-white"
+                      onClick={() => handleAccept(invite._id)}
+                    >
+                      Accept
+                    </div>
+                    <div
+                      className="underline text-yellow-300 cursor-pointer hover:text-white"
+                      onClick={() => handleDeny(invite._id)}
+                    >
+                      Deny
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
-            </div>
+              ))}
+          </div>
         </div>
         <div
           className={
