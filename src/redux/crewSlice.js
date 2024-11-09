@@ -7,6 +7,7 @@ const initialState = {
   invites: [],
   members: [],
   info: null,
+  board: [],
 };
 
 const crweSlice = createSlice({
@@ -34,6 +35,9 @@ const crweSlice = createSlice({
     setInfo: (state, action) => {
       state.info = action.payload;
     },
+    setBoard: (state, action) => {
+      state.board = action.payload;
+    },
   },
 });
 
@@ -45,6 +49,7 @@ export const {
   setInvites,
   setMembers,
   setInfo,
+  setBoard,
 } = crweSlice.actions;
 
 export default crweSlice.reducer;

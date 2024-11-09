@@ -1,5 +1,5 @@
 import { basicURL } from "../common/constant";
-import { setInfo, setInvites, setMembers } from "../redux/crewSlice";
+import { setBoard, setInfo, setInvites, setMembers } from "../redux/crewSlice";
 import { setBank, setBosses, setCrew, setCrewAds } from "../redux/crewSlice";
 import { setToast } from "../redux/toastSlice";
 import { setUser } from "../redux/userSlice";
@@ -208,5 +208,26 @@ export const getCrewInfo = async (dispatch) => {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
     );
+  }
+};
+
+//crew-chat
+export const getCrewBoard = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/crew/crew_board`);
+    const { board } = res.board;
+    dispatch(setBoard(board));
+  } catch (err) {
+    setToast({ type: "error", msg: err.response?.data.msg || err.message });
+  }
+};
+
+export const createCrewChat = async (data, dispatch) => {
+  try {
+    const res = await axios.post(`${basicURL}/crew/crew_board`, data);
+    const { board } = res.board;
+    dispatch(setBoard(board));
+  } catch (err) {
+    setToast({ type: "error", msg: err.response?.data.msg || err.message });
   }
 };

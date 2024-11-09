@@ -7,7 +7,7 @@ import Modal from "../../../common/components/modal/modal";
 import YouTube from "react-youtube";
 import Hover from "../../../common/components/hover/hover";
 import { getGradeString } from "../../../common/utils";
-import { getUserById, getUserInfo } from "../../../api/user";
+import { getUserById } from "../../../api/user";
 import { socketURL } from "../../../common/constant";
 export const Profile = () => {
   const [imageSrc, setImageSrc] = useState(null);
@@ -73,7 +73,7 @@ export const Profile = () => {
   useEffect(() => {
     if (otherUser) {
       getUserById({ id: otherUser._id }, dispatch);
-    } else getUserInfo(dispatch, navigate);
+    }
   }, []);
 
   const video_data =

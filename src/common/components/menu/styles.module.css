@@ -1,5 +1,5 @@
 .menu-container {
-  height: 530px;
+  min-height: 530px;
   width: 166px;
   vertical-align: top;
   background-color: black;
@@ -7,6 +7,7 @@
   flex-direction: column;
   background-image: url("/back_cam.gif");
   padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .menu-item {
@@ -17,7 +18,6 @@
   line-height: 16px;
   margin-left: 0.25rem;
   line-height: 18px;
-
 }
 
 .sub-menu {
@@ -28,16 +28,13 @@
   display: flex;
   flex-direction: column;
   line-height: 18px;
-
 }
 
 .link {
   font-size: 12px;
   line-height: 12px;
-  /* text-decoration: underline; */
   margin: 0;
   line-height: 18px;
-
 }
 
 .link:hover {

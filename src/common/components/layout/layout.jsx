@@ -15,6 +15,12 @@ export const Layout = ({
 }) => {
   const user = useSelector(({ user }) => user.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getUserInfo(dispatch);
+  }, []);
+
   return (
     <div className={styles["layout-container"]}>
       {isHeaderFull && <img src="./images/index_r1_c1.jpg" width="880" />}
