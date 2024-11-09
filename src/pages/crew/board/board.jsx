@@ -31,8 +31,8 @@ export const CrewBoard = () => {
           className="text-white border-[1px] p-2 gap-2 border-secondary-green rounded-md mx-2 mt-2 h-[300px] overflow-y-auto flex flex-col-reverse" // Reverse the order of messages
         >
           {messages.map((message, index) => (
-            <div className="flex gap-2">
-            <span key={index} className={` max-w-[80%] break-words ml-auto py-1 px-5 bg-secondary-green rounded-xl`}>
+            <div className="flex gap-2" key={index}>
+            <span className={` max-w-[80%] break-words ml-auto py-1 px-5 bg-secondary-green rounded-xl`}>
               {message}
             </span>
             <img className="w-[30px] h-[30px] rounded-[50%]" src = "/avatar/avatar.png" />
