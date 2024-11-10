@@ -127,7 +127,6 @@ export const BuyTurns = () => {
   const onApprove = async (data, actions) => {
     return actions.order.capture().then(function (details) {
       const { payer } = details;
-      console.log("payer", payer);
       setSuccess(true);
       verifyPaymentOrder(
         { orderID: data.orderID, buyTurn, receiver: agent },

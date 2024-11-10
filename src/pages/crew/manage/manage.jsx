@@ -47,8 +47,6 @@ export const CrewManage = () => {
   };
 
   const handleChangeRank = () => {
-    console.log("selected member =====> ", selectedMember);
-    console.log("selected Rank", changeRole);
     updateRole({ selectedMember, changeRole }, dispatch);
     setIsModalOpen(false);
   };
