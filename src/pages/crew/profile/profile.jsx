@@ -40,16 +40,13 @@ export const CrewProfile = () => {
     setMemberList(
       crewInfo.members.map((u) => ({
         ...u.member,
+        role: u.role,
         online: onlinePlayers
           ? !!onlinePlayers.find((x) => x._id === u.member._id)
           : false,
       }))
     );
   }, [crewInfo, onlinePlayers]);
-
-  useEffect(() => {
-    console.log("mem==>", memberList);
-  }, [memberList]);
 
   return (
     <CrewLayout title="Profile">
@@ -92,20 +89,20 @@ export const CrewProfile = () => {
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">AVERAGE MEMBER NET WORTH</div>
                 <div className="w-[50%] text-white py-1">
-                  {(crewInfo && crewInfo.averageNetworth.toLocaleString()) ||
+                  {(crewInfo && Number(crewInfo.averageNetworth).toLocaleString()) ||
                     "---"}
                 </div>
               </div>
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">CREW NET WORTH</div>
                 <div className="w-[50%] text-white py-1">
-                  {(crewInfo && crewInfo.netWorth.toLocaleString()) || "---"}
+                  {(crewInfo && Number(crewInfo.netWorth).toLocaleString()) || "---"}
                 </div>
               </div>
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">BANK</div>
                 <div className="w-[50%] text-white py-1">
-                  {(crewInfo && `$${crewInfo.money.toLocaleString()}`) || "---"}
+                  {(crewInfo && `$${Number(crewInfo.money).toLocaleString()}`) || "---"}
                 </div>
               </div>
               <div className="flex text-center items-center justify-center font-medium text-yellow-200  border-secondary-green mt-2">
@@ -151,14 +148,14 @@ export const CrewProfile = () => {
         {tab == 0 && (
           <div className="flex w-full px-5 mt-5 gap-3">
             <div className="w-1/5 flex flex-col items-center justify-center h-[250px] ">
-              <div className="relative shadow-glow border-yellow-200 border-[1px] flex flex-col justify-center items-center rounded-xl overflow-hidden bg-dark-primary">
+              <div className="relative shadow-glow border-yellow-200 border-[1px] flex flex-col justify-center items-center rounded-xl overflow-hidden bg-dark-primary min-w-full">
                 <img
                   src={
                     crewInfo && crewInfo.leader.avatar
                       ? `${socketURL}/${crewInfo.leader.avatar}`
-                      : "/avatar/default.gif"
+                      : "/pics/avatar.gif"
                   }
-                  className={`mx-auto z-20 h-[220px] w-auto ${
+                  className={`mx-auto z-20 h-[220px] w-auto border-b border-yellow-200 min-w-full ${
                     crewInfo &&
                     !!onlinePlayers.find((x) => x._id === crewInfo.leader._id)
                       ? ""
@@ -186,7 +183,7 @@ export const CrewProfile = () => {
                       }
                     />
                     <div className="font-medium text-white text-xs mt-1">
-                      {m.name ? sliceString(m.name) + " - R1" : "------"}
+                      {m.name ? sliceString(m.name) + ` - R${m.role}` : "------"}
                     </div>
                   </div>
                 ))}

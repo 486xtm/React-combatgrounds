@@ -14,6 +14,11 @@ export const Menu = () => {
   const user = useSelector(({ user }) => user.user);
 
   const unreadMessagesCount = useSelector(({ mail }) => mail.unread);
+  const unreadCrewChatCount = useSelector(
+    ({ crew }) => crew.unreadCrewChatCount
+  );
+  const pendingInviteList = useSelector(({ crew }) => crew.pendingInviteList);
+
   return (
     <div className={styles["menu-container"]}>
       <div className={styles["menu-item"]}>MEMBERS</div>
@@ -105,16 +110,7 @@ export const Menu = () => {
       </div>
       <div className={styles["menu-item"]}>CREW</div>
       <div className={styles["sub-menu"]}>
-        <Link to={ROUTES.MAIN_ROUTES.CREW_INVITES} className={styles["link"]}>
-          - <u>CREW_INVITES</u>
-        </Link>
-        <Link to={ROUTES.MAIN_ROUTES.CREW_CREATE} className={styles["link"]}>
-          - <u>CREATE_CREW</u>
-        </Link>
-        <Link to={ROUTES.MAIN_ROUTES.CREW_ADS} className={styles["link"]}>
-          - <u>CREW_ADS</u>
-        </Link>
-        {user && user.crew && (
+        {user && user.crew ? (
           <>
             <Link
               to={ROUTES.MAIN_ROUTES.CREW_PROFILE}
@@ -138,10 +134,48 @@ export const Menu = () => {
               - <u>CREW_BOSSES</u>
             </Link>
             <Link to={ROUTES.MAIN_ROUTES.CREW_BOARD} className={styles["link"]}>
-              - <u>CREW_BOARD (0)</u>
+              -{" "}
+              <u>
+                <span>CREW_BOARD </span>
+                <span
+                  className={
+                    unreadCrewChatCount ? "text-secondary" : "text-white"
+                  }
+                >
+                  ({unreadCrewChatCount || 0})
+                </span>
+              </u>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link
+              to={ROUTES.MAIN_ROUTES.CREW_INVITES}
+              className={styles["link"]}
+            >
+              -{" "}
+              <u>
+                <span>CREW_INVITES</span>
+                <span
+                  className={
+                    pendingInviteList ? "text-secondary" : "text-white"
+                  }
+                >
+                  ({pendingInviteList || 0})
+                </span>
+              </u>
+            </Link>
+            <Link
+              to={ROUTES.MAIN_ROUTES.CREW_CREATE}
+              className={styles["link"]}
+            >
+              - <u>CREATE_CREW</u>
             </Link>
           </>
         )}
+        <Link to={ROUTES.MAIN_ROUTES.CREW_ADS} className={styles["link"]}>
+          - <u>CREW_ADS</u>
+        </Link>
       </div>
 
       <div className="flex flex-col">

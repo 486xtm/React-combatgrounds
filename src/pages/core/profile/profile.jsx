@@ -465,7 +465,7 @@ export const Profile = () => {
                 CREW
               </div>
               <p className="text-center text-white font-bold text-sm">
-                {user && user.name} is not in a crew at the moment
+                <span>{user && user.name} is</span><span> {user && user.crew ? `in ${user.crew.name}` : `not in a crew`} </span><span>at the moment</span>
               </p>
               <div
                 className={`my-1 ${

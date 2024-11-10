@@ -43,6 +43,7 @@ import { socketURL } from "./common/constant";
 import { setUnreadMessagesCount } from "./redux/mailSlice";
 import { routes } from "./common/route";
 import New from "./pages/auth/New/New";
+import { setPendingInviteList,setUnreadCrewChatCount } from "./redux/crewSlice";
 export const socket = io(socketURL);
 
 const ProtectedRoute = React.memo(({ children }) => {
@@ -79,6 +80,8 @@ const App = () => {
   const user = useSelector(({ user }) => user.user);
   const { showError, showSuccess, showInfo } = useToast();
   const unreadMessagesCount = useSelector(({ mail }) => mail.unread);
+  const pendingInviteList = useSelector(( {crew}) => crew.pendingInviteList);
+  const unreadCrewChatCount = useSelector(({ crew }) => crew.unreadCrewChatCount)
 
   useEffect(() => {
     socket.on("onlinePlayer", (userList) => {
@@ -105,6 +108,20 @@ const App = () => {
         },500);
       }
     });
+
+    //
+    socket.on("receive_invite", (data) => {
+      dispatch(
+        setToast({ type: "info", msg: `You've got invited to ${data.from} as Rank${data.role}` })
+      );
+      dispatch(setPendingInviteList((pendingInviteList || 0) + 1));
+    });
+
+
+    socket.on("receive_chat", () => {
+      dispatch(setUnreadCrewChatCount((unreadCrewChatCount || 0) + 1));
+    });
+    //
     return () => {
       socket.off("onlinePlayer");
       socket.off("receive message");

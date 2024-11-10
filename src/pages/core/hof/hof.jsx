@@ -10,7 +10,7 @@ export const HallOfFame = () => {
         <table className={styles["custom-table"]}>
           <tbody>
             <tr>
-              <td colSpan={3}>Combat Ground Legend</td>
+              <td colSpan={3}>Combat Grounds Legends</td>
             </tr>
             <tr>
               <td>Rank</td>
@@ -54,7 +54,7 @@ export const HallOfFame = () => {
         <table className={styles["custom-table"]}>
           <tbody>
             <tr>
-              <td colSpan={2}>All-Time Hightes Networth</td>
+              <td colSpan={2}>All-Time Highest Net Worth</td>
             </tr>
             <tr>
               <td>Name</td>
@@ -77,26 +77,46 @@ export const HallOfFame = () => {
         <table className={styles["custom-table"]}>
           <tbody>
             <tr>
-              <td colSpan={4}>Top players</td>
+              <td colSpan={4}>Top Players</td>
             </tr>
             <tr>
               <td>Rank</td>
-              <td> Name</td>
+              <td>Name</td>
               <td>Net Worth</td>
-              <td>Nedals</td>
+              <td>Medals</td>
             </tr>
             <tr>
               <td>1</td>
               <td>007</td>
-              <td>1902</td>
-              <td>Medal of Hono</td>
+              <td>71,787,670</td>
+              <td>Medal of Honor</td>
             </tr>
 
             <tr>
               <td>2</td>
               <td>Black Rose</td>
-              <td>1902</td>
+              <td>52,324,512</td>
               <td>Bronze Star</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table className={styles["custom-table"]}>
+          <tbody>
+            <tr>
+              <td colSpan={4}>Top Supporters</td>
+            </tr>
+            <tr>
+              <td>Rank</td>
+              <td>Name</td>
+              <td>Net Worth</td>
+              <td>Medals</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>007</td>
+              <td>71,787,670</td>
+              <td>Medal of Honor</td>
             </tr>
           </tbody>
         </table>
@@ -191,7 +211,7 @@ export const HallOfFame = () => {
         </div>
         <p className="text-center text-secondary text-sm font-bold">Round</p>
         <p className="text-white text-xs text-center py-2 mb-3">
-          &lt;&lt; <u>2</u> <u className="text-secondary text-bold">2</u>{" "}
+          &lt;&lt; <u className="text-secondary text-bold">1</u>{" "}
           &gt;&gt;
         </p>
       </div>

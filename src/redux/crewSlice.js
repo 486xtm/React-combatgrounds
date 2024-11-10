@@ -8,6 +8,8 @@ const initialState = {
   members: [],
   info: null,
   board: [],
+  pendingInviteList: 0,
+  unreadCrewChatCount: 0,
 };
 
 const crweSlice = createSlice({
@@ -38,6 +40,12 @@ const crweSlice = createSlice({
     setBoard: (state, action) => {
       state.board = action.payload;
     },
+    setPendingInviteList: (state, action) => {
+      state.pendingInviteList = action.payload;
+    },
+    setUnreadCrewChatCount: (state, action) => {
+      state.unreadCrewChatCount = action.payload;
+    },
   },
 });
 
@@ -50,6 +58,8 @@ export const {
   setMembers,
   setInfo,
   setBoard,
+  setPendingInviteList,
+  setUnreadCrewChatCount,
 } = crweSlice.actions;
 
 export default crweSlice.reducer;

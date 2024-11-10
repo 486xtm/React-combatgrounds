@@ -21,7 +21,7 @@ export const Create = () => {
   const handleCreate = () => {
     createCrew(
       { description, name, roles: [rank1, rank2, rank3, rank4, rank5] },
-      dispatch,navigate
+      dispatch, navigate
     );
   };
   useEffect(() => {

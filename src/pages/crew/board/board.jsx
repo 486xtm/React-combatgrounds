@@ -5,6 +5,8 @@ import { createCrewChat, getCrewBoard } from "../../../api/crew";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { socketURL } from "../../../common/constant";
+import { socket } from "../../../App";
+import { setUnreadCrewChatCount } from "../../../redux/crewSlice";
 
 export const CrewBoard = () => {
   const [text, setText] = useState("");
@@ -17,12 +19,13 @@ export const CrewBoard = () => {
 
   const handleSend = () => {
     if (!text) return;
-    createCrewChat({ content: text }, dispatch);
+    createCrewChat({ content: text }, dispatch, socket);
     setText("");
   };
 
   useEffect(() => {
     getCrewBoard(dispatch);
+    dispatch(setUnreadCrewChatCount(0));
   }, []);
 
   useEffect(() => {

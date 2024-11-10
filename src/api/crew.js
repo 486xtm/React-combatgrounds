@@ -11,7 +11,9 @@ export const createCrew = async (data, dispatch, navigate) => {
     const { user } = res.data;
     dispatch(setUser(user));
     dispatch(setToast({ type: "success", msg: res.data.msg }));
-    navigate("/crew_profile");
+    // setTimeout(() => {
+     navigate("/crew_profile");
+    // },2000)
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -132,12 +134,11 @@ export const getInvites = async (dispatch) => {
   }
 };
 
-export const createInvite = async (data, dispatch) => {
+export const createInvite = async (data, dispatch, socket) => {
   try {
     const res = await axios.post(`${basicURL}/crew/create_invites`, data);
-    const { invites } = res.data;
-    dispatch(setInvites(invites));
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    socket.emit("send invite request", {...data, from: res.data.crew_name});
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -145,13 +146,14 @@ export const createInvite = async (data, dispatch) => {
   }
 };
 
-export const dealInvite = async (data, dispatch) => {
+export const dealInvite = async (data, dispatch, navigate) => {
   try {
     const res = await axios.post(`${basicURL}/crew/deal_invites`, data);
     const { invites, user } = res.data;
     dispatch(setInvites(invites));
     dispatch(setUser(user));
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    navigate("/crew_profile");
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -163,6 +165,7 @@ export const leaveCrew = async (dispatch, navigate) => {
   try {
     const res = await axios.delete(`${basicURL}/crew/leave_crew`);
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    navigate("/crew_invites");
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -236,10 +239,11 @@ export const getCrewBoard = async (dispatch) => {
   }
 };
 
-export const createCrewChat = async (data, dispatch) => {
+export const createCrewChat = async (data, dispatch, socket) => {
   try {
     const res = await axios.post(`${basicURL}/crew/crew_board`, data);
-    const { board } = res.data;
+    const { board, chat_members } = res.data;
+    socket.emit("crew_chat", {chat_members} );
     dispatch(setBoard(board));
   } catch (err) {
     setToast({ type: "error", msg: err.response?.data.msg || err.message });
@@ -259,3 +263,14 @@ export const crewDisbaned = async (dispatch, navigate) => {
     );
   }
 };
+
+export const updateRole = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/crew/change_role`, data);
+    const { members } = res.data;
+    dispatch(setMembers(members));
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+  } catch (err) {
+    dispatch(setToast({ type: "error", msg: err.response?.data.msg || err.message}));
+  }
+}

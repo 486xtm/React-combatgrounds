@@ -51,13 +51,13 @@ const buyInfo = [
   },
   {
     total: 27500,
-    turns: 2000,
+    turns: 20000,
     bonus: 7500,
     cost: 100,
   },
   {
     total: 75000,
-    turns: 5000,
+    turns: 50000,
     bonus: 25000,
     cost: 250,
   },

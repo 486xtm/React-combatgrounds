@@ -6,95 +6,14 @@ import { ROUTES } from "../../../common/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { dealInvite, getInvites } from "../../../api/crew";
 import moment from "moment";
-const mockdata = [
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-  {
-    date: "2013/2/2",
-    name: "Sealife22312",
-    rank: "Rank1",
-  },
-];
+import { setPendingInviteList } from "../../../redux/crewSlice";
 
 export const Invites = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleAccept = (invite_id) => {
-    dealInvite({ invite_id, type: 1 }, dispatch);
+    dealInvite({ invite_id, type: 1 }, dispatch, navigate);
   };
   const handleDeny = (invite_id) => {
     dealInvite({ invite_id, type: 0 }, dispatch);
@@ -104,6 +23,7 @@ export const Invites = () => {
 
   useEffect(() => {
     getInvites(dispatch);
+    setPendingInviteList(0);
   }, []);
 
   return (

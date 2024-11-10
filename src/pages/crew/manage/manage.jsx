@@ -10,10 +10,13 @@ import {
   leaveCrew,
   makeLeader,
   uplaodAvatar,
+  updateRole
 } from "../../../api/crew";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setToast } from "../../../redux/toastSlice";
+import Modal from "../../../common/components/modal/modal";
+import { socket } from "../../../App";
 
 export const CrewManage = () => {
   const [tab, setTab] = useState(0);
@@ -22,8 +25,10 @@ export const CrewManage = () => {
   const [crewAvatar, setCrewAvatar] = useState("");
   const [crewImgSrc, setCrewImgSrc] = useState(null);
   const [role, setRole] = useState(1);
+  const [changeRole, setChangeRole] = useState(1);
   const fileInputRef = useRef(null);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMember, setSelectedMember] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -36,7 +41,17 @@ export const CrewManage = () => {
   const handleMakeReader = (newLeader) => {
     makeLeader({ newLeader }, dispatch);
   };
-  const handleChangeRank = (member) => {};
+  const handleChangeRankModalShow = (member) => {
+    setIsModalOpen(true);
+    setSelectedMember(member);
+  };
+
+  const handleChangeRank = () => {
+    console.log("selected member =====> ", selectedMember);
+    console.log("selected Rank", changeRole);
+    updateRole({ selectedMember, changeRole }, dispatch);
+    setIsModalOpen(false);
+  };
 
   const handleEditCrew = () => {
     navigate("/crew_edit");
@@ -57,9 +72,11 @@ export const CrewManage = () => {
     uplaodAvatar({ crewAvatar }, dispatch);
   };
   const handleInvitePlayer = () => {
-    createInvite({ name: invite, role }, dispatch);
+    createInvite({ name: invite, role }, dispatch, socket);
   };
-
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   const user = useSelector(({ user }) => user.user);
 
   useEffect(() => {
@@ -130,7 +147,7 @@ export const CrewManage = () => {
                           </button>
                           <button
                             onClick={() => {
-                              handleChangeRank(member._id);
+                              handleChangeRankModalShow(member._id);
                             }}
                             className=" rounded-lg border-2 px-2 border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white"
                           >
@@ -274,11 +291,49 @@ export const CrewManage = () => {
               </div>
             </div>
           ) : (
-            <p className="p-3 font-bold text-[red] text-lg">
+            <p className="p-3 font-bold text-[red] text-lg mt-5 text-center">
               This option is available for only crew leader.
             </p>
           ))}
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} type="crew_ads">
+        <div className="flex flex-col justify-center px-10 pb-5">
+          <div className="text-center font-bold text-yellow-200 text-xl mb-10">
+            Change Rank
+          </div>
+
+          <div className="flex mb-10">
+            <div className="w-[100px]">Rank: </div>
+            <select
+              className="bg-transparent border-secondary-green shadow-inner border-[1px] shadow-[rgba(255,255,255,0.3)] w-[100px] rounded-sm"
+              onChange={(e) => setChangeRole(e.target.value)}
+            >
+              <option className="bg-secondary-green" value={1}>
+                Rank 1
+              </option>
+              <option className="bg-secondary-green" value={2}>
+                Rank 2
+              </option>
+              <option className="bg-secondary-green" value={3}>
+                Rank 3
+              </option>
+              <option className="bg-secondary-green" value={4}>
+                Rank 4
+              </option>
+              <option className="bg-secondary-green" value={5}>
+                Rank 5
+              </option>
+            </select>
+          </div>
+
+          <button
+            onClick={handleChangeRank}
+            className=" rounded-lg border-2 mx-auto font-bold w-[150px] border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
+          >
+            Change Rank
+          </button>
+        </div>
+      </Modal>
     </CrewLayout>
   );
 };
