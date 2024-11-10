@@ -13,7 +13,6 @@ body {
   scroll-behavior: smooth;
 }
 
-
 img {
   border-top-width: 0px;
   border-bottom-width: 0px;
@@ -104,10 +103,10 @@ input {
   -moz-appearance: textfield; /* Firefox */
 }
 
-input, textarea {
+input,
+textarea {
   outline: none;
 }
-
 
 ::-webkit-scrollbar {
   width: 5px; /* Width of the scrollbar */
@@ -132,7 +131,6 @@ input, textarea {
   scrollbar-width: thin; /* Options: auto | thin */
   scrollbar-color: #888 #f1f1f1; /* Thumb color and track color */
 }
-
 
 @keyframes fadeIn {
   from {

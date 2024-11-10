@@ -41,7 +41,7 @@ export const CrewProfile = () => {
       crewInfo.members.map((u) => ({
         ...u.member,
         online: onlinePlayers
-          ? !!onlinePlayers.find((x) => x._id === u._id)
+          ? !!onlinePlayers.find((x) => x._id === u.member._id)
           : false,
       }))
     );

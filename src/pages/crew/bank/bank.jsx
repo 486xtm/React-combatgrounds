@@ -7,7 +7,7 @@ import { setToast } from "../../../redux/toastSlice";
 export const CrewBank = () => {
   const user = useSelector(({ user }) => user.user);
   const [amount, setAmount] = useState(0);
-  const depositMax = user ? Math.floor(user.money * 0.5) : 0;
+  const depositMax = user ? Math.floor(user.money * 0.3) : 0;
   const crew = useSelector(({ crew }) => crew.crew);
 
   const dispatch = useDispatch();

@@ -5,9 +5,23 @@ import { setToast } from "../redux/toastSlice";
 import { setUser } from "../redux/userSlice";
 import axios from "./axios";
 
-export const createCrew = async (data, dispatch) => {
+export const createCrew = async (data, dispatch, navigate) => {
   try {
     const res = await axios.post(`${basicURL}/crew/create_crew`, data);
+    const { user } = res.data;
+    dispatch(setUser(user));
+    dispatch(setToast({ type: "success", msg: res.data.msg }));
+    navigate("/crew_profile");
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const editCrew = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/crew/update_crew`, data);
     dispatch(setToast({ type: "success", msg: res.data.msg }));
   } catch (err) {
     dispatch(
@@ -134,8 +148,9 @@ export const createInvite = async (data, dispatch) => {
 export const dealInvite = async (data, dispatch) => {
   try {
     const res = await axios.post(`${basicURL}/crew/deal_invites`, data);
-    const { invites } = res.data;
+    const { invites, user } = res.data;
     dispatch(setInvites(invites));
+    dispatch(setUser(user));
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
   } catch (err) {
     dispatch(
@@ -147,7 +162,6 @@ export const dealInvite = async (data, dispatch) => {
 export const leaveCrew = async (dispatch, navigate) => {
   try {
     const res = await axios.delete(`${basicURL}/crew/leave_crew`);
-    navigate("/invites");
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
   } catch (err) {
     dispatch(
@@ -215,7 +229,7 @@ export const getCrewInfo = async (dispatch) => {
 export const getCrewBoard = async (dispatch) => {
   try {
     const res = await axios.get(`${basicURL}/crew/crew_board`);
-    const { board } = res.board;
+    const { board } = res.data;
     dispatch(setBoard(board));
   } catch (err) {
     setToast({ type: "error", msg: err.response?.data.msg || err.message });
@@ -225,9 +239,23 @@ export const getCrewBoard = async (dispatch) => {
 export const createCrewChat = async (data, dispatch) => {
   try {
     const res = await axios.post(`${basicURL}/crew/crew_board`, data);
-    const { board } = res.board;
+    const { board } = res.data;
     dispatch(setBoard(board));
   } catch (err) {
     setToast({ type: "error", msg: err.response?.data.msg || err.message });
+  }
+};
+
+export const crewDisbaned = async (dispatch, navigate) => {
+  try {
+    const res = await axios.delete(`${basicURL}/crew/disbaned`);
+    const { user } = res.data;
+    dispatch(setUser(user));
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    navigate("/crew_invites");
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
   }
 };

@@ -3,6 +3,7 @@ import CrewLayout from "../layout/crew_layout";
 import styles from "../styles.module.css";
 import { useDispatch } from "react-redux";
 import { createCrew } from "../../../api/crew";
+import { useNavigate } from "react-router-dom";
 
 export const Create = () => {
   const [name, setName] = useState("");
@@ -15,21 +16,23 @@ export const Create = () => {
   const [description, setDescription] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleCreate = () => {
     createCrew(
       { description, name, roles: [rank1, rank2, rank3, rank4, rank5] },
-      dispatch
+      dispatch,navigate
     );
   };
   useEffect(() => {
     setDescriptionReaminLetters(600 - description.length);
   }, [description]);
+
   return (
     <CrewLayout title="Create">
       <div className="flex flex-wrap text-white px-5 mt-[50px]">
         <div className="flex flex-col w-[280px] gap-3 mr-2">
-          <div className="gap-5 flex">
+          <div className="gap-5 flex justify-between">
             <span>Crew Name : </span>
             <input
               className="bg-transparent border-secondary-green shadow-inner shadow-[rgba(255,255,255,0.3)] border-[1px] rounded-sm text-white px-1 text-sm py-[1px]"

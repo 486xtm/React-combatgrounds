@@ -10,7 +10,11 @@ const ToastContext = createContext();
 export const ToastProvider = ({ children }) => {
   // Define functions to show different types of toasts
   const showToast = (message) => toast(message);
-  const showSuccess = (message) => toast.success(message);
+  const showSuccess = (message) => {
+    toast.success(message, {
+      style: { whiteSpace: "pre-line" },
+    });
+  };
   const showError = (message) => toast.error(message);
   const showInfo = (message) => toast.info(message);
   const showWarning = (message) => toast.warn(message);

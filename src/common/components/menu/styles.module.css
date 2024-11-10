@@ -1,5 +1,6 @@
 .menu-container {
   min-height: 530px;
+  max-height: 750px;
   width: 166px;
   vertical-align: top;
   background-color: black;

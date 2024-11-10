@@ -17,7 +17,9 @@ export const Profile = () => {
   const otherUserInfoAll = useSelector(({ user }) => user.other);
   const user = otherUser ? otherUserInfoAll || otherUser : currentUser;
   const onlinePlayers = useSelector(({ online }) => online.onlinePlayers);
-  const onlineStatus = onlinePlayers ? !!onlinePlayers.find((x) => x._id === user._id) : false
+  const onlineStatus = onlinePlayers
+    ? !!onlinePlayers.find((x) => x._id === user._id)
+    : false;
   const [showHover, setShowHover] = useState(false);
   const [itemInfo, setItemInfo] = useState({});
   const [selectedItem, setSelectedItem] = useState({});
@@ -64,8 +66,7 @@ export const Profile = () => {
         );
       }
     };
-    if(user.avatar)
-      fetchImage();
+    if (user.avatar) fetchImage();
   }, [user.avatar]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -121,7 +122,9 @@ export const Profile = () => {
                 />
               ) : null}
               <img
-                src={`/images/${onlineStatus ? 'onlineimg.gif': 'offlineimg.gif' }`}
+                src={`/images/${
+                  onlineStatus ? "onlineimg.gif" : "offlineimg.gif"
+                }`}
                 alt="online"
                 className="mx-auto"
               />
@@ -198,6 +201,11 @@ export const Profile = () => {
                       <td>{user.aimName}</td>
                     </tr>
                   ) : null}
+
+                  <tr>
+                    <td>Points</td>
+                    <td>{(user && user.points) || 0}</td>
+                  </tr>
                 </tbody>
               </table>
 
@@ -338,7 +346,12 @@ export const Profile = () => {
                       .filter((i) => i.medal.type === 0)
                       .map((item, index) => (
                         <img
-                          onMouseOver={() => handleMouseOver({...item.medal, count: item.count}, 3)}
+                          onMouseOver={() =>
+                            handleMouseOver(
+                              { ...item.medal, count: item.count },
+                              3
+                            )
+                          }
                           onMouseLeave={() => handleMouseLeave()}
                           key={`medal_${item.medal.type}_${index}`}
                           src={`/images/medals/medal${item.medal.id}.png`}
@@ -350,11 +363,16 @@ export const Profile = () => {
                       .filter((i) => i.medal.type === 1)
                       .map((item, index) => (
                         <img
-                        onMouseOver={() => handleMouseOver({...item.medal, count: item.count}, 3)}
-                        onMouseLeave={() => handleMouseLeave()}
-                        key={`medal_${item.medal.type}_${index}`}
-                        src={`/images/medals/medal${item.medal.id}.png`}
-                      />
+                          onMouseOver={() =>
+                            handleMouseOver(
+                              { ...item.medal, count: item.count },
+                              3
+                            )
+                          }
+                          onMouseLeave={() => handleMouseLeave()}
+                          key={`medal_${item.medal.type}_${index}`}
+                          src={`/images/medals/medal${item.medal.id}.png`}
+                        />
                       ))}
                   </div>
                   <div className="w-1/3  flex flex-col gap-4">
@@ -362,7 +380,12 @@ export const Profile = () => {
                       .filter((i) => i.medal.type === 2)
                       .map((item, index) => (
                         <img
-                          onMouseOver={() => handleMouseOver({...item.medal, count: item.count}, 3)}
+                          onMouseOver={() =>
+                            handleMouseOver(
+                              { ...item.medal, count: item.count },
+                              3
+                            )
+                          }
                           onMouseLeave={() => handleMouseLeave()}
                           key={`medal_${item.medal.type}_${index}`}
                           src={`/images/medals/medal${item.medal.id}.png`}
@@ -574,7 +597,7 @@ export const Profile = () => {
           </div>
         </div>
       </div>
-       <Hover show={showHover} type={itemInfo.type}>
+      <Hover show={showHover} type={itemInfo.type}>
         {hoverType == 1 && (
           <div>
             <div className="text-white ">{itemInfo.name}</div>
@@ -594,8 +617,12 @@ export const Profile = () => {
         )}
         {hoverType == 3 && (
           <div>
-            <div className="text-white text-xs leading-none">{itemInfo.name}</div>
-            <div className="text-[yellow] text-xs leading-none">({itemInfo.count})</div>
+            <div className="text-white text-xs leading-none">
+              {itemInfo.name}
+            </div>
+            <div className="text-[yellow] text-xs leading-none">
+              ({itemInfo.count})
+            </div>
             <div className="text-white text-xs">{itemInfo.description}</div>
           </div>
         )}

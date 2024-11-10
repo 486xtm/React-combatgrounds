@@ -19,14 +19,34 @@ export const HallOfFame = () => {
             </tr>
             <tr>
               <td>1</td>
-              <td>Shark</td>
-              <td>1902</td>
+              <td>007</td>
+              <td>25</td>
             </tr>
 
             <tr>
               <td>2</td>
-              <td>DOCK</td>
-              <td>1723</td>
+              <td>Black Rose</td>
+              <td>8</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Aegon</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Peekaboo</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Rabbit</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Stella</td>
+              <td>2</td>
             </tr>
           </tbody>
         </table>
@@ -41,42 +61,17 @@ export const HallOfFame = () => {
               <td>Net Worth</td>
             </tr>
             <tr>
-              <td>Shark</td>
-              <td>1243</td>
-            </tr>
-
-            <tr>
-              <td>DOCK</td>
-              <td>1723</td>
-            </tr>
-          </tbody>
-        </table>
-        <table className={styles["custom-table"]}>
-          <tbody>
-            <tr>
-              <td colSpan={2}>All-Time Highest Crew Networth</td>
-            </tr>
-            <tr>
-              <td> Name</td>
-              <td>Net Worth</td>
-            </tr>
-            <tr>
-              <td>Shark</td>
-              <td>1902</td>
-            </tr>
-
-            <tr>
-              <td>DOCK</td>
-              <td>1723</td>
+              <td>007</td>
+              <td>71,787,670</td>
             </tr>
           </tbody>
         </table>
 
         <p className="text-secondary text-xl text-center font-bold mt-5">
-          Results for Round 217
+          Results for Round 1
         </p>
         <p className="text-secondary text-center text-sm font-bold mb=5">
-          (From 10/2/24 to 10/11/24)
+          (From 2/11/24 to 10/11/24)
         </p>
 
         <table className={styles["custom-table"]}>
@@ -92,21 +87,21 @@ export const HallOfFame = () => {
             </tr>
             <tr>
               <td>1</td>
-              <td>Shark</td>
+              <td>007</td>
               <td>1902</td>
-              <td>Gold</td>
+              <td>Medal of Hono</td>
             </tr>
 
             <tr>
               <td>2</td>
-              <td>Seal</td>
+              <td>Black Rose</td>
               <td>1902</td>
-              <td>Gold</td>
+              <td>Bronze Star</td>
             </tr>
           </tbody>
         </table>
 
-        <table className={styles["custom-table"]}>
+        {/* <table className={styles["custom-table"]}>
           <tbody>
             <tr>
               <td colSpan={4}>Top Supporters</td>
@@ -131,9 +126,9 @@ export const HallOfFame = () => {
               <td>Gold</td>
             </tr>
           </tbody>
-        </table>
+        </table> */}
 
-        <table className={styles["custom-table"]}>
+        {/* <table className={styles["custom-table"]}>
           <tbody>
             <tr>
               <td colSpan={4}>Top Free players</td>
@@ -158,9 +153,9 @@ export const HallOfFame = () => {
               <td>Gold</td>
             </tr>
           </tbody>
-        </table>
+        </table> */}
 
-        <table className={styles["custom-table"]}>
+        {/* <table className={styles["custom-table"]}>
           <tbody>
             <tr>
               <td colSpan={5}>Top Crews</td>
@@ -188,7 +183,7 @@ export const HallOfFame = () => {
               <td>Gold</td>
             </tr>
           </tbody>
-        </table>
+        </table> */}
         <div className="flex w-full justify-center gap-20 my-5">
           <p className="text-sm text-secondary">Go to Round:</p>
           <input className="w-[50px]" />
@@ -196,8 +191,8 @@ export const HallOfFame = () => {
         </div>
         <p className="text-center text-secondary text-sm font-bold">Round</p>
         <p className="text-white text-xs text-center py-2 mb-3">
-          &lt;&lt; <u>717</u> <u>718</u> <u>719</u>{" "}
-          <u className="text-secondary text-bold">720</u> &gt;&gt;
+          &lt;&lt; <u>2</u> <u className="text-secondary text-bold">2</u>{" "}
+          &gt;&gt;
         </p>
       </div>
     </Layout>

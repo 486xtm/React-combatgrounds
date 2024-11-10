@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   other: null,
-  rankedUsers: null,
+  rankedData: null,
 };
 
 const userSlice = createSlice({
@@ -16,11 +16,11 @@ const userSlice = createSlice({
     setOther: (state, action) => {
       state.other = action.payload;
     },
-    setRankedUsers: (state, action) => {
-      state.rankedUsers = action.payload;
+    setRankingData: (state, action) => {
+      state.rankedData = action.payload;
     },
   },
 });
 
-export const { setUser, setOther, setRankedUsers } = userSlice.actions;
+export const { setUser, setOther, setRankingData } = userSlice.actions;
 export default userSlice.reducer;

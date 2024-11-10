@@ -5,6 +5,7 @@ import { useScriptProviderContext } from "@paypal/react-paypal-js";
 import {
   bootMember,
   createInvite,
+  crewDisbaned,
   getCrewMembers,
   leaveCrew,
   makeLeader,
@@ -22,6 +23,7 @@ export const CrewManage = () => {
   const [crewImgSrc, setCrewImgSrc] = useState(null);
   const [role, setRole] = useState(1);
   const fileInputRef = useRef(null);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -35,11 +37,19 @@ export const CrewManage = () => {
     makeLeader({ newLeader }, dispatch);
   };
   const handleChangeRank = (member) => {};
-  const handleEditCrew = () => {};
-  const handleDisbandCrew = () => {};
+
+  const handleEditCrew = () => {
+    navigate("/crew_edit");
+  };
+
+  const handleDisbandCrew = () => {
+    crewDisbaned(dispatch, navigate);
+  };
+
   const handleLeaveCrew = () => {
     leaveCrew(dispatch, navigate);
   };
+
   const handleUploadCrewAvatar = () => {
     if (!crewAvatar) {
       dispatch(setToast({ type: "error", msg: "No Image Selected!" }));
