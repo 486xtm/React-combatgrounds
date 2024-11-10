@@ -24,7 +24,17 @@ import {
   BuyTurns,
   Subscribe,
 } from "../pages/core";
-import {Invites, Create, Ads, CrewBank, CrewBoard, CrewBosses, CrewProfile, CrewManage} from '../pages/crew'
+import {
+  Invites,
+  Create,
+  Ads,
+  CrewBank,
+  CrewBoard,
+  CrewBosses,
+  CrewProfile,
+  CrewManage,
+  CrewEdit,
+} from "../pages/crew";
 import { ROUTES } from "./constant";
 
 export const routes = {
@@ -117,43 +127,44 @@ export const routes = {
     },
     {
       path: ROUTES.MAIN_ROUTES.BUY_TURNS,
-      element: <BuyTurns />
+      element: <BuyTurns />,
     },
     {
       path: ROUTES.MAIN_ROUTES.SUBSCRIBE,
-      element: <Subscribe />
+      element: <Subscribe />,
     },
     {
       path: ROUTES.MAIN_ROUTES.CREW_INVITES,
-      element: <Invites />
+      element: <Invites />,
     },
     {
       path: ROUTES.MAIN_ROUTES.CREW_CREATE,
-      element: <Create />
+      element: <Create />,
     },
     {
       path: ROUTES.MAIN_ROUTES.CREW_ADS,
-      element: <Ads />
+      element: <Ads />,
     },
     {
       path: ROUTES.MAIN_ROUTES.CREW_BANK,
-      element: <CrewBank />
+      element: <CrewBank />,
     },
     {
       path: ROUTES.MAIN_ROUTES.CREW_BOARD,
-      element: <CrewBoard />
+      element: <CrewBoard />,
     },
     {
       path: ROUTES.MAIN_ROUTES.CREW_BOSSES,
-      element: <CrewBosses />
+      element: <CrewBosses />,
     },
     {
       path: ROUTES.MAIN_ROUTES.CREW_PROFILE,
-      element: <CrewProfile />
+      element: <CrewProfile />,
     },
     {
       path: ROUTES.MAIN_ROUTES.CREW_MANAGE,
-      element: <CrewManage />
-    }
+      element: <CrewManage />,
+    },
+    { path: ROUTES.MAIN_ROUTES.EDIT_CREW, element: <CrewEdit /> },
   ],
 };

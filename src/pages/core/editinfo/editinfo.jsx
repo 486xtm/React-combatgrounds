@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Header, Layout, Menu } from "../../../common/components";
 import {
-  getUserInfo,
   updateAvatar,
   updateCharacterType,
   updateEmail,

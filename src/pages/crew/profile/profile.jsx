@@ -1,76 +1,56 @@
 import React, { useState, useEffect } from "react";
 import CrewLayout from "../layout/crew_layout";
 import styles from "../styles.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getCrewInfo } from "../../../api/crew";
+import { socketURL } from "../../../common/constant";
+
 const mockdata = [];
+
+function sliceString(str) {
+  // Check if the string length is less than or equal to 8
+  if (str.length <= 8) {
+    return str; // Return the original string if it's too short
+  }
+
+  // Slice the first 5 characters
+  const firstPart = str.slice(0, 5);
+  // Slice the last 3 characters
+  const lastPart = str.slice(-3);
+
+  // Combine the two parts
+  return firstPart + "..." + lastPart;
+}
+
 export const CrewProfile = () => {
   const [tab, setTab] = useState(0);
-  const memberList = [
-    {
-      name: "sealife",
-      networth: 22222,
-      rank: "Rank 1",
-    },
-    {
-      name: "sealasdfife",
-      networth: 22222,
-      rank: "Rank 1",
-    },
-    {
-      name: "sealife",
-      networth: 22222,
-      rank: "Rank 1",
-    },
-    {
-      name: "sealife",
-      networth: 22222,
-      rank: "Rank 1",
-    },
-    {
-      name: "sealife",
-      networth: 22222,
-      rank: "Rank 1",
-    },
-    {
-      name: "sealife",
-      networth: 22222,
-      rank: "Rank 1",
-    },
-    {
-      name: "",
-      networth: 0,
-      rank: "",
-    },
-    {
-      name: "",
-      networth: 0,
-      rank: "",
-    },
-    {
-      name: "",
-      networth: 0,
-      rank: "",
-    },
-    {
-      name: "",
-      networth: 0,
-      rank: "",
-    },
-  ];
+  const [memberList, setMemberList] = useState([]);
+  const dispatch = useDispatch();
 
-  function sliceString(str) {
-    // Check if the string length is less than or equal to 8
-    if (str.length <= 8) {
-      return str; // Return the original string if it's too short
-    }
+  useEffect(() => {
+    getCrewInfo(dispatch);
+  }, []);
 
-    // Slice the first 5 characters
-    const firstPart = str.slice(0, 5);
-    // Slice the last 3 characters
-    const lastPart = str.slice(-3);
+  const crewInfo = useSelector(({ crew }) => crew.info);
+  const onlinePlayers = useSelector(({ online }) => online.onlinePlayers);
 
-    // Combine the two parts
-    return firstPart + "..." + lastPart;
-  }
+  useEffect(() => {
+    if (!crewInfo) return;
+    setMemberList(
+      crewInfo.members.map((u) => ({
+        ...u.member,
+        online: onlinePlayers
+          ? !!onlinePlayers.find((x) => x._id === u.member._id)
+          : false,
+      }))
+    );
+  }, [crewInfo, onlinePlayers]);
+
+  useEffect(() => {
+    console.log("mem==>", memberList);
+  }, [memberList]);
+
   return (
     <CrewLayout title="Profile">
       <div className="flex flex-col w-full">
@@ -99,44 +79,51 @@ export const CrewProfile = () => {
             <div className="w-1/2 border-r-[1px] border-secondary-green">
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">LEADER</div>
-                <div className="w-[50%] py-1 text-white underline">Leader</div>
+                <div className="w-[50%] py-1 text-white underline">
+                  {crewInfo && crewInfo.leader ? crewInfo.leader.name : "---"}
+                </div>
               </div>
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">TOTAL MEMBERS</div>
-                <div className="w-[50%] text-white py-1">{mockdata.length}</div>
+                <div className="w-[50%] text-white py-1">
+                  {(crewInfo && crewInfo.members.length + 1) || "--"}
+                </div>
               </div>
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">AVERAGE MEMBER NET WORTH</div>
-                <div className="w-[50%] text-white py-1">26,950</div>
+                <div className="w-[50%] text-white py-1">
+                  {(crewInfo && crewInfo.averageNetworth.toLocaleString()) ||
+                    "---"}
+                </div>
               </div>
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">CREW NET WORTH</div>
-                <div className="w-[50%] text-white py-1">94,716</div>
+                <div className="w-[50%] text-white py-1">
+                  {(crewInfo && crewInfo.netWorth.toLocaleString()) || "---"}
+                </div>
               </div>
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">BANK</div>
-                <div className="w-[50%] text-white py-1">$2,040,857,326</div>
+                <div className="w-[50%] text-white py-1">
+                  {(crewInfo && `$${crewInfo.money.toLocaleString()}`) || "---"}
+                </div>
               </div>
               <div className="flex text-center items-center justify-center font-medium text-yellow-200  border-secondary-green mt-2">
-                <div className="w-[30%] py-1">RANKING SYSTEM</div>
-                <div className="w-[30%] py-1 leading-none text-white">
-                  Rank 1:
-                  <br />
-                  Rank 2:
-                  <br />
-                  Rank 3:
-                  <br />
-                  Rank 4:
-                  <br />
-                  Rank 5:
-                  <br />
+                <div className="w-[25%] py-1">RANKING SYSTEM</div>
+                <div className="w-[25%] py-1 leading-none text-white">
+                  <p>Rank 1:</p>
+                  <p>Rank 2:</p>
+                  <p>Rank 3:</p>
+                  <p>Rank 4:</p>
+                  <p>Rank 5:</p>
                 </div>
                 <div className="w-[40%] text-left py-1 leading-none text-white">
-                  sealife <br />
-                  sealife <br />
-                  sealife <br />
-                  sealife <br />
-                  sealife <br />
+                  {crewInfo &&
+                    crewInfo.roles.map((r, id) => (
+                      <>
+                        <p key={`tx_${id}`}>{r}</p>
+                      </>
+                    ))}
                 </div>
               </div>
             </div>
@@ -145,12 +132,16 @@ export const CrewProfile = () => {
                 <div className="w-full py-1">Description</div>
               </div>
               <div className="text-left flex break-all text-xs overflow-y-auto px-2 py-1 mb-3 h-[100px] font-medium text-white ">
-                {"This is Sealife's Crew , Battle king"}
+                {(crewInfo && crewInfo.description) || "---"}
               </div>
-              <div className="flex text-center h-[150px] items-center justify-center font-medium text-yellow-200 border-t-[1px] border-secondary-green">
+              <div className="flex text-center h-[150px] items-center justify-center font-medium text-yellow-200 border-t-[1px] border-secondary-green overflow-hidden">
                 <img
-                  className="w-full h-auto"
-                  src="/crew/crewpicdef.gif"
+                  className="w-auto h-[150px]"
+                  src={
+                    crewInfo && crewInfo.avatar
+                      ? `${socketURL}/${crewInfo.avatar}`
+                      : "/crew/crewpicdef.gif"
+                  }
                   alt="img"
                 />
               </div>
@@ -162,21 +153,58 @@ export const CrewProfile = () => {
             <div className="w-1/5 flex flex-col items-center justify-center h-[250px] ">
               <div className="relative shadow-glow border-yellow-200 border-[1px] flex flex-col justify-center items-center rounded-xl overflow-hidden bg-dark-primary">
                 <img
-                  src="/avatar/avatar.png"
-                  className=" mx-auto z-20 w-[120px] h-[120px] grayscale"
+                  src={
+                    crewInfo && crewInfo.leader.avatar
+                      ? `${socketURL}/${crewInfo.leader.avatar}`
+                      : "/avatar/default.gif"
+                  }
+                  className={`mx-auto z-20 h-[220px] w-auto ${
+                    crewInfo &&
+                    !!onlinePlayers.find((x) => x._id === crewInfo.leader._id)
+                      ? ""
+                      : "grayscale"
+                  }`}
                 />
                 <div className="font-medium text-white my-1">LEADER</div>
               </div>
             </div>
             <div className="flex-1 flex p-2 h-[250px] border-[1px] rounded-lg flex-wrap justify-between gap-y-1">
-              {memberList.map((val, indes) => (
-                <div className="w-[19%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 h-[115px] rounded-lg overflow-hidden flex flex-col items-center">
-                  <img className={`h-[85px] w-[85px] ${val.name ? "": "grayscale"}`} src={val.name ? "/avatar/avatar.png" : "/avatar/default.png"} />
-                  <div className="font-medium text-white text-xs mt-1">
-                    {val.name ? sliceString(val.name) + (" - R1") : "------"}
+              {memberList &&
+                memberList.map((m, idx) => (
+                  <div
+                    key={`mem_${idx}`}
+                    className="w-[19%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 h-[115px] rounded-lg overflow-hidden flex flex-col items-center"
+                  >
+                    <img
+                      className={`h-[85px] w-full border-b border-yellow-200 ${
+                        m.online ? "" : "grayscale"
+                      }`}
+                      src={
+                        m.avatar
+                          ? `${socketURL}/${m.avatar}`
+                          : "/avatar/default.gif"
+                      }
+                    />
+                    <div className="font-medium text-white text-xs mt-1">
+                      {m.name ? sliceString(m.name) + " - R1" : "------"}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              {memberList &&
+                new Array(10 - memberList.length).fill().map((x, idx) => (
+                  <div
+                    key={`mem_non_${idx}`}
+                    className="w-[19%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 h-[115px] rounded-lg overflow-hidden flex flex-col items-center"
+                  >
+                    <img
+                      src="/avatar/default.gif"
+                      className={`h-[85px] w-full border-b border-yellow-200`}
+                    />
+                    <div className="font-medium text-white text-xs mt-1">
+                      {"------"}
+                    </div>
+                  </div>
+                ))}
             </div>
           </div>
         )}

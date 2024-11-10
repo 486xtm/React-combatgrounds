@@ -1,18 +1,29 @@
 import React, { useState, useRef, useEffect } from "react";
 import CrewLayout from "../layout/crew_layout";
 import styles from "../styles.module.css"; // Ensure this file includes the animation
+import { createCrewChat, getCrewBoard } from "../../../api/crew";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { socketURL } from "../../../common/constant";
 
 export const CrewBoard = () => {
   const [text, setText] = useState("");
-  const [messages, setMessages] = useState([]);
   const chatContainerRef = useRef(null);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const board = useSelector(({ crew }) => crew.board);
+
   const handleSend = () => {
-    if (text.trim()) { // Ensure non-empty messages
-      setMessages((prevMessages) => [text, ...prevMessages]);
-      setText("");
-    }
+    if (!text) return;
+    createCrewChat({ content: text }, dispatch);
+    setText("");
   };
+
+  useEffect(() => {
+    getCrewBoard(dispatch);
+  }, []);
 
   useEffect(() => {
     if (chatContainerRef.current) {
@@ -21,7 +32,7 @@ export const CrewBoard = () => {
         behavior: "smooth", // Smooth scroll to the bottom
       });
     }
-  }, [messages]);
+  }, [board]);
 
   return (
     <CrewLayout title="Board">
@@ -30,26 +41,41 @@ export const CrewBoard = () => {
           ref={chatContainerRef}
           className="text-white border-[1px] p-2 gap-2 border-secondary-green rounded-md mx-2 mt-2 h-[300px] overflow-y-auto flex flex-col-reverse" // Reverse the order of messages
         >
-          {messages.map((message, index) => (
-            <div className="flex gap-2" key={index}>
-            <span className={` max-w-[80%] break-words ml-auto py-1 px-5 bg-secondary-green rounded-xl`}>
-              {message}
-            </span>
-            <img className="w-[30px] h-[30px] rounded-[50%]" src = "/avatar/avatar.png" />
-            </div>
-          ))}
+          {board &&
+            board.map((message, index) => (
+              <div className="flex gap-2" key={index}>
+                <span
+                  className={` max-w-[80%] break-words ml-auto py-1 px-5 bg-secondary-green rounded-xl`}
+                >
+                  {message.content}
+                </span>
+                {message.author.avatar ? (
+                  <img
+                    className="w-[30px] h-[30px] rounded-[50%]"
+                    src={`${socketURL}/${message.author.avatar}`}
+                  />
+                ) : (
+                  <div className="w-[30px] h-[30px] rounded-[50%] flex text-center items-center">
+                    <span className="text-xl">
+                      {message.author.name[0].toUpperCase()}
+                    </span>
+                  </div>
+                )}
+              </div>
+            ))}
         </div>
       </div>
-      <div className="absolute ml-3 mt-[6px] flex gap-2">
-        <textarea
+      <div className="absolute ml-3 mt-[6px] flex gap-2 h-[30px]">
+        <input
           placeholder="Type a message..."
-          className="w-[300px] text-xs  h-[45px] px-[7px] py-[3px] rounded-lg bg-transparent border-yellow-200 border-[1px] shadow-inner shadow-[rgba(255,255,255,0.3)]"
+          className="w-[300px] text-xs resize-none h-[30px] px-[7px] py-[3px] rounded-lg bg-transparent border-yellow-200 border-[1px] shadow-inner shadow-[rgba(255,255,255,0.3)]"
           onChange={(ev) => setText(ev.target.value)}
           value={text}
-        ></textarea>
+          rows={1}
+        />
         <button
           onClick={handleSend}
-          className="rounded-lg border-2 px-4  border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white shadow-inherit"
+          className="rounded-lg border-2 px-4 border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white shadow-inherit"
         >
           Send
         </button>

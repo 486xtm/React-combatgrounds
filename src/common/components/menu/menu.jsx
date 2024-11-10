@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./styles.module.css";
@@ -10,6 +10,8 @@ import { ROUTES } from "../../constant";
 export const Menu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const user = useSelector(({ user }) => user.user);
 
   const unreadMessagesCount = useSelector(({ mail }) => mail.unread);
   return (
@@ -112,22 +114,34 @@ export const Menu = () => {
         <Link to={ROUTES.MAIN_ROUTES.CREW_ADS} className={styles["link"]}>
           - <u>CREW_ADS</u>
         </Link>
-
-        <Link to={ROUTES.MAIN_ROUTES.CREW_PROFILE} className={styles["link"]}>
-          - <u>CREW_PROFILE</u>
-        </Link>
-        <Link to={ROUTES.MAIN_ROUTES.CREW_MANAGE} className={styles["link"]}>
-          - <u>CREATE_MANAGE</u>
-        </Link>
-        <Link to={ROUTES.MAIN_ROUTES.CREW_BANK} className={styles["link"]}>
-          - <u>CREW_BANK</u>
-        </Link>
-        <Link to={ROUTES.MAIN_ROUTES.CREW_BOSSES} className={styles["link"]}>
-          - <u>CREW_BOSSES</u>
-        </Link>
-        <Link to={ROUTES.MAIN_ROUTES.CREW_BOARD} className={styles["link"]}>
-          - <u>CREW_BOARD (0)</u>
-        </Link>
+        {user && user.crew && (
+          <>
+            <Link
+              to={ROUTES.MAIN_ROUTES.CREW_PROFILE}
+              className={styles["link"]}
+            >
+              - <u>CREW_PROFILE</u>
+            </Link>
+            <Link
+              to={ROUTES.MAIN_ROUTES.CREW_MANAGE}
+              className={styles["link"]}
+            >
+              - <u>CREATE_MANAGE</u>
+            </Link>
+            <Link to={ROUTES.MAIN_ROUTES.CREW_BANK} className={styles["link"]}>
+              - <u>CREW_BANK</u>
+            </Link>
+            <Link
+              to={ROUTES.MAIN_ROUTES.CREW_BOSSES}
+              className={styles["link"]}
+            >
+              - <u>CREW_BOSSES</u>
+            </Link>
+            <Link to={ROUTES.MAIN_ROUTES.CREW_BOARD} className={styles["link"]}>
+              - <u>CREW_BOARD (0)</u>
+            </Link>
+          </>
+        )}
       </div>
 
       <div className="flex flex-col">

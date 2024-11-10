@@ -6,3 +6,4 @@ export * from './bank/bank';
 export * from './manage/manage';
 export * from './board/board';
 export * from './boss/boss';
+export * from './edit/edit';

@@ -1,6 +1,6 @@
 import axios from "./axios";
 
-import { setOther, setRankedUsers, setUser } from "../redux/userSlice";
+import { setOther, setRankingData, setUser } from "../redux/userSlice";
 import { setUpdateError } from "../redux/errorSlice";
 import { login } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
@@ -20,10 +20,10 @@ export const getUserInfo = async (dispatch, navigate) => {
   }
 };
 
-export const getRankedUsers = async (dispatch) => {
+export const getRankingData = async (dispatch) => {
   try {
     const res = await axios.get(`${basicURL}/user/ranked_users`);
-    dispatch(setRankedUsers(res.data));
+    dispatch(setRankingData(res.data));
   } catch (err) {
     dispatch(setUpdateError(err.message));
   }
@@ -239,4 +239,3 @@ export const getUserById = async (data, dispatch) => {
     dispatch(setUpdateError(err.message));
   }
 };
-

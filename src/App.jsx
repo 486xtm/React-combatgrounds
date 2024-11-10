@@ -42,7 +42,7 @@ import { signOut } from "./api/auth";
 import { socketURL } from "./common/constant";
 import { setUnreadMessagesCount } from "./redux/mailSlice";
 import { routes } from "./common/route";
-
+import New from "./pages/auth/New/New";
 export const socket = io(socketURL);
 
 const ProtectedRoute = React.memo(({ children }) => {
@@ -149,6 +149,7 @@ const App = () => {
             element={<ProtectedRoute>{route.element}</ProtectedRoute>}
           />
         ))}
+        <Route path="/new" element={<New />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
