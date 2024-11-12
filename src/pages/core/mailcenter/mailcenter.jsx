@@ -12,11 +12,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { addBlockUser, removeBlockUser } from "../../../api/user";
 import { socket } from "../../../App";
+
 export const MailCenter = () => {
   const mailType = localStorage.getItem("MAILTYPE") || "Inbox";
+  const preReceiver = localStorage.getItem("RECEIVER") || "";
   const [viewType, setViewType] = useState(mailType);
-
-  const [receiver, setReceiver] = useState(null);
+  const [receiver, setReceiver] = useState(preReceiver);
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("");
   const [messages, setMessages] = useState([]);
@@ -87,7 +88,13 @@ export const MailCenter = () => {
   }, [viewType]);
 
   useEffect(() => {
-    setMessages(viewType === "Inbox" ? (viewUnreadMessages ? receivedMessage.filter((m) => !m.read) : receivedMessage) : sentMessage);
+    setMessages(
+      viewType === "Inbox"
+        ? viewUnreadMessages
+          ? receivedMessage.filter((m) => !m.read)
+          : receivedMessage
+        : sentMessage
+    );
     setCheckedItems([]);
   }, [viewType, receivedMessage, sentMessage, viewUnreadMessages]);
 
@@ -155,7 +162,9 @@ export const MailCenter = () => {
               <u>clear all</u>
             </span>
             <button onClick={handleDelete}>Delete</button>
-            <button onClick={ToggleViewMessages} className="w-[46px]">{viewUnreadMessages ? 'All' : 'Unread'}</button>
+            <button onClick={ToggleViewMessages} className="w-[46px]">
+              {viewUnreadMessages ? "All" : "Unread"}
+            </button>
           </div>
         </div>
         {viewType !== "Compose" ? (

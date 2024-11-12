@@ -7,3 +7,13 @@ export const getGradeString = (grade) => {
   if (grade === 5) return "General";
   return "None";
 };
+
+export const getColorSchemaByCharacterType = (characterType) => {
+  return characterType === "Soldier"
+    ? "dark-primary"
+    : characterType === "Navyseal"
+    ? "dark-navyseal"
+    : characterType === "Terrorist"
+    ? "dark-terrorist"
+    : "primary";
+};

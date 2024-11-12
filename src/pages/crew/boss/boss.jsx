@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import CrewLayout from "../layout/crew_layout";
 import { useDispatch, useSelector } from "react-redux";
 import { attackBoss, getBosses } from "../../../api/crew";
+import { socket } from "../../../App";
 
 export const CrewBosses = () => {
   const bosses = useSelector(({ crew }) => crew.bosses);
@@ -9,7 +10,7 @@ export const CrewBosses = () => {
   const dispatch = useDispatch();
 
   const handleAttack = (boss_id) => {
-    attackBoss({ boss_id }, dispatch);
+    attackBoss({ boss_id }, dispatch, socket);
   };
 
   useEffect(() => {

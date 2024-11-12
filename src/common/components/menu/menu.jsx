@@ -113,7 +113,10 @@ export const Menu = () => {
         {user && user.crew ? (
           <>
             <Link
-              to={ROUTES.MAIN_ROUTES.CREW_PROFILE}
+              to={ROUTES.MAIN_ROUTES.CREW_PROFILE.replace(
+                ":crew_id",
+                user.crew
+              )}
               className={styles["link"]}
             >
               - <u>CREW_PROFILE</u>
@@ -122,7 +125,7 @@ export const Menu = () => {
               to={ROUTES.MAIN_ROUTES.CREW_MANAGE}
               className={styles["link"]}
             >
-              - <u>CREATE_MANAGE</u>
+              - <u>MANAGE CREW</u>
             </Link>
             <Link to={ROUTES.MAIN_ROUTES.CREW_BANK} className={styles["link"]}>
               - <u>CREW_BANK</u>

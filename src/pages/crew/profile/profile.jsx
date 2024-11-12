@@ -2,38 +2,31 @@ import React, { useState, useEffect } from "react";
 import CrewLayout from "../layout/crew_layout";
 import styles from "../styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getCrewInfo } from "../../../api/crew";
 import { socketURL } from "../../../common/constant";
 
-const mockdata = [];
-
 function sliceString(str) {
-  // Check if the string length is less than or equal to 8
   if (str.length <= 8) {
     return str; // Return the original string if it's too short
   }
-
-  // Slice the first 5 characters
   const firstPart = str.slice(0, 5);
-  // Slice the last 3 characters
   const lastPart = str.slice(-3);
-
-  // Combine the two parts
   return firstPart + "..." + lastPart;
 }
 
 export const CrewProfile = () => {
   const [tab, setTab] = useState(0);
   const [memberList, setMemberList] = useState([]);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    getCrewInfo(dispatch);
-  }, []);
-
   const crewInfo = useSelector(({ crew }) => crew.info);
   const onlinePlayers = useSelector(({ online }) => online.onlinePlayers);
+
+  const dispatch = useDispatch();
+  const { crew_id } = useParams();
+
+  useEffect(() => {
+    getCrewInfo({ crew_id }, dispatch);
+  }, []);
 
   useEffect(() => {
     if (!crewInfo) return;
@@ -89,20 +82,24 @@ export const CrewProfile = () => {
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">AVERAGE MEMBER NET WORTH</div>
                 <div className="w-[50%] text-white py-1">
-                  {(crewInfo && Number(crewInfo.averageNetworth).toLocaleString()) ||
+                  {(crewInfo &&
+                    Number(crewInfo.averageNetworth).toLocaleString()) ||
                     "---"}
                 </div>
               </div>
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">CREW NET WORTH</div>
                 <div className="w-[50%] text-white py-1">
-                  {(crewInfo && Number(crewInfo.netWorth).toLocaleString()) || "---"}
+                  {(crewInfo && Number(crewInfo.netWorth).toLocaleString()) ||
+                    "---"}
                 </div>
               </div>
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">BANK</div>
                 <div className="w-[50%] text-white py-1">
-                  {(crewInfo && `$${Number(crewInfo.money).toLocaleString()}`) || "---"}
+                  {(crewInfo &&
+                    `$${Number(crewInfo.money).toLocaleString()}`) ||
+                    "---"}
                 </div>
               </div>
               <div className="flex text-center items-center justify-center font-medium text-yellow-200  border-secondary-green mt-2">
@@ -116,11 +113,7 @@ export const CrewProfile = () => {
                 </div>
                 <div className="w-[40%] text-left py-1 leading-none text-white">
                   {crewInfo &&
-                    crewInfo.roles.map((r, id) => (
-                      <>
-                        <p key={`tx_${id}`}>{r}</p>
-                      </>
-                    ))}
+                    crewInfo.roles.map((r, id) => <p key={`tx_${id}`}>{r}</p>)}
                 </div>
               </div>
             </div>
@@ -183,7 +176,9 @@ export const CrewProfile = () => {
                       }
                     />
                     <div className="font-medium text-white text-xs mt-1">
-                      {m.name ? sliceString(m.name) + ` - R${m.role}` : "------"}
+                      {m.name
+                        ? sliceString(m.name) + ` - R${m.role}`
+                        : "------"}
                     </div>
                   </div>
                 ))}

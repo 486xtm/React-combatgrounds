@@ -12,7 +12,7 @@ export const createCrew = async (data, dispatch, navigate) => {
     dispatch(setUser(user));
     dispatch(setToast({ type: "success", msg: res.data.msg }));
     // setTimeout(() => {
-     navigate("/crew_profile");
+    navigate(`/crew_profile/${user.crew}`);
     // },2000)
   } catch (err) {
     dispatch(
@@ -109,12 +109,13 @@ export const getBosses = async (dispatch) => {
   }
 };
 
-export const attackBoss = async (data, dispatch) => {
+export const attackBoss = async (data, dispatch, socket) => {
   try {
     const res = await axios.post(`${basicURL}/crew/attack_boss`, data);
-    const { bosses } = res.data;
+    const { bosses, rewards, _msg, crew_members } = res.data;
     dispatch(setBosses(bosses));
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    socket.emit("attack_boss", { crew_members, msg: _msg, rewards });
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -138,7 +139,7 @@ export const createInvite = async (data, dispatch, socket) => {
   try {
     const res = await axios.post(`${basicURL}/crew/create_invites`, data);
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
-    socket.emit("send invite request", {...data, from: res.data.crew_name});
+    socket.emit("send invite request", { ...data, from: res.data.crew_name });
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -153,7 +154,7 @@ export const dealInvite = async (data, dispatch, navigate) => {
     dispatch(setInvites(invites));
     dispatch(setUser(user));
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
-    navigate("/crew_profile");
+    navigate(`/crew_profile/${user.crew}`);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -216,9 +217,11 @@ export const uplaodAvatar = async (data, dispatch) => {
   }
 };
 
-export const getCrewInfo = async (dispatch) => {
+export const getCrewInfo = async (data, dispatch) => {
   try {
-    const res = await axios.get(`${basicURL}/crew/crew_info`);
+    const res = await axios.get(
+      `${basicURL}/crew/crew_info?crew_id=${data.crew_id}`
+    );
     const { info, crewNetworth, averageNetworth } = res.data;
     dispatch(setInfo({ ...info, netWorth: crewNetworth, averageNetworth }));
   } catch (err) {
@@ -243,7 +246,7 @@ export const createCrewChat = async (data, dispatch, socket) => {
   try {
     const res = await axios.post(`${basicURL}/crew/crew_board`, data);
     const { board, chat_members } = res.data;
-    socket.emit("crew_chat", {chat_members} );
+    socket.emit("crew_chat", { chat_members });
     dispatch(setBoard(board));
   } catch (err) {
     setToast({ type: "error", msg: err.response?.data.msg || err.message });
@@ -271,6 +274,8 @@ export const updateRole = async (data, dispatch) => {
     dispatch(setMembers(members));
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
   } catch (err) {
-    dispatch(setToast({ type: "error", msg: err.response?.data.msg || err.message}));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
   }
-}
+};

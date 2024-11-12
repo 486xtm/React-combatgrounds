@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CrewLayout from "../layout/crew_layout";
 import styles from "../styles.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../common/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { dealInvite, getInvites } from "../../../api/crew";
@@ -46,7 +46,15 @@ export const Invites = () => {
                   <div className="w-[20%] py-1 text-xs">
                     {moment(invite.updatedAt).format("MMMM Do, YYYY, h:mm A")}
                   </div>
-                  <div className="w-[30%] py-1">{invite.crew.name}</div>
+                  <Link
+                    className="w-[30%] py-1 font-bold underline"
+                    to={ROUTES.MAIN_ROUTES.CREW_PROFILE.replace(
+                      ":crew_id",
+                      invite.crew._id
+                    )}
+                  >
+                    {invite.crew.name}
+                  </Link>
                   <div className="w-[30%] py-1">
                     {invite.crew.roles[invite.role]}
                   </div>

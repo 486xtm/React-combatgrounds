@@ -19,8 +19,15 @@ const userSlice = createSlice({
     setRankingData: (state, action) => {
       state.rankedData = action.payload;
     },
+    handleBossAttack: (state, action) => {
+      state.user = {
+        ...state.user,
+        recruits: state.user.recruits + action.payload,
+      };
+    },
   },
 });
 
-export const { setUser, setOther, setRankingData } = userSlice.actions;
+export const { setUser, setOther, setRankingData, handleBossAttack } =
+  userSlice.actions;
 export default userSlice.reducer;
