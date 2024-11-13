@@ -21,7 +21,7 @@ import { socketURL } from "./common/constant";
 import { setUnreadMessagesCount } from "./redux/mailSlice";
 import { routes } from "./common/route";
 import New from "./pages/auth/New/New";
-
+import AdminLayout from './common/components/admin_layout'
 import {
   setPendingInviteList,
   setUnreadCrewChatCount,
@@ -158,6 +158,17 @@ const App = () => {
             element={<ProtectedRoute>{route.element}</ProtectedRoute>}
           />
         ))}
+        
+        {
+          routes.admin.map((route,id) => (
+            <Route
+              exact
+              path={route.path}
+              key={`admin_route_${id}`}
+              element = {<AdminLayout>{route.element}</AdminLayout>}
+              />
+          ))
+        }
         <Route path="/new" element={<New />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

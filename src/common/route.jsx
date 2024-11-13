@@ -35,6 +35,7 @@ import {
   CrewManage,
   CrewEdit,
 } from "../pages/crew";
+import {AdminHome, AdminUserList, AdminCrewList} from '../pages/admin';
 import { ROUTES } from "./constant";
 
 export const routes = {
@@ -55,6 +56,10 @@ export const routes = {
       path: ROUTES.AUTH_ROUTES.FAQ,
       element: <FAQ />,
     },
+    {
+      path: "/",
+      element: <SignIn />
+    }
   ],
   main: [
     {
@@ -171,4 +176,18 @@ export const routes = {
     },
     { path: ROUTES.MAIN_ROUTES.EDIT_CREW, element: <CrewEdit /> },
   ],
+  admin: [
+    {
+      path: ROUTES.ADMIN_ROUTES.HOME,
+      element : <AdminHome />
+    },
+    {
+      path: ROUTES.ADMIN_ROUTES.USER_LIST,
+      element : <AdminUserList/>
+    },
+    {
+      path: ROUTES.ADMIN_ROUTES.CREW_LIST,
+      element: <AdminCrewList />
+    }
+  ]
 };
