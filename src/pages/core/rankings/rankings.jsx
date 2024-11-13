@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { getRankingData } from "../../../api/user";
+import { ROUTES } from "../../../common/constant";
 
 export const Rankings = ({}) => {
   const [type, setType] = useState("");
@@ -117,8 +118,16 @@ export const Rankings = ({}) => {
                           <span className="text-white">{id + 1}. </span>
                           <u
                             onClick={() => {
-                              if (type && type !== "crew")
+                              if (type && type !== "crew") {
                                 navigate("/profile", { state: item });
+                              } else if (type === "crew") {
+                                navigate(
+                                  ROUTES.MAIN_ROUTES.CREW_PROFILE.replace(
+                                    ":crew_id",
+                                    item._id
+                                  )
+                                );
+                              }
                             }}
                           >
                             {item.name}

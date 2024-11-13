@@ -20,9 +20,8 @@ export const signIn = async (data, dispatch) => {
       "EXPIRATION_DATE",
       new Date().getTime() + 5 * 60 * 1000
     );
-    
-    dispatch(login());
 
+    dispatch(login());
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.res?.data.msg || err.message })

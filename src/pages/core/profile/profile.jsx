@@ -2,17 +2,22 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Header, Layout, Menu } from "../../../common/components";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Modal from "../../../common/components/modal/modal";
 import YouTube from "react-youtube";
 import Hover from "../../../common/components/hover/hover";
-import { getGradeString } from "../../../common/utils";
+import {
+  getColorSchemaByCharacterType,
+  getGradeString,
+} from "../../../common/utils";
 import { getUserById } from "../../../api/user";
-import { socketURL } from "../../../common/constant";
+import { ROUTES, socketURL } from "../../../common/constant";
+import { getCrewInfo } from "../../../api/crew";
+
 export const Profile = () => {
-  const [imageSrc, setImageSrc] = useState(null);
   const location = useLocation();
   const otherUser = location.state;
+
   const currentUser = useSelector(({ user }) => user.user);
   const otherUserInfoAll = useSelector(({ user }) => user.other);
   const user = otherUser ? otherUserInfoAll || otherUser : currentUser;
@@ -25,6 +30,7 @@ export const Profile = () => {
   const [selectedItem, setSelectedItem] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [hoverType, setHoverType] = useState(1);
+
   const handleMouseOver = (item, type) => {
     setShowHover(true);
     setItemInfo(item);
@@ -40,34 +46,7 @@ export const Profile = () => {
   const closeModal = () => {
     setShowModal(false);
   };
-  useEffect(() => {
-    if (!user) return;
-    const fetchImage = async () => {
-      try {
-        const response = await fetch(`${socketURL}/${user.avatar}`, {
-          method: "GET",
-          headers: {
-            "Cross-Origin-Resource-Policy": "cross-origin", // or 'same-site'
-          },
-          mode: "cors", // Ensure CORS mode is enabled
-        });
 
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const imageBlob = await response.blob();
-        const imageObjectURL = URL.createObjectURL(imageBlob);
-        setImageSrc(imageObjectURL);
-      } catch (error) {
-        console.error(
-          "There has been a problem with your fetch operation:",
-          error
-        );
-      }
-    };
-    if (user.avatar) fetchImage();
-  }, [user.avatar]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -120,6 +99,20 @@ export const Profile = () => {
                   height="40"
                   className="my-auto absolute top-1/2 transform -translate-y-1/2"
                 />
+              ) : null}
+              {user && currentUser && user._id !== currentUser._id ? (
+                <div
+                  onClick={() => {
+                    localStorage.setItem("MAILTYPE", "Compose");
+                    localStorage.setItem("RECEIVER", user && user.name);
+                    navigate("/mailcenter");
+                  }}
+                  className={`my-auto cursor-pointer absolute top-1/2 right-0 px-2 transform -translate-y-1/2 text-white text-sm font-bold bg-${getColorSchemaByCharacterType(
+                    user.characterType
+                  )}`}
+                >
+                  Message this player
+                </div>
               ) : null}
               <img
                 src={`/images/${
@@ -339,7 +332,7 @@ export const Profile = () => {
               >
                 MEDALS
               </div>
-              {user && user.medals && (
+              {user && user.medals ? (
                 <div className="flex w-[80%] ml-[10%]">
                   <div className="w-1/3 flex flex-col gap-4">
                     {user.medals
@@ -355,6 +348,7 @@ export const Profile = () => {
                           onMouseLeave={() => handleMouseLeave()}
                           key={`medal_${item.medal.type}_${index}`}
                           src={`/images/medals/medal${item.medal.id}.png`}
+                          className="cursor-pointer"
                         />
                       ))}
                   </div>
@@ -372,6 +366,7 @@ export const Profile = () => {
                           onMouseLeave={() => handleMouseLeave()}
                           key={`medal_${item.medal.type}_${index}`}
                           src={`/images/medals/medal${item.medal.id}.png`}
+                          className="cursor-pointer"
                         />
                       ))}
                   </div>
@@ -389,11 +384,12 @@ export const Profile = () => {
                           onMouseLeave={() => handleMouseLeave()}
                           key={`medal_${item.medal.type}_${index}`}
                           src={`/images/medals/medal${item.medal.id}.png`}
+                          className="cursor-pointer"
                         />
                       ))}
                   </div>
                 </div>
-              )}
+              ) : null}
             </div>
             <div className="flex flex-col px-3 py-2 flex-1">
               <div
@@ -427,7 +423,11 @@ export const Profile = () => {
               </div>
               <div>
                 <img
-                  src={imageSrc ? imageSrc : "/pics/avatar.gif"}
+                  src={
+                    user && user.avatar
+                      ? `${socketURL}/${user.avatar}`
+                      : "/pics/avatar.gif"
+                  }
                   alt="avatar"
                   className="mx-auto"
                 />
@@ -465,7 +465,18 @@ export const Profile = () => {
                 CREW
               </div>
               <p className="text-center text-white font-bold text-sm">
-                <span>{user && user.name} is</span><span> {user && user.crew ? `in ${user.crew.name}` : `not in a crew`} </span><span>at the moment</span>
+                {user && user.crew ? (
+                  <Link
+                    to={ROUTES.MAIN_ROUTES.CREW_PROFILE.replace(
+                      ":crew_id",
+                      user.crew
+                    )}
+                  >
+                    {user.crew_rank}
+                  </Link>
+                ) : (
+                  user && <span>{user.name} is not in crew at the moment</span>
+                )}
               </p>
               <div
                 className={`my-1 ${

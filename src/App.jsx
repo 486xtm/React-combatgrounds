@@ -1,39 +1,17 @@
 import { useEffect } from "react";
-import React, { useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   useNavigate,
 } from "react-router-dom";
-import SignIn from "./pages/auth/SignInPage/SignIn";
-import SignUp from "./pages/auth/SignUpPage/SignUp";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
-import { ChooseHelper } from "./pages/core/choosehelper/choosehelper";
 import io from "socket.io-client";
-import {
-  AttackLog,
-  EditInfo,
-  HallOfFame,
-  HeadQuarter,
-  NukeCountry,
-  Profile,
-  Rankings,
-  StatMisc,
-  MailCenter,
-  FAQ,
-  BattleField,
-  RaiseFund,
-  HomeLeave,
-  Training,
-  UserGuide,
-  BattleFieldMap,
-  BattleFieldRegion,
-  Shop,
-  OnlinePlayers,
-} from "./pages/core";
+
 import NotFound from "./pages/NotFound";
+
 import { getUserInfo } from "./api/user";
 import { useToast } from "./ToastProvider";
 import { setToast } from "./redux/toastSlice";
@@ -43,7 +21,12 @@ import { socketURL } from "./common/constant";
 import { setUnreadMessagesCount } from "./redux/mailSlice";
 import { routes } from "./common/route";
 import New from "./pages/auth/New/New";
-import { setPendingInviteList,setUnreadCrewChatCount } from "./redux/crewSlice";
+
+import {
+  setPendingInviteList,
+  setUnreadCrewChatCount,
+} from "./redux/crewSlice";
+import { handleBossAttack } from "./redux/userSlice";
 export const socket = io(socketURL);
 
 const ProtectedRoute = React.memo(({ children }) => {
@@ -80,8 +63,10 @@ const App = () => {
   const user = useSelector(({ user }) => user.user);
   const { showError, showSuccess, showInfo } = useToast();
   const unreadMessagesCount = useSelector(({ mail }) => mail.unread);
-  const pendingInviteList = useSelector(( {crew}) => crew.pendingInviteList);
-  const unreadCrewChatCount = useSelector(({ crew }) => crew.unreadCrewChatCount)
+  const pendingInviteList = useSelector(({ crew }) => crew.pendingInviteList);
+  const unreadCrewChatCount = useSelector(
+    ({ crew }) => crew.unreadCrewChatCount
+  );
 
   useEffect(() => {
     socket.on("onlinePlayer", (userList) => {
@@ -99,33 +84,41 @@ const App = () => {
         if (window.location.pathname === `/battlefield/${data.region_id}`) {
           setTimeout(() => {
             window.location.reload();
-          },500);
+          }, 500);
         }
       }
-      if(data.ambushType === 2) {
+      if (data.ambushType === 2) {
         setTimeout(() => {
           window.location.reload();
-        },500);
+        }, 500);
       }
     });
-
     //
     socket.on("receive_invite", (data) => {
       dispatch(
-        setToast({ type: "info", msg: `You've got invited to ${data.from} as Rank${data.role}` })
+        setToast({
+          type: "info",
+          msg: `You've got invited to ${data.from} as Rank${data.role}`,
+        })
       );
       dispatch(setPendingInviteList((pendingInviteList || 0) + 1));
     });
-
-
     socket.on("receive_chat", () => {
       dispatch(setUnreadCrewChatCount((unreadCrewChatCount || 0) + 1));
+    });
+    socket.on("attack_boss", (data) => {
+      const { rewards, msg } = data;
+      dispatch(setToast({ type: "success", msg }));
+      dispatch(handleBossAttack(rewards));
     });
     //
     return () => {
       socket.off("onlinePlayer");
       socket.off("receive message");
       socket.off("_ambush");
+      socket.off("attack_boss");
+      socket.off("receive_chat");
+      socket.off("receive_invite");
     };
   }, [dispatch]);
 
@@ -154,7 +147,6 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<SignIn />} />
         {routes.auth.map((route, id) => (
           <Route exact {...route} key={`auth_route_${id}`} />
         ))}
