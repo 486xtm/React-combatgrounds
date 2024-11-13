@@ -332,7 +332,7 @@ export const Profile = () => {
               >
                 MEDALS
               </div>
-              {user && user.medals && (
+              {user && user.medals ? (
                 <div className="flex w-[80%] ml-[10%]">
                   <div className="w-1/3 flex flex-col gap-4">
                     {user.medals
@@ -348,6 +348,7 @@ export const Profile = () => {
                           onMouseLeave={() => handleMouseLeave()}
                           key={`medal_${item.medal.type}_${index}`}
                           src={`/images/medals/medal${item.medal.id}.png`}
+                          className="cursor-pointer"
                         />
                       ))}
                   </div>
@@ -365,6 +366,7 @@ export const Profile = () => {
                           onMouseLeave={() => handleMouseLeave()}
                           key={`medal_${item.medal.type}_${index}`}
                           src={`/images/medals/medal${item.medal.id}.png`}
+                          className="cursor-pointer"
                         />
                       ))}
                   </div>
@@ -382,11 +384,12 @@ export const Profile = () => {
                           onMouseLeave={() => handleMouseLeave()}
                           key={`medal_${item.medal.type}_${index}`}
                           src={`/images/medals/medal${item.medal.id}.png`}
+                          className="cursor-pointer"
                         />
                       ))}
                   </div>
                 </div>
-              )}
+              ) : null}
             </div>
             <div className="flex flex-col px-3 py-2 flex-1">
               <div

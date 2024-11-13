@@ -66,6 +66,10 @@ export const routes = {
       element: <HeadQuarter />,
     },
     {
+      path: ROUTES.MAIN_ROUTES.HOF_ID,
+      element: <HallOfFame />,
+    },
+    {
       path: ROUTES.MAIN_ROUTES.HOF,
       element: <HallOfFame />,
     },

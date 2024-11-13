@@ -21,6 +21,7 @@ export const ROUTES = {
   MAIN_ROUTES: {
     CHOOSE_HELPER: "/choosehelper",
     HEADQUARTER: "/headquarter",
+    HOF_ID: "/hof/:roundId",
     HOF: "/hof",
     RANKING: "/ranking",
     PROFILE: "/profile",

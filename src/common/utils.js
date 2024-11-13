@@ -17,3 +17,17 @@ export const getColorSchemaByCharacterType = (characterType) => {
     ? "dark-terrorist"
     : "primary";
 };
+
+export const formattedDate = (date) => {
+  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+};
+
+export const pagination = (data) => {
+  const { totalPage, curPage } = data;
+  let pages = [];
+  for (let i = -2; i < 3; i++) {
+    const npage = Number(curPage) + i;
+    if (npage > 0 && npage < totalPage) pages = [...pages, npage];
+  }
+  return pages;
+};

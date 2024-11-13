@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles.module.css";
-import { Header, Layout, Menu } from "../../../common/components";
+import { Layout } from "../../../common/components";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { getRoundLog } from "../../../api/hof";
+import { formattedDate, pagination } from "../../../common/utils";
+import { ROUTES } from "../../../common/constant";
 
 export const HallOfFame = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { roundId } = useParams();
+  const hofData = useSelector(({ round }) => round.hofData);
+
+  useEffect(() => {
+    getRoundLog({ roundId }, dispatch, navigate);
+  }, [roundId]);
+
   return (
     <Layout currentActiveTab={"hall-of-fame"}>
       <div className="flex flex-col flex-1">
@@ -17,13 +32,24 @@ export const HallOfFame = () => {
               <td> Name</td>
               <td>Points</td>
             </tr>
-            <tr>
+
+            {hofData &&
+              hofData.legends &&
+              hofData.legends.map((l, idx) => (
+                <tr key={`legend_${idx}`}>
+                  <td>{idx + 1}</td>
+                  <td>{l.name}</td>
+                  <td>{l.points}</td>
+                </tr>
+              ))}
+
+            {/* <tr>
               <td>1</td>
               <td>007</td>
               <td>25</td>
-            </tr>
+            </tr> */}
 
-            <tr>
+            {/* <tr>
               <td>2</td>
               <td>Black Rose</td>
               <td>8</td>
@@ -47,7 +73,7 @@ export const HallOfFame = () => {
               <td>5</td>
               <td>Stella</td>
               <td>2</td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
 
@@ -68,11 +94,19 @@ export const HallOfFame = () => {
         </table>
 
         <p className="text-secondary text-xl text-center font-bold mt-5">
-          Results for Round 1
+          Results for Round{" "}
+          {hofData && roundId
+            ? roundId
+            : hofData
+            ? hofData.currentRound - 1
+            : 1}
         </p>
-        <p className="text-secondary text-center text-sm font-bold mb=5">
-          (From 2/11/24 to 10/11/24)
-        </p>
+        {hofData && (
+          <p className="text-secondary text-center text-sm font-bold mb-5">
+            (From {formattedDate(new Date(hofData.round.createdAt))} to{" "}
+            {formattedDate(new Date(hofData.round.deadline))})
+          </p>
+        )}
 
         <table className={styles["custom-table"]}>
           <tbody>
@@ -83,9 +117,19 @@ export const HallOfFame = () => {
               <td>Rank</td>
               <td>Name</td>
               <td>Net Worth</td>
-              <td>Medals</td>
+              {/* <td>Medals</td> */}
             </tr>
-            <tr>
+            {hofData &&
+              hofData.round &&
+              hofData.round.topPlayers.map((l, idx) => (
+                <tr key={`top_player_${idx}`}>
+                  <td>{idx + 1}</td>
+                  <td>{l.player.name}</td>
+                  <td>{l.netWorth}</td>
+                  {/* <td>{l.medals.name}</td> */}
+                </tr>
+              ))}
+            {/* <tr>
               <td>1</td>
               <td>007</td>
               <td>71,787,670</td>
@@ -97,14 +141,14 @@ export const HallOfFame = () => {
               <td>Black Rose</td>
               <td>52,324,512</td>
               <td>Bronze Star</td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
 
         <table className={styles["custom-table"]}>
           <tbody>
             <tr>
-              <td colSpan={4}>Top Supporters</td>
+              <td colSpan={5}>Top Supporters</td>
             </tr>
             <tr>
               <td>Rank</td>
@@ -112,108 +156,130 @@ export const HallOfFame = () => {
               <td>Net Worth</td>
               <td>Medals</td>
             </tr>
-            <tr>
+            {/* <tr>
               <td>1</td>
               <td>007</td>
               <td>71,787,670</td>
               <td>Medal of Honor</td>
-            </tr>
+            </tr> */}
+            {hofData &&
+              hofData.round &&
+              hofData.round.topSupporters.map((l, idx) => (
+                <tr key={`top_supporter_${idx}`}>
+                  <td>{idx + 1}</td>
+                  <td>{l.player.name}</td>
+                  <td>{l.netWorth}</td>
+                  <td>{l.medals.name}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
 
-        {/* <table className={styles["custom-table"]}>
+        <table className={styles["custom-table"]}>
           <tbody>
             <tr>
-              <td colSpan={4}>Top Supporters</td>
+              <td colSpan={5}>Top Free Players</td>
             </tr>
             <tr>
               <td>Rank</td>
-              <td> Name</td>
+              <td>Name</td>
               <td>Net Worth</td>
+              <td>Medals</td>
               <td>Prize</td>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>Shark</td>
-              <td>1902</td>
-              <td>Gold</td>
-            </tr>
-
-            <tr>
-              <td>2</td>
-              <td>Seal</td>
-              <td>1902</td>
-              <td>Gold</td>
-            </tr>
+            {hofData &&
+              hofData.round &&
+              hofData.round.topFreePlayers.map((l, idx) => (
+                <tr key={`top_free_${idx}`}>
+                  <td>{idx + 1}</td>
+                  <td>{l.player.name}</td>
+                  <td>{l.netWorth}</td>
+                  <td>{l.medals.name}</td>
+                  <td>{l.prize}</td>
+                </tr>
+              ))}
           </tbody>
-        </table> */}
+        </table>
 
-        {/* <table className={styles["custom-table"]}>
+        <table className={styles["custom-table"]}>
           <tbody>
             <tr>
-              <td colSpan={4}>Top Free players</td>
+              <td colSpan={6}>Top Crews</td>
             </tr>
             <tr>
               <td>Rank</td>
-              <td> Name</td>
+              <td>Name</td>
+              <td>Leader</td>
               <td>Net Worth</td>
+              <td>Medals</td>
               <td>Prize</td>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>Shark</td>
-              <td>1902</td>
-              <td>Gold</td>
-            </tr>
-
-            <tr>
-              <td>2</td>
-              <td>Seal</td>
-              <td>1902</td>
-              <td>Gold</td>
-            </tr>
+            {hofData &&
+              hofData.round &&
+              hofData.round.topCrews.map((l, idx) => (
+                <tr key={`top_crew_${idx}`}>
+                  <td>{idx + 1}</td>
+                  <td>{l.name}</td>
+                  <td>{l.leader.name}</td>
+                  <td>{l.netWorth}</td>
+                  <td>{l.medals.name}</td>
+                  <td>{l.prize}</td>
+                </tr>
+              ))}
           </tbody>
-        </table> */}
-
-        {/* <table className={styles["custom-table"]}>
-          <tbody>
-            <tr>
-              <td colSpan={5}>Top Crews</td>
-            </tr>
-            <tr>
-              <td>Rank</td>
-              <td> Name</td>
-              <td className="w-[200px]">Net Worth</td>
-              <td>Nedals</td>
-              <td>Prize</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Shark</td>
-              <td>1902</td>
-              <td>Gold</td>
-              <td>Gold</td>
-            </tr>
-
-            <tr>
-              <td>2</td>
-              <td>Seal</td>
-              <td>1902</td>
-              <td>Gold</td>
-              <td>Gold</td>
-            </tr>
-          </tbody>
-        </table> */}
+        </table>
         <div className="flex w-full justify-center gap-20 my-5">
           <p className="text-sm text-secondary">Go to Round:</p>
           <input className="w-[50px]" />
           <div className="text-[red] font-bold px-1 btn bg-gray-100">Go!</div>
         </div>
         <p className="text-center text-secondary text-sm font-bold">Round</p>
-        <p className="text-white text-xs text-center py-2 mb-3">
-          &lt;&lt; <u className="text-secondary text-bold">1</u>{" "}
-          &gt;&gt;
+        <p className="text-white text-xs text-center py-2 mb-3 flex mx-auto">
+          {<u className="text-secondary text-bold">1</u>}
         </p>
+        {hofData && (
+          <div className="mx-auto flex text-secondary items-center">
+            {Number(roundId || hofData.currentRound - 1) !== 1 && (
+              <Link
+                className="text-sm cursor-pointer"
+                to={ROUTES.MAIN_ROUTES.HOF_ID.replace(
+                  ":roundId",
+                  Number(roundId || hofData.currentRound - 1) - 1
+                )}
+              >
+                &lt;&lt;
+              </Link>
+            )}
+            {pagination({
+              curPage: roundId || hofData.currentRound - 1,
+              totalPage: hofData ? hofData.currentRound : 0,
+            }).map((page, idx) => (
+              <Link
+                className={`px-1 cursor-pointer ${
+                  page === Number(roundId || hofData.currentRound - 1)
+                    ? "text-secondary text-lg font-bold"
+                    : "text-white text-sm"
+                }`}
+                key={`page_${idx}`}
+                to={ROUTES.MAIN_ROUTES.HOF_ID.replace(":roundId", page)}
+              >
+                {page}
+              </Link>
+            ))}
+            {Number(roundId || hofData.currentRound - 1) !==
+              hofData.currentRound - 1 && (
+              <Link
+                className="text-sm cursor-pointer"
+                to={ROUTES.MAIN_ROUTES.HOF_ID.replace(
+                  ":roundId",
+                  1 + Number(roundId)
+                )}
+              >
+                &gt;&gt;
+              </Link>
+            )}
+          </div>
+        )}
       </div>
     </Layout>
   );
