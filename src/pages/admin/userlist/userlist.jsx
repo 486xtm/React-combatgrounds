@@ -1,5 +1,6 @@
 import React from "react";
 import { FaTrashCan, FaPen } from "react-icons/fa6";
+
 const userList = [
   {
     name: "sealife",
@@ -12,10 +13,10 @@ const userList = [
     recruits: 24234,
     netWorth: 23234234,
     bankedTurn: 23424234,
+    points: 1000,
     crew: "TopStar",
     online: true,
-  },
-  {
+  },{
     name: "sealife",
     avatar: "",
     email: "sealife@gmail.com",
@@ -26,10 +27,10 @@ const userList = [
     recruits: 24234,
     netWorth: 23234234,
     bankedTurn: 23424234,
+    points: 1000,
     crew: "TopStar",
     online: true,
-  },
-  {
+  },{
     name: "sealife",
     avatar: "",
     email: "sealife@gmail.com",
@@ -40,10 +41,10 @@ const userList = [
     recruits: 24234,
     netWorth: 23234234,
     bankedTurn: 23424234,
+    points: 1000,
     crew: "TopStar",
     online: true,
-  },
-  {
+  },{
     name: "sealife",
     avatar: "",
     email: "sealife@gmail.com",
@@ -54,10 +55,10 @@ const userList = [
     recruits: 24234,
     netWorth: 23234234,
     bankedTurn: 23424234,
+    points: 1000,
     crew: "TopStar",
-    online: false,
-  },
-  {
+    online: true,
+  },{
     name: "sealife",
     avatar: "",
     email: "sealife@gmail.com",
@@ -68,20 +69,77 @@ const userList = [
     recruits: 24234,
     netWorth: 23234234,
     bankedTurn: 23424234,
+    points: 1000,
+    crew: "TopStar",
+    online: true,
+  },{
+    name: "sealife",
+    avatar: "",
+    email: "sealife@gmail.com",
+    role: "supporter",
+    money: 123123,
+    turn: 1123123,
+    level: 12123,
+    recruits: 24234,
+    netWorth: 23234234,
+    bankedTurn: 23424234,
+    points: 1000,
+    crew: "TopStar",
+    online: true,
+  },{
+    name: "sealife",
+    avatar: "",
+    email: "sealife@gmail.com",
+    role: "supporter",
+    money: 123123,
+    turn: 1123123,
+    level: 12123,
+    recruits: 24234,
+    netWorth: 23234234,
+    bankedTurn: 23424234,
+    points: 1000,
+    crew: "TopStar",
+    online: true,
+  },{
+    name: "sealife",
+    avatar: "",
+    email: "sealife@gmail.com",
+    role: "supporter",
+    money: 123123,
+    turn: 1123123,
+    level: 12123,
+    recruits: 24234,
+    netWorth: 23234234,
+    bankedTurn: 23424234,
+    points: 1000,
     crew: "TopStar",
     online: true,
   },
+  // ... other users
 ];
+
 export const AdminUserList = () => {
+  const handleUserDelete = (user) => {
+    console.log("del =========> ", user);
+  };
+  
+  const handleUserEdit = (user) => {
+    console.log("edit ========>", user);
+  };
+
   return (
-    <div className="overflow-x-auto shadow-md sm:rounded-lg -mx-10 mt-10 bg-white min-h-[80vh] px-2">
-      <div className=" flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
+    <div>
+      <h1 className="text-[30px] -mx-8 mt-4 text-custom-dark font-manrope font-extrabold">
+        User List :
+      </h1>
+    <div className="overflow-x-auto shadow-md sm:rounded-lg -mx-10 mt-5 bg-white px-2 min_calc_height">
+      <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
         <div></div>
-        <label for="table-search" className="sr-only">
+        <label htmlFor="table-search" className="sr-only">
           Search
         </label>
         <div className="relative">
-          <div className="absolute inset-y-0  start-0 flex items-center ps-3 pointer-events-none">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg
               className="w-4 h-4 text-gray-500 "
               aria-hidden="true"
@@ -91,9 +149,9 @@ export const AdminUserList = () => {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
               />
             </svg>
@@ -116,10 +174,13 @@ export const AdminUserList = () => {
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                 />
-                <label for="checkbox-all-search" className="sr-only">
+                <label htmlFor="checkbox-all-search" className="sr-only">
                   checkbox
                 </label>
               </div>
+            </th>
+            <th scope="col" className="text-left text-gray-700 px-6 py-3">
+              No
             </th>
             <th scope="col" className="text-left text-gray-700 px-6 py-3">
               Name
@@ -128,25 +189,25 @@ export const AdminUserList = () => {
               Role
             </th>
             <th scope="col" className="text-left text-gray-700 px-6 py-3">
-              money
+              Money
             </th>
             <th scope="col" className="text-left text-gray-700 px-6 py-3">
-              turn
+              Turn
             </th>
             <th scope="col" className="text-left text-gray-700 px-6 py-3">
-              level
+              Level
             </th>
             <th scope="col" className="text-left text-gray-700 px-6 py-3">
-              recruits
+              Recruits
             </th>
             <th scope="col" className="text-left text-gray-700 px-6 py-3">
-              netWorth
+              Net Worth
             </th>
             <th scope="col" className="text-left text-gray-700 px-6 py-3">
-              banked Turn
+              Banked Turn
             </th>
             <th scope="col" className="text-left text-gray-700 px-6 py-3">
-              status
+              Status
             </th>
             <th scope="col" className="text-left text-gray-700 px-6 py-3">
               Action
@@ -162,15 +223,16 @@ export const AdminUserList = () => {
               <td className="w-4 p-4 leading-none">
                 <div className="flex items-center">
                   <input
-                    id="checkbox-table-search-1"
+                    id={`checkbox-table-search-${index}`}
                     type="checkbox"
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
                   />
-                  <label for="checkbox-table-search-1" className="sr-only">
+                  <label htmlFor={`checkbox-table-search-${index}`} className="sr-only">
                     checkbox
                   </label>
                 </div>
               </td>
+              <td className="px-6 py-4 text-center leading-none">{index}</td>
               <th
                 scope="row"
                 className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap"
@@ -178,7 +240,7 @@ export const AdminUserList = () => {
                 <img
                   className="w-10 h-10 rounded-full border-[1px]"
                   src="/avatar/avatar.png"
-                  alt="Jese image"
+                  alt="User avatar"
                 />
                 <div className="ps-3 text-left">
                   <div className="text-base font-semibold">{user.name}</div>
@@ -219,6 +281,7 @@ export const AdminUserList = () => {
                   <a
                     href="#"
                     type="button"
+                    onClick={() => handleUserEdit(user)}
                     className="text-[18px] text-gray-600"
                   >
                     <FaPen />
@@ -226,6 +289,7 @@ export const AdminUserList = () => {
                   <a
                     href="#"
                     type="button"
+                    onClick={() => handleUserDelete(user)}
                     className="text-[18px] text-gray-600"
                   >
                     <FaTrashCan />
@@ -236,6 +300,7 @@ export const AdminUserList = () => {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

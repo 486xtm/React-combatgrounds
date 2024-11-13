@@ -109,7 +109,7 @@ textarea {
 }
 
 ::-webkit-scrollbar {
-  width: 5px; /* Width of the scrollbar */
+  width: 0.3rem; /* Width of the scrollbar */
   height: 0px;
 }
 
@@ -145,4 +145,8 @@ textarea {
 
 .animate-fadeIn {
   animation: fadeIn 0.5s forwards; /* Apply the fade-in animation */
+}
+
+.min_calc_height {
+  min-height: calc(100vh - 220px);
 }
