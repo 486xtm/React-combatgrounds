@@ -129,8 +129,8 @@ export const AdminUserList = () => {
 
   return (
     <div>
-      <h1 className="text-[30px] -mx-8 mt-4 text-custom-dark font-manrope font-extrabold">
-        User List :
+      <h1 className="text-[30px] -mx-8 mt-4 text-gray-700 font-manrope font-extrabold">
+        Total Users : {userList.length}
       </h1>
     <div className="overflow-x-auto shadow-md sm:rounded-lg -mx-10 mt-5 bg-white px-2 min_calc_height">
       <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
@@ -232,7 +232,7 @@ export const AdminUserList = () => {
                   </label>
                 </div>
               </td>
-              <td className="px-6 py-4 text-center leading-none">{index}</td>
+              <td className="px-6 py-4 text-center leading-none">{index + 1}</td>
               <th
                 scope="row"
                 className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap"
