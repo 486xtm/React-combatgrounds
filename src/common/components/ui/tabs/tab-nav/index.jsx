@@ -1,5 +1,6 @@
 import React from "react";
 import cn from "classnames";
+import classNames from "classnames";
 
 const TabNav = ({ text, isActive, click }) => {
   return (
