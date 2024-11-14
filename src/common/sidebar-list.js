@@ -7,7 +7,7 @@ import PlannerIcon from "./assets/icons/planner";
 
 export const SidebarListOne = [
   {
-    title: "Home",
+    title: "DashBoard",
     link: "/admin",
     icon: HomeIcon(),
   },
@@ -25,12 +25,12 @@ export const SidebarListOne = [
 
 export const SidebarListTwo = [
   {
-    title: "Playlists",
+    title: "Items",
     link: "/playlists",
     icon: PlaylistsIcon(),
   },
   {
-    title: "Planner",
+    title: "Nuck Countries",
     link: "/planner",
     icon: PlannerIcon(),
   },

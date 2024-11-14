@@ -1,76 +1,45 @@
-import React, { useState } from "react";
-import { FaTrashCan, FaPen } from "react-icons/fa6";
-const crew_list = [
+import React from "react";
+import { FaTrashCan } from "react-icons/fa6";
+
+const adsList = [
   {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
+    name: "Sealife",
+    description:
+      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
   },
   {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
+    name: "Sealife",
+    description:
+      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
   },
   {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
+    name: "Sealife",
+    description:
+      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
   },
   {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
+    name: "Sealife",
+    description:
+      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
   },
   {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
+    name: "Sealife",
+    description:
+      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
   },
   {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
+    name: "Sealife",
+    description:
+      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
   },
-  {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
-  },
-  // ... other crew members
 ];
-
-export const AdminCrewList = () => {
-  const handleUserDelete = (crew) => {
-    console.log("del =========> ", crew);
-  };
-
-  const handleUserEdit = (crew) => {
-    console.log("edit ========>", crew);
+export const AdminCrewAds = () => {
+  const handleAdsDelete = (ads) => {
+    console.log("ads del ==========>", ads);
   };
 
   return (
-    <div className="overflow-x-auto shadow-md sm:rounded-lg  mt-5 bg-white px-2 min_calc_height">
+    <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5 bg-white px-2 min_calc_height">
       <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
         <div></div>
         <label htmlFor="table-search" className="sr-only">
@@ -98,13 +67,14 @@ export const AdminCrewList = () => {
             type="text"
             id="table-search-users"
             className="block py-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 items-center"
-            placeholder="Search for crews"
+            placeholder="Search for Ads"
           />
         </div>
       </div>
+
       <table className="w-full min-w-[900px] text-sm text-left overflow-x-auto ">
         <thead>
-          <tr className="text-xs uppercase bg-gray-50">
+          <tr className="text-xs uppercase bg-gray-50 w-full">
             <th scope="col" className="p-4">
               <div className="flex items-center">
                 <input
@@ -120,20 +90,11 @@ export const AdminCrewList = () => {
             <th scope="col" className="text-gray-700 px-6 py-3">
               No
             </th>
-            <th scope="col" className="text-left text-gray-700 px-6 py-3">
+            <th scope="col" className="text-left text-gray-700 px-20 py-3">
               Name
             </th>
             <th scope="col" className="text-gray-700 px-6 py-3">
-              Leader
-            </th>
-            <th scope="col" className="text-gray-700 px-6 py-3">
-              Money
-            </th>
-            <th scope="col" className="text-gray-700 px-6 py-3">
-              Net Worth
-            </th>
-            <th scope="col" className="text-gray-700 px-6 py-3">
-              Members
+              description
             </th>
             <th scope="col" className="text-gray-700 px-6 py-3">
               Action
@@ -141,10 +102,10 @@ export const AdminCrewList = () => {
           </tr>
         </thead>
         <tbody>
-          {crew_list.map((crew, index) => (
+          {adsList.map((ads, index) => (
             <tr
               className="bg-white border-b hover:bg-gray-50 cursor-pointer"
-              key={`admin_crewlist_${index}`}
+              key={`admin_ads_list_${index}`}
             >
               <td className="w-4 p-4 leading-none">
                 <div className="flex items-center">
@@ -166,43 +127,29 @@ export const AdminCrewList = () => {
               </td>
               <td
                 scope="row"
-                className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap"
+                className="px-6 py-4 text-gray-900 whitespace-nowrap "
               >
-                <img
-                  className="w-10 h-10 rounded-full border-[1px]"
-                  src="/avatar/avatar.png"
-                  alt="Crew avatar"
-                />
-                <div className="ps-3 text-left">
-                  <div className="text-base font-semibold">{crew.name}</div>
+                <div className="flex items-center">
+                  <img
+                    className="w-10 h-10 rounded-full border-[1px]"
+                    src="/avatar/avatar.png"
+                    alt="Crew avatar"
+                  />
+                  <div className="ps-3 text-left">
+                    <div className="text-base font-semibold">{ads.name}</div>
+                  </div>
                 </div>
               </td>
-              <td className="px-6 py-4 text-center leading-none">
-                {crew.leader}
+              <td className="px-6 py-4  leading-none">
+                <div className="w-[100%] break-all">{ads.description}</div>
               </td>
-              <td className="px-6 py-4 text-center leading-none">
-                {Number(crew.money).toLocaleString()}
-              </td>
-              <td className="px-6 py-4 text-center leading-none">
-                {Number(crew.netWorth).toLocaleString()}
-              </td>
-              <td className="px-6 py-4 text-center leading-none">
-                {Number(crew.members).toLocaleString()}
-              </td>
+
               <td className="px-6 py-4 ">
                 <div className="flex gap-4 justify-center items-center">
                   <a
                     href="#"
                     type="button"
-                    onClick={() => handleUserEdit(crew)} // Changed from user to crew
-                    className="text-[18px] text-gray-600"
-                  >
-                    <FaPen />
-                  </a>
-                  <a
-                    href="#"
-                    type="button"
-                    onClick={() => handleUserDelete(crew)} // Changed from user to crew
+                    onClick={() => handleAdsDelete(ads)} // Changed from user to crew
                     className="text-[18px] text-gray-600"
                   >
                     <FaTrashCan />
