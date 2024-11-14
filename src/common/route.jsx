@@ -35,7 +35,7 @@ import {
   CrewManage,
   CrewEdit,
 } from "../pages/crew";
-import {AdminHome, AdminUserList, AdminCrew, AdminUserInfo} from '../pages/admin';
+import {AdminHome, AdminUserList, AdminCrew, AdminUserInfo, AdminData, AdminHistory, AdminMail, AdminCrewInfo} from '../pages/admin';
 import { ROUTES } from "./constant";
 
 export const routes = {
@@ -192,6 +192,22 @@ export const routes = {
     {
       path: ROUTES.ADMIN_ROUTES.CREW_LIST,
       element: <AdminCrew />
+    }, 
+    {
+      path: ROUTES.ADMIN_ROUTES.GAME_DATA,
+      element: <AdminData />
+    }, 
+    {
+      path: ROUTES.ADMIN_ROUTES.MAIL_LIST,
+      element: <AdminMail />
+    }, 
+    {
+      path: ROUTES.ADMIN_ROUTES.HISTORY,
+      element: <AdminHistory />
+    },
+    {
+      path: ROUTES.ADMIN_ROUTES.CREW_INFO,
+      element: <AdminCrewInfo />
     }
   ]
 };

@@ -12,12 +12,12 @@ export const SidebarListOne = [
     icon: HomeIcon(),
   },
   {
-    title: "User List",
+    title: "Users",
     link: "/admin/user",
     icon: LibraryIcon(),
   },
   {
-    title: "Crew List",
+    title: "Crew",
     link: "/admin/crew",
     icon: AnnalesIcon(),
   },
@@ -25,18 +25,18 @@ export const SidebarListOne = [
 
 export const SidebarListTwo = [
   {
-    title: "Items",
-    link: "/playlists",
+    title: "Game Data",
+    link: "/admin/data",
     icon: PlaylistsIcon(),
   },
   {
-    title: "Nuck Countries",
-    link: "/planner",
+    title: "Mail",
+    link: "/admin/mail",
     icon: PlannerIcon(),
   },
   {
     title: "History",
-    link: "/history",
+    link: "/admin/history",
     icon: HistoryIcon(),
   },
 ];

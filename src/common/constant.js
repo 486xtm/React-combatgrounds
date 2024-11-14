@@ -55,6 +55,10 @@ export const ROUTES = {
     HOME: "/admin",
     USER_LIST: "/admin/user",
     USER_INFO: "/admin/user/:user_id",
-    CREW_LIST: "/admin/crew"
+    CREW_LIST: "/admin/crew",
+    GAME_DATA: "/admin/data",
+    MAIL_LIST: "/admin/mail",
+    HISTORY: "/admin/history",
+    CREW_INFO: "/admin/crew/:crew_id"
   }
 };

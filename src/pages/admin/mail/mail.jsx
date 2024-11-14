@@ -1,41 +1,69 @@
 import React from "react";
 import { FaTrashCan } from "react-icons/fa6";
 
-const adsList = [
+const MailList = [
   {
-    name: "Sealife",
+    from: "Sealife",
+    to: "Sealife2",
+    subject: "hello!",
+    date: "2024-11-15 12.34.35",
     description:
       "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
   },
   {
-    name: "Sealife",
+    from: "Sealife",
+    to: "Sealife2",
+    subject: "hello!",
+    date: "2024-11-15 12.34.35",
     description:
       "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },
-  {
-    name: "Sealife",
+  },{
+    from: "Sealife",
+    to: "Sealife2",
+    subject: "hello!",
+    date: "2024-11-15 12.34.35",
     description:
       "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },
-  {
-    name: "Sealife",
+  },{
+    from: "Sealife",
+    to: "Sealife2",
+    subject: "hello!",
+    date: "2024-11-15 12.34.35",
     description:
       "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },
-  {
-    name: "Sealife",
+  },{
+    from: "Sealife",
+    to: "Sealife2",
+    subject: "hello!",
+    date: "2024-11-15 12.34.35",
     description:
       "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },
-  {
-    name: "Sealife",
+  },{
+    from: "Sealife",
+    to: "Sealife2",
+    subject: "hello!",
+    date: "2024-11-15 12.34.35",
+    description:
+      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
+  },{
+    from: "Sealife",
+    to: "Sealife2",
+    subject: "hello!",
+    date: "2024-11-15 12.34.35",
+    description:
+      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
+  },{
+    from: "Sealife",
+    to: "Sealife2",
+    subject: "hello!",
+    date: "2024-11-15 12.34.35",
     description:
       "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
   },
 ];
-export const AdminCrewAds = () => {
-  const handleAdsDelete = (ads) => {
-    console.log("ads del ==========>", ads);
+export const AdminMail = () => {
+  const handleMailDelete = (mail) => {
+    console.log("mail del ==========>", mail);
   };
 
   return (
@@ -91,10 +119,19 @@ export const AdminCrewAds = () => {
               No
             </th>
             <th scope="col" className="text-left text-gray-700 px-20 py-3">
-              Name
+              From
+            </th>
+            <th scope="col" className="text-left text-gray-700 px-20 py-3">
+              To
             </th>
             <th scope="col" className="text-gray-700 px-6 py-3">
-              description
+              Subject
+            </th>
+            <th scope="col" className="text-gray-700 px-40 py-3">
+              Content
+            </th>
+            <th scope="col" className="text-gray-700 px-6 py-3">
+              Date
             </th>
             <th scope="col" className="text-gray-700 px-6 py-3">
               Action
@@ -102,10 +139,10 @@ export const AdminCrewAds = () => {
           </tr>
         </thead>
         <tbody>
-          {adsList.map((ads, index) => (
+          {MailList.map((Mail, index) => (
             <tr
               className="bg-white border-b hover:bg-gray-50 cursor-pointer"
-              key={`admin_ads_list_${index}`}
+              key={`admin_Mail_list_${index}`}
             >
               <td className="w-4 p-4 leading-none">
                 <div className="flex items-center">
@@ -136,20 +173,40 @@ export const AdminCrewAds = () => {
                     alt="Crew avatar"
                   />
                   <div className="ps-3 text-left">
-                    <div className="text-base font-semibold">{ads.name}</div>
+                    <div className="text-base font-semibold">{Mail.from}</div>
+                  </div>
+                </div>
+              </td>
+              <td
+                scope="row"
+                className="px-6 py-4 text-gray-900 whitespace-nowrap "
+              >
+                <div className="flex items-center">
+                  <img
+                    className="w-10 h-10 rounded-full border-[1px]"
+                    src="/avatar/avatar.png"
+                    alt="Crew avatar"
+                  />
+                  <div className="ps-3 text-left">
+                    <div className="text-base font-semibold">{Mail.to}</div>
                   </div>
                 </div>
               </td>
               <td className="px-6 py-4  leading-none">
-                <div className="w-[100%] hyphens-auto">{ads.description}</div>
+                <div className="w-[100%] text-center">{Mail.subject}</div>
               </td>
-
+              <td className="px-6 py-4  leading-none">
+                <div className="w-[100%] hyphens-auto">{Mail.description}</div>
+              </td>
+              <td className="leading-none">
+                <div className="w-[100%] text-center">{Mail.date}</div>
+              </td>
               <td className="px-6 py-4 ">
                 <div className="flex gap-4 justify-center items-center">
                   <a
                     href="#"
                     type="button"
-                    onClick={() => handleAdsDelete(ads)} // Changed from user to crew
+                    onClick={() => handleMailDelete(Mail)} // Changed from user to crew
                     className="text-[18px] text-gray-600"
                   >
                     <FaTrashCan />
