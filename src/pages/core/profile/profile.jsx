@@ -613,8 +613,8 @@ export const Profile = () => {
           <div>
             <div className="text-white ">{itemInfo.name}</div>
             <div className="text-white leading-none">
-              {itemInfo.count}.00 /{" "}
-              <span className="text-[red]">{itemInfo.maxCount}</span>
+              {Number(itemInfo.count).toLocaleString()}.00 /{" "}
+              <span className="text-[red]">{Number(itemInfo.maxCount).toLocaleString()}</span>
             </div>
             <div className="text-white text-[13px] leading-none">
               {itemInfo.description}
@@ -632,7 +632,7 @@ export const Profile = () => {
               {itemInfo.name}
             </div>
             <div className="text-[yellow] text-xs leading-none">
-              ({itemInfo.count})
+              ({Number(itemInfo.count).toLocaleString()})
             </div>
             <div className="text-white text-xs">{itemInfo.description}</div>
           </div>
