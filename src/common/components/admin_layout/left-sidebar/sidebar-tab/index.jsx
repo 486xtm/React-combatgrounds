@@ -18,8 +18,7 @@ const MockUpFavoritesList = [
 
 const SidebarTab = ({ title, link, icon }) => {
   let {pathname} = useLocation();
-  const isActive = pathname === link;
-
+  const isActive = pathname === link || (pathname.split("/")[2] === link.split("/")[2] && pathname.split("/")[2] );
   // Generate icon component with additional props
   const styledIcon = React.cloneElement(icon, {
     className: `md:h-5 md:w-5 h-8 w-8 transition-opacity duration-150 ease-in-out group-hover:opacity-100 fill-white opacity-70 transition-all`,
