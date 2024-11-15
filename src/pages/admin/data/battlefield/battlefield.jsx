@@ -4,7 +4,7 @@ import { FaSave } from "react-icons/fa";
 const MockData = [
   {
     name: "Albania",
-    level: 100,
+    rewardType: 0,
     owner: {
       name: "sealife",
       avatar: "asdfasdadf",
@@ -13,7 +13,7 @@ const MockData = [
   },
   {
     name: "Albania1",
-    level: 100,
+    rewardType: 1,
     owner: {
       name: "sealife",
       avatar: "asdfasdadf",
@@ -22,7 +22,7 @@ const MockData = [
   },
   {
     name: "Albania2",
-    level: 100,
+    rewardType: 1,
     owner: {
       name: "sealife",
       avatar: "asdfasdadf",
@@ -31,7 +31,7 @@ const MockData = [
   },
   {
     name: "Albania3",
-    level: 100,
+    rewardType: 1,
     owner: {
       name: "sealife",
       avatar: "asdfasdadf",
@@ -40,7 +40,7 @@ const MockData = [
   },
   {
     name: "Albania4",
-    level: 100,
+    rewardType: 1,
     owner: {
       name: "sealife",
       avatar: "asdfasdadf",
@@ -49,7 +49,7 @@ const MockData = [
   },
   {
     name: "Albania5",
-    level: 100,
+    rewardType: 1,
     owner: {
       name: "sealife",
       avatar: "asdfasdadf",
@@ -59,7 +59,7 @@ const MockData = [
 ];
 export const BattleField = () => {
   const [CountryData, setCountryData] = useState(MockData);
-  const [newCountry, setNewCountry] = useState({ name: "", level: 0 });
+  const [newCountry, setNewCountry] = useState({ name: "", rewardType: 0 });
   const handleStoreCountry = (country) => {
     console.log(country);
   };
@@ -127,7 +127,7 @@ export const BattleField = () => {
               Country
             </th>
             <th scope="col" className=" text-gray-700 px-6 py-3">
-              Level
+              reward Type
             </th>
             <th scope="col" className=" text-gray-700 px-20 py-3">
               Owner
@@ -172,12 +172,12 @@ export const BattleField = () => {
                 <div className="w-[100%] hyphens-auto">
                   <input
                     className="border-2 p-2 rounded-lg focus:border-gray-700"
-                    value={Number(country.level).toLocaleString()}
+                    value={Number(country.rewardType).toLocaleString()}
                     onChange={(ev) =>
                       setCountryData(
                         CountryData.map((val) => {
                           if (val.name == country.name)
-                            val.level = Number(
+                            val.rewardType = Number(
                               ev.target.value.replace(/[^0-9]/g, "")
                             );
                           return val;
@@ -231,64 +231,6 @@ export const BattleField = () => {
               </td>
             </tr>
           ))}
-          <tr className="bg-white border-b hover:bg-gray-50 cursor-pointer">
-            <td className="w-4 p-4 leading-none">
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                />
-                <label className="sr-only">checkbox</label>
-              </div>
-            </td>
-            <td className="px-6 py-4 text-center leading-none">
-              {CountryData.length + 1}
-            </td>
-
-            <td className="px-6 py-4  leading-none">
-              <div className="w-[100%] text-center">
-                <input
-                  className="border-2 p-2 rounded-lg focus:border-gray-700"
-                  value={newCountry.name}
-                  onChange={(ev) => {
-                    setNewCountry({ ...newCountry, name: ev.target.value });
-                  }}
-                  placeholder="Country Name"
-                />
-              </div>
-            </td>
-            <td className="px-6 py-4 text-center  leading-none">
-              <input
-                className="border-2 p-2 rounded-lg focus:border-gray-700"
-                value={Number(newCountry.level).toLocaleString()}
-                onChange={(ev) => {
-                  setNewCountry({
-                    ...newCountry,
-                    level: Number(ev.target.value.replace(/[^0-9]/g, "")),
-                  });
-                }}
-              />
-            </td>
-            <td
-              scope="row"
-              className="px-6 py-4 text-gray-900 whitespace-nowrap "
-            >
-              <div className=" font-semibold text-center">----</div>
-            </td>
-            <td className="px-6 py-4 text-center  leading-none">
-              <div className="w-[100%] hyphens-auto">----</div>
-            </td>
-            <td className=" py-4 ">
-              <div className="flex justify-center items-center">
-                <button
-                  className="bg-[#014CFA] rounded-lg py-4  w-1/2 mx-auto text-white shadow-md  hover:bg-blue-500"
-                  onClick={handleAddCountry}
-                >
-                  Add
-                </button>
-              </div>
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>
