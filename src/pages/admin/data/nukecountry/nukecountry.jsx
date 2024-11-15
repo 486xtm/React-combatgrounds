@@ -1,34 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { FaTrashCan } from "react-icons/fa6";
 import { FaSave } from "react-icons/fa";
-const MockData = [
-  {
-    name: "Albania",
-    level: 100,
-  },
-  {
-    name: "Albania1",
-    level: 100,
-  },
-  {
-    name: "Albania2",
-    level: 100,
-  },
-  {
-    name: "Albania3",
-    level: 100,
-  },
-  {
-    name: "Albania4",
-    level: 100,
-  },
-  {
-    name: "Albania5",
-    level: 100,
-  },
-];
+import { getCountryInfo } from "../../../../api/country";
+
 export const NukeCountry = () => {
-  const [CountryData, setCountryData] = useState(MockData);
+  const dispatch = useDispatch();
+  const user = useSelector(({ user }) => user.user);
+  const countries = useSelector(({ nuke }) => nuke.countries);
+
+  const [CountryData, setCountryData] = useState([]);
   const [newCountry, setNewCountry] = useState({ name: "", level: 0 });
   const handleStoreCountry = (country) => {
     console.log(country);
@@ -41,6 +22,14 @@ export const NukeCountry = () => {
   const handleAddCountry = () => {
     console.log(newCountry);
   };
+
+  useEffect(() => {
+    getCountryInfo(dispatch);
+  }, [user]);
+  useEffect(() => {
+    if(countries)
+      setCountryData(countries);
+  }, [countries])
   return (
     <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5 bg-white px-2 min_calc_height">
       <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
@@ -142,9 +131,9 @@ export const NukeCountry = () => {
                       setCountryData(
                         CountryData.map((val) => {
                           if (val.name == country.name)
-                            val.level = Number(
+                            return {...val, level : Number(
                               ev.target.value.replace(/[^0-9]/g, "")
-                            );
+                            )}
                           return val;
                         })
                       )

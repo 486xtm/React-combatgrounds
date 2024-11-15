@@ -100,7 +100,7 @@ export const BattleField = () => {
             type="text"
             id="table-search-users"
             className="block py-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 items-center"
-            placeholder="Search for Nuke Country"
+            placeholder="Search for Battle Field"
           />
         </div>
       </div>
@@ -177,9 +177,9 @@ export const BattleField = () => {
                       setCountryData(
                         CountryData.map((val) => {
                           if (val.name == country.name)
-                            val.rewardType = Number(
+                            return {...val, rewardType: Number(
                               ev.target.value.replace(/[^0-9]/g, "")
-                            );
+                            )}
                           return val;
                         })
                       )

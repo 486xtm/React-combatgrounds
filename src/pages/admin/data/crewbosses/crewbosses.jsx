@@ -1,40 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTrashCan } from "react-icons/fa6";
 import { FaSave } from "react-icons/fa";
-const MockData = [
-  {
-    name: "Albania",
-    damage: 100,
-    rewards: 300,
-  },
-  {
-    name: "Albania1",
-    damage: 100,
-    rewards: 300,
-  },
-  {
-    name: "Albania2",
-    damage: 100,
-    rewards: 300,
-  },
-  {
-    name: "Albania3",
-    damage: 100,
-    rewards: 300,
-  },
-  {
-    name: "Albania4",
-    damage: 100,
-    rewards: 300,
-  },
-  {
-    name: "Albania5",
-    damage: 100,
-    rewards: 300,
-  },
-];
+import { useSelector, useDispatch } from "react-redux";
+import {  getBosses } from "../../../../api/crew";
+
 export const CrewBosses = () => {
-  const [CrewBosses, setCrewBosses] = useState(MockData);
+  const bosses = useSelector(({ crew }) => crew.bosses);
+  const dispatch = useDispatch();
+  const [CrewBosses, setCrewBosses] = useState([]);
   const [newCrewBoss, setNewCrewBoss] = useState({ name: "", damage: 0, rewards: 0 });
   const handleStoreCrewBoss = (CrewBoss) => {
     console.log(CrewBoss);
@@ -47,6 +20,14 @@ export const CrewBosses = () => {
   const handleAddCrewBoss = () => {
     console.log(newCrewBoss);
   };
+  console.log(bosses);
+  useEffect(() => {
+    getBosses(dispatch);
+  }, []);
+  useEffect(() => {
+    if(bosses)
+      setCrewBosses(bosses)
+  },[bosses])
   return (
     <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5 bg-white px-2 min_calc_height">
       <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
@@ -150,9 +131,9 @@ export const CrewBosses = () => {
                       setCrewBosses(
                         CrewBosses.map((val) => {
                           if (val.name == CrewBoss.name)
-                            val.damage = Number(
+                            return {...val , damage: Number(
                               ev.target.value.replace(/[^0-9]/g, "")
-                            );
+                            )}
                           return val;
                         })
                       )
@@ -169,9 +150,9 @@ export const CrewBosses = () => {
                       setCrewBosses(
                         CrewBosses.map((val) => {
                           if (val.name == CrewBoss.name)
-                            val.rewards = Number(
+                            return {...val, rewards: Number(
                               ev.target.value.replace(/[^0-9]/g, "")
-                            );
+                            )}
                           return val;
                         })
                       )
