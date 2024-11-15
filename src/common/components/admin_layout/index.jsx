@@ -2,7 +2,7 @@ import React from "react";
 import LeftSidebar from "./left-sidebar";
 import Breadcrumbs from "./breadcrumbs";
 
-const MainLayout = ({ children }) => {
+const AdminLayout = ({ children }) => {
   return (
     <div className="flex w-screen bg-custom-dark">
       <LeftSidebar />
@@ -14,4 +14,4 @@ const MainLayout = ({ children }) => {
   );
 };
 
-export default MainLayout;
+export default AdminLayout;

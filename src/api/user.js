@@ -6,6 +6,7 @@ import { login } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
 import { basicURL } from "../common/constant";
 import { setUnreadMessagesCount } from "../redux/mailSlice";
+import { setUsers } from "../redux/adminSlice";
 export const getUserInfo = async (dispatch, navigate) => {
   try {
     const res = await axios.get(`${basicURL}/user/infor`);

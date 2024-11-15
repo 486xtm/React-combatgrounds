@@ -10,6 +10,7 @@ import toastReducer from "./toastSlice";
 import onlineReducer from "./onlineSlice";
 import shopReducer from "./shopSlice";
 import crweReducer from "./crewSlice";
+import adminReducer from './adminSlice';
 
 export const store = configureStore({
   reducer: {
@@ -23,6 +24,7 @@ export const store = configureStore({
     battleField: battleFieldReducer,
     online: onlineReducer,
     shop: shopReducer,
-    crew: crweReducer
+    crew: crweReducer,
+    admin: adminReducer
   },
 });

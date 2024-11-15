@@ -1,73 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTrashCan, FaPen } from "react-icons/fa6";
-const crew_list = [
-  {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
-  },
-  {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
-  },
-  {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
-  },
-  {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
-  },
-  {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
-  },
-  {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
-  },
-  {
-    name: "Sealife_Team",
-    avatar: "",
-    leader: "sealife",
-    money: 13423412312,
-    netWorth: 23234121123,
-    members: 6,
-  },
-  // ... other crew members
-];
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getAllCrew, removeCrew } from "../../../api/admin";
+import { ROUTES, socketURL } from "../../../common/constant";
 
 export const AdminCrewList = () => {
-  const handleUserDelete = (crew) => {
-    console.log("del =========> ", crew);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const crews = useSelector(({ admin }) => admin.crews);
+
+  const handleCrewDelete = (e, crew_id) => {
+    e.stopPropagation();
+    removeCrew({ crew_id }, dispatch);
   };
 
-  const handleUserEdit = (crew) => {
-    console.log("edit ========>", crew);
+  const handleCrewEdit = (crew_id) => {
+    navigate(ROUTES.ADMIN_ROUTES.CREW_INFO.replace(":crew_id", crew_id));
   };
+
+  useEffect(() => {
+    getAllCrew(dispatch);
+  }, []);
 
   return (
     <div className="overflow-x-auto shadow-md sm:rounded-lg  mt-5 bg-white px-2 min_calc_height">
@@ -141,76 +96,81 @@ export const AdminCrewList = () => {
           </tr>
         </thead>
         <tbody>
-          {crew_list.map((crew, index) => (
-            <tr
-              className="bg-white border-b hover:bg-gray-50 cursor-pointer"
-              key={`admin_crewlist_${index}`}
-            >
-              <td className="w-4 p-4 leading-none">
-                <div className="flex items-center">
-                  <input
-                    id={`checkbox-table-search-${index}`}
-                    type="checkbox"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label
-                    htmlFor={`checkbox-table-search-${index}`}
-                    className="sr-only"
-                  >
-                    checkbox
-                  </label>
-                </div>
-              </td>
-              <td className="px-6 py-4 text-center leading-none">
-                {index + 1}
-              </td>
-              <td
-                scope="row"
-                className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap"
+          {crews &&
+            crews.map((crew, index) => (
+              <tr
+                className="bg-white border-b hover:bg-gray-50 cursor-pointer"
+                key={`admin_crewlist_${index}`}
+                onClick={() => handleCrewEdit(crew._id)}
               >
-                <img
-                  className="w-10 h-10 rounded-full border-[1px]"
-                  src="/avatar/avatar.png"
-                  alt="Crew avatar"
-                />
-                <div className="ps-3 text-left">
-                  <div className="text-base font-semibold">{crew.name}</div>
-                </div>
-              </td>
-              <td className="px-6 py-4 text-center leading-none">
-                {crew.leader}
-              </td>
-              <td className="px-6 py-4 text-center leading-none">
-                {Number(crew.money).toLocaleString()}
-              </td>
-              <td className="px-6 py-4 text-center leading-none">
-                {Number(crew.netWorth).toLocaleString()}
-              </td>
-              <td className="px-6 py-4 text-center leading-none">
-                {Number(crew.members).toLocaleString()}
-              </td>
-              <td className="px-6 py-4 ">
-                <div className="flex gap-4 justify-center items-center">
-                  <a
-                    href="#"
-                    type="button"
-                    onClick={() => handleUserEdit(crew)} // Changed from user to crew
-                    className="text-[18px] text-gray-600"
-                  >
-                    <FaPen />
-                  </a>
-                  <a
-                    href="#"
-                    type="button"
-                    onClick={() => handleUserDelete(crew)} // Changed from user to crew
-                    className="text-[18px] text-gray-600"
-                  >
-                    <FaTrashCan />
-                  </a>
-                </div>
-              </td>
-            </tr>
-          ))}
+                <td className="w-4 p-4 leading-none">
+                  <div className="flex items-center">
+                    <input
+                      id={`checkbox-table-search-${index}`}
+                      type="checkbox"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                    />
+                    <label
+                      htmlFor={`checkbox-table-search-${index}`}
+                      className="sr-only"
+                    >
+                      checkbox
+                    </label>
+                  </div>
+                </td>
+                <td className="px-6 py-4 text-center leading-none">
+                  {index + 1}
+                </td>
+                <td
+                  scope="row"
+                  className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap"
+                >
+                  <img
+                    className="w-10 h-10 rounded-full border-[1px]"
+                    src={
+                      crew.avatar
+                        ? `${socketURL}/${crew.avatar}`
+                        : "/crew/crewpicdef.gif"
+                    }
+                    alt="Crew avatar"
+                  />
+                  <div className="ps-3 text-left">
+                    <div className="text-base font-semibold">{crew.name}</div>
+                  </div>
+                </td>
+                <td className="px-6 py-4 text-center leading-none">
+                  {crew.leader.name}
+                </td>
+                <td className="px-6 py-4 text-center leading-none">
+                  {Number(crew.money).toLocaleString()}
+                </td>
+                <td className="px-6 py-4 text-center leading-none">
+                  {Number(crew.netWorth).toLocaleString()}
+                </td>
+                <td className="px-6 py-4 text-center leading-none">
+                  {Number(crew.members.length + 1).toLocaleString()}
+                </td>
+                <td className="px-6 py-4 ">
+                  <div className="flex gap-4 justify-center items-center">
+                    <a
+                      href="#"
+                      type="button"
+                      className="text-[18px] text-gray-600"
+                    >
+                      <FaPen />
+                    </a>
+                    <a
+                      href="#"
+                      type="button"
+                      onClick={(e) => handleCrewDelete(e, crew._id)} // Changed from user to crew
+                      className="text-[18px] text-gray-600"
+                    >
+                      <FaTrashCan />
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
