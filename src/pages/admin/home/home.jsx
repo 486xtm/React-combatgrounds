@@ -1,10 +1,20 @@
-import React, {useEffect} from 'react'
-import * as am4core from '@amcharts/amcharts4/core';
-import * as am4charts from '@amcharts/amcharts4/charts';
-import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import React, { useEffect } from "react";
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import { useDispatch, useSelector } from "react-redux";
+import { getDashBoardData } from "../../../api/admin";
 export const AdminHome = () => {
+  const dispatch = useDispatch();
+  const dashboard = useSelector(({ admin }) => admin.dash);
+
+  useEffect(() => {
+    getDashBoardData(dispatch);
+  }, []);
+
   useEffect(() => {
     // Apply theme
+    if (!dashboard) return;
     am4core.useTheme(am4themes_animated);
 
     // Create chart instance
@@ -16,9 +26,9 @@ export const AdminHome = () => {
 
     // Chart data
     chart.data = [
-      { role: "Supporter", litres: 501.9 },
-      { role: "Free Player", litres: 301.9 },
-      { role: "Admin", litres: 201.1 },
+      { role: "Admin", count: dashboard.admins },
+      { role: "Supporter", count: dashboard.supporters },
+      { role: "Free Player", count: dashboard.freePlayers },
     ];
 
     // Set inner radius
@@ -26,7 +36,7 @@ export const AdminHome = () => {
 
     // Create series
     const series = chart.series.push(new am4charts.PieSeries3D());
-    series.dataFields.value = "litres";
+    series.dataFields.value = "count";
     series.dataFields.category = "role";
 
     series.colors.list = [
@@ -39,12 +49,16 @@ export const AdminHome = () => {
     return () => {
       chart.dispose();
     };
-  }, []);
-  return <div className='w-full'>
-    <div className='flex justify-center'>
-      <img src = "/SignIn/mark.svg" />
-    </div>
-    <style>
+  }, [dashboard]);
+  return (
+    <div className="w-full">
+      <div className="flex justify-center">
+        <img src="/SignIn/mark.svg" />
+      </div>
+      <p className="mx-auto text-3xl font-extrabold">
+        Total Players: {dashboard ? dashboard.totalPlayers : "---"}
+      </p>
+      <style>
         {`
           #chartdiv {
             width: 100%;
@@ -53,6 +67,9 @@ export const AdminHome = () => {
         `}
       </style>
       <div id="chartdiv"></div>
-      <div className='text-center mt-20 font-[900] text-[25px] text-gray-900'>Round 2 ends in: 2 days, 13 hours, 35 minutes and 8 seconds.</div>
-  </div>
-}
+      <div className="text-center mt-20 font-[900] text-[25px] text-gray-900">
+        {dashboard ? dashboard.remain : "loading..."}
+      </div>
+    </div>
+  );
+};

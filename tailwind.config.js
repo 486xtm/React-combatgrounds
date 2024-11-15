@@ -38,7 +38,7 @@ export default {
         "dark-navyseal": "rgb(0, 0, 111)",
         terrorist: "rgb(211, 100, 53)",
         "dark-terrorist": "rgb(136, 0, 0)",
-        "secondary-green" : "#666630",
+        "secondary-green": "#666630",
         "custom-border": "#D9D9D9",
         "custom-dark": "#151A1E",
         "custom-light-gray": "#FAFAFA",
@@ -53,24 +53,28 @@ export default {
         glow_small: "0 0 5px rgba(255, 255, 255, 0.5)",
       },
       animation: {
-        fadeIn: 'fadeIn 0.5s ease-in-out',
-        fadeOut: 'fadeOut 0.5s ease-in-out',
+        fadeIn: "fadeIn 0.5s ease-in-out",
+        fadeOut: "fadeOut 0.5s ease-in-out",
       },
       textShadow: {
-        glow: '0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3)',
-        'glow-animated': '0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.7), 0 0 50px rgba(0, 255, 255, 0.5)',
+        glow: "0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3)",
+        "glow-animated":
+          "0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.7), 0 0 50px rgba(0, 255, 255, 0.5)",
       },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: 0 },
-          '100%': { opacity: 1 },
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
         },
         fadeOut: {
-          '0%': { opacity: 1 },
-          '100%': { opacity: 0 },
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
         },
+      },
+      filter: {
+        "shadow-filter": "drop-shadow(0px 4px 19.9px rgba(0, 0, 0, 0.48))",
       },
     },
   },
-  plugins: [require('tailwindcss-textshadow')],
+  plugins: [require("tailwindcss-textshadow"), require("tailwindcss-filters")],
 };
