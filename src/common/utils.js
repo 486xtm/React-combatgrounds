@@ -31,3 +31,10 @@ export const pagination = (data) => {
   }
   return pages;
 };
+
+export const getRole = (role) => {
+  if (role === undefined || role === null) return "N/A";
+  if (role === 0 || role === "0") return "Free Player";
+  if (role === -1 || role === "-1") return "Admin";
+  return "Supporter";
+};

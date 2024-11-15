@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import YouTube from "react-youtube";
-import { socketURL } from "../../../common/constant";
+import { ROUTES, socketURL } from "../../../common/constant";
 import { getUserById } from "../../../api/user";
 import { useDispatch, useSelector } from "react-redux";
 import { getGradeString } from "../../../common/utils";
 import styles from "./styles.module.css";
 import Hover from "../../../common/components/hover/hover";
 import { FaTrashCan } from "react-icons/fa6";
+import { deleteUser, removeAvatar, resetUser } from "../../../api/admin";
 
 export const AdminUserInfo = () => {
-  const { user_id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { user_id } = useParams();
   const userInfo = useSelector(({ user }) => user.other);
   const [user, setUser] = useState(userInfo);
-  const [imgHover, setImgHover] = useState(false)
+  const [imgHover, setImgHover] = useState(false);
   const [showHover, setShowHover] = useState(false);
   const [itemInfo, setItemInfo] = useState({});
   const [hoverType, setHoverType] = useState(1);
@@ -30,20 +33,26 @@ export const AdminUserInfo = () => {
   };
 
   const handleResetUser = () => {
-    console.log("============> reset", user);
+    resetUser(user, dispatch);
   };
+
   const handleRemoveUser = () => {
-    console.log("===========> remove", user);
+    deleteUser({ user_id }, dispatch);
+    navigate(ROUTES.ADMIN_ROUTES.USER_LIST);
   };
-  const handleAvatarRemove =() => {
-    console.log("avatar remove ==========>");
-  }
+
+  const handleAvatarRemove = () => {
+    removeAvatar({ user_id }, dispatch);
+  };
+
   useEffect(() => {
     if (user_id) getUserById({ id: user_id }, dispatch);
   }, [user_id]);
+
   useEffect(() => {
     setUser(userInfo);
   }, [userInfo]);
+
   useEffect(() => {
     if (user && user.description)
       setDescriptionReaminLetters(600 - user.description.length);
@@ -57,7 +66,8 @@ export const AdminUserInfo = () => {
       }
     >
       <div className="w-[25%] flex flex-col">
-        <div className="relative my-10 w-[235px] h-[235px] overflow-hidden rounded-full border-[1px] border-gray-400 shadow-lg mx-auto "
+        <div
+          className="relative my-10 w-[235px] h-[235px] overflow-hidden rounded-full border-[1px] border-gray-400 shadow-lg mx-auto "
           onMouseOver={() => setImgHover(true)}
           onMouseLeave={() => setImgHover(false)}
           onMouseDown={handleAvatarRemove}
@@ -71,14 +81,18 @@ export const AdminUserInfo = () => {
             alt="avatar"
             className="w-full h-auto   "
           />
-          <div className={`left-0 bg-[rgba(255,255,255,0.6)] w-[235px] transition-opacity duration-300 h-[235px] right-0 absolute top-0 flex items-center text-gray-700 justify-center text-[40px] ${imgHover ? "opacity-100" : "opacity-0"}`}>
-          <FaTrashCan />
+          <div
+            className={`left-0 bg-[rgba(255,255,255,0.6)] w-[235px] transition-opacity duration-300 h-[235px] right-0 absolute top-0 flex items-center text-gray-700 justify-center text-[40px] ${
+              imgHover ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <FaTrashCan />
           </div>
         </div>
 
         {/* <button className="bg-[#014CFA] rounded-lg py-1 w-1/2 mx-auto text-white shadow-md  hover:bg-blue-500">Reset</button> */}
         <div className="w-full text-center border-[1px] rounded-lg shadow-lg min-h-[700px] py-4">
-          <span className="text-[20px] font-[900] text-gray-700">MEDALS</span>
+          <span className="text-[20px] font-[900] text-gray-700">Medals</span>
           {user && user.medals && user.medals.length != 0 ? (
             <div className="flex w-[80%] ml-[10%] mt-5">
               <div className="w-1/3 flex flex-col gap-4">
@@ -137,7 +151,7 @@ export const AdminUserInfo = () => {
       <div className="flex-1 border-[1px] shadow-lg rounded-xl p-5 text-gray-700 flex">
         <div className="gap-2 flex flex-col w-1/2">
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">Name: </div>{" "}
+            <div className="w-[100px]">Name: </div>{" "}
             <input
               value={user && user.name ? user.name : ""}
               onChange={(ev) => setUser({ ...user, name: ev.target.value })}
@@ -145,7 +159,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">Email: </div>{" "}
+            <div className="w-[100px]">Email: </div>{" "}
             <input
               value={user && user.email ? user.email : ""}
               onChange={(ev) => setUser({ ...user, email: ev.target.value })}
@@ -153,7 +167,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">Discord: </div>{" "}
+            <div className="w-[100px]">Discord: </div>{" "}
             <input
               value={user && user.aimName ? user.aimName : ""}
               onChange={(ev) => setUser({ ...user, aimName: ev.target.value })}
@@ -161,7 +175,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">Role: </div>{" "}
+            <div className="w-[100px]">Role: </div>{" "}
             <select
               className="border-[1px] rounded-md px-2 py-1 shadow-sm focus:border-gray py-1-600 flex-1"
               value={user && user.role ? user.role : 0}
@@ -173,12 +187,14 @@ export const AdminUserInfo = () => {
             </select>
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">Character: </div>{" "}
+            <div className="w-[100px]">Character: </div>{" "}
             <select
               className="border-[1px] rounded-md px-2 shadow-sm focus:border-gray-600 flex-1 py-1"
-              value={user && user.charaterType ? user.charaterType : "Soldier"}
+              value={
+                user && user.characterType ? user.characterType : "Soldier"
+              }
               onChange={(ev) =>
-                setUser({ ...user, charaterType: ev.target.value })
+                setUser({ ...user, characterType: ev.target.value })
               }
             >
               <option value="Soldier">Soldier</option>
@@ -187,7 +203,7 @@ export const AdminUserInfo = () => {
             </select>
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">Money: </div>{" "}
+            <div className="w-[100px]">Money: </div>{" "}
             <input
               value={
                 user && user.money ? Number(user.money).toLocaleString() : 0
@@ -202,7 +218,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">Turn: </div>{" "}
+            <div className="w-[100px]">Turn: </div>{" "}
             <input
               value={user && user.turn ? Number(user.turn).toLocaleString() : 0}
               onChange={(ev) =>
@@ -215,7 +231,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">bankTurn: </div>{" "}
+            <div className="w-[100px]">bankTurn: </div>{" "}
             <input
               value={
                 user && user.bankedTurn
@@ -232,7 +248,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">level: </div>{" "}
+            <div className="w-[100px]">level: </div>{" "}
             <input
               value={
                 user && user.level ? Number(user.level).toLocaleString() : 0
@@ -247,7 +263,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">recruits: </div>{" "}
+            <div className="w-[100px]">recruits: </div>{" "}
             <input
               value={
                 user && user.recruits
@@ -264,7 +280,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">points: </div>{" "}
+            <div className="w-[100px]">points: </div>{" "}
             <input
               value={
                 user && user.points ? Number(user.points).toLocaleString() : 0
@@ -279,7 +295,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">netWorth: </div>{" "}
+            <div className="w-[100px]">netWorth: </div>{" "}
             <input
               value={
                 user && user.netWorth
@@ -291,7 +307,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">rank: </div>{" "}
+            <div className="w-[100px]">rank: </div>{" "}
             <input
               value={user && user.rank ? user.rank : ""}
               disabled
@@ -299,7 +315,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">Grade: </div>{" "}
+            <div className="w-[100px]">Grade: </div>{" "}
             <input
               value={getGradeString(user && user.grade)}
               disabled
@@ -307,7 +323,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px] uppercase">Crew: </div>{" "}
+            <div className="w-[100px]">Crew: </div>{" "}
             <input
               value={user && user.crew_rank ? user.crew_rank : "No Crew"}
               disabled
@@ -334,13 +350,13 @@ export const AdminUserInfo = () => {
               onClick={handleResetUser}
               className="bg-[#014CFA] rounded-lg py-2 w-1/3 mx-auto text-white shadow-lg  hover:bg-blue-500 mt-2"
             >
-              Reset User
+              Update
             </button>
             <button
               onClick={handleRemoveUser}
               className="bg-red-500 rounded-lg py-2 w-1/3 mx-auto text-white shadow-lg  hover:bg-red-400 mt-2"
             >
-              Remove User
+              Remove
             </button>
           </div>
         </div>

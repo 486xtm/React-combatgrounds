@@ -35,72 +35,92 @@ export const AdminCrewInfo = () => {
       }))
     );
   }, [crewInfo, onlinePlayers]);
+
   return (
-    <div>
-      <div className="w-full flex mb-6 mt-10 gap-5">
-        <div className="flex flex-col w-[900px]  bg-white pb-10 pt-5 px-5 rounded-2xl shadow-xl ">
-          <div className="flex w-full px-5 mt-5 gap-3">
-            <div className="w-1/5 flex flex-col items-center justify-center h-[250px] ">
-              <div className="relative shadow-glow border-yellow-200 border-[1px] flex flex-col justify-center items-center rounded-xl overflow-hidden bg-dark-primary min-w-full">
-                <img
-                  src={
-                    crewInfo && crewInfo.leader.avatar
-                      ? `${socketURL}/${crewInfo.leader.avatar}`
-                      : "/pics/avatar.gif"
-                  }
-                  className={`mx-auto z-20 h-[220px] w-auto border-b border-yellow-200 min-w-full ${
-                    crewInfo &&
-                    !!onlinePlayers.find((x) => x._id === crewInfo.leader._id)
-                      ? ""
-                      : "grayscale"
-                  }`}
-                />
-                <div className="font-medium text-white my-1">LEADER</div>
-              </div>
-            </div>
-            <div className="flex-1 flex p-2 h-[250px] border-[1px] rounded-lg flex-wrap justify-between gap-y-1">
-              {memberList &&
-                memberList.map((m, idx) => (
-                  <div
-                    key={`mem_${idx}`}
-                    className="w-[19%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 h-[115px] rounded-lg overflow-hidden flex flex-col items-center"
-                  >
-                    <img
-                      className={`h-[85px] w-full border-b border-yellow-200 ${
-                        m.online ? "" : "grayscale"
-                      }`}
-                      src={
-                        m.avatar
-                          ? `${socketURL}/${m.avatar}`
-                          : "/avatar/default.gif"
-                      }
-                    />
-                    <div className="font-medium text-white text-xs mt-1">
-                      {m.name
-                        ? sliceString(m.name) + ` - R${m.role}`
-                        : "------"}
-                    </div>
-                  </div>
-                ))}
-              {memberList &&
-                new Array(10 - memberList.length).fill().map((x, idx) => (
-                  <div
-                    key={`mem_non_${idx}`}
-                    className="w-[19%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 h-[115px] rounded-lg overflow-hidden flex flex-col items-center"
-                  >
-                    <img
-                      src="/avatar/default.gif"
-                      className={`h-[85px] w-full border-b border-yellow-200`}
-                    />
-                    <div className="font-medium text-white text-xs mt-1">
-                      {"------"}
-                    </div>
-                  </div>
-                ))}
-            </div>
+    <div className="flex flex-col w-[1224px] gap-5 py-5">
+      <div className="flex rounded-2xl gap-2 justify-between">
+        <div className="flex flex-col w-[24%] rounded-xl bg-white px-3 py-5 items-center shadow-md">
+          <span className="font-bold text-xxl">Total Members</span>
+          <span className="font-bold text-xxl">
+            {crewInfo ? crewInfo.members.length + 1 : "---"}
+          </span>
+        </div>
+        <div className="flex flex-col w-[24%] rounded-xl bg-white px-3 py-5 items-center shadow-md">
+          <span className="font-bold text-xxl">Net Worth</span>
+          <span className="font-bold text-xxl">
+            {crewInfo ? crewInfo.netWorth : "---"}
+          </span>
+        </div>
+        <div className="flex flex-col w-[24%] rounded-xl bg-white px-3 py-5 items-center shadow-md">
+          <span className="font-bold text-xxl">Average Net Worth</span>
+          <span className="font-bold text-xxl">
+            {crewInfo ? crewInfo.averageNetworth + 1 : "---"}
+          </span>
+        </div>
+        <div className="flex flex-col w-[24%] rounded-xl bg-white px-3 py-5 items-center shadow-md">
+          <span className="font-bold text-xxl">Cash in Bank</span>
+          <span className="font-bold text-xxl">
+            {crewInfo ? crewInfo.members.length + 1 : "---"}
+          </span>
+        </div>
+      </div>
+      <div className="flex w-[1224px] bg-white p-5 rounded-2xl shadow-xl gap-5">
+        <div className="w-1/5 flex flex-col items-center justify-center h-full">
+          <div className="h-full relative shadow-glow border-yellow-200 border-[1px] flex flex-col justify-center items-center rounded-xl overflow-hidden bg-dark-primary min-w-full">
+            <img
+              src={
+                crewInfo && crewInfo.leader.avatar
+                  ? `${socketURL}/${crewInfo.leader.avatar}`
+                  : "/pics/avatar.gif"
+              }
+              className={`mx-auto z-20 h-[90%] w-auto border-b border-yellow-200 min-w-full ${
+                crewInfo &&
+                !!onlinePlayers.find((x) => x._id === crewInfo.leader._id)
+                  ? ""
+                  : "grayscale"
+              }`}
+            />
+            <div className="font-medium text-white my-1">LEADER</div>
           </div>
         </div>
-        <div className="flex-1 w-[300px] bg-white pb-10 pt-5 px-5 rounded-2xl shadow-xl "></div>
+        <div className="flex-1 flex p-2 h-full border-[1px] rounded-lg flex-wrap justify-between gap-y-1">
+          {memberList &&
+            memberList.map((m, idx) => (
+              <div
+                key={`mem_${idx}`}
+                className="w-[19%] h-[48%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 rounded-lg overflow-hidden flex flex-col items-center"
+              >
+                <img
+                  className={`h-[85%] w-full border-b border-yellow-200 ${
+                    m.online ? "" : "grayscale"
+                  }`}
+                  src={
+                    m.avatar
+                      ? `${socketURL}/${m.avatar}`
+                      : "/avatar/default.gif"
+                  }
+                />
+                <div className="font-medium text-white text-xs mt-1">
+                  {m.name ? sliceString(m.name) + ` - R${m.role}` : "------"}
+                </div>
+              </div>
+            ))}
+          {memberList &&
+            new Array(10 - memberList.length).fill().map((x, idx) => (
+              <div
+                key={`mem_non_${idx}`}
+                className="w-[19%] h-[48%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 rounded-lg overflow-hidden flex flex-col items-center"
+              >
+                <img
+                  src="/avatar/default.gif"
+                  className={`h-[85%] w-full border-b border-yellow-200`}
+                />
+                <div className="font-medium text-white text-xs mt-1">
+                  {"------"}
+                </div>
+              </div>
+            ))}
+        </div>
       </div>
       <div className="w-full flex gap-5">
         <div className="w-1/2 min-w-[600px] p-2 bg-white shadow-2xl rounded-md">
