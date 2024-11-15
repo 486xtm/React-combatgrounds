@@ -18,7 +18,8 @@ export const getColorSchemaByCharacterType = (characterType) => {
     : "primary";
 };
 
-export const formattedDate = (date) => {
+export const formattedDate = (d) => {
+  const date = new Date(d);
   return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 };
 

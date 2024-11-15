@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, getAllUserInfo } from "../../../api/admin";
 import { getRole } from "../../../common/utils";
-import { ROUTES } from "../../../common/constant";
+import { ROUTES, socketURL } from "../../../common/constant";
 
 export const AdminUserList = () => {
   const dispatch = useDispatch();
@@ -146,7 +146,7 @@ export const AdminUserList = () => {
                 >
                   <img
                     className="w-10 h-10 rounded-full border-[1px]"
-                    src="/avatar/avatar.png"
+                    src={user && user.avatar ? `${socketURL}/${user.avatar}` : "/avatar/avatar.png"}
                     alt="User avatar"
                   />
                   <div className="ps-3 text-left">

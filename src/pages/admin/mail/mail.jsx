@@ -1,70 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaTrashCan } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllMails, removeMail } from "../../../api/admin";
+import { formattedDate } from "../../../common/utils";
 
-const MailList = [
-  {
-    from: "Sealife",
-    to: "Sealife2",
-    subject: "hello!",
-    date: "2024-11-15 12.34.35",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },
-  {
-    from: "Sealife",
-    to: "Sealife2",
-    subject: "hello!",
-    date: "2024-11-15 12.34.35",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },{
-    from: "Sealife",
-    to: "Sealife2",
-    subject: "hello!",
-    date: "2024-11-15 12.34.35",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },{
-    from: "Sealife",
-    to: "Sealife2",
-    subject: "hello!",
-    date: "2024-11-15 12.34.35",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },{
-    from: "Sealife",
-    to: "Sealife2",
-    subject: "hello!",
-    date: "2024-11-15 12.34.35",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },{
-    from: "Sealife",
-    to: "Sealife2",
-    subject: "hello!",
-    date: "2024-11-15 12.34.35",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },{
-    from: "Sealife",
-    to: "Sealife2",
-    subject: "hello!",
-    date: "2024-11-15 12.34.35",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },{
-    from: "Sealife",
-    to: "Sealife2",
-    subject: "hello!",
-    date: "2024-11-15 12.34.35",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },
-];
 export const AdminMail = () => {
-  const handleMailDelete = (mail) => {
-    console.log("mail del ==========>", mail);
+  const dispatch = useDispatch();
+  const mails = useSelector(({ admin }) => admin.mails);
+
+  const handleMailDelete = (mail_id) => {
+    removeMail({ mail_id }, dispatch);
   };
+
+  useEffect(() => {
+    getAllMails(dispatch);
+  }, []);
 
   return (
     <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5 bg-white px-2 min_calc_height">
@@ -139,82 +89,89 @@ export const AdminMail = () => {
           </tr>
         </thead>
         <tbody>
-          {MailList.map((Mail, index) => (
-            <tr
-              className="bg-white border-b hover:bg-gray-50 cursor-pointer"
-              key={`admin_Mail_list_${index}`}
-            >
-              <td className="w-4 p-4 leading-none">
-                <div className="flex items-center">
-                  <input
-                    id={`checkbox-table-search-${index}`}
-                    type="checkbox"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label
-                    htmlFor={`checkbox-table-search-${index}`}
-                    className="sr-only"
-                  >
-                    checkbox
-                  </label>
-                </div>
-              </td>
-              <td className="px-6 py-4 text-center leading-none">
-                {index + 1}
-              </td>
-              <td
-                scope="row"
-                className="px-6 py-4 text-gray-900 whitespace-nowrap "
+          {mails &&
+            mails.map((mail, index) => (
+              <tr
+                className="bg-white border-b hover:bg-gray-50 cursor-pointer"
+                key={`admin_Mail_list_${index}`}
               >
-                <div className="flex items-center">
-                  <img
-                    className="w-10 h-10 rounded-full border-[1px]"
-                    src="/avatar/avatar.png"
-                    alt="Crew avatar"
-                  />
-                  <div className="ps-3 text-left">
-                    <div className="text-base font-semibold">{Mail.from}</div>
+                <td className="w-4 p-4 leading-none">
+                  <div className="flex items-center">
+                    <input
+                      id={`checkbox-table-search-${index}`}
+                      type="checkbox"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                    />
+                    <label
+                      htmlFor={`checkbox-table-search-${index}`}
+                      className="sr-only"
+                    >
+                      checkbox
+                    </label>
                   </div>
-                </div>
-              </td>
-              <td
-                scope="row"
-                className="px-6 py-4 text-gray-900 whitespace-nowrap "
-              >
-                <div className="flex items-center">
-                  <img
-                    className="w-10 h-10 rounded-full border-[1px]"
-                    src="/avatar/avatar.png"
-                    alt="Crew avatar"
-                  />
-                  <div className="ps-3 text-left">
-                    <div className="text-base font-semibold">{Mail.to}</div>
+                </td>
+                <td className="px-6 py-4 text-center leading-none">
+                  {index + 1}
+                </td>
+                <td
+                  scope="row"
+                  className="px-6 py-4 text-gray-900 whitespace-nowrap "
+                >
+                  <div className="flex items-center">
+                    <img
+                      className="w-10 h-10 rounded-full border-[1px]"
+                      src="/avatar/avatar.png"
+                      alt="Crew avatar"
+                    />
+                    <div className="ps-3 text-left">
+                      <div className="text-base font-semibold">
+                        {mail.sender.name}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td className="px-6 py-4  leading-none">
-                <div className="w-[100%] text-center">{Mail.subject}</div>
-              </td>
-              <td className="px-6 py-4  leading-none">
-                <div className="w-[100%] hyphens-auto">{Mail.description}</div>
-              </td>
-              <td className="leading-none">
-                <div className="w-[100%] text-center">{Mail.date}</div>
-              </td>
-              <td className="px-6 py-4 ">
-                <div className="flex gap-4 justify-center items-center">
-                  <a
-                    href="#"
-                    type="button"
-                    onClick={() => handleMailDelete(Mail)} // Changed from user to crew
-                    className="text-[18px] text-gray-600"
-                  >
-                    <FaTrashCan />
-                  </a>
-                </div>
-              </td>
-            </tr>
-          ))}
+                </td>
+                <td
+                  scope="row"
+                  className="px-6 py-4 text-gray-900 whitespace-nowrap "
+                >
+                  <div className="flex items-center">
+                    <img
+                      className="w-10 h-10 rounded-full border-[1px]"
+                      src="/avatar/avatar.png"
+                      alt="Crew avatar"
+                    />
+                    <div className="ps-3 text-left">
+                      <div className="text-base font-semibold">
+                        {mail.receiver.name}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-6 py-4  leading-none">
+                  <div className="w-[100%] text-center">{mail.subject}</div>
+                </td>
+                <td className="px-6 py-4  leading-none">
+                  <div className="w-[100%] hyphens-auto">{mail.content}</div>
+                </td>
+                <td className="leading-none">
+                  <div className="w-[100%] text-center">
+                    {formattedDate(mail.created_at)}
+                  </div>
+                </td>
+                <td className="px-6 py-4 ">
+                  <div className="flex gap-4 justify-center items-center">
+                    <div
+                      href="#"
+                      type="button"
+                      onClick={() => handleMailDelete(mail._id)} // Changed from user to crew
+                      className="text-[18px] text-gray-600"
+                    >
+                      <FaTrashCan />
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
