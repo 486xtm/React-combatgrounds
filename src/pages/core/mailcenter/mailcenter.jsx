@@ -201,8 +201,8 @@ export const MailCenter = () => {
                         <td>
                           <span className="text-white text-sm font-bold underline cursor-pointer hover:text-secondary">
                             {viewType !== "Inbox"
-                              ? msg.receiver.name
-                              : msg.sender.name}
+                              ? msg.receiver ? msg.receiver.name : "Deleted User"
+                              : msg.sender ? msg.sender.name : "Deleted User"}
                           </span>
                         </td>
                         <td>
@@ -251,7 +251,7 @@ export const MailCenter = () => {
                     )}
                     {user &&
                       user.blocks &&
-                      user.blocks.map((usr, id) => {
+                      user.blocks.filter((u) => u).map((usr, id) => {
                         return (
                           <option key={`block_${id}`} value={usr._id}>
                             {usr.name}
@@ -294,7 +294,7 @@ export const MailCenter = () => {
                   From:
                 </span>
                 <span className="text-white text-lg">
-                  {detailedViewMessage.sender.name}
+                  {detailedViewMessage.sender ? detailedViewMessage.sender.name : "Deleted User"}
                 </span>
               </div>
               <div className="flex">
@@ -302,7 +302,7 @@ export const MailCenter = () => {
                   To:
                 </span>
                 <span className="text-white text-lg">
-                  {detailedViewMessage.receiver.name}
+                  {detailedViewMessage.receiver ? detailedViewMessage.receiver.name : "Deleted User"}
                 </span>
               </div>
               <div className="flex">
@@ -335,7 +335,7 @@ export const MailCenter = () => {
                 />
               </div>
               <button
-                onClick={() => handleReply(detailedViewMessage.sender.name)}
+                onClick={() => {if(detailedViewMessage.sender) handleReply(detailedViewMessage.sender.name)}}
                 className="ml-[100px]"
               >
                 reply

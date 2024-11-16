@@ -30,6 +30,7 @@ export const AdminUserList = () => {
         Total Users : {users.length}
       </h1>
       <div className="overflow-x-auto shadow-md sm:rounded-lg -mx-10 mt-5 bg-white px-2 min_calc_height">
+        <div></div>
         <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
           <label htmlFor="table-search" className="sr-only">
             Search
