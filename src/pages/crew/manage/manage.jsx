@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setToast } from "../../../redux/toastSlice";
 import Modal from "../../../common/components/modal/modal";
-import { socket } from "../../../App";
+import { socket } from "../../../socket/socket";
 
 export const CrewManage = () => {
   const [tab, setTab] = useState(0);

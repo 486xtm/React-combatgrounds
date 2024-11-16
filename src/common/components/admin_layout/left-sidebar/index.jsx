@@ -11,7 +11,7 @@ import SidebarActionBtn from "./sidebar-action-btn";
 import { SidebarListOne, SidebarListTwo } from "../../../sidebar-list";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "../../../../api/auth";
-import { socket } from "../../../../App";
+import { socket } from "../../../../socket/socket";
 import { useDispatch } from "react-redux";
 const LeftSidebar = () => {
   const navigate = useNavigate();

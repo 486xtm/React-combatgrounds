@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import CrewLayout from "../layout/crew_layout";
 import { useDispatch, useSelector } from "react-redux";
 import { attackBoss, getBosses } from "../../../api/crew";
-import { socket } from "../../../App";
+import { socket } from "../../../socket/socket";
 
 export const CrewBosses = () => {
   const bosses = useSelector(({ crew }) => crew.bosses);

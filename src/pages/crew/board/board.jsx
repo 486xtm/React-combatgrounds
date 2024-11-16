@@ -5,7 +5,7 @@ import { createCrewChat, getCrewBoard } from "../../../api/crew";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { socketURL } from "../../../common/constant";
-import { socket } from "../../../App";
+import { socket } from "../../../socket/socket";
 import { setUnreadCrewChatCount } from "../../../redux/crewSlice";
 
 export const CrewBoard = () => {
@@ -68,7 +68,7 @@ export const CrewBoard = () => {
             ))}
         </div>
       </div>
-      <div className="absolute ml-3 mt-[6px] flex gap-2 h-[30px]">
+      <div className="absolute ml-3 mt-[12px] flex gap-2 h-[30px]">
         <input
           placeholder="Type a message..."
           className="w-[300px] text-xs resize-none h-[30px] px-[7px] py-[3px] rounded-lg bg-transparent border-yellow-200 border-[1px] shadow-inner shadow-[rgba(255,255,255,0.3)]"

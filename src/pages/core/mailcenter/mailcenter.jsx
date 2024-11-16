@@ -11,7 +11,7 @@ import {
 } from "../../../api/message";
 import { useDispatch, useSelector } from "react-redux";
 import { addBlockUser, removeBlockUser } from "../../../api/user";
-import { socket } from "../../../App";
+import { socket } from "../../../socket/socket";
 
 export const MailCenter = () => {
   const mailType = localStorage.getItem("MAILTYPE") || "Inbox";

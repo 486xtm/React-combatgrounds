@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../../api/auth";
 import { useNavigate } from "react-router-dom";
-import { socket } from "../../../App";
+import { socket } from "../../../socket/socket";
 import { ROUTES } from "../../constant";
 export const Menu = () => {
   const dispatch = useDispatch();

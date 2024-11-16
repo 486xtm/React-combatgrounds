@@ -11,7 +11,7 @@ import {
   go,
   conquerRegion,
 } from "../../../api/battlefield";
-import { socket } from "../../../App";
+import { socket } from "../../../socket/socket";
 
 import {
   setBattleField,
