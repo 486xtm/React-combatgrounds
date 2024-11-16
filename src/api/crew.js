@@ -154,7 +154,7 @@ export const dealInvite = async (data, dispatch, navigate) => {
     dispatch(setInvites(invites));
     dispatch(setUser(user));
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
-    navigate(`/crew_profile/${user.crew}`);
+    if(data.type) navigate(`/crew_profile/${user.crew}`);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })

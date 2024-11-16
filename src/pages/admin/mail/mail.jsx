@@ -3,9 +3,13 @@ import { FaTrashCan } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMails, removeMail } from "../../../api/admin";
 import { formattedDate } from "../../../common/utils";
+import { ROUTES, socketURL } from "../../../common/constant";
+import { useNavigate } from "react-router-dom";
 
 export const AdminMail = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const mails = useSelector(({ admin }) => admin.mails);
 
   const handleMailDelete = (mail_id) => {
@@ -116,16 +120,26 @@ export const AdminMail = () => {
                 <td
                   scope="row"
                   className="px-6 py-4 text-gray-900 whitespace-nowrap "
+                  onClick={() => {
+                    if (!mail.sender) return;
+                    navigate(ROUTES.ADMIN_ROUTES.USER_INFO.replace(":user_id", mail.sender._id));
+                  }}
                 >
                   <div className="flex items-center">
-                    <img
-                      className="w-10 h-10 rounded-full border-[1px]"
-                      src="/avatar/avatar.png"
-                      alt="Crew avatar"
-                    />
+                    <div className="w-10">
+                      <img
+                        className="w-10 h-10 rounded-full border-[1px]"
+                        src={
+                          mail.sender && mail.sender.avatar
+                            ? `${socketURL}/${mail.sender.avatar}`
+                            : "/pics/avatar.gif"
+                        }
+                        alt="Crew avatar"
+                      />
+                    </div>
                     <div className="ps-3 text-left">
                       <div className="text-base font-semibold">
-                        {mail.sender.name}
+                        {mail.sender ? mail.sender.name : "Deleted User"}
                       </div>
                     </div>
                   </div>
@@ -133,16 +147,26 @@ export const AdminMail = () => {
                 <td
                   scope="row"
                   className="px-6 py-4 text-gray-900 whitespace-nowrap "
+                  onClick={() => {
+                    if (!mail.receiver) return;
+                    navigate(ROUTES.ADMIN_ROUTES.USER_INFO.replace(":user_id", mail.receiver._id));
+                  }}
                 >
                   <div className="flex items-center">
-                    <img
-                      className="w-10 h-10 rounded-full border-[1px]"
-                      src="/avatar/avatar.png"
-                      alt="Crew avatar"
-                    />
+                    <div className="w-10">
+                      <img
+                        className="w-10 h-10 rounded-full border-[1px]"
+                        src={
+                          mail.receiver  && mail.receiver.avatar
+                            ? `${socketURL}/${mail.receiver.avatar}`
+                            : "/pics/avatar.gif"
+                        }
+                        alt="Crew avatar"
+                      />
+                    </div>
                     <div className="ps-3 text-left">
                       <div className="text-base font-semibold">
-                        {mail.receiver.name}
+                        {mail.receiver ? mail.receiver.name : "Deleted User"}
                       </div>
                     </div>
                   </div>

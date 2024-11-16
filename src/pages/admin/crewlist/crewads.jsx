@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaTrashCan } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { getCrewAds, removeAdById } from "../../../api/admin";
+import { ROUTES, socketURL } from "../../../common/constant";
+import { useNavigate } from "react-router-dom";
 
 export const AdminCrewAds = () => {
   const dispatch = useDispatch();
-  const ads = useSelector(({ crew }) => crew.ads);
+  const navigate = useNavigate();
+
+  const ads = useSelector(({ admin }) => admin.ads);
 
   const handleAdDelete = (ads_id) => {
     removeAdById({ ads_id }, dispatch);
@@ -105,20 +109,37 @@ export const AdminCrewAds = () => {
               <td
                 scope="row"
                 className="px-6 py-4 text-gray-900 whitespace-nowrap "
+                onClick={() => {
+                  if (!ad.author) return;
+                  navigate(
+                    ROUTES.ADMIN_ROUTES.USER_INFO.replace(
+                      ":user_id",
+                      ad.author._id
+                    )
+                  );
+                }}
               >
                 <div className="flex items-center">
-                  <img
-                    className="w-10 h-10 rounded-full border-[1px]"
-                    src="/avatar/avatar.png"
-                    alt="Crew avatar"
-                  />
+                  <div className="w-10">
+                    <img
+                      className="w-10 h-10 rounded-full border-[1px]"
+                      src={
+                        ad && ad.author && ad.author.avatar
+                          ? `${socketURL}/${ad.author.avatar}`
+                          : "/pics/avatar.gif"
+                      }
+                      alt="Crew avatar"
+                    />
+                  </div>
                   <div className="ps-3 text-left">
-                    <div className="text-base font-semibold">{ad.name}</div>
+                    <div className="text-base font-semibold">
+                      {ad.author ? ad.author.name : "Deleted User"}
+                    </div>
                   </div>
                 </div>
               </td>
               <td className="px-6 py-4  leading-none">
-                <div className="w-[100%] hyphens-auto">{ad.description}</div>
+                <div className="w-[100%] hyphens-auto">{ad.content}</div>
               </td>
 
               <td className="px-6 py-4 ">

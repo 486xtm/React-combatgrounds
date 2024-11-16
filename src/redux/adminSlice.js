@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const adminSlice = createSlice({
-  name: "mail",
+  name: "admin",
   initialState,
   reducers: {
     setUsers: (state, action) => {

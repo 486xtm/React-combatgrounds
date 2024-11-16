@@ -75,7 +75,7 @@ export const getAllCrew = async (dispatch) => {
 
 export const getCrewAds = async (dispatch) => {
   try {
-    const res = await axios.get(`${basicURL}/crew/ads`);
+    const res = await axios.get(`${basicURL}/crew/crew_ads`);
     const { ads } = res.data;
     dispatch(setAds(ads));
   } catch (err) {
