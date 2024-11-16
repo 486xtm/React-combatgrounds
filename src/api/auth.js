@@ -60,6 +60,8 @@ export const signOut = async (dispatch, navigate, socket) => {
     socket.emit("logout");
     dispatch(logout());
   } catch (err) {
-    console.log(err.response?.data.msg || err.message);
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
   }
 };

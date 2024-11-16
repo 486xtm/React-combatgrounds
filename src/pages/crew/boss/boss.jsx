@@ -37,7 +37,7 @@ export const CrewBosses = () => {
                 >
                   <div className=" py-[0.24px] w-[50%]">{boss.name}</div>
                   <div className=" py-[0.24px] w-[30%] text-red-500">
-                    {Number(boss.damage).toLocaleString()}
+                    {Number(boss.damage).toLocaleString("en-US")}
                   </div>
                   {!boss.isAttacked ? (
                     <div

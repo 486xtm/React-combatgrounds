@@ -27,9 +27,8 @@ export const NukeCountry = () => {
     getCountryInfo(dispatch);
   }, [user]);
   useEffect(() => {
-    if(countries)
-      setCountryData(countries);
-  }, [countries])
+    if (countries) setCountryData(countries);
+  }, [countries]);
   return (
     <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5 bg-white px-2 min_calc_height">
       <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
@@ -126,14 +125,17 @@ export const NukeCountry = () => {
                 <div className="w-[100%] hyphens-auto">
                   <input
                     className="border-2 p-2 rounded-lg focus:border-gray-700"
-                    value={Number(country.level).toLocaleString()}
+                    value={Number(country.level).toLocaleString("en-US")}
                     onChange={(ev) =>
                       setCountryData(
                         CountryData.map((val) => {
                           if (val.name == country.name)
-                            return {...val, level : Number(
-                              ev.target.value.replace(/[^0-9]/g, "")
-                            )}
+                            return {
+                              ...val,
+                              level: Number(
+                                ev.target.value.replace(/[^0-9]/g, "")
+                              ),
+                            };
                           return val;
                         })
                       )
@@ -193,7 +195,7 @@ export const NukeCountry = () => {
             <td className="px-6 py-4 text-center  leading-none">
               <input
                 className="border-2 p-2 rounded-lg focus:border-gray-700"
-                value={Number(newCountry.level).toLocaleString()}
+                value={Number(newCountry.level).toLocaleString("en-US")}
                 onChange={(ev) => {
                   setNewCountry({
                     ...newCountry,
@@ -205,9 +207,9 @@ export const NukeCountry = () => {
 
             <td className=" py-4 ">
               <div className="flex justify-center items-center">
-                <button 
-                className="bg-[#014CFA] rounded-lg py-4  w-1/2 mx-auto text-white shadow-md  hover:bg-blue-500"
-                onClick={handleAddCountry}
+                <button
+                  className="bg-[#014CFA] rounded-lg py-4  w-1/2 mx-auto text-white shadow-md  hover:bg-blue-500"
+                  onClick={handleAddCountry}
                 >
                   Add
                 </button>

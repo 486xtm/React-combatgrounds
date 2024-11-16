@@ -144,11 +144,17 @@ export const AdminUserList = () => {
                   scope="row"
                   className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap"
                 >
-                  <img
-                    className="w-10 h-10 rounded-full border-[1px]"
-                    src={user && user.avatar ? `${socketURL}/${user.avatar}` : "/avatar/avatar.png"}
-                    alt="User avatar"
-                  />
+                  <div className="w-10">
+                    <img
+                      className="w-10 h-10 rounded-full border-[1px]"
+                      src={
+                        user && user.avatar
+                          ? `${socketURL}/${user.avatar}`
+                          : "/pics/avatar.gif"
+                      }
+                      alt="User avatar"
+                    />
+                  </div>
                   <div className="ps-3 text-left">
                     <div className="text-base font-semibold">{user.name}</div>
                     <div className="font-normal text-gray-500">
@@ -160,22 +166,22 @@ export const AdminUserList = () => {
                   {getRole(user.role)}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.money).toLocaleString()}
+                  {Number(user.money).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.turn).toLocaleString()}
+                  {Number(user.turn).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.level).toLocaleString()}
+                  {Number(user.level).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.recruits).toLocaleString()}
+                  {Number(user.recruits).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.netWorth).toLocaleString()}
+                  {Number(user.netWorth).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.bankedTurn).toLocaleString()}
+                  {Number(user.bankedTurn).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
                   <div className="flex items-center">

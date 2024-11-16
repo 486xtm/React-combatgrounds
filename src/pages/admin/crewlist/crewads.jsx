@@ -1,42 +1,19 @@
 import React from "react";
 import { FaTrashCan } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { getCrewAds, removeAdById } from "../../../api/admin";
 
-const adsList = [
-  {
-    name: "Sealife",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },
-  {
-    name: "Sealife",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },
-  {
-    name: "Sealife",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },
-  {
-    name: "Sealife",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },
-  {
-    name: "Sealife",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },
-  {
-    name: "Sealife",
-    description:
-      "Cool Trading platform is a type of cryptocurrency exchange that allows users to trade or swap different cryptocurrencies directly with one another.",
-  },
-];
 export const AdminCrewAds = () => {
-  const handleAdsDelete = (ads) => {
-    console.log("ads del ==========>", ads);
+  const dispatch = useDispatch();
+  const ads = useSelector(({ crew }) => crew.ads);
+
+  const handleAdDelete = (ads_id) => {
+    removeAdById({ ads_id }, dispatch);
   };
+
+  useEffect(() => {
+    getCrewAds(dispatch);
+  }, []);
 
   return (
     <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5 bg-white px-2 min_calc_height">
@@ -102,10 +79,10 @@ export const AdminCrewAds = () => {
           </tr>
         </thead>
         <tbody>
-          {adsList.map((ads, index) => (
+          {ads.map((ad, index) => (
             <tr
               className="bg-white border-b hover:bg-gray-50 cursor-pointer"
-              key={`admin_ads_list_${index}`}
+              key={`admin_ad_list_${index}`}
             >
               <td className="w-4 p-4 leading-none">
                 <div className="flex items-center">
@@ -136,12 +113,12 @@ export const AdminCrewAds = () => {
                     alt="Crew avatar"
                   />
                   <div className="ps-3 text-left">
-                    <div className="text-base font-semibold">{ads.name}</div>
+                    <div className="text-base font-semibold">{ad.name}</div>
                   </div>
                 </div>
               </td>
               <td className="px-6 py-4  leading-none">
-                <div className="w-[100%] hyphens-auto">{ads.description}</div>
+                <div className="w-[100%] hyphens-auto">{ad.description}</div>
               </td>
 
               <td className="px-6 py-4 ">
@@ -149,7 +126,7 @@ export const AdminCrewAds = () => {
                   <a
                     href="#"
                     type="button"
-                    onClick={() => handleAdsDelete(ads)} // Changed from user to crew
+                    onClick={() => handleAdDelete(ad._id)} // Changed from user to crew
                     className="text-[18px] text-gray-600"
                   >
                     <FaTrashCan />

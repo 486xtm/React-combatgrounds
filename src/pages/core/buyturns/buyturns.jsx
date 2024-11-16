@@ -6,6 +6,7 @@ import { transfer, verifyPaymentOrder } from "../../../api/payment";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../../../api/axios";
 import { setToast } from "../../../redux/toastSlice";
+
 const buyInfo = [
   {
     total: 1000,
@@ -68,6 +69,7 @@ const buyInfo = [
   //   cost: 500,
   // },
 ];
+
 export const BuyTurns = () => {
   const [show, setShow] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -138,6 +140,7 @@ export const BuyTurns = () => {
   //capture likely error
   const onError = (data, actions) => {
     setErrorMessage("An Error occured with your payment ");
+    dispatch(setToast({ type: "error", msg: data }));
     console.log("ERROR!", data, actions);
   };
 
@@ -238,13 +241,13 @@ export const BuyTurns = () => {
             {buyInfo.map((buy, index) => (
               <div className="flex text-lg" key={`buy_turn_${index}`}>
                 <div className="w-[20%] border-[gray] border-[1px] leading-7">
-                  {buy.total.toLocaleString()}
+                  {buy.total.toLocaleString("en-US")}
                 </div>
                 <div className="w-[20%] border-[gray] border-[1px] leading-7">
-                  {buy.turns.toLocaleString()}
+                  {buy.turns.toLocaleString("en-US")}
                 </div>
                 <div className="w-[20%] text-[yellow] border-[gray] border-[1px] leading-7">
-                  {buy.bonus.toLocaleString()}
+                  {buy.bonus.toLocaleString("en-US")}
                 </div>
                 <div className="w-[20%] border-[gray] border-[1px] leading-7">
                   ${buy.cost}

@@ -184,28 +184,36 @@ export const Menu = () => {
       <div className="flex flex-col">
         <Link
           to="/online"
-          className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
+          className="text-white font-bold underline ml-1 hover:text-secondary"
         >
           ONLINE_PLAYERS
         </Link>
         <Link
           to="https://discord.com/channels/1040013836566138992/1298837422054047815"
-          className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
+          className="text-white font-bold underline ml-1 hover:text-secondary"
         >
           LIVE_CHAT
         </Link>
         <Link
           to="https://discord.com/channels/1040013836566138992/1283030820763992116"
-          className="text-white font-bold underline ml-1 text-xs hover:text-secondary"
+          className="text-white font-bold underline ml-1 hover:text-secondary"
         >
           SUPPORT
         </Link>
+        {user && user.role === -1 && (
+          <Link
+            to={ROUTES.ADMIN_ROUTES.HOME}
+            className="text-white font-bold underline ml-1 hover:text-secondary"
+          >
+            ADMIN
+          </Link>
+        )}
         <span
           // to="/login"
           onClick={() => {
             signOut(dispatch, navigate, socket);
           }}
-          className="text-white font-bold underline ml-1 text-xs cursor-pointer hover:text-secondary"
+          className="text-white font-bold underline ml-1 cursor-pointer hover:text-secondary"
         >
           LOGOUT
         </span>

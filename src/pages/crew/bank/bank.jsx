@@ -42,7 +42,7 @@ export const CrewBank = () => {
           <div className="flex w-full px-5 font-medium text-yellow-200 border-b-[1px] border-secondary-green ">
             <div className="w-[40%] py-2">Cash on Hand: </div>
             <div className="w-[60%] py-2">
-              $ {user && Number(user.money).toLocaleString()}
+              $ {user && Number(user.money).toLocaleString("en-US")}
             </div>
           </div>
           <div className="flex w-full px-5 font-medium text-yellow-200 border-b-[1px] border-secondary-green ">
@@ -59,7 +59,7 @@ export const CrewBank = () => {
           <div className="flex w-full px-5 font-medium text-yellow-200 border-b-[1px] border-secondary-green ">
             <div className="w-[40%] py-2">Maximum deposit: </div>
             <div className="w-[40%] text-left py-2">
-              $ {(depositMax || 0).toLocaleString()}
+              $ {(depositMax || 0).toLocaleString("en-US")}
             </div>
             <div className="w-[20%] py-2">
               <button

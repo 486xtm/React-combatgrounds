@@ -83,14 +83,15 @@ export const CrewProfile = () => {
                 <div className="w-[50%] py-1">AVERAGE MEMBER NET WORTH</div>
                 <div className="w-[50%] text-white py-1">
                   {(crewInfo &&
-                    Number(crewInfo.averageNetworth).toLocaleString()) ||
+                    Number(crewInfo.averageNetworth).toLocaleString("en-US")) ||
                     "---"}
                 </div>
               </div>
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">CREW NET WORTH</div>
                 <div className="w-[50%] text-white py-1">
-                  {(crewInfo && Number(crewInfo.netWorth).toLocaleString()) ||
+                  {(crewInfo &&
+                    Number(crewInfo.netWorth).toLocaleString("en-US")) ||
                     "---"}
                 </div>
               </div>
@@ -98,7 +99,7 @@ export const CrewProfile = () => {
                 <div className="w-[50%] py-1">BANK</div>
                 <div className="w-[50%] text-white py-1">
                   {(crewInfo &&
-                    `$${Number(crewInfo.money).toLocaleString()}`) ||
+                    `$${Number(crewInfo.money).toLocaleString("en-US")}`) ||
                     "---"}
                 </div>
               </div>
