@@ -5,37 +5,6 @@ import CrewLayout from "../layout/crew_layout";
 import Modal from "../../../common/components/modal/modal";
 import { create_ads, getCrewAds } from "../../../api/crew";
 import { useDispatch, useSelector } from "react-redux";
-const posts = [
-  {
-    name: "sealife22",
-    content: "My name is sealife22312, I 'm a king of battle.",
-  },
-  {
-    name: "sealife22",
-    content:
-      "My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.",
-  },
-  {
-    name: "sealife22",
-    content:
-      "My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.",
-  },
-  {
-    name: "sealife22",
-    content:
-      "My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.",
-  },
-  {
-    name: "sealife22",
-    content:
-      "My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.",
-  },
-  {
-    name: "sealife22",
-    content:
-      "My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.My name is sealife22312, I 'm a king of battle.",
-  },
-];
 export const Ads = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(350);
@@ -79,7 +48,7 @@ export const Ads = () => {
               className="flex w-full border-b-[1px] border-secondary-green py-1"
               key={`crew_ads_${index}`}
             >
-              <div className="w-[90px] text-yellow-200">{ad.author.name} :</div>
+              <div className={`w-[110px] ${ad.author ? 'text-yellow-200' : 'text-[red]' }`}>{ad.author ? ad.author.name : "Deleted User"}</div>
               <div className="flex-1">{ad.content}</div>
             </div>
           ))}
