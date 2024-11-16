@@ -3,6 +3,7 @@ import { FaTrashCan } from "react-icons/fa6";
 import { FaSave } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { getBosses } from "../../../../api/crew";
+import { addBoss, removeBoss, updateBoss } from "../../../../api/admin";
 
 export const CrewBosses = () => {
   const bosses = useSelector(({ crew }) => crew.bosses);
@@ -14,16 +15,17 @@ export const CrewBosses = () => {
     rewards: 0,
   });
   const handleStoreCrewBoss = (CrewBoss) => {
-    console.log(CrewBoss);
+    updateBoss(CrewBoss, dispatch);
   };
 
   const handleDeleteCrewBoss = (CrewBoss) => {
-    console.log(CrewBoss);
+    removeBoss(CrewBoss, dispatch);
   };
 
   const handleAddCrewBoss = () => {
-    console.log(newCrewBoss);
+    addBoss(newCrewBoss, dispatch);
   };
+
   console.log(bosses);
   useEffect(() => {
     getBosses(dispatch);

@@ -1,76 +1,22 @@
-import React, { useState } from "react";
-import { FaTrashCan } from "react-icons/fa6";
-import { FaSave } from "react-icons/fa";
-const MockData = [
-  {
-    name: "Albania",
-    rewardType: 0,
-    owner: {
-      name: "sealife",
-      avatar: "asdfasdadf",
-      troops: 1000,
-    },
-  },
-  {
-    name: "Albania1",
-    rewardType: 1,
-    owner: {
-      name: "sealife",
-      avatar: "asdfasdadf",
-      troops: 1000,
-    },
-  },
-  {
-    name: "Albania2",
-    rewardType: 1,
-    owner: {
-      name: "sealife",
-      avatar: "asdfasdadf",
-      troops: 1000,
-    },
-  },
-  {
-    name: "Albania3",
-    rewardType: 1,
-    owner: {
-      name: "sealife",
-      avatar: "asdfasdadf",
-      troops: 1000,
-    },
-  },
-  {
-    name: "Albania4",
-    rewardType: 1,
-    owner: {
-      name: "sealife",
-      avatar: "asdfasdadf",
-      troops: 1000,
-    },
-  },
-  {
-    name: "Albania5",
-    rewardType: 1,
-    owner: {
-      name: "sealife",
-      avatar: "asdfasdadf",
-      troops: 1000,
-    },
-  },
-];
+import React, { useEffect, useState } from "react";
+import { FaPushed } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllBattleField, pullOutBattle } from "../../../../api/admin";
+import { socketURL } from "../../../../common/constant";
+
 export const BattleField = () => {
-  const [CountryData, setCountryData] = useState(MockData);
-  const [newCountry, setNewCountry] = useState({ name: "", rewardType: 0 });
-  const handleStoreCountry = (country) => {
-    console.log(country);
+  const dispatch = useDispatch();
+
+  const battles = useSelector(({ admin }) => admin.battles);
+
+  const handleTakeAll = (battle) => {
+    pullOutBattle(battle, dispatch);
   };
 
-  const handleDeleteCountry = (country) => {
-    console.log(country);
-  };
+  useEffect(() => {
+    getAllBattleField(dispatch);
+  }, []);
 
-  const handleAddCountry = () => {
-    console.log(newCountry);
-  };
   return (
     <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5 bg-white px-2 min_calc_height">
       <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
@@ -124,10 +70,7 @@ export const BattleField = () => {
               No
             </th>
             <th scope="col" className=" text-gray-700 px-6 py-3">
-              Country
-            </th>
-            <th scope="col" className=" text-gray-700 px-6 py-3">
-              reward Type
+              Region
             </th>
             <th scope="col" className=" text-gray-700 px-20 py-3">
               Owner
@@ -141,99 +84,74 @@ export const BattleField = () => {
           </tr>
         </thead>
         <tbody>
-          {CountryData.map((country, index) => (
-            <tr
-              className="bg-white border-b hover:bg-gray-50 cursor-pointer"
-              key={`admin_Country_list_${index}`}
-            >
-              <td className="w-4 p-4 leading-none">
-                <div className="flex items-center">
-                  <input
-                    id={`checkbox-table-search-${index}`}
-                    type="checkbox"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label
-                    htmlFor={`checkbox-table-search-${index}`}
-                    className="sr-only"
-                  >
-                    checkbox
-                  </label>
-                </div>
-              </td>
-              <td className="px-6 py-4 text-center leading-none">
-                {index + 1}
-              </td>
-
-              <td className="px-6 py-4  leading-none">
-                <div className="w-[100%] text-center">{country.name}</div>
-              </td>
-              <td className="px-6 py-4 text-center  leading-none">
-                <div className="w-[100%] hyphens-auto">
-                  <input
-                    className="border-2 p-2 rounded-lg focus:border-gray-700"
-                    value={Number(country.rewardType).toLocaleString("en-US")}
-                    onChange={(ev) =>
-                      setCountryData(
-                        CountryData.map((val) => {
-                          if (val.name == country.name)
-                            return {
-                              ...val,
-                              rewardType: Number(
-                                ev.target.value.replace(/[^0-9]/g, "")
-                              ),
-                            };
-                          return val;
-                        })
-                      )
-                    }
-                  />
-                </div>
-              </td>
-              <td
-                scope="row"
-                className="px-6 py-4 text-gray-900 whitespace-nowrap "
+          {battles &&
+            battles.map((battle, index) => (
+              <tr
+                className="bg-white border-b hover:bg-gray-50 cursor-pointer"
+                key={`admin_Country_list_${index}`}
               >
-                <div className="flex items-center">
-                  <img
-                    className="w-10 h-10 rounded-full border-[1px]"
-                    src="/avatar/avatar.png"
-                    alt="Crew avatar"
-                  />
-                  <div className="ps-3 text-left">
-                    <div className="text-base font-semibold">
-                      {country.owner.name}
+                <td className="w-4 p-4 leading-none">
+                  <div className="flex items-center">
+                    <input
+                      id={`checkbox-table-search-${index}`}
+                      type="checkbox"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                    />
+                    <label
+                      htmlFor={`checkbox-table-search-${index}`}
+                      className="sr-only"
+                    >
+                      checkbox
+                    </label>
+                  </div>
+                </td>
+                <td className="px-6 py-4 text-center leading-none">
+                  {index + 1}
+                </td>
+
+                <td className="px-6 py-4  leading-none">
+                  <div className="w-[100%] text-center">
+                    {battle.region ? battle.region.name : "deleted region"}
+                  </div>
+                </td>
+                <td
+                  scope="row"
+                  className="px-6 py-4 text-gray-900 whitespace-nowrap "
+                >
+                  <div className="flex items-center">
+                    <img
+                      className="w-10 h-10 rounded-full border-[1px]"
+                      src={
+                        battle.player && battle.player.avatar
+                          ? `${socketURL}/${battle.player.avatar}`
+                          : "/pics/avatar.png"
+                      }
+                      alt="Crew avatar"
+                    />
+                    <div className="ps-3 text-left">
+                      <div className="text-base font-semibold">
+                        {battle.player ? battle.player.name : "deleted user"}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </td>
-              <td className="px-6 py-4 text-center  leading-none">
-                <div className="w-[100%] hyphens-auto">
-                  {country.owner.troops}
-                </div>
-              </td>
-              <td className="px-6 py-4 ">
-                <div className="flex gap-4 justify-center items-center">
-                  <a
-                    href="#"
-                    type="button"
-                    onClick={() => handleStoreCountry(country)} // Changed from user to crew
-                    className="text-[18px] text-gray-600"
-                  >
-                    <FaSave />
-                  </a>
-                  <a
-                    href="#"
-                    type="button"
-                    onClick={() => handleDeleteCountry(country)} // Changed from user to crew
-                    className="text-[18px] text-gray-600"
-                  >
-                    <FaTrashCan />
-                  </a>
-                </div>
-              </td>
-            </tr>
-          ))}
+                </td>
+                <td className="px-6 py-4 text-center  leading-none">
+                  <div className="w-[100%] hyphens-auto">{battle.recruits}</div>
+                </td>
+                <td className="px-6 py-4 ">
+                  <div className="flex gap-4 justify-center items-center">
+                    <a
+                      href="#"
+                      type="button"
+                      onClick={() => handleTakeAll(battle)} // Changed from user to crew
+                      className="text-[18px] text-gray-600"
+                    >
+                      <FaPushed />
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

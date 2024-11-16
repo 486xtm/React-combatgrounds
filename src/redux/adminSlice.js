@@ -7,6 +7,7 @@ const initialState = {
   ads: [],
   selectedCrew: null,
   dash: null,
+  battles: [],
 };
 
 const adminSlice = createSlice({
@@ -31,6 +32,9 @@ const adminSlice = createSlice({
     setMails: (state, action) => {
       state.mails = action.payload;
     },
+    setBattles: (state, action) => {
+      state.battles = action.payload;
+    },
   },
 });
 
@@ -41,5 +45,6 @@ export const {
   setAds,
   setDashBoard,
   setMails,
+  setBattles,
 } = adminSlice.actions;
 export default adminSlice.reducer;
