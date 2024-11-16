@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import { FaTrashCan } from "react-icons/fa6";
 import { FaSave } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-import {  getBosses } from "../../../../api/crew";
+import { getBosses } from "../../../../api/crew";
 
 export const CrewBosses = () => {
   const bosses = useSelector(({ crew }) => crew.bosses);
   const dispatch = useDispatch();
   const [CrewBosses, setCrewBosses] = useState([]);
-  const [newCrewBoss, setNewCrewBoss] = useState({ name: "", damage: 0, rewards: 0 });
+  const [newCrewBoss, setNewCrewBoss] = useState({
+    name: "",
+    damage: 0,
+    rewards: 0,
+  });
   const handleStoreCrewBoss = (CrewBoss) => {
     console.log(CrewBoss);
   };
@@ -25,9 +29,8 @@ export const CrewBosses = () => {
     getBosses(dispatch);
   }, []);
   useEffect(() => {
-    if(bosses)
-      setCrewBosses(bosses)
-  },[bosses])
+    if (bosses) setCrewBosses(bosses);
+  }, [bosses]);
   return (
     <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5 bg-white px-2 min_calc_height">
       <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
@@ -126,14 +129,17 @@ export const CrewBosses = () => {
                 <div className="w-[100%] hyphens-auto">
                   <input
                     className="border-2 p-2 rounded-lg focus:border-gray-700"
-                    value={Number(CrewBoss.damage).toLocaleString()}
+                    value={Number(CrewBoss.damage).toLocaleString("en-US")}
                     onChange={(ev) =>
                       setCrewBosses(
                         CrewBosses.map((val) => {
                           if (val.name == CrewBoss.name)
-                            return {...val , damage: Number(
-                              ev.target.value.replace(/[^0-9]/g, "")
-                            )}
+                            return {
+                              ...val,
+                              damage: Number(
+                                ev.target.value.replace(/[^0-9]/g, "")
+                              ),
+                            };
                           return val;
                         })
                       )
@@ -145,14 +151,17 @@ export const CrewBosses = () => {
                 <div className="w-[100%] hyphens-auto">
                   <input
                     className="border-2 p-2 rounded-lg focus:border-gray-700"
-                    value={Number(CrewBoss.rewards).toLocaleString()}
+                    value={Number(CrewBoss.rewards).toLocaleString("en-US")}
                     onChange={(ev) =>
                       setCrewBosses(
                         CrewBosses.map((val) => {
                           if (val.name == CrewBoss.name)
-                            return {...val, rewards: Number(
-                              ev.target.value.replace(/[^0-9]/g, "")
-                            )}
+                            return {
+                              ...val,
+                              rewards: Number(
+                                ev.target.value.replace(/[^0-9]/g, "")
+                              ),
+                            };
                           return val;
                         })
                       )
@@ -211,7 +220,7 @@ export const CrewBosses = () => {
             <td className="px-6 py-4 text-center  leading-none">
               <input
                 className="border-2 p-2 rounded-lg focus:border-gray-700"
-                value={Number(newCrewBoss.damage).toLocaleString()}
+                value={Number(newCrewBoss.damage).toLocaleString("en-US")}
                 onChange={(ev) => {
                   setNewCrewBoss({
                     ...newCrewBoss,
@@ -223,7 +232,7 @@ export const CrewBosses = () => {
             <td className="px-6 py-4 text-center  leading-none">
               <input
                 className="border-2 p-2 rounded-lg focus:border-gray-700"
-                value={Number(newCrewBoss.rewards).toLocaleString()}
+                value={Number(newCrewBoss.rewards).toLocaleString("en-US")}
                 onChange={(ev) => {
                   setNewCrewBoss({
                     ...newCrewBoss,
@@ -234,9 +243,9 @@ export const CrewBosses = () => {
             </td>
             <td className=" py-4 ">
               <div className="flex justify-center items-center">
-                <button 
-                className="bg-[#014CFA] rounded-lg py-4  w-1/2 mx-auto text-white shadow-md  hover:bg-blue-500"
-                onClick={handleAddCrewBoss}
+                <button
+                  className="bg-[#014CFA] rounded-lg py-4  w-1/2 mx-auto text-white shadow-md  hover:bg-blue-500"
+                  onClick={handleAddCrewBoss}
                 >
                   Add
                 </button>
@@ -247,4 +256,4 @@ export const CrewBosses = () => {
       </table>
     </div>
   );
-}
+};

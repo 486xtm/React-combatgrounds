@@ -1,8 +1,19 @@
 import React from "react";
 import LeftSidebar from "./left-sidebar";
 import Breadcrumbs from "./breadcrumbs";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../constant";
 
 const AdminLayout = ({ children }) => {
+  const user = useSelector(({ user }) => user.user);
+
+  const navigate = useNavigate();
+
+  if (user.role !== -1) {
+    navigate(ROUTES.MAIN_ROUTES.HEADQUARTER);
+  }
+
   return (
     <div className="flex w-screen bg-custom-dark">
       <LeftSidebar />

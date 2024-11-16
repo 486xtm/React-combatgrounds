@@ -51,7 +51,6 @@ export const AdminCrewInfo = () => {
 
   useEffect(() => {
     if (!crew) return;
-    console.log("crew===>", crew);
     setMemberList(
       crew.members.map((u) => ({
         ...u.member,

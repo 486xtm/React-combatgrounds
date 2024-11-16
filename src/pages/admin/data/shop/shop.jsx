@@ -172,7 +172,7 @@ export const ShopItems = () => {
               <td className=" py-4 text-center  leading-none">
                 <input
                   className="border-2 p-2 rounded-lg focus:border-gray-700 w-20"
-                  value={Number(item.cost).toLocaleString()}
+                  value={Number(item.cost).toLocaleString("en-US")}
                   onChange={(ev) =>
                     setShopItems(
                       shopItems.map((val) => {
@@ -192,7 +192,7 @@ export const ShopItems = () => {
               <td className="px-3 py-4 text-center  leading-none">
                 <input
                   className="border-2 p-2 rounded-lg focus:border-gray-700 w-20"
-                  value={Number(item.maxCount).toLocaleString()}
+                  value={Number(item.maxCount).toLocaleString("en-US")}
                   onChange={(ev) =>
                     setShopItems(
                       shopItems.map((val) => {
@@ -212,7 +212,7 @@ export const ShopItems = () => {
               <td className="px-3 py-4 text-center  leading-none">
                 <input
                   className="border-2 p-2 rounded-lg focus:border-gray-700 w-20"
-                  value={Number(item.incomeBonus).toLocaleString()}
+                  value={Number(item.incomeBonus).toLocaleString("en-US")}
                   onChange={(ev) =>
                     setShopItems(
                       shopItems.map((val) => {
@@ -232,7 +232,7 @@ export const ShopItems = () => {
               <td className="px-3 py-4 text-center  leading-none">
                 <input
                   className="border-2 p-2 rounded-lg focus:border-gray-700 w-20"
-                  value={Number(item.attackBonus).toLocaleString()}
+                  value={Number(item.attackBonus).toLocaleString("en-US")}
                   onChange={(ev) =>
                     setShopItems(
                       shopItems.map((val) => {
@@ -252,7 +252,7 @@ export const ShopItems = () => {
               <td className="px-3 py-4 text-center  leading-none">
                 <input
                   className="border-2 p-2 rounded-lg focus:border-gray-700 w-20"
-                  value={Number(item.defenceBonus).toLocaleString()}
+                  value={Number(item.defenceBonus).toLocaleString("en-US")}
                   onChange={(ev) =>
                     setShopItems(
                       shopItems.map((val) => {
@@ -272,7 +272,7 @@ export const ShopItems = () => {
               <td className="px-3 py-4 text-center  leading-none">
                 <input
                   className="border-2 p-2 rounded-lg focus:border-gray-700 w-20"
-                  value={Number(item.netScore).toLocaleString()}
+                  value={Number(item.netScore).toLocaleString("en-US")}
                   onChange={(ev) =>
                     setShopItems(
                       shopItems.map((val) => {
@@ -384,7 +384,7 @@ export const ShopItems = () => {
             <td className="px-3 py-4 text-center  leading-none">
               <input
                 className="border-2 p-2 rounded-lg focus:border-gray-700"
-                value={Number(newShopItem.damage).toLocaleString()}
+                value={Number(newShopItem.damage).toLocaleString('en-US')}
                 onChange={(ev) => {
                   setNewShopItem({
                     ...newShopItem,
@@ -396,7 +396,7 @@ export const ShopItems = () => {
             <td className="px-3 py-4 text-center  leading-none">
               <input
                 className="border-2 p-2 rounded-lg focus:border-gray-700"
-                value={Number(newShopItem.rewards).toLocaleString()}
+                value={Number(newShopItem.rewards).toLocaleString('en-US')}
                 onChange={(ev) => {
                   setNewShopItem({
                     ...newShopItem,

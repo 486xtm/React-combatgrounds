@@ -142,13 +142,13 @@ export const AdminCrewList = () => {
                   {crew.leader.name}
                 </td>
                 <td className="px-6 py-4 text-center leading-none">
-                  {Number(crew.money).toLocaleString()}
+                  {Number(crew.money).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-center leading-none">
-                  {Number(crew.netWorth).toLocaleString()}
+                  {Number(crew.netWorth).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-center leading-none">
-                  {Number(crew.members.length + 1).toLocaleString()}
+                  {Number(crew.members.length + 1).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 ">
                   <div className="flex gap-4 justify-center items-center">

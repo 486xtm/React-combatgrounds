@@ -186,3 +186,15 @@ export const removeMail = async (data, dispatch) => {
     );
   }
 };
+
+export const removeAdById = async (data, dispatch) => {
+  try {
+    const res = await axios.delete(`${basicURL}/crew/ads`, data);
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    getCrewAds(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};

@@ -69,7 +69,7 @@ export const BattleField = () => {
   };
 
   const handleAddCountry = () => {
-    console.log(newCountry)
+    console.log(newCountry);
   };
   return (
     <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5 bg-white px-2 min_calc_height">
@@ -172,14 +172,17 @@ export const BattleField = () => {
                 <div className="w-[100%] hyphens-auto">
                   <input
                     className="border-2 p-2 rounded-lg focus:border-gray-700"
-                    value={Number(country.rewardType).toLocaleString()}
+                    value={Number(country.rewardType).toLocaleString("en-US")}
                     onChange={(ev) =>
                       setCountryData(
                         CountryData.map((val) => {
                           if (val.name == country.name)
-                            return {...val, rewardType: Number(
-                              ev.target.value.replace(/[^0-9]/g, "")
-                            )}
+                            return {
+                              ...val,
+                              rewardType: Number(
+                                ev.target.value.replace(/[^0-9]/g, "")
+                              ),
+                            };
                           return val;
                         })
                       )

@@ -10,7 +10,7 @@ import {
   leaveCrew,
   makeLeader,
   uplaodAvatar,
-  updateRole
+  updateRole,
 } from "../../../api/crew";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -121,7 +121,7 @@ export const CrewManage = () => {
                     <div className="w-[20%] py-1">{member.name}</div>
                     <div className="w-[20%] py-1">{member.role}</div>
                     <div className="w-[20%] py-1">
-                      ${Number(member.cash).toLocaleString()}
+                      ${Number(member.cash).toLocaleString("en-US")}
                     </div>
                     <div className="w-[40%] py-1  px-1 ">
                       {member.role !== "LEADER" &&

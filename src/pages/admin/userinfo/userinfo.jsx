@@ -206,7 +206,9 @@ export const AdminUserInfo = () => {
             <div className="w-[100px]">Money: </div>{" "}
             <input
               value={
-                user && user.money ? Number(user.money).toLocaleString() : 0
+                user && user.money
+                  ? Number(user.money).toLocaleString("en-US")
+                  : 0
               }
               onChange={(ev) =>
                 setUser({
@@ -220,7 +222,11 @@ export const AdminUserInfo = () => {
           <div className="flex items-center">
             <div className="w-[100px]">Turn: </div>{" "}
             <input
-              value={user && user.turn ? Number(user.turn).toLocaleString() : 0}
+              value={
+                user && user.turn
+                  ? Number(user.turn).toLocaleString("en-US")
+                  : 0
+              }
               onChange={(ev) =>
                 setUser({
                   ...user,
@@ -235,7 +241,7 @@ export const AdminUserInfo = () => {
             <input
               value={
                 user && user.bankedTurn
-                  ? Number(user.bankedTurn).toLocaleString()
+                  ? Number(user.bankedTurn).toLocaleString("en-US")
                   : 0
               }
               onChange={(ev) =>
@@ -251,7 +257,9 @@ export const AdminUserInfo = () => {
             <div className="w-[100px]">level: </div>{" "}
             <input
               value={
-                user && user.level ? Number(user.level).toLocaleString() : 0
+                user && user.level
+                  ? Number(user.level).toLocaleString("en-US")
+                  : 0
               }
               onChange={(ev) =>
                 setUser({
@@ -267,7 +275,7 @@ export const AdminUserInfo = () => {
             <input
               value={
                 user && user.recruits
-                  ? Number(user.recruits).toLocaleString()
+                  ? Number(user.recruits).toLocaleString("en-US")
                   : 0
               }
               onChange={(ev) =>
@@ -283,7 +291,9 @@ export const AdminUserInfo = () => {
             <div className="w-[100px]">points: </div>{" "}
             <input
               value={
-                user && user.points ? Number(user.points).toLocaleString() : 0
+                user && user.points
+                  ? Number(user.points).toLocaleString("en-US")
+                  : 0
               }
               onChange={(ev) =>
                 setUser({
@@ -299,7 +309,7 @@ export const AdminUserInfo = () => {
             <input
               value={
                 user && user.netWorth
-                  ? Number(user.netWorth).toLocaleString()
+                  ? Number(user.netWorth).toLocaleString("en-US")
                   : 0
               }
               disabled
