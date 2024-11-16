@@ -16,5 +16,6 @@ export const getRoundLog = async (data, dispatch, navigate) => {
     dispatch(setHofRound(res.data));
   } catch (err) {
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
+    navigate(ROUTES.MAIN_ROUTES.HEADQUARTER);
   }
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Layout } from "../../../common/components";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,10 +10,11 @@ import { ROUTES } from "../../../common/constant";
 export const HallOfFame = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [goRound, setGoRound] = useState("");
   const { roundId } = useParams();
   const hofData = useSelector(({ round }) => round.hofData);
-
+  if(roundId < 1)
+    navigate(ROUTES.MAIN_ROUTES.HEADQUARTER);
   useEffect(() => {
     getRoundLog({ roundId }, dispatch, navigate);
   }, [roundId]);
@@ -42,38 +43,6 @@ export const HallOfFame = () => {
                   <td>{l.points}</td>
                 </tr>
               ))}
-
-            {/* <tr>
-              <td>1</td>
-              <td>007</td>
-              <td>25</td>
-            </tr> */}
-
-            {/* <tr>
-              <td>2</td>
-              <td>Black Rose</td>
-              <td>8</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Aegon</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Peekaboo</td>
-              <td>4</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Rabbit</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Stella</td>
-              <td>2</td>
-            </tr> */}
           </tbody>
         </table>
 
@@ -111,43 +80,6 @@ export const HallOfFame = () => {
         <table className={styles["custom-table"]}>
           <tbody>
             <tr>
-              <td colSpan={4}>Top Players</td>
-            </tr>
-            <tr>
-              <td>Rank</td>
-              <td>Name</td>
-              <td>Net Worth</td>
-              {/* <td>Medals</td> */}
-            </tr>
-            {hofData &&
-              hofData.round &&
-              hofData.round.topPlayers.map((l, idx) => (
-                <tr key={`top_player_${idx}`}>
-                  <td>{idx + 1}</td>
-                  <td>{l.player.name}</td>
-                  <td>{l.netWorth}</td>
-                  {/* <td>{l.medals.name}</td> */}
-                </tr>
-              ))}
-            {/* <tr>
-              <td>1</td>
-              <td>007</td>
-              <td>71,787,670</td>
-              <td>Medal of Honor</td>
-            </tr>
-
-            <tr>
-              <td>2</td>
-              <td>Black Rose</td>
-              <td>52,324,512</td>
-              <td>Bronze Star</td>
-            </tr> */}
-          </tbody>
-        </table>
-
-        <table className={styles["custom-table"]}>
-          <tbody>
-            <tr>
               <td colSpan={5}>Top Supporters</td>
             </tr>
             <tr>
@@ -156,12 +88,6 @@ export const HallOfFame = () => {
               <td>Net Worth</td>
               <td>Medals</td>
             </tr>
-            {/* <tr>
-              <td>1</td>
-              <td>007</td>
-              <td>71,787,670</td>
-              <td>Medal of Honor</td>
-            </tr> */}
             {hofData &&
               hofData.round &&
               hofData.round.topSupporters.map((l, idx) => (
@@ -228,15 +154,21 @@ export const HallOfFame = () => {
               ))}
           </tbody>
         </table>
-        <div className="flex w-full justify-center gap-20 my-5">
+        <div className="flex w-full justify-center gap-20 my-5 items-center">
           <p className="text-sm text-secondary">Go to Round:</p>
-          <input className="w-[50px]" />
-          <div className="text-[red] font-bold px-1 btn bg-gray-100">Go!</div>
+          <input
+            className="w-[70px] rounded-lg -ml-[65px] px-2"
+            onChange={(ev) => setGoRound(ev.target.value)}
+          />
+          <button
+            className="text-[red] font-bold px-2 btn bg-gray-100 -ml-[40px]"
+            onClick={() => {
+              navigate(ROUTES.MAIN_ROUTES.HOF_ID.replace(":roundId", goRound));
+            }}
+          >
+            Go!
+          </button>
         </div>
-        <p className="text-center text-secondary text-sm font-bold">Round</p>
-        <p className="text-white text-xs text-center py-2 mb-3 flex mx-auto">
-          {<u className="text-secondary text-bold">1</u>}
-        </p>
         {hofData && (
           <div className="mx-auto flex text-secondary items-center">
             {Number(roundId || hofData.currentRound - 1) !== 1 && (
