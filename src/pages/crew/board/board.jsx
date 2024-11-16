@@ -52,16 +52,14 @@ export const CrewBoard = () => {
                 >
                   {message.content}
                 </span>
-                {message.author.avatar ? (
+                {message.author && message.author.avatar ? (
                   <img
                     className="w-[30px] h-[30px] rounded-[50%]"
                     src={`${socketURL}/${message.author.avatar}`}
                   />
                 ) : (
-                  <div className="w-[30px] h-[30px] rounded-[50%] flex text-center items-center">
-                    <span className="text-xl">
-                      {message.author.name[0].toUpperCase()}
-                    </span>
+                  <div className={`w-[30px] h-[30px] rounded-[50%] border-[1px] font-[800] ${message.author ? "bg-[#50BDDF] border-[#50BDDF]" : "bg-black border-[red]"} flex items-center justify-center`}>
+                      {message.author ? message.author.name[0].toUpperCase() : "X"}
                   </div>
                 )}
               </div>

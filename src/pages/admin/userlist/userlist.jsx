@@ -9,7 +9,7 @@ import { ROUTES, socketURL } from "../../../common/constant";
 export const AdminUserList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const onlinePlayer = useSelector(({online}) => online.onlinePlayers);
   const handleUserDelete = (e, user_id) => {
     e.stopPropagation();
     deleteUser({ user_id }, dispatch);
@@ -22,9 +22,8 @@ export const AdminUserList = () => {
   useEffect(() => {
     getAllUserInfo(dispatch, navigate);
   }, []);
-
-  const users = useSelector(({ admin }) => admin.users);
-
+  const users_List = useSelector(({ admin }) => admin.users);
+  const users = users_List.map((val) => ({...val, online: onlinePlayer.find((o) => o._id === val._id) }))
   return (
     <div>
       <h1 className="text-[30px] -mx-8 mt-4 text-gray-700 font-manrope font-extrabold">
