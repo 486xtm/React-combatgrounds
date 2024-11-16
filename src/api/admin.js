@@ -1,6 +1,7 @@
 import { basicURL } from "../common/constant";
 import {
   setAds,
+  setBattles,
   setCrews,
   setDashBoard,
   setMails,
@@ -9,6 +10,8 @@ import {
 } from "../redux/adminSlice";
 import { setToast } from "../redux/toastSlice";
 import axios from "./axios";
+import { getCountryInfo } from "./country";
+import { getBosses } from "./crew";
 import { getUserById } from "./user";
 
 //admin
@@ -192,6 +195,124 @@ export const removeAdById = async (data, dispatch) => {
     const res = await axios.delete(`${basicURL}/crew/ads`, data);
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
     getCrewAds(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const addCountry = async (data, dispatch) => {
+  try {
+    const res = await axios.post(`${basicURL}/country/add`, data);
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    getCountryInfo(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const removeCountry = async (data, dispatch) => {
+  try {
+    const res = await axios.delete(`${basicURL}/country/remove`, data);
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    getCountryInfo(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const updateCountry = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/country/update`, data);
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    getCountryInfo(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+// export const removeItem = async (data, dispatch) => {
+//   try {
+//     const res = await axios.delete(`${basicURL}/shop/remove`, data);
+//     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+//     getCountryInfo(dispatch);
+//   } catch (err) {
+//     dispatch(
+//       setToast({ type: "error", msg: err.response?.data.msg || err.message })
+//     );
+//   }
+// };
+
+export const updateItem = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/shop/update`, data);
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const addBoss = async (data, dispatch) => {
+  try {
+    const res = await axios.post(`${basicURL}/crew/add_boss`, data);
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    getBosses(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const removeBoss = async (data, dispatch) => {
+  try {
+    const res = await axios.delete(`${basicURL}/crew/remove_boss`, data);
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    getBosses(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const updateBoss = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/crew/update_boss`, data);
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    getBosses(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const getAllBattleField = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/battlefield/all`);
+    dispatch(setBattles(res.data.battles));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const pullOutBattle = async (battle, dispatch) => {
+  try {
+    const res = await axios.delete(`${basicURL}/battlefield/remove`, battle);
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    getAllBattleField(dispatch);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })

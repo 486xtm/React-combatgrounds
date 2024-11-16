@@ -3,6 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { FaTrashCan } from "react-icons/fa6";
 import { FaSave } from "react-icons/fa";
 import { getCountryInfo } from "../../../../api/country";
+import {
+  addCountry,
+  removeCountry,
+  updateCountry,
+} from "../../../../api/admin";
 
 export const NukeCountry = () => {
   const dispatch = useDispatch();
@@ -11,16 +16,18 @@ export const NukeCountry = () => {
 
   const [CountryData, setCountryData] = useState([]);
   const [newCountry, setNewCountry] = useState({ name: "", level: 0 });
+
   const handleStoreCountry = (country) => {
-    console.log(country);
+    updateCountry(country, dispatch);
   };
 
-  const handleDeleteCountry = (country) => {
-    console.log(country);
+  const handleDeleteCountry = (name) => {
+    removeCountry({ name }, dispatch);
   };
 
   const handleAddCountry = () => {
-    console.log(newCountry);
+    addCountry(newCountry, dispatch);
+    setNewCountry({ name: "", level: 0 });
   };
 
   useEffect(() => {
@@ -157,7 +164,7 @@ export const NukeCountry = () => {
                   <a
                     href="#"
                     type="button"
-                    onClick={() => handleDeleteCountry(country)} // Changed from user to crew
+                    onClick={() => handleDeleteCountry(country.name)} // Changed from user to crew
                     className="text-[18px] text-gray-600"
                   >
                     <FaTrashCan />

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getItems } from "../../../../api/shop";
 import { FaTrashCan } from "react-icons/fa6";
 import { FaSave } from "react-icons/fa";
+import { updateItem } from "../../../../api/admin";
 export const ShopItems = () => {
   const dispatch = useDispatch();
 
@@ -15,7 +16,7 @@ export const ShopItems = () => {
     rewards: 0,
   });
   const handleStoreShopItem = (item) => {
-    console.log(item);
+    updateItem({ item }, dispatch);
   };
 
   const handleDeleteShopItem = (item) => {
@@ -343,14 +344,14 @@ export const ShopItems = () => {
                   >
                     <FaSave />
                   </a>
-                  <a
+                  {/* <a
                     href="#"
                     type="button"
                     onClick={() => handleDeleteShopItem(item)} // Changed from user to crew
                     className="text-[18px] text-gray-600"
                   >
                     <FaTrashCan />
-                  </a>
+                  </a> */}
                 </div>
               </td>
             </tr>
