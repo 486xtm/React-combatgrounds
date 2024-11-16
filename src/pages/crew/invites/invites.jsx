@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { dealInvite, getInvites } from "../../../api/crew";
 import moment from "moment";
 import { setPendingInviteList } from "../../../redux/crewSlice";
+import { setToast } from "../../../redux/toastSlice";
 
 export const Invites = () => {
   const navigate = useNavigate();
@@ -46,22 +47,38 @@ export const Invites = () => {
                   <div className="w-[20%] py-1 text-xs">
                     {moment(invite.updatedAt).format("MMMM Do, YYYY, h:mm A")}
                   </div>
-                  <Link
-                    className="w-[30%] py-1 font-bold underline"
-                    to={ROUTES.MAIN_ROUTES.CREW_PROFILE.replace(
-                      ":crew_id",
-                      invite.crew._id
-                    )}
-                  >
-                    {invite.crew.name}
-                  </Link>
+                  {invite.crew && (
+                    <Link
+                      className="w-[30%] py-1 font-bold underline"
+                      to={ROUTES.MAIN_ROUTES.CREW_PROFILE.replace(
+                        ":crew_id",
+                        invite.crew?._id
+                      )}
+                    >
+                      {invite.crew.name}
+                    </Link>
+                  )}
+                  {!invite.crew && (
+                    <span className="w-[30%] py-1 font-bold">Deleted Crew</span>
+                  )}
                   <div className="w-[30%] py-1">
-                    {invite.crew.roles[invite.role]}
+                    {invite.crew ? invite.crew.roles[invite.role] : "---"}
                   </div>
                   <div className="w-[20%] py-1 flex justify-center gap-2">
                     <div
                       className="underline text-yellow-300 cursor-pointer hover:text-white"
-                      onClick={() => handleAccept(invite._id)}
+                      onClick={() => {
+                        if (!invite.crew) {
+                          dispatch(
+                            setToast({
+                              type: "success",
+                              msg: "The Crew is disbanded",
+                            })
+                          );
+                          return;
+                        }
+                        handleAccept(invite._id);
+                      }}
                     >
                       Accept
                     </div>

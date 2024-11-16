@@ -6,7 +6,7 @@ import { login } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
 import { basicURL } from "../common/constant";
 import { setUnreadMessagesCount } from "../redux/mailSlice";
-import { setUsers } from "../redux/adminSlice";
+
 export const getUserInfo = async (dispatch, navigate) => {
   try {
     const res = await axios.get(`${basicURL}/user/infor`);
@@ -34,10 +34,8 @@ export const updateEmail = async (data, dispatch) => {
   try {
     const reqData = data;
 
-    const res = await axios.patch(`${basicURL}/user/update_useremail`, reqData);
-    const { user } = res.data;
+    await axios.patch(`${basicURL}/user/update_useremail`, reqData);
     dispatch(setToast({ type: "success", msg: "Email Changed Successfully!" }));
-    dispatch(setUser(user));
     dispatch(setUpdateError(null));
   } catch (err) {
     dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
@@ -51,13 +49,11 @@ export const updateName = async (data, dispatch) => {
   try {
     const reqData = data;
 
-    const res = await axios.patch(`${basicURL}/user/update_username`, reqData);
-    const { user } = res.data;
+    await axios.patch(`${basicURL}/user/update_username`, reqData);
 
     dispatch(
       setToast({ type: "success", msg: "Your Name Successfully Changed!" })
     );
-    dispatch(setUser(user));
     dispatch(setUpdateError(null));
   } catch (err) {
     dispatch(
@@ -71,12 +67,10 @@ export const updateProfileInfo = async (data, dispatch) => {
   try {
     const reqData = data;
 
-    const res = await axios.patch(`${basicURL}/user/update_profile`, reqData);
-    const { user } = res.data;
+    await axios.patch(`${basicURL}/user/update_profile`, reqData);
     dispatch(
       setToast({ type: "success", msg: "Your Profile Successfully Changed!" })
     );
-    dispatch(setUser(user));
     dispatch(setUpdateError(null));
   } catch (err) {
     dispatch(
@@ -106,13 +100,11 @@ export const updateYoutube = async (data, dispatch) => {
   try {
     const reqData = data;
 
-    const res = await axios.patch(`${basicURL}/user/update_youtube`, reqData);
-    const { user } = res.data;
+    await axios.patch(`${basicURL}/user/update_youtube`, reqData);
     dispatch(setUpdateError(null));
     dispatch(
       setToast({ type: "success", msg: "Youtube link changed successfully!" })
     );
-    dispatch(setUser(user));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -125,13 +117,8 @@ export const updateCharacterType = async (data, dispatch) => {
   try {
     const reqData = data;
 
-    const res = await axios.patch(
-      `${basicURL}/user/update_characterType`,
-      reqData
-    );
-    const { user } = res.data;
+    await axios.patch(`${basicURL}/user/update_characterType`, reqData);
     dispatch(setUpdateError(null));
-    dispatch(setUser(user));
     dispatch(
       setToast({
         type: "success",
@@ -157,12 +144,10 @@ export const updateAvatar = async (data, dispatch) => {
     const formData = new FormData();
     formData.append("file", avatar);
 
-    const res = await axios.post(`${basicURL}/upload/update_avatar`, formData, {
+    await axios.post(`${basicURL}/upload/update_avatar`, formData, {
       "Content-Type": "multipart/form-data",
     });
-    const { user } = res.data;
     dispatch(setUpdateError(null));
-    dispatch(setUser(user));
     dispatch(
       setToast({ type: "success", msg: "Your Avatar Successfully Changed!" })
     );
@@ -196,20 +181,6 @@ export const removeBlockUser = async (data, dispatch) => {
     dispatch(setUser(user));
     dispatch(setUpdateError(null));
     dispatch(setToast({ type: "success", msg: "UnBlock Successfully!" }));
-  } catch (err) {
-    dispatch(
-      setToast({ type: "error", msg: err.response?.data.msg || err.message })
-    );
-    dispatch(setUpdateError(err.message));
-  }
-};
-
-export const recruit = async (data, dispatch) => {
-  try {
-    const res = await axios.patch(`${basicURL}/user/recruit`, data);
-    dispatch(setUser(res.data.user));
-    dispatch(setToast({ type: "success", msg: res.data.msg }));
-    dispatch(setUpdateError(null));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
