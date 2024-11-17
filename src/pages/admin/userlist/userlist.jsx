@@ -1,15 +1,140 @@
-import React, { useEffect } from "react";
-import { FaTrashCan, FaPen } from "react-icons/fa6";
+import React, { useEffect, useState } from "react";
+import {
+  FaTrashCan,
+  FaPen,
+  FaArrowDownAZ,
+  FaArrowDown19,
+} from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, getAllUserInfo } from "../../../api/admin";
 import { getRole } from "../../../common/utils";
 import { ROUTES, socketURL } from "../../../common/constant";
-
+import { formattedDate } from "../../../common/utils";
 export const AdminUserList = () => {
+  ///////////
+  const [sortName, setSortName] = useState(true);
+  const [sortRole, setSortRole] = useState(true);
+  const [sortMoney, setSortMoney] = useState(true);
+  const [sortTurn, setSortTurn] = useState(true);
+  const [sortLevel, setSortLevel] = useState(true);
+  const [sortRecruits, setSortRecruits] = useState(true);
+  const [sortNetWorth, setSortNetWorth] = useState(true);
+  const [sortBankedTurn, setSortBankedTurn] = useState(true);
+  const [sortDate, setSortDate] = useState(true);
+
+  const handleSortName = () => {
+    setSortName(!sortName);
+    setSortRole(true);
+    setSortMoney(true);
+    setSortTurn(true);
+    setSortLevel(true);
+    setSortRecruits(true);
+    setSortNetWorth(true);
+    setSortBankedTurn(true);
+    setSortDate(true);
+  };
+
+  const handleSortRole = () => {
+    setSortRole(!sortRole);
+    setSortName(true);
+    setSortMoney(true);
+    setSortTurn(true);
+    setSortLevel(true);
+    setSortRecruits(true);
+    setSortNetWorth(true);
+    setSortBankedTurn(true);
+    setSortDate(true);
+
+  };
+  const handleSortMoney = () => {
+    setSortMoney(!sortMoney);
+    setSortName(true);
+    setSortRole(true);
+    setSortTurn(true);
+    setSortLevel(true);
+    setSortRecruits(true);
+    setSortNetWorth(true);
+    setSortBankedTurn(true);
+    setSortDate(true);
+
+  };
+  const handleSortTurn = () => {
+    setSortTurn(!sortTurn);
+    setSortName(true);
+    setSortRole(true);
+    setSortMoney(true);
+    setSortLevel(true);
+    setSortRecruits(true);
+    setSortNetWorth(true);
+    setSortBankedTurn(true);
+    setSortDate(true);
+
+  };
+  const handleSortLevel = () => {
+    setSortLevel(!sortLevel);
+    setSortName(true);
+    setSortRole(true);
+    setSortMoney(true);
+    setSortTurn(true);
+    setSortRecruits(true);
+    setSortNetWorth(true);
+    setSortBankedTurn(true);
+    setSortDate(true);
+
+  };
+  const handleSortRecruits = () => {
+    setSortRecruits(!sortRecruits);
+    setSortName(true);
+    setSortRole(true);
+    setSortMoney(true);
+    setSortTurn(true);
+    setSortLevel(true);
+    setSortNetWorth(true);
+    setSortBankedTurn(true);
+    setSortDate(true);
+
+  };
+  const handleSortNetWorth = () => {
+    setSortNetWorth(!sortNetWorth);
+    setSortName(true);
+    setSortRole(true);
+    setSortMoney(true);
+    setSortTurn(true);
+    setSortLevel(true);
+    setSortRecruits(true);
+    setSortBankedTurn(true);
+    setSortDate(true);
+
+  };
+  const handleSortBankedTurn = () => {
+    setSortBankedTurn(!sortBankedTurn);
+    setSortName(true);
+    setSortRole(true);
+    setSortMoney(true);
+    setSortTurn(true);
+    setSortLevel(true);
+    setSortRecruits(true);
+    setSortNetWorth(true);
+    setSortDate(true);
+
+  };
+  const handleSortDate = () => {
+    setSortBankedTurn(true);
+    setSortName(true);
+    setSortRole(true);
+    setSortMoney(true);
+    setSortTurn(true);
+    setSortLevel(true);
+    setSortRecruits(true);
+    setSortNetWorth(true);
+    setSortDate(!sortDate);
+  }
+  ///////////
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const onlinePlayer = useSelector(({online}) => online.onlinePlayers);
+  const onlinePlayer = useSelector(({ online }) => online.onlinePlayers);
   const handleUserDelete = (e, user_id) => {
     e.stopPropagation();
     deleteUser({ user_id }, dispatch);
@@ -23,15 +148,17 @@ export const AdminUserList = () => {
     getAllUserInfo(dispatch, navigate);
   }, []);
   const users_List = useSelector(({ admin }) => admin.users);
-  const users = users_List.map((val) => ({...val, online: onlinePlayer.find((o) => o._id === val._id) }))
+  const users = users_List.map((val) => ({
+    ...val,
+    online: onlinePlayer.find((o) => o._id === val._id),
+  }));
   return (
     <div>
       <h1 className="text-[30px] -mx-8 mt-4 text-gray-700 font-manrope font-extrabold">
         Total Users : {users.length}
       </h1>
       <div className="overflow-x-auto shadow-md sm:rounded-lg -mx-10 mt-5 bg-white px-2 min_calc_height">
-        <div></div>
-        <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
+        <div className="flex float-right items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
           <label htmlFor="table-search" className="sr-only">
             Search
           </label>
@@ -80,32 +207,162 @@ export const AdminUserList = () => {
                 No
               </th>
               <th scope="col" className="text-left text-gray-700 px-6 py-3">
-                Name
+                <div className="flex items-center gap-2">
+                  Name
+                  <a
+                    className="flex items-center cursor-pointer"
+                    onClick={handleSortName}
+                  >
+                    <span
+                      className={`transform transition-transform duration-300 ${
+                        sortName ? "rotate-0" : "rotate-180"
+                      }`}
+                    >
+                      <FaArrowDownAZ />
+                    </span>
+                  </a>
+                </div>
               </th>
               <th scope="col" className="text-left text-gray-700 px-6 py-3">
-                Role
+                <div className="flex items-center gap-2">
+                  Role
+                  <a
+                    className="flex items-center cursor-pointer"
+                    onClick={handleSortRole}
+                  >
+                    <span
+                      className={`transform transition-transform duration-300 ${
+                        sortRole ? "rotate-0" : "rotate-180"
+                      }`}
+                    >
+                      <FaArrowDownAZ />
+                    </span>
+                  </a>
+                </div>
               </th>
               <th scope="col" className="text-left text-gray-700 px-6 py-3">
-                Money
+                <div className="flex items-center gap-2">
+                  Money
+                  <a
+                    className="flex items-center cursor-pointer"
+                    onClick={handleSortMoney}
+                  >
+                    <span
+                      className={`transform transition-transform duration-300 ${
+                        sortMoney ? "rotate-0" : "rotate-180"
+                      }`}
+                    >
+                      <FaArrowDown19 />
+                    </span>
+                  </a>
+                </div>
               </th>
               <th scope="col" className="text-left text-gray-700 px-6 py-3">
-                Turn
+                <div className="flex items-center gap-2">
+                  Turn
+                  <a
+                    className="flex items-center cursor-pointer"
+                    onClick={handleSortTurn}
+                  >
+                    <span
+                      className={`transform transition-transform duration-300 ${
+                        sortTurn ? "rotate-0" : "rotate-180"
+                      }`}
+                    >
+                      <FaArrowDown19 />
+                    </span>
+                  </a>
+                </div>
               </th>
               <th scope="col" className="text-left text-gray-700 px-6 py-3">
-                Level
+                <div className="flex items-center gap-2">
+                  Level
+                  <a
+                    className="flex items-center cursor-pointer"
+                    onClick={handleSortLevel}
+                  >
+                    <span
+                      className={`transform transition-transform duration-300 ${
+                        sortLevel ? "rotate-0" : "rotate-180"
+                      }`}
+                    >
+                      <FaArrowDown19 />
+                    </span>
+                  </a>
+                </div>
               </th>
               <th scope="col" className="text-left text-gray-700 px-6 py-3">
-                Recruits
+                <div className="flex items-center gap-2">
+                  Recruits
+                  <a
+                    className="flex items-center cursor-pointer"
+                    onClick={handleSortRecruits}
+                  >
+                    <span
+                      className={`transform transition-transform duration-300 ${
+                        sortRecruits ? "rotate-0" : "rotate-180"
+                      }`}
+                    >
+                      <FaArrowDown19 />
+                    </span>
+                  </a>
+                </div>
               </th>
               <th scope="col" className="text-left text-gray-700 px-6 py-3">
-                Net Worth
+                <div className="flex items-center gap-2">
+                  Net Worth
+                  <a
+                    className="flex items-center cursor-pointer"
+                    onClick={handleSortNetWorth}
+                  >
+                    <span
+                      className={`transform transition-transform duration-300 ${
+                        sortNetWorth ? "rotate-0" : "rotate-180"
+                      }`}
+                    >
+                      <FaArrowDown19 />
+                    </span>
+                  </a>
+                </div>
               </th>
               <th scope="col" className="text-left text-gray-700 px-6 py-3">
-                Banked Turn
+                <div className="flex items-center gap-2">
+                  Banked Turn
+                  <a
+                    className="flex items-center cursor-pointer"
+                    onClick={handleSortBankedTurn}
+                  >
+                    <span
+                      className={`transform transition-transform duration-300 ${
+                        sortBankedTurn ? "rotate-0" : "rotate-180"
+                      }`}
+                    >
+                      <FaArrowDown19 />
+                    </span>
+                  </a>
+                </div>
+              </th>
+              <th scope="col" className="text-left text-gray-700 px-6 py-3">
+              <div className="flex items-center gap-2">
+                  Date
+                  <a
+                    className="flex items-center cursor-pointer"
+                    onClick={handleSortDate}
+                  >
+                    <span
+                      className={`transform transition-transform duration-300 ${
+                        sortDate ? "rotate-0" : "rotate-180"
+                      }`}
+                    >
+                      <FaArrowDown19 />
+                    </span>
+                  </a>
+                </div>
               </th>
               <th scope="col" className="text-left text-gray-700 px-6 py-3">
                 Status
               </th>
+              
               <th scope="col" className="text-left text-gray-700 px-6 py-3">
                 Action
               </th>
@@ -184,6 +441,9 @@ export const AdminUserList = () => {
                   {Number(user.bankedTurn).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
+                  {formattedDate(user.createdAt)}
+                </td>
+                <td className="px-6 py-4 text-left leading-none">
                   <div className="flex items-center">
                     <div
                       className={`h-2.5 w-2.5 rounded-full ${
@@ -193,6 +453,7 @@ export const AdminUserList = () => {
                     {user.online ? "Online" : "Offline"}
                   </div>
                 </td>
+                
                 <td className="px-6 py-4 ">
                   <div className="flex gap-4 justify-center items-center">
                     <a

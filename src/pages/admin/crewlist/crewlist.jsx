@@ -1,11 +1,79 @@
 import React, { useEffect, useState } from "react";
-import { FaTrashCan, FaPen } from "react-icons/fa6";
+import {
+  FaTrashCan,
+  FaPen,
+  FaArrowDownAZ,
+  FaArrowDown19,
+} from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAllCrew, removeCrew } from "../../../api/admin";
 import { ROUTES, socketURL } from "../../../common/constant";
-
+import { formattedDate } from "../../../common/utils";
 export const AdminCrewList = () => {
+  /////////////////
+  const [sortName, setSortName] = useState(true);
+  const [sortLeader, setLeader] = useState(true);
+  const [sortMoney, setSortMoney] = useState(true);
+  const [sortNetWorth, setSortNetWorth] = useState(true);
+  const [sortMembers, setSortMembers] = useState(true);
+  const [sortDate, setSortDate] = useState(true);
+
+  const handleSortName = () => {
+    setSortName(!sortName);
+    setLeader(true);
+    setSortMoney(true);
+    setSortNetWorth(true);
+    setSortMembers(true);
+    setSortDate(true);
+  };
+
+  const handleSortLeader = () => {
+    setSortName(true);
+    setLeader(!sortLeader);
+    setSortMoney(true);
+    setSortNetWorth(true);
+    setSortMembers(true);
+    setSortDate(true);
+
+  };
+
+  const handleSortMoney = () => {
+    setSortName(true);
+    setLeader(true);
+    setSortMoney(!sortMoney);
+    setSortNetWorth(true);
+    setSortMembers(true);
+    setSortDate(true);
+
+  };
+  const handleSortNetWorth = () => {
+    setSortName(true);
+    setLeader(true);
+    setSortMoney(true);
+    setSortNetWorth(!sortNetWorth);
+    setSortMembers(true);
+    setSortDate(true);
+
+  };
+  const handleSortMembers = () => {
+    setSortName(true);
+    setLeader(true);
+    setSortMoney(true);
+    setSortNetWorth(true);
+    setSortMembers(!sortMembers);
+    setSortDate(true);
+
+  };
+  const handleSortDate = () => {
+    setSortName(true);
+    setLeader(true);
+    setSortMoney(true);
+    setSortNetWorth(true);
+    setSortMembers(true);
+    setSortDate(!sortDate);
+  }
+  ///////////
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -76,19 +144,106 @@ export const AdminCrewList = () => {
               No
             </th>
             <th scope="col" className="text-left text-gray-700 px-6 py-3">
-              Name
+              <div className="flex items-center gap-2">
+                Name
+                <a
+                  className="flex items-center cursor-pointer"
+                  onClick={handleSortName}
+                >
+                  <span
+                    className={`transform transition-transform duration-300 ${
+                      sortName ? "rotate-0" : "rotate-180"
+                    }`}
+                  >
+                    <FaArrowDownAZ />
+                  </span>
+                </a>
+              </div>
             </th>
             <th scope="col" className="text-gray-700 px-6 py-3">
-              Leader
+              <div className="flex justify-center items-center gap-2">
+                Leader
+                <a
+                  className="flex items-center cursor-pointer"
+                  onClick={handleSortLeader}
+                >
+                  <span
+                    className={`transform transition-transform duration-300 ${
+                      sortLeader ? "rotate-0" : "rotate-180"
+                    }`}
+                  >
+                    <FaArrowDownAZ />
+                  </span>
+                </a>
+              </div>
             </th>
             <th scope="col" className="text-gray-700 px-6 py-3">
-              Money
+              <div className="flex justify-center items-center gap-2">
+                Money
+                <a
+                  className="flex items-center cursor-pointer"
+                  onClick={handleSortMoney}
+                >
+                  <span
+                    className={`transform transition-transform duration-300 ${
+                      sortMoney ? "rotate-0" : "rotate-180"
+                    }`}
+                  >
+                    <FaArrowDown19 />
+                  </span>
+                </a>
+              </div>
             </th>
             <th scope="col" className="text-gray-700 px-6 py-3">
-              Net Worth
+              <div className="flex justify-center items-center gap-2">
+                Net Worth
+                <a
+                  className="flex items-center cursor-pointer"
+                  onClick={handleSortNetWorth}
+                >
+                  <span
+                    className={`transform transition-transform duration-300 ${
+                      sortNetWorth ? "rotate-0" : "rotate-180"
+                    }`}
+                  >
+                    <FaArrowDown19 />
+                  </span>
+                </a>
+              </div>
             </th>
             <th scope="col" className="text-gray-700 px-6 py-3">
-              Members
+              <div className="flex justify-center items-center gap-2">
+                Members
+                <a
+                  className="flex items-center cursor-pointer"
+                  onClick={handleSortMembers}
+                >
+                  <span
+                    className={`transform transition-transform duration-300 ${
+                      sortMembers ? "rotate-0" : "rotate-180"
+                    }`}
+                  >
+                    <FaArrowDown19 />
+                  </span>
+                </a>
+              </div>
+            </th>
+            <th scope="col" className="text-gray-700 px-6 py-3">
+            <div className="flex justify-center items-center gap-2">
+                Date
+                <a
+                  className="flex items-center cursor-pointer"
+                  onClick={handleSortDate}
+                >
+                  <span
+                    className={`transform transition-transform duration-300 ${
+                      sortDate ? "rotate-0" : "rotate-180"
+                    }`}
+                  >
+                    <FaArrowDown19 />
+                  </span>
+                </a>
+              </div>
             </th>
             <th scope="col" className="text-gray-700 px-6 py-3">
               Action
@@ -149,6 +304,9 @@ export const AdminCrewList = () => {
                 </td>
                 <td className="px-6 py-4 text-center leading-none">
                   {Number(crew.members.length + 1).toLocaleString("en-US")}
+                </td>
+                <td className="px-6 py-4 text-center leading-none">
+                  {formattedDate(crew.createdAt)}
                 </td>
                 <td className="px-6 py-4 ">
                   <div className="flex gap-4 justify-center items-center">

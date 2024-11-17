@@ -8,6 +8,7 @@ import { AdminCrewAds } from "./crewads";
 
 const tabs = ["Crew List", "Crew Ads"];
 export const AdminCrew = () => {
+  
   const [activeTabIndex, setActiveTabIndex] = useState(0);
 
 

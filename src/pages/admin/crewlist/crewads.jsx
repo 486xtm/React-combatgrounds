@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCrewAds, removeAdById } from "../../../api/admin";
 import { ROUTES, socketURL } from "../../../common/constant";
 import { useNavigate } from "react-router-dom";
-
+import {formattedDate} from '../../../common/utils'
 export const AdminCrewAds = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -78,6 +78,9 @@ export const AdminCrewAds = () => {
               description
             </th>
             <th scope="col" className="text-gray-700 px-6 py-3">
+              date
+            </th>
+            <th scope="col" className="text-gray-700 px-6 py-3">
               Action
             </th>
           </tr>
@@ -140,6 +143,10 @@ export const AdminCrewAds = () => {
               </td>
               <td className="px-6 py-4  leading-none">
                 <div className="w-[100%] hyphens-auto">{ad.content}</div>
+              </td>
+
+              <td className="px-6 py-4  leading-none text-center">
+                {formattedDate(ad.createdAt)}
               </td>
 
               <td className="px-6 py-4 ">
