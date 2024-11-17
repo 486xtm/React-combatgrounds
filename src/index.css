@@ -154,5 +154,5 @@ textarea {
 }
 
 .min_calc_height {
-  min-height: calc(100vh - 220px);
+  min-height: calc(100vh - 350px);
 }

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import TabNav from "../../../common/components/ui/tabs/tab-nav";
 import TabPanel from "../../../common/components/ui/tabs/tab-panel";
-const tabs = ["BattleField Logs", "Nuke Logs", "History Logs"];
+const tabs = ["BattleField Logs", "Nuke Logs", "Transaction Logs"];
 
 export const AdminHistory = () =>{
   const [activeTabIndex, setActiveTabIndex] = useState(0);

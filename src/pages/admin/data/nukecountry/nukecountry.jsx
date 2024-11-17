@@ -13,6 +13,7 @@ export const NukeCountry = () => {
   const dispatch = useDispatch();
   const user = useSelector(({ user }) => user.user);
   const countries = useSelector(({ nuke }) => nuke.countries);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [CountryData, setCountryData] = useState([]);
   const [newCountry, setNewCountry] = useState({ name: "", level: 0 });
@@ -37,40 +38,10 @@ export const NukeCountry = () => {
     if (countries) setCountryData(countries);
   }, [countries]);
   return (
-    <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5 bg-white px-2 min_calc_height">
-      <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white ">
-        <div></div>
-        <label htmlFor="table-search" className="sr-only">
-          Search
-        </label>
-        <div className="relative">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <svg
-              className="w-4 h-4 text-gray-500 "
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
-          </div>
-          <input
-            type="text"
-            id="table-search-users"
-            className="block py-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 items-center"
-            placeholder="Search for Nuke Country"
-          />
-        </div>
-      </div>
+    <>
+    <div className=" overflow-x-auto shadow-md rounded-t-lg mt-5 bg-white px-2 min_calc_height">
 
-      <table className="w-full min-w-[500px] text-sm text-left overflow-x-auto ">
+      <table className="w-full min-w-[500px] text-sm text-left overflow-x-auto mt-5">
         <thead>
           <tr className="text-xs uppercase bg-gray-50 w-full">
             <th scope="col" className="p-4">
@@ -226,5 +197,65 @@ export const NukeCountry = () => {
         </tbody>
       </table>
     </div>
+    <div
+        class="flex justify-center items-center gap-x-1 bg-white border-t-2 py-4 rounded-b-lg"
+        aria-label="Pagination"
+      >
+        <button
+          type="button"
+          class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+          aria-label="Previous"
+        >
+          <svg
+            class="shrink-0 size-3.5"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+          <span class="sr-only">Previous</span>
+        </button>
+        <div class="flex items-center gap-x-1">
+          <input class="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
+            value={currentPage}
+            onChange={(ev) => setCurrentPage(Number(ev.target.value))}
+          />
+          <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+            of
+          </span>
+          <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+            1
+          </span>
+        </div>
+        <button
+          type="button"
+          class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+          aria-label="Next"
+        >
+          <span class="sr-only">Next</span>
+          <svg
+            class="shrink-0 size-3.5"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </>
   );
 };
