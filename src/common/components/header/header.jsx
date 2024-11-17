@@ -2,23 +2,31 @@ import React from "react";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getRound } from "../../../api/headquarter";
 
 export const Header = ({ currentActiveTab = "headquarters" }) => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   return (
     <div className={styles["header-container"]}>
       <div
         className={classNames(styles["main-page"], {
           [styles["active"]]: currentActiveTab === "main-page",
         })}
-        onClick={() => navigate("/headquarter")}
+        onClick={() => {
+          getRound(dispatch);
+          navigate("/headquarter")
+        }}
       />
       <div
         className={classNames(styles["headquarters"], {
           [styles["active"]]: currentActiveTab === "headquarters",
         })}
-        onClick={() => navigate("/headquarter")}
+        onClick={() => {
+          getRound(dispatch);
+          navigate("/headquarter")
+        }}
       />
       <div
         className={classNames(styles["rankings"], {
