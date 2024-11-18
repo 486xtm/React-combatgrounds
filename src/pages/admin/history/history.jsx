@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import TabNav from "../../../common/components/ui/tabs/tab-nav";
 import TabPanel from "../../../common/components/ui/tabs/tab-panel";
+import { AdminBattleFieldLog } from "./battlelogs/battlelogs";
+import { AdminNukeLogs } from "./nukelogs/nukelogs";
+import { AdminTransactionlogs } from "./transactionlogs/transactionlogs";
 const tabs = ["BattleField Logs", "Nuke Logs", "Transaction Logs"];
 
 export const AdminHistory = () =>{
@@ -21,9 +24,9 @@ export const AdminHistory = () =>{
           />
         ))}
       </div>
-      <TabPanel isActive={activeTabIndex === 0}>asdfasdf</TabPanel>
-      <TabPanel isActive={activeTabIndex === 1}>2342134234</TabPanel>
-      <TabPanel isActive={activeTabIndex === 2}>23423423423423</TabPanel>
+      <TabPanel isActive={activeTabIndex === 0}><AdminBattleFieldLog/></TabPanel>
+      <TabPanel isActive={activeTabIndex === 1}><AdminNukeLogs/></TabPanel>
+      <TabPanel isActive={activeTabIndex === 2}><AdminTransactionlogs/></TabPanel>
     </div>
   );
 }
