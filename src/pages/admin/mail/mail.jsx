@@ -23,7 +23,7 @@ export const AdminMail = () => {
 
   return (
     <>
-    <div className="flex  items-center justify-between flex-column md:flex-row flex-wrap mt-5 rounded-t-lg  md:space-y-0 py-4 bg-white pr-5">
+      <div className="flex  items-center justify-between flex-column md:flex-row flex-wrap mt-5 rounded-t-lg  md:space-y-0 py-4 bg-white pr-5">
         <div></div>
         <label htmlFor="table-search" className="sr-only">
           Search
@@ -54,167 +54,173 @@ export const AdminMail = () => {
           />
         </div>
       </div>
-    <div className=" overflow-x-auto shadow-md   bg-white px-2 min_calc_height">
-    
-
-      <table className="w-full min-w-[900px] text-sm text-left overflow-x-auto ">
-        <thead>
-          <tr className="text-xs uppercase bg-gray-50 w-full">
-            <th scope="col" className="p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-all-search"
-                  type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-                />
-                <label htmlFor="checkbox-all-search" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </th>
-            <th scope="col" className="text-gray-700 px-6 py-3">
-              No
-            </th>
-            <th scope="col" className="text-left text-gray-700 px-20 py-3">
-              From
-            </th>
-            <th scope="col" className="text-left text-gray-700 px-20 py-3">
-              To
-            </th>
-            <th scope="col" className="text-gray-700 px-6 py-3">
-              Subject
-            </th>
-            <th scope="col" className="text-gray-700 px-40 py-3">
-              Content
-            </th>
-            <th scope="col" className="text-gray-700 px-6 py-3">
-              Date
-            </th>
-            <th scope="col" className="text-gray-700 px-6 py-3">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {mails &&
-            mails.map((mail, index) => (
-              <tr
-                className="bg-white border-b hover:bg-gray-50 cursor-pointer"
-                key={`admin_Mail_list_${index}`}
-              >
-                <td className="w-4 p-4 leading-none">
-                  <div className="flex items-center">
-                    <input
-                      id={`checkbox-table-search-${index}`}
-                      type="checkbox"
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <label
-                      htmlFor={`checkbox-table-search-${index}`}
-                      className="sr-only"
-                    >
-                      checkbox
-                    </label>
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-center leading-none">
-                  {index + 1}
-                </td>
-                <td
-                  scope="row"
-                  className="px-6 py-4 text-gray-900 whitespace-nowrap "
-                  onClick={() => {
-                    if (!mail.sender) return;
-                    navigate(ROUTES.ADMIN_ROUTES.USER_INFO.replace(":user_id", mail.sender._id));
-                  }}
+      <div className=" overflow-x-auto shadow-md   bg-white px-2 min_calc_height">
+        <table className="w-full min-w-[900px] text-sm text-left overflow-x-auto ">
+          <thead>
+            <tr className="text-xs uppercase bg-gray-50 w-full">
+              <th scope="col" className="p-4">
+                <div className="flex items-center">
+                  <input
+                    id="checkbox-all-search"
+                    type="checkbox"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                  />
+                  <label htmlFor="checkbox-all-search" className="sr-only">
+                    checkbox
+                  </label>
+                </div>
+              </th>
+              <th scope="col" className="text-gray-700 px-6 py-3">
+                No
+              </th>
+              <th scope="col" className="text-left text-gray-700 px-20 py-3">
+                From
+              </th>
+              <th scope="col" className="text-left text-gray-700 px-20 py-3">
+                To
+              </th>
+              <th scope="col" className="text-gray-700 px-6 py-3">
+                Subject
+              </th>
+              <th scope="col" className="text-gray-700 px-40 py-3">
+                Content
+              </th>
+              <th scope="col" className="text-gray-700 px-6 py-3">
+                Date
+              </th>
+              <th scope="col" className="text-gray-700 px-6 py-3">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {mails &&
+              mails.map((mail, index) => (
+                <tr
+                  className="bg-white border-b hover:bg-gray-50 cursor-pointer"
+                  key={`admin_Mail_list_${index}`}
                 >
-                  <div className="flex items-center">
-                    <div className="w-10">
-                      <img
-                        className="w-10 h-10 rounded-full border-[1px]"
-                        src={
-                          mail.sender && mail.sender.avatar
-                            ? `${socketURL}/${mail.sender.avatar}`
-                            : "/pics/avatar.gif"
-                        }
-                        alt="Crew avatar"
+                  <td className="w-4 p-4 leading-none">
+                    <div className="flex items-center">
+                      <input
+                        id={`checkbox-table-search-${index}`}
+                        type="checkbox"
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
                       />
+                      <label
+                        htmlFor={`checkbox-table-search-${index}`}
+                        className="sr-only"
+                      >
+                        checkbox
+                      </label>
                     </div>
-                    <div className="ps-3 text-left">
-                      <div className="text-base font-semibold">
-                        {mail.sender ? mail.sender.name : "Deleted User"}
+                  </td>
+                  <td className="px-6 py-4 text-center leading-none">
+                    {index + 1}
+                  </td>
+                  <td
+                    scope="row"
+                    className="px-6 py-4 text-gray-900 whitespace-nowrap "
+                    onClick={() => {
+                      if (!mail.sender) return;
+                      navigate(
+                        ROUTES.ADMIN_ROUTES.USER_INFO.replace(
+                          ":user_id",
+                          mail.sender._id
+                        )
+                      );
+                    }}
+                  >
+                    <div className="flex items-center">
+                      <div className="w-10">
+                        <img
+                          className="w-10 h-10 rounded-full border-[1px]"
+                          src={
+                            mail.sender && mail.sender.avatar
+                              ? `${socketURL}/${mail.sender.avatar}`
+                              : "/pics/avatar.gif"
+                          }
+                          alt="Crew avatar"
+                        />
+                      </div>
+                      <div className="ps-3 text-left">
+                        <div className="text-base font-semibold">
+                          {mail.sender ? mail.sender.name : "Deleted User"}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
-                <td
-                  scope="row"
-                  className="px-6 py-4 text-gray-900 whitespace-nowrap "
-                  onClick={() => {
-                    if (!mail.receiver) return;
-                    navigate(ROUTES.ADMIN_ROUTES.USER_INFO.replace(":user_id", mail.receiver._id));
-                  }}
-                >
-                  <div className="flex items-center">
-                    <div className="w-10">
-                      <img
-                        className="w-10 h-10 rounded-full border-[1px]"
-                        src={
-                          mail.receiver  && mail.receiver.avatar
-                            ? `${socketURL}/${mail.receiver.avatar}`
-                            : "/pics/avatar.gif"
-                        }
-                        alt="Crew avatar"
-                      />
-                    </div>
-                    <div className="ps-3 text-left">
-                      <div className="text-base font-semibold">
-                        {mail.receiver ? mail.receiver.name : "Deleted User"}
+                  </td>
+                  <td
+                    scope="row"
+                    className="px-6 py-4 text-gray-900 whitespace-nowrap "
+                    onClick={() => {
+                      if (!mail.receiver) return;
+                      navigate(
+                        ROUTES.ADMIN_ROUTES.USER_INFO.replace(
+                          ":user_id",
+                          mail.receiver._id
+                        )
+                      );
+                    }}
+                  >
+                    <div className="flex items-center">
+                      <div className="w-10">
+                        <img
+                          className="w-10 h-10 rounded-full border-[1px]"
+                          src={
+                            mail.receiver && mail.receiver.avatar
+                              ? `${socketURL}/${mail.receiver.avatar}`
+                              : "/pics/avatar.gif"
+                          }
+                          alt="Crew avatar"
+                        />
+                      </div>
+                      <div className="ps-3 text-left">
+                        <div className="text-base font-semibold">
+                          {mail.receiver ? mail.receiver.name : "Deleted User"}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4  leading-none">
-                  <div className="w-[100%] text-center">{mail.subject}</div>
-                </td>
-                <td className="px-6 py-4  leading-none">
-                  <div className="w-[100%] hyphens-auto">{mail.content}</div>
-                </td>
-                <td className="leading-none">
-                  <div className="w-[100%] text-center">
-                    {formattedDate(mail.created_at)}
-                  </div>
-                </td>
-                <td className="px-6 py-4 ">
-                  <div className="flex gap-4 justify-center items-center">
-                    <div
-                      href="#"
-                      type="button"
-                      onClick={() => handleMailDelete(mail._id)} // Changed from user to crew
-                      className="text-[18px] text-gray-600"
-                    >
-                      <FaTrashCan />
+                  </td>
+                  <td className="px-6 py-4  leading-none">
+                    <div className="w-[100%] text-center">{mail.subject}</div>
+                  </td>
+                  <td className="px-6 py-4  leading-none">
+                    <div className="w-[100%] hyphens-auto">{mail.content}</div>
+                  </td>
+                  <td className="leading-none">
+                    <div className="w-[100%] text-center">
+                      {formattedDate(mail.created_at)}
                     </div>
-                  </div>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-      
-      
-    </div>
-    <div
-        class="flex justify-center items-center gap-x-1 bg-white border-t-2 py-4 rounded-b-lg"
+                  </td>
+                  <td className="px-6 py-4 ">
+                    <div className="flex gap-4 justify-center items-center">
+                      <div
+                        href="#"
+                        type="button"
+                        onClick={() => handleMailDelete(mail._id)} // Changed from user to crew
+                        className="text-[18px] text-gray-600"
+                      >
+                        <FaTrashCan />
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
+      <div
+        className="flex justify-center items-center gap-x-1 bg-white border-t-2 py-4 rounded-b-lg"
         aria-label="Pagination"
       >
         <button
           type="button"
-          class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+          className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Previous"
         >
           <svg
-            class="shrink-0 size-3.5"
+            className="shrink-0 size-3.5"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -227,28 +233,29 @@ export const AdminMail = () => {
           >
             <path d="m15 18-6-6 6-6"></path>
           </svg>
-          <span class="sr-only">Previous</span>
+          <span className="sr-only">Previous</span>
         </button>
-        <div class="flex items-center gap-x-1">
-          <input class="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
+        <div className="flex items-center gap-x-1">
+          <input
+            className="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
             value={currentPage}
             onChange={(ev) => setCurrentPage(Number(ev.target.value))}
           />
-          <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+          <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
             of
           </span>
-          <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+          <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
             1
           </span>
         </div>
         <button
           type="button"
-          class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+          className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Next"
         >
-          <span class="sr-only">Next</span>
+          <span className="sr-only">Next</span>
           <svg
-            class="shrink-0 size-3.5"
+            className="shrink-0 size-3.5"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"

@@ -20,7 +20,19 @@ export const getColorSchemaByCharacterType = (characterType) => {
 
 export const formattedDate = (d) => {
   const date = new Date(d);
-  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+
+  // Format date
+  const formattedDate = `${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}`;
+
+  // Format time
+  const hours = String(date.getHours()).padStart(2, "0"); // Add leading zero
+  const minutes = String(date.getMinutes()).padStart(2, "0"); // Add leading zero
+  const seconds = String(date.getSeconds()).padStart(2, "0"); // Add leading zero
+
+  // Combine date and time
+  return `${formattedDate} ${hours}:${minutes}:${seconds}`;
 };
 
 export const pagination = (data) => {

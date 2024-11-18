@@ -8,6 +8,9 @@ const initialState = {
   selectedCrew: null,
   dash: null,
   battles: [],
+  nuke: [],
+  txs: [],
+  bts: [],
 };
 
 const adminSlice = createSlice({
@@ -35,6 +38,15 @@ const adminSlice = createSlice({
     setBattles: (state, action) => {
       state.battles = action.payload;
     },
+    setNukeHisotry: (state, action) => {
+      state.nuke = action.payload;
+    },
+    setTransactionHistory: (state, action) => {
+      state.txs = action.payload;
+    },
+    setBattleHistory: (state, action) => {
+      state.bts = action.payload;
+    },
   },
 });
 
@@ -46,5 +58,8 @@ export const {
   setDashBoard,
   setMails,
   setBattles,
+  setNukeHisotry,
+  setTransactionHistory,
+  setBattleHistory,
 } = adminSlice.actions;
 export default adminSlice.reducer;
