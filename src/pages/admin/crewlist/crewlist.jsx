@@ -12,62 +12,45 @@ import { ROUTES, socketURL } from "../../../common/constant";
 import { formattedDate } from "../../../common/utils";
 export const AdminCrewList = () => {
   /////////////////
-  const [sortName, setSortName] = useState(true);
-  const [sortLeader, setLeader] = useState(true);
-  const [sortMoney, setSortMoney] = useState(true);
-  const [sortNetWorth, setSortNetWorth] = useState(true);
-  const [sortMembers, setSortMembers] = useState(true);
-  const [sortDate, setSortDate] = useState(true);
+  const [sortBy, setSortBy] = useState({ tag: "name", des: true });
 
   const handleSortName = () => {
-    setSortName(!sortName);
-    setLeader(true);
-    setSortMoney(true);
-    setSortNetWorth(true);
-    setSortMembers(true);
-    setSortDate(true);
+    if (!sortBy) return;
+    if (sortBy.tag === "name") {
+      setSortBy({ tag: "name", des: !sortBy.des });
+    } else setSortBy({ tag: "name", des: true });
   };
 
   const handleSortLeader = () => {
-    setSortName(true);
-    setLeader(!sortLeader);
-    setSortMoney(true);
-    setSortNetWorth(true);
-    setSortMembers(true);
-    setSortDate(true);
+    if (!sortBy) return;
+    if (sortBy.tag === "leader") {
+      setSortBy({ tag: "leader", des: !sortBy.des });
+    } else setSortBy({ tag: "leader", des: true });
   };
 
   const handleSortMoney = () => {
-    setSortName(true);
-    setLeader(true);
-    setSortMoney(!sortMoney);
-    setSortNetWorth(true);
-    setSortMembers(true);
-    setSortDate(true);
+    if (!sortBy) return;
+    if (sortBy.tag === "money") {
+      setSortBy({ tag: "money", des: !sortBy.des });
+    } else setSortBy({ tag: "money", des: true });
   };
   const handleSortNetWorth = () => {
-    setSortName(true);
-    setLeader(true);
-    setSortMoney(true);
-    setSortNetWorth(!sortNetWorth);
-    setSortMembers(true);
-    setSortDate(true);
+    if (!sortBy) return;
+    if (sortBy.tag === "netWorth") {
+      setSortBy({ tag: "netWorth", des: !sortBy.des });
+    } else setSortBy({ tag: "netWorth", des: true });
   };
   const handleSortMembers = () => {
-    setSortName(true);
-    setLeader(true);
-    setSortMoney(true);
-    setSortNetWorth(true);
-    setSortMembers(!sortMembers);
-    setSortDate(true);
+    if (!sortBy) return;
+    if (sortBy.tag === "members") {
+      setSortBy({ tag: "members", des: !sortBy.des });
+    } else setSortBy({ tag: "members", des: true });
   };
   const handleSortDate = () => {
-    setSortName(true);
-    setLeader(true);
-    setSortMoney(true);
-    setSortNetWorth(true);
-    setSortMembers(true);
-    setSortDate(!sortDate);
+    if (!sortBy) return;
+    if (sortBy.tag === "createdAt") {
+      setSortBy({ tag: "createdAt", des: !sortBy.des });
+    } else setSortBy({ tag: "createdAt", des: true });
   };
   ///////////
 
@@ -80,7 +63,7 @@ export const AdminCrewList = () => {
 
   const handleCrewDelete = (e, crew_id) => {
     e.stopPropagation();
-    removeCrew({ crew_id }, dispatch);
+    removeCrew(sortBy, { crew_id }, dispatch);
   };
 
   const handleCrewEdit = (crew_id) => {
@@ -88,8 +71,8 @@ export const AdminCrewList = () => {
   };
 
   useEffect(() => {
-    getAllCrew(dispatch);
-  }, []);
+    getAllCrew(sortBy, dispatch);
+  }, [sortBy]);
 
   return (
     <>
@@ -141,112 +124,133 @@ export const AdminCrewList = () => {
                   </label>
                 </div>
               </th>
-              <th scope="col" className="text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-gray-700 px-6 py-3"
+              >
                 No
               </th>
-              <th scope="col" className="text-left text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="text-left text-gray-700 px-6 py-3 cursor-pointer"
+                onClick={handleSortName}
+              >
                 <div className="flex items-center gap-2">
                   Name
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortName}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortName ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDownAZ />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "name" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDownAZ />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-gray-700 px-6 py-3"
+                onClick={handleSortLeader}
+              >
                 <div className="flex justify-center items-center gap-2">
                   Leader
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortLeader}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortLeader ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDownAZ />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "leader" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDownAZ />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-gray-700 px-6 py-3"
+                onClick={handleSortMoney}
+              >
                 <div className="flex justify-center items-center gap-2">
                   Money
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortMoney}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortMoney ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDown19 />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "money" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-gray-700 px-6 py-3"
+                onClick={handleSortNetWorth}
+              >
                 <div className="flex justify-center items-center gap-2">
                   Net Worth
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortNetWorth}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortNetWorth ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDown19 />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "netWorth" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-gray-700 px-6 py-3"
+                onClick={handleSortMembers}
+              >
                 <div className="flex justify-center items-center gap-2">
                   Members
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortMembers}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortMembers ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDown19 />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "members" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-gray-700 px-6 py-3"
+                onClick={handleSortDate}
+              >
                 <div className="flex justify-center items-center gap-2">
                   Date
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortDate}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortDate ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDown19 />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "createdAt" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-gray-700 px-6 py-3">
+              <th scope="col" className=" text-gray-700 px-6 py-3">
                 Action
               </th>
             </tr>
@@ -255,7 +259,7 @@ export const AdminCrewList = () => {
             {crews &&
               crews.map((crew, index) => (
                 <tr
-                  className="bg-white border-b hover:bg-gray-50 cursor-pointer"
+                  className="bg-white border-b hover:bg-gray-50"
                   key={`admin_crewlist_${index}`}
                   onClick={() => handleCrewEdit(crew._id)}
                 >
@@ -335,59 +339,60 @@ export const AdminCrewList = () => {
       </div>
 
       <div
-        class="flex justify-center items-center gap-x-1 bg-white border-t-2 py-4 rounded-b-lg"
+        className="flex justify-center items-center gap-x-1 bg-white border-t-2 py-4 rounded-b-lg"
         aria-label="Pagination"
       >
         <button
           type="button"
-          class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+          className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Previous"
         >
           <svg
-            class="shrink-0 size-3.5"
+            className="shrink-0 size-3.5"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <path d="m15 18-6-6 6-6"></path>
           </svg>
-          <span class="sr-only">Previous</span>
+          <span className="sr-only">Previous</span>
         </button>
-        <div class="flex items-center gap-x-1">
-          <input class="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
+        <div className="flex items-center gap-x-1">
+          <input
+            className="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
             value={currentPage}
             onChange={(ev) => setCurrentPage(Number(ev.target.value))}
           />
-          <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+          <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
             of
           </span>
-          <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+          <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
             3
           </span>
         </div>
         <button
           type="button"
-          class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+          className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Next"
         >
-          <span class="sr-only">Next</span>
+          <span className="sr-only">Next</span>
           <svg
-            class="shrink-0 size-3.5"
+            className="shrink-0 size-3.5"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <path d="m9 18 6-6-6-6"></path>
           </svg>
