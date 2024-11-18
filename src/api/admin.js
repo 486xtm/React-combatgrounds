@@ -15,9 +15,12 @@ import { getBosses } from "./crew";
 import { getUserById } from "./user";
 
 //admin
-export const getAllUserInfo = async (dispatch) => {
+export const getAllUserInfo = async (sortBy, dispatch) => {
   try {
-    const res = await axios.get(`${basicURL}/user/all_infor`);
+    const urlSearchParams = new URLSearchParams(sortBy).toString();
+    const res = await axios.get(
+      `${basicURL}/user/all_infor?${urlSearchParams}`
+    );
     const { users } = res.data;
     dispatch(setUsers(users));
   } catch (err) {
@@ -27,12 +30,11 @@ export const getAllUserInfo = async (dispatch) => {
   }
 };
 
-export const deleteUser = async (data, dispatch) => {
+export const deleteUser = async (sortBy, data, dispatch) => {
   try {
     const res = await axios.delete(`${basicURL}/user/delete`, data);
-    const { users } = res.data;
-    dispatch(setUsers(users));
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    getAllUserInfo(sortBy, dispatch);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -64,11 +66,28 @@ export const removeAvatar = async (data, dispatch) => {
   }
 };
 
-export const getAllCrew = async (dispatch) => {
+export const getAllCrew = async (sortBy, dispatch) => {
   try {
-    const res = await axios.get(`${basicURL}/crew/crews`);
+    const urlSearchParams = new URLSearchParams(sortBy).toString();
+    const res = await axios.get(`${basicURL}/crew/crews?${urlSearchParams}`);
     const { crews } = res.data;
-    dispatch(setCrews(crews));
+    dispatch(
+      setCrews(
+        sortBy.tag !== "leader" && sortBy.tag !== "members"
+          ? crews
+          : crews.sort((a, b) => {
+              if (sortBy.tag === "leader") {
+                return sortBy.des
+                  ? a.leader.name.localeCompare(b.leader.name)
+                  : -1 * a.leader.name.localeCompare(b.leader.name);
+              } else {
+                return sortBy.des
+                  ? a.members.length - b.members.length
+                  : b.members.length - a.members.length;
+              }
+            })
+      )
+    );
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -88,11 +107,11 @@ export const getCrewAds = async (dispatch) => {
   }
 };
 
-export const removeCrew = async (data, dispatch) => {
+export const removeCrew = async (sortBy, data, dispatch) => {
   try {
     const res = await axios.delete(`${basicURL}/crew/remove`, data);
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
-    getAllCrew(dispatch);
+    getAllCrew(sortBy, dispatch);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })

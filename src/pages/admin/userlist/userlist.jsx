@@ -13,115 +13,72 @@ import { ROUTES, socketURL } from "../../../common/constant";
 import { formattedDate } from "../../../common/utils";
 export const AdminUserList = () => {
   ///////////
-  const [sortName, setSortName] = useState(true);
-  const [sortRole, setSortRole] = useState(true);
-  const [sortMoney, setSortMoney] = useState(true);
-  const [sortTurn, setSortTurn] = useState(true);
-  const [sortLevel, setSortLevel] = useState(true);
-  const [sortRecruits, setSortRecruits] = useState(true);
-  const [sortNetWorth, setSortNetWorth] = useState(true);
-  const [sortBankedTurn, setSortBankedTurn] = useState(true);
-  const [sortDate, setSortDate] = useState(true);
+  const [sortBy, setSortBy] = useState({ tag: "name", des: true }); //{tag: 'Jone', des: true}
 
   const handleSortName = () => {
-    setSortName(!sortName);
-    setSortRole(true);
-    setSortMoney(true);
-    setSortTurn(true);
-    setSortLevel(true);
-    setSortRecruits(true);
-    setSortNetWorth(true);
-    setSortBankedTurn(true);
-    setSortDate(true);
+    console.log(sortBy);
+    if (sortBy.tag === "name") {
+      setSortBy({ tag: "name", des: !sortBy.des });
+    } else {
+      setSortBy({ tag: "name", des: true });
+    }
   };
 
   const handleSortRole = () => {
-    setSortRole(!sortRole);
-    setSortName(true);
-    setSortMoney(true);
-    setSortTurn(true);
-    setSortLevel(true);
-    setSortRecruits(true);
-    setSortNetWorth(true);
-    setSortBankedTurn(true);
-    setSortDate(true);
+    if (sortBy.tag === "role") {
+      setSortBy({ tag: "role", des: !sortBy.des });
+    } else {
+      setSortBy({ tag: "role", des: true });
+    }
   };
   const handleSortMoney = () => {
-    setSortMoney(!sortMoney);
-    setSortName(true);
-    setSortRole(true);
-    setSortTurn(true);
-    setSortLevel(true);
-    setSortRecruits(true);
-    setSortNetWorth(true);
-    setSortBankedTurn(true);
-    setSortDate(true);
+    if (sortBy.tag === "money") {
+      setSortBy({ tag: "money", des: !sortBy.des });
+    } else {
+      setSortBy({ tag: "money", des: true });
+    }
   };
   const handleSortTurn = () => {
-    setSortTurn(!sortTurn);
-    setSortName(true);
-    setSortRole(true);
-    setSortMoney(true);
-    setSortLevel(true);
-    setSortRecruits(true);
-    setSortNetWorth(true);
-    setSortBankedTurn(true);
-    setSortDate(true);
+    if (sortBy.tag === "turn") {
+      setSortBy({ tag: "turn", des: !sortBy.des });
+    } else {
+      setSortBy({ tag: "turn", des: true });
+    }
   };
+
   const handleSortLevel = () => {
-    setSortLevel(!sortLevel);
-    setSortName(true);
-    setSortRole(true);
-    setSortMoney(true);
-    setSortTurn(true);
-    setSortRecruits(true);
-    setSortNetWorth(true);
-    setSortBankedTurn(true);
-    setSortDate(true);
+    if (sortBy.tag === "level") {
+      setSortBy({ tag: "level", des: !sortBy.des });
+    } else {
+      setSortBy({ tag: "level", des: true });
+    }
   };
+
   const handleSortRecruits = () => {
-    setSortRecruits(!sortRecruits);
-    setSortName(true);
-    setSortRole(true);
-    setSortMoney(true);
-    setSortTurn(true);
-    setSortLevel(true);
-    setSortNetWorth(true);
-    setSortBankedTurn(true);
-    setSortDate(true);
+    if (sortBy.tag === "recruits") {
+      setSortBy({ tag: "recruits", des: !sortBy.des });
+    } else {
+      setSortBy({ tag: "recruits", des: true });
+    }
   };
   const handleSortNetWorth = () => {
-    setSortNetWorth(!sortNetWorth);
-    setSortName(true);
-    setSortRole(true);
-    setSortMoney(true);
-    setSortTurn(true);
-    setSortLevel(true);
-    setSortRecruits(true);
-    setSortBankedTurn(true);
-    setSortDate(true);
+    if (sortBy.tag === "netWorth") {
+      setSortBy({ tag: "netWorth", des: !sortBy.des });
+    } else {
+      setSortBy({ tag: "netWorth", des: true });
+    }
   };
+
   const handleSortBankedTurn = () => {
-    setSortBankedTurn(!sortBankedTurn);
-    setSortName(true);
-    setSortRole(true);
-    setSortMoney(true);
-    setSortTurn(true);
-    setSortLevel(true);
-    setSortRecruits(true);
-    setSortNetWorth(true);
-    setSortDate(true);
+    if (sortBy.tag === "bankedTurn") {
+      setSortBy({ tag: "bankedTurn", des: !sortBy.des });
+    } else setSortBy({ tag: "bankedTurn", des: true });
   };
+
   const handleSortDate = () => {
-    setSortBankedTurn(true);
-    setSortName(true);
-    setSortRole(true);
-    setSortMoney(true);
-    setSortTurn(true);
-    setSortLevel(true);
-    setSortRecruits(true);
-    setSortNetWorth(true);
-    setSortDate(!sortDate);
+    if (sortBy.tag === "createdAt") {
+      setSortBy({ tag: "createdAt", des: !sortBy.des });
+    } else setSortBy({ tag: "createdAt", des: true });
   };
   ///////////
   const [currentPage, setCurrentPage] = useState(1);
@@ -131,7 +88,7 @@ export const AdminUserList = () => {
   const onlinePlayer = useSelector(({ online }) => online.onlinePlayers);
   const handleUserDelete = (e, user_id) => {
     e.stopPropagation();
-    deleteUser({ user_id }, dispatch);
+    deleteUser(sortBy, { user_id }, dispatch);
   };
 
   const handleUserEdit = (e, user_id) => {
@@ -139,8 +96,11 @@ export const AdminUserList = () => {
   };
 
   useEffect(() => {
-    getAllUserInfo(dispatch, navigate);
-  }, []);
+    console.log("s==>", sortBy);
+    if (!sortBy) return;
+    getAllUserInfo(sortBy, dispatch, navigate);
+  }, [sortBy]);
+
   const users_List = useSelector(({ admin }) => admin.users);
   const users = users_List.map((val) => ({
     ...val,
@@ -201,157 +161,184 @@ export const AdminUserList = () => {
               <th scope="col" className="text-left text-gray-700 px-6 py-3">
                 No
               </th>
-              <th scope="col" className="text-left text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-left text-gray-700 px-6 py-3"
+                onClick={handleSortName}
+              >
                 <div className="flex items-center gap-2">
                   Name
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortName}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortName ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDownAZ />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "name" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDownAZ />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-left text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-left text-gray-700 px-6 py-3"
+                onClick={handleSortRole}
+              >
                 <div className="flex items-center gap-2">
                   Role
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortRole}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortRole ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDownAZ />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "role" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDownAZ />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-left text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-left text-gray-700 px-6 py-3"
+                onClick={handleSortMoney}
+              >
                 <div className="flex items-center gap-2">
                   Money
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortMoney}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortMoney ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDown19 />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "money" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-left text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-left text-gray-700 px-6 py-3"
+                onClick={handleSortTurn}
+              >
                 <div className="flex items-center gap-2">
                   Turn
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortTurn}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortTurn ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDown19 />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "turn" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-left text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-left text-gray-700 px-6 py-3"
+                onClick={handleSortLevel}
+              >
                 <div className="flex items-center gap-2">
                   Level
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortLevel}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortLevel ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDown19 />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "level" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-left text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-left text-gray-700 px-6 py-3"
+                onClick={handleSortRecruits}
+              >
                 <div className="flex items-center gap-2">
                   Recruits
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortRecruits}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortRecruits ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDown19 />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "recruits" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-left text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-left text-gray-700 px-6 py-3"
+                onClick={handleSortNetWorth}
+              >
                 <div className="flex items-center gap-2">
                   Net Worth
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortNetWorth}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortNetWorth ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDown19 />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "netWorth" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-left text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-left text-gray-700 px-6 py-3"
+                onClick={handleSortBankedTurn}
+              >
                 <div className="flex items-center gap-2">
                   Banked Turn
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortBankedTurn}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortBankedTurn ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDown19 />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "bankedTurn" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
-              <th scope="col" className="text-left text-gray-700 px-6 py-3">
+              <th
+                scope="col"
+                className="cursor-pointer text-left text-gray-700 px-6 py-3"
+                onClick={handleSortDate}
+              >
                 <div className="flex items-center gap-2">
                   Date
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={handleSortDate}
-                  >
-                    <span
-                      className={`transform transition-transform duration-300 ${
-                        sortDate ? "rotate-0" : "rotate-180"
-                      }`}
-                    >
-                      <FaArrowDown19 />
-                    </span>
-                  </a>
+                  {sortBy && sortBy.tag === "createdAt" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </th>
               <th scope="col" className="text-left text-gray-700 px-6 py-3">
@@ -475,59 +462,60 @@ export const AdminUserList = () => {
         </table>
       </div>
       <div
-        class="flex justify-center items-center gap-x-1 bg-white -mx-10 border-t-2 py-4 rounded-b-lg"
+        className="flex justify-center items-center gap-x-1 bg-white -mx-10 border-t-2 py-4 rounded-b-lg"
         aria-label="Pagination"
       >
         <button
           type="button"
-          class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+          className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Previous"
         >
           <svg
-            class="shrink-0 size-3.5"
+            className="shrink-0 size-3.5"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <path d="m15 18-6-6 6-6"></path>
           </svg>
-          <span class="sr-only">Previous</span>
+          <span className="sr-only">Previous</span>
         </button>
-        <div class="flex items-center gap-x-1">
-          <input class="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
+        <div className="flex items-center gap-x-1">
+          <input
+            className="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
             value={currentPage}
             onChange={(ev) => setCurrentPage(Number(ev.target.value))}
           />
-          <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+          <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
             of
           </span>
-          <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+          <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
             3
           </span>
         </div>
         <button
           type="button"
-          class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+          className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Next"
         >
-          <span class="sr-only">Next</span>
+          <span className="sr-only">Next</span>
           <svg
-            class="shrink-0 size-3.5"
+            className="shrink-0 size-3.5"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <path d="m9 18 6-6-6-6"></path>
           </svg>
