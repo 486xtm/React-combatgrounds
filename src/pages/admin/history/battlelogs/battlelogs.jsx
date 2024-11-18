@@ -15,6 +15,15 @@ const mockdata = [
 ]
 export const AdminBattleFieldLog = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const handlePageNext = () => {
+    setCurrentPage(currentPage + 1);
+  }
+  const hanldePagePrevious = () => {
+    setCurrentPage(currentPage - 1);
+
+  }
+  const handlePageGo = () => {
+  }
   return <>
   <div className="flex  items-center justify-between flex-column md:flex-row flex-wrap  mt-5 rounded-t-lg  md:space-y-0 py-4 bg-white pr-5">
         <div></div>
@@ -163,16 +172,18 @@ export const AdminBattleFieldLog = () => {
     </table>
   </div>
   <div
-      class="flex justify-center items-center gap-x-1 bg-white border-t-2 py-4 rounded-b-lg"
+      className="flex justify-center items-center gap-x-1 bg-white border-t-2 py-4 rounded-b-lg"
       aria-label="Pagination"
     >
       <button
         type="button"
-        class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+        className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
         aria-label="Previous"
+        onClick={hanldePagePrevious}
+        disabled = {currentPage == 1}
       >
         <svg
-          class="shrink-0 size-3.5"
+          className="shrink-0 size-3.5"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -185,26 +196,28 @@ export const AdminBattleFieldLog = () => {
         >
           <path d="m15 18-6-6 6-6"></path>
         </svg>
-        <span class="sr-only">Previous</span>
+        <span className="sr-only">Previous</span>
       </button>
-      <div class="flex items-center gap-x-1">
-        <input class="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
+      <div className="flex items-center gap-x-1">
+        <input className="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
           value={currentPage}
           onChange={(ev) => setCurrentPage(Number(ev.target.value))}
         />
-        <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+        <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
           of
         </span>
-        <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+        <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
           1
         </span>
       </div>
       <button
         type="button"
-        class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+        className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
         aria-label="Next"
+        onClick={handlePageNext}
+        disabled = {currentPage > 10}
       >
-        <span class="sr-only">Next</span>
+        <span className="sr-only">Next</span>
         <svg
           class="shrink-0 size-3.5"
           xmlns="http://www.w3.org/2000/svg"
