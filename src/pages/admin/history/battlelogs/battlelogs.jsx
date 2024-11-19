@@ -3,20 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBattleHistory } from "../../../../api/admin";
 import { socketURL } from "../../../../common/constant";
 import { formattedDate } from "../../../../common/utils";
-const mockdata = [
-  {
-    player: {
-      name: "sealife",
-      avatar: "",
-    },
-    region: { name: "Central Europe" },
-    exploit: 10,
-    recruit: 10,
-    gather: 23,
-    in: "2024-11-18 : 12.30.21",
-    out: "2024-11-18 : 12.40.25",
-  },
-];
+
 export const AdminBattleFieldLog = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
