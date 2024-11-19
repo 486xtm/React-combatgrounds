@@ -23,6 +23,7 @@ import {
   UserGuide,
   BuyTurns,
   Subscribe,
+  Attack,
 } from "../pages/core";
 import {
   Invites,
@@ -175,6 +176,11 @@ export const routes = {
       element: <CrewManage />,
     },
     { path: ROUTES.MAIN_ROUTES.EDIT_CREW, element: <CrewEdit /> },
+
+    {
+      path: ROUTES.MAIN_ROUTES.ATTACK,
+      element: <Attack />
+    }
   ],
   admin: [
     {
