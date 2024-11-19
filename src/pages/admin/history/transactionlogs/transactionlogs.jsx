@@ -1,4 +1,8 @@
-import React,{useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTransactionHistory } from "../../../../api/admin";
+import { formattedDate } from "../../../../common/utils";
+import { socketURL } from "../../../../common/constant";
 const buyInfo = [
   {
     total: 1000,
@@ -43,30 +47,28 @@ const buyInfo = [
   //   cost: 500,
   // },
 ];
-const mockdata = [
-  {
-    player: {
-      name: "sealife",
-      avatar: "",
-    },
-    amount: 15,
-    amountTurn: "cash",
-    time: "2024-11-18 : 12.30.21",
-  }
-]
+
 export const AdminTransactionlogs = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const handlePageNext = () => {
     setCurrentPage(currentPage + 1);
-  }
+  };
   const hanldePagePrevious = () => {
     setCurrentPage(currentPage - 1);
+  };
+  const handlePageGo = () => {};
 
-  }
-  const handlePageGo = () => {
-  }
-  return <>
-  <div className="flex  items-center justify-between flex-column md:flex-row flex-wrap  mt-5 rounded-t-lg  md:space-y-0 py-4 bg-white pr-5">
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getTransactionHistory(dispatch);
+  }, []);
+
+  const txs = useSelector(({ admin }) => admin.txs);
+
+  return (
+    <>
+      <div className="flex  items-center justify-between flex-column md:flex-row flex-wrap  mt-5 rounded-t-lg  md:space-y-0 py-4 bg-white pr-5">
         <div></div>
         <label htmlFor="table-search" className="sr-only">
           Search
@@ -97,165 +99,169 @@ export const AdminTransactionlogs = () => {
           />
         </div>
       </div>
-  <div className=" overflow-x-auto shadow-md bg-white px-2 min_calc_height">
-    <table className="w-full min-w-[500px] text-sm text-left overflow-x-auto ">
-      <thead>
-        <tr className="text-xs uppercase bg-gray-50 w-full">
-          <th scope="col" className="p-4">
-            <div className="flex items-center">
-              <input
-                id="checkbox-all-search"
-                type="checkbox"
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-              />
-              <label htmlFor="checkbox-all-search" className="sr-only">
-                checkbox
-              </label>
-            </div>
-          </th>
-          <th scope="col" className="text-gray-700 px-6 py-3">
-            No
-          </th>
-          <th scope="col" className=" text-gray-700 px-20 py-3">
-            Player
-          </th>
-          <th scope="col" className=" text-gray-700 px-6 py-3">
-            amount
-          </th>
-          
-          <th scope="col" className=" text-gray-700 px-6 py-3">
-            amount of Turn
-          </th>
-          <th scope="col" className="text-gray-700 px-6 py-3">
-            Time
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {mockdata &&
-          mockdata.map((battle, index) => (
-            <tr
-              className="bg-white border-b hover:bg-gray-50 cursor-pointer"
-              key={`admin_amount_list_${index}`}
-            >
-              <td className="w-4 p-4 leading-none">
+      <div className=" overflow-x-auto shadow-md bg-white px-2 min_calc_height">
+        <table className="w-full min-w-[500px] text-sm text-left overflow-x-auto ">
+          <thead>
+            <tr className="text-xs uppercase bg-gray-50 w-full">
+              <th scope="col" className="p-4">
                 <div className="flex items-center">
                   <input
-                    id={`checkbox-table-search-${index}`}
+                    id="checkbox-all-search"
                     type="checkbox"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                   />
-                  <label
-                    htmlFor={`checkbox-table-search-${index}`}
-                    className="sr-only"
-                  >
+                  <label htmlFor="checkbox-all-search" className="sr-only">
                     checkbox
                   </label>
                 </div>
-              </td>
-              <td className="px-6 py-4 text-center leading-none">
-                {index + 1}
-              </td>
-              <td
-                scope="row"
-                className="px-6 py-4 text-gray-900 whitespace-nowrap "
-              >
-                <div className="flex items-center">
-                  <img
-                    className="w-10 h-10 rounded-full border-[1px]"
-                    src={
-                      battle.player && battle.player.avatar
-                        ? `${socketURL}/${battle.player.avatar}`
-                        : "/pics/avatar.png"
-                    }
-                    alt="Crew avatar"
-                  />
-                  <div className="ps-3 text-left">
-                    <div className="text-base font-semibold">
-                      {battle.player ? battle.player.name : "deleted user"}
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td className="px-6 py-4  leading-none">
-                <div className="w-[100%] text-center">
-                  {battle.amount}
-                </div>
-              </td>
-              
-              <td className="px-6 py-4 text-center  leading-none">
-                <div className="w-[100%] hyphens-auto">{buyInfo.find((val) => val.cost == battle.amount).total}</div>
-              </td>
-              <td className="px-6 py-4 text-center  leading-none">
-                <div className="w-[100%] hyphens-auto">{battle.time}</div>
-              </td>
+              </th>
+              <th scope="col" className="text-gray-700 px-6 py-3">
+                No
+              </th>
+              <th scope="col" className=" text-gray-700 px-20 py-3">
+                Player
+              </th>
+              <th scope="col" className=" text-gray-700 px-6 py-3">
+                amount
+              </th>
+
+              <th scope="col" className=" text-gray-700 px-6 py-3">
+                amount of Turn
+              </th>
+              <th scope="col" className="text-gray-700 px-6 py-3">
+                Time
+              </th>
             </tr>
-          ))}
-      </tbody>
-    </table>
-  </div>
-  <div
-      className="flex justify-center items-center gap-x-1 bg-white border-t-2 py-4 rounded-b-lg"
-      aria-label="Pagination"
-    >
-      <button
-        type="button"
-        className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
-        aria-label="Previous"
-        onClick={hanldePagePrevious}
-        disabled = {currentPage == 1}
-      >
-        <svg
-          className="shrink-0 size-3.5"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="m15 18-6-6 6-6"></path>
-        </svg>
-        <span className="sr-only">Previous</span>
-      </button>
-      <div className="flex items-center gap-x-1">
-        <input className="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
-          value={currentPage}
-          onChange={(ev) => setCurrentPage(Number(ev.target.value))}
-        />
-        <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
-          of
-        </span>
-        <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
-          1
-        </span>
+          </thead>
+          <tbody>
+            {txs &&
+              txs.map((tx, index) => (
+                <tr
+                  className="bg-white border-b hover:bg-gray-50 cursor-pointer"
+                  key={`admin_amount_list_${index}`}
+                >
+                  <td className="w-4 p-4 leading-none">
+                    <div className="flex items-center">
+                      <input
+                        id={`checkbox-table-search-${index}`}
+                        type="checkbox"
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <label
+                        htmlFor={`checkbox-table-search-${index}`}
+                        className="sr-only"
+                      >
+                        checkbox
+                      </label>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-center leading-none">
+                    {index + 1}
+                  </td>
+                  <td
+                    scope="row"
+                    className="px-6 py-4 text-gray-900 whitespace-nowrap "
+                  >
+                    <div className="flex items-center">
+                      <img
+                        className="w-10 h-10 rounded-full border-[1px]"
+                        src={
+                          tx.userID && tx.userID.avatar
+                            ? `${socketURL}/${tx.userID.avatar}`
+                            : "/pics/avatar.gif"
+                        }
+                        alt="Crew avatar"
+                      />
+                      <div className="ps-3 text-left">
+                        <div className="text-base font-semibold">
+                          {tx.userID ? tx.userID.name : "deleted user"}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4  leading-none">
+                    <div className="w-[100%] text-center">{tx.amount}</div>
+                  </td>
+
+                  <td className="px-6 py-4 text-center  leading-none">
+                    <div className="w-[100%] hyphens-auto">
+                      {buyInfo.find((val) => val.cost == tx.amount).total}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-center  leading-none">
+                    <div className="w-[100%] hyphens-auto">
+                      {formattedDate(tx.updatedAt)}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
       </div>
-      <button
-        type="button"
-        className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
-        aria-label="Next"
-        onClick={handlePageNext}
-        disabled = {currentPage > 10}
+      <div
+        className="flex justify-center items-center gap-x-1 bg-white border-t-2 py-4 rounded-b-lg"
+        aria-label="Pagination"
       >
-        <span className="sr-only">Next</span>
-        <svg
-          class="shrink-0 size-3.5"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+        <button
+          type="button"
+          className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+          aria-label="Previous"
+          onClick={hanldePagePrevious}
+          disabled={currentPage == 1}
         >
-          <path d="m9 18 6-6-6-6"></path>
-        </svg>
-      </button>
-    </div>
-  </>
-}
+          <svg
+            className="shrink-0 size-3.5"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+          <span className="sr-only">Previous</span>
+        </button>
+        <div className="flex items-center gap-x-1">
+          <input
+            className="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
+            value={currentPage}
+            onChange={(ev) => setCurrentPage(Number(ev.target.value))}
+          />
+          <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+            of
+          </span>
+          <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+            1
+          </span>
+        </div>
+        <button
+          type="button"
+          className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+          aria-label="Next"
+          onClick={handlePageNext}
+          disabled={currentPage > 10}
+        >
+          <span className="sr-only">Next</span>
+          <svg
+            className="shrink-0 size-3.5"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </>
+  );
+};

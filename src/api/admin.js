@@ -1,11 +1,14 @@
 import { basicURL } from "../common/constant";
 import {
   setAds,
+  setBattleHistory,
   setBattles,
   setCrews,
   setDashBoard,
   setMails,
+  setNukeHisotry,
   setSelectedCrew,
+  setTransactionHistory,
   setUsers,
 } from "../redux/adminSlice";
 import { setToast } from "../redux/toastSlice";
@@ -332,6 +335,39 @@ export const pullOutBattle = async (battle, dispatch) => {
     const res = await axios.delete(`${basicURL}/battlefield/remove`, battle);
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
     getAllBattleField(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const getNukeHistory = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/country/history`);
+    dispatch(setNukeHisotry(res.data.history));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const getTransactionHistory = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/payment/history`);
+    dispatch(setTransactionHistory(res.data.history));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const getBattleHistory = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/battlefield/history`);
+    dispatch(setBattleHistory(res.data.history));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })

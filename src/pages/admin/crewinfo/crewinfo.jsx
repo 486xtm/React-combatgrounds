@@ -296,7 +296,7 @@ export const AdminCrewInfo = () => {
                         src={
                           author.avatar
                             ? `${socketURL}/${author.avatar}`
-                            : "/avatar/avatar.png"
+                            : "/pics/avatar.gif"
                         }
                         alt="author avatar"
                       />

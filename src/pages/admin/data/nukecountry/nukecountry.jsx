@@ -198,16 +198,16 @@ export const NukeCountry = () => {
       </table>
     </div>
     <div
-        class="flex justify-center items-center gap-x-1 bg-white border-t-2 py-4 rounded-b-lg"
+        className="flex justify-center items-center gap-x-1 bg-white border-t-2 py-4 rounded-b-lg"
         aria-label="Pagination"
       >
         <button
           type="button"
-          class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+          className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Previous"
         >
           <svg
-            class="shrink-0 size-3.5"
+            className="shrink-0 size-3.5"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -220,28 +220,28 @@ export const NukeCountry = () => {
           >
             <path d="m15 18-6-6 6-6"></path>
           </svg>
-          <span class="sr-only">Previous</span>
+          <span className="sr-only">Previous</span>
         </button>
-        <div class="flex items-center gap-x-1">
-          <input class="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
+        <div className="flex items-center gap-x-1">
+          <input className="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
             value={currentPage}
             onChange={(ev) => setCurrentPage(Number(ev.target.value))}
           />
-          <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+          <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
             of
           </span>
-          <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
+          <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
             1
           </span>
         </div>
         <button
           type="button"
-          class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
+          className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Next"
         >
-          <span class="sr-only">Next</span>
+          <span className="sr-only">Next</span>
           <svg
-            class="shrink-0 size-3.5"
+            className="shrink-0 size-3.5"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
