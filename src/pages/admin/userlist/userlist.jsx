@@ -16,7 +16,6 @@ export const AdminUserList = () => {
   const [sortBy, setSortBy] = useState({ tag: "name", des: true }); //{tag: 'Jone', des: true}
 
   const handleSortName = () => {
-    console.log(sortBy);
     if (sortBy.tag === "name") {
       setSortBy({ tag: "name", des: !sortBy.des });
     } else {

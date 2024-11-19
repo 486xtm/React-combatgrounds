@@ -28,7 +28,6 @@ export const CrewBosses = () => {
     addBoss(newCrewBoss, dispatch);
   };
 
-  console.log(bosses);
   useEffect(() => {
     getBosses(dispatch);
   }, []);
