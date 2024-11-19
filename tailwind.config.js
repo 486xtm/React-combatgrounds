@@ -55,6 +55,7 @@ export default {
       animation: {
         fadeIn: "fadeIn 0.5s ease-in-out",
         fadeOut: "fadeOut 0.5s ease-in-out",
+        'shake': 'shake 0.5s ease-in-out',
       },
       textShadow: {
         glow: "0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3)",
@@ -69,6 +70,12 @@ export default {
         fadeOut: {
           "0%": { opacity: 1 },
           "100%": { opacity: 0 },
+        },
+        shake: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '25%': { transform: 'translateX(-5px)' },
+          '50%': { transform: 'translateX(5px)' },
+          '75%': { transform: 'translateX(-5px)' },
         },
       },
       filter: {

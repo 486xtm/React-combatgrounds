@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Layout } from "../../../common/components";
+import Modal from "../../../common/components/modal/modal";
 const mock = [
   {
     name: "sealife",
@@ -103,9 +104,15 @@ export const Attack = () => {
   const [name, setName] = useState("");
   const [attackType, setAttackType] = useState("Invasive");
   const [attackMsg, setAttackMsg] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
   const handleAttack = () => {
+    setShowModal(true);
     console.log(name, attackType, attackMsg);
-  }
+  };
   return (
     <Layout currentActiveTab={"headquarters"} isHeaderFull>
       <div className="flex flex-1 flex-col items-center  py-5 relative mx-5">
@@ -130,7 +137,7 @@ export const Attack = () => {
               <select
                 className="w-[250px] text-yellow-200 bg-transparent border-secondary-green shadow-inner border-[1px] shadow-[rgba(255,255,255,0.3)] rounded-sm"
                 value={attackType}
-                onChange={(ev) => setattackType(ev.target.value)}
+                onChange={(ev) => setAttackType(ev.target.value)}
               >
                 <option className="bg-secondary-green" value="Invasive">
                   Invasive
@@ -156,8 +163,9 @@ export const Attack = () => {
             </div>
           </div>
 
-          <button className="mx-auto mt-4 rounded-lg border-2 font-bold  w-[150px] border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
-          onClick={handleAttack}
+          <button
+            className="mx-auto mt-4 rounded-lg border-2 font-bold  w-[150px] border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
+            onClick={handleAttack}
           >
             Attack
           </button>
@@ -223,8 +231,9 @@ export const Attack = () => {
                     ${Number(user.money).toLocaleString()}
                   </div>
                   <div className="w-[10%] py-1">
-                    <button className="mx-auto rounded-lg border font-bold text-xs px-2 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
-                    onClick={() => setName(user.name)}
+                    <button
+                      className="mx-auto rounded-lg border font-bold text-xs px-2 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
+                      onClick={() => setName(user.name)}
                     >
                       Select
                     </button>
@@ -235,6 +244,63 @@ export const Attack = () => {
           </div>
         </div>
       </div>
+      <Modal isOpen={showModal} onClose={closeModal}>
+        <div className="flex flex-col w-[600px] p-5 text-yellow-200 text-center">
+          <div className="flex justify-center gap-6 items-center">
+            <div className="w-[70px] text-center font-[900] text-red-500">
+              <div className="flex rounded-full mb-2 overflow-hidden w-[70px] h-[70px] border border-[red] shadow-glow shadow-[red]">
+                <img src="/pics/avatar.gif" className="w-full h-auto" />
+              </div>
+              Sealife2
+            </div>
+            <img src="/attack/vs.png" className="w-[120px]" />
+            <div className="w-[70px] text-center font-[900] text-blue-500">
+              <div className="flex rounded-full mb-2 overflow-hidden w-[70px] h-[70px] border border-[blue] shadow-glow shadow-[blue]">
+                <img src="/pics/avatar.gif" className="w-full h-auto" />
+              </div>
+              Sealife23
+            </div>
+          </div>
+          <hr className="my-2" />
+          <div className="mb-5 text-white leading-[30px] font-bold">
+            <div className="">You just attacked {name}</div>
+            <div>
+              Your <span className="text-green-500">67,678</span> recruits shoot
+              for <span className="text-green-500">137,140,026</span> damage!
+            </div>
+            <div>sealife22312 defends your attack!</div>
+            <div>
+              sealife22312's <spna className="text-red-500">68,181</spna>{" "}
+              recruits shoot for{" "}
+              <spna className="text-red-500">120,722,445</spna> damage!
+            </div>
+          </div>
+          <div className="mb-5 text-white leading-[30px] font-bold">
+            <div className="text-green-500">+5 Level has been rewarded!</div>
+            <div className="text-[25px] text-green-500 my-2">
+              You have won the attack!
+            </div>
+            <div>
+              Earning Yourself{" "}
+              <span className="text-green-500">$2,822,494</span>
+            </div>
+            <div>
+              You inflicted a loss of{" "}
+              <span className="text-green-500"> $19,354,243 </span>
+            </div>
+            <div>
+              Number of enemy recruits killed{" "}
+              <span className="text-green-500">377</span>
+            </div>
+          </div>
+          <button
+            className="mx-auto rounded-lg border font-bold text-xs px-10 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
+            onClick={closeModal}
+          >
+            OK
+          </button>
+        </div>
+      </Modal>
     </Layout>
   );
 };

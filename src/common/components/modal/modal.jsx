@@ -21,7 +21,7 @@ const Modal = ({ isOpen, onClose, children, type = "attack"}) => {
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300 ${
+      className={`fixed inset-0 flex z-50 items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300 ${
         isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
       onClick={handleOverlayClick}
