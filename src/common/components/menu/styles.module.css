@@ -16,7 +16,6 @@
   font-size: 15px;
   color: #ffff00;
   font-weight: bold;
-  line-height: 16px;
   margin-left: 0.25rem;
   line-height: 18px;
 }
@@ -33,7 +32,6 @@
 
 .link {
   font-size: 12px;
-  line-height: 12px;
   margin: 0;
   line-height: 18px;
 }

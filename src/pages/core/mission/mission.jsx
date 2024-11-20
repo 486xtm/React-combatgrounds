@@ -6,7 +6,7 @@ export const Mission = () => {
   const handleDenyMission = () => {};
   return (
     <Layout isHeaderFull>
-      <div className="flex-1">
+      <div className="flex-1 mt-5">
         <div
           className={
             "text-white mx-auto px-10 text-center font-medium relative" +
