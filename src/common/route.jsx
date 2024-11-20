@@ -24,6 +24,7 @@ import {
   BuyTurns,
   Subscribe,
   Attack,
+  Mission,
 } from "../pages/core";
 import {
   Invites,
@@ -180,6 +181,10 @@ export const routes = {
     {
       path: ROUTES.MAIN_ROUTES.ATTACK,
       element: <Attack />
+    },
+    {
+      path: ROUTES.MAIN_ROUTES.MISSION,
+      element: <Mission />
     }
   ],
   admin: [
