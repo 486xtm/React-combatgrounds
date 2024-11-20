@@ -22,7 +22,7 @@ export const Subscribe = () => {
       .create({
         purchase_units: [
           {
-            description: "Buy Turns",
+            description: "Be a Supporter",
             amount: {
               currency_code: "USD",
               value: 20,

@@ -91,7 +91,7 @@ export const CrewProfile = () => {
                 <div className="w-[50%] py-1">CREW NET WORTH</div>
                 <div className="w-[50%] text-white py-1">
                   {(crewInfo &&
-                    Number(crewInfo.netWorth).toLocaleString("en-US")) ||
+                    Number(Math.floor(crewInfo.netWorth)).toLocaleString("en-US")) ||
                     "---"}
                 </div>
               </div>

@@ -134,7 +134,7 @@ export const Rankings = ({}) => {
                           </u>
                         </td>
                         <td className="text-sm py-1">
-                          {item.netWorth.toLocaleString("en-US")}
+                          {Number(Math.floor(item.netWorth)).toLocaleString("en-US")}
                         </td>
                       </tr>
                     );
