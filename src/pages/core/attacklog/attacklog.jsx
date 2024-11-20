@@ -201,8 +201,9 @@ export const AttackLog = () => {
 
   return (
     <Layout currentActiveTab={"headquarters"}>
-      <div className="flex-1 flex flex-col relative mx-5 mt-[50px]">
+      <div className="flex-1 flex flex-col relative mx-5 mt-[20px]">
         {/* <img className="absolute" src="/attack/log_back.svg" /> */}
+        <p className="text-red-500 text-[30px] font-bold text-center text-shadow-glow my-2">Attack Log</p>
         <div className="z-10">
           <div className="flex justify-around mx-5 my-3 px-5">
             <p
