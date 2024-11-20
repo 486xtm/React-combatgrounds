@@ -67,7 +67,7 @@ export const AdminUserInfo = () => {
     >
       <div className="w-[25%] flex flex-col">
         <div
-          className="relative my-10 w-[235px] h-[235px] overflow-hidden rounded-full border-[1px] border-gray-400 shadow-lg mx-auto "
+          className="relative flex my-10 w-[235px] h-[235px] overflow-hidden rounded-full border-[1px] border-gray-400 shadow-lg mx-auto "
           onMouseOver={() => setImgHover(true)}
           onMouseLeave={() => setImgHover(false)}
           onMouseDown={handleAvatarRemove}
