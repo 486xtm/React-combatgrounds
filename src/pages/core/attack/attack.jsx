@@ -16,7 +16,7 @@ const mock = [
 export const Attack = () => {
   const [tab, setTab] = useState(0);
   const [name, setName] = useState("");
-  const [attackType, setAttackType] = useState("Invasive");
+  const [attackType, setAttackType] = useState(0);
   const [attackMsg, setAttackMsg] = useState("");
   // const [showModal, setShowModal] = useState(false);
   const [key, setKey] = useState("");
@@ -34,7 +34,7 @@ export const Attack = () => {
   };
 
   const handleAttack = () => {
-    attackUser({ name }, dispatch);
+    attackUser({ name, type: attackType }, dispatch);
   };
 
   const handleSearch = () => {

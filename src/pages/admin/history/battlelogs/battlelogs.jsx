@@ -13,22 +13,31 @@ export const AdminBattleFieldLog = () => {
   const handlePageNext = () => {
     setCurrentPage(currentPage + 1);
   };
+
   const hanldePagePrevious = () => {
     setCurrentPage(currentPage - 1);
   };
-  const handlePageGo = () => {};
-  const navigate = useNavigate()
+
+  let timeout = null;
+  const handlePageGo = (e) => {
+    setCurrentPage(e.target.value);
+    // if (timeout) clearTimeout(timeout);
+    // timeout = setTimeout(() => {
+    //   setCurrentPage(e.target.value);
+    // }, 500);
+  };
+
+  const navigate = useNavigate();
   const handleUserInfo = (user) => {
-    if( user && user._id)
-      navigate(
-        ROUTES.ADMIN_ROUTES.USER_INFO.replace(":user_id", user._id)
-      );
-  }
+    if (user && user._id)
+      navigate(ROUTES.ADMIN_ROUTES.USER_INFO.replace(":user_id", user._id));
+  };
   const bts = useSelector(({ admin }) => admin.bts);
+  const tot = useSelector(({ admin }) => admin.tot);
 
   useEffect(() => {
-    getBattleHistory(dispatch);
-  }, []);
+    getBattleHistory({ currentPage }, dispatch);
+  }, [currentPage]);
 
   return (
     <>
@@ -112,7 +121,7 @@ export const AdminBattleFieldLog = () => {
                 <tr
                   className="bg-white border-b hover:bg-gray-50 cursor-pointer"
                   key={`admin_Country_list_${index}`}
-                   onClick={() => handleUserInfo(battle.player)}
+                  onClick={() => handleUserInfo(battle.player)}
                 >
                   <td className="w-4 p-4 leading-none">
                     <div className="flex items-center">
@@ -214,13 +223,13 @@ export const AdminBattleFieldLog = () => {
           <input
             className="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
             value={currentPage}
-            onChange={(ev) => setCurrentPage(Number(ev.target.value))}
+            onChange={handlePageGo}
           />
           <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
             of
           </span>
           <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
-            1
+            {tot || 1}
           </span>
         </div>
         <button
@@ -228,7 +237,7 @@ export const AdminBattleFieldLog = () => {
           className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Next"
           onClick={handlePageNext}
-          disabled={currentPage > 10}
+          disabled={currentPage >= tot}
         >
           <span className="sr-only">Next</span>
           <svg

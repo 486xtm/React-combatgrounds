@@ -18,14 +18,14 @@ import { getBosses } from "./crew";
 import { getUserById } from "./user";
 
 //admin
-export const getAllUserInfo = async (sortBy, dispatch) => {
+export const getAllUserInfo = async (sortBy, page, dispatch) => {
   try {
     const urlSearchParams = new URLSearchParams(sortBy).toString();
     const res = await axios.get(
-      `${basicURL}/user/all_infor?${urlSearchParams}`
+      `${basicURL}/user/all_infor?${urlSearchParams}&page=${page.currentPage}`
     );
-    const { users } = res.data;
-    dispatch(setUsers(users));
+    const { users, total } = res.data;
+    dispatch(setUsers({users, tot: total}));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -189,9 +189,11 @@ export const getDashBoardData = async (dispatch) => {
   }
 };
 
-export const getAllMails = async (dispatch) => {
+export const getAllMails = async (page, dispatch) => {
   try {
-    const res = await axios.get(`${basicURL}/message/all`);
+    const res = await axios.get(
+      `${basicURL}/message/all?page=${page.currentPage}`
+    );
     dispatch(setMails(res.data.mails));
   } catch (err) {
     dispatch(
@@ -342,10 +344,12 @@ export const pullOutBattle = async (battle, dispatch) => {
   }
 };
 
-export const getNukeHistory = async (dispatch) => {
+export const getNukeHistory = async (page, dispatch) => {
   try {
-    const res = await axios.get(`${basicURL}/country/history`);
-    dispatch(setNukeHisotry(res.data.history));
+    const res = await axios.get(
+      `${basicURL}/country/history?page=${page.currentPage}`
+    );
+    dispatch(setNukeHisotry({ nuke: res.data.history, tot: res.data.total }));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -353,10 +357,14 @@ export const getNukeHistory = async (dispatch) => {
   }
 };
 
-export const getTransactionHistory = async (dispatch) => {
+export const getTransactionHistory = async (page, dispatch) => {
   try {
-    const res = await axios.get(`${basicURL}/payment/history`);
-    dispatch(setTransactionHistory(res.data.history));
+    const res = await axios.get(
+      `${basicURL}/payment/history?page=${page.currentPage}`
+    );
+    dispatch(
+      setTransactionHistory({ txs: res.data.history, tot: res.data.total })
+    );
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -364,10 +372,12 @@ export const getTransactionHistory = async (dispatch) => {
   }
 };
 
-export const getBattleHistory = async (dispatch) => {
+export const getBattleHistory = async (page, dispatch) => {
   try {
-    const res = await axios.get(`${basicURL}/battlefield/history`);
-    dispatch(setBattleHistory(res.data.history));
+    const res = await axios.get(
+      `${basicURL}/battlefield/history?page=${page.currentPage}`
+    );
+    dispatch(setBattleHistory({ bts: res.data.history, tot: res.data.total }));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })

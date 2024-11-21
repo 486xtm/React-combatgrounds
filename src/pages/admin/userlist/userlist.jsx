@@ -97,10 +97,11 @@ export const AdminUserList = () => {
   useEffect(() => {
     console.log("s==>", sortBy);
     if (!sortBy) return;
-    getAllUserInfo(sortBy, dispatch, navigate);
-  }, [sortBy]);
+    getAllUserInfo(sortBy, { currentPage }, dispatch, navigate);
+  }, [sortBy, currentPage]);
 
   const users_List = useSelector(({ admin }) => admin.users);
+  const tot = useSelector(({ admin }) => admin.tot);
   const users = users_List.map((val) => ({
     ...val,
     online: onlinePlayer.find((o) => o._id === val._id),
@@ -468,6 +469,8 @@ export const AdminUserList = () => {
           type="button"
           className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Previous"
+          disabled={Number(currentPage) === 1}
+          onClick={() => setCurrentPage(currentPage - 1)}
         >
           <svg
             className="shrink-0 size-3.5"
@@ -495,13 +498,15 @@ export const AdminUserList = () => {
             of
           </span>
           <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
-            3
+            {tot || 1}
           </span>
         </div>
         <button
           type="button"
           className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Next"
+          disabled={currentPage >= tot}
+          onClick={() => setCurrentPage(Number(currentPage) + 1)}
         >
           <span className="sr-only">Next</span>
           <svg

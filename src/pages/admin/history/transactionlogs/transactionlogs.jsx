@@ -57,22 +57,23 @@ export const AdminTransactionlogs = () => {
   const hanldePagePrevious = () => {
     setCurrentPage(currentPage - 1);
   };
-  const handlePageGo = () => {};
+  const handlePageGo = (e) => {
+    setCurrentPage(Number(e.target.value));
+  };
 
   const dispatch = useDispatch();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleUserInfo = (user) => {
-    if( user && user._id)
-      navigate(
-        ROUTES.ADMIN_ROUTES.USER_INFO.replace(":user_id", user._id)
-      );
-  }
+    if (user && user._id)
+      navigate(ROUTES.ADMIN_ROUTES.USER_INFO.replace(":user_id", user._id));
+  };
   useEffect(() => {
-    getTransactionHistory(dispatch);
-  }, []);
+    getTransactionHistory({ currentPage }, dispatch);
+  }, [currentPage]);
 
   const txs = useSelector(({ admin }) => admin.txs);
+  const tot = useSelector(({ admin }) => admin.tot);
 
   return (
     <>
@@ -238,13 +239,13 @@ export const AdminTransactionlogs = () => {
           <input
             className="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
             value={currentPage}
-            onChange={(ev) => setCurrentPage(Number(ev.target.value))}
+            onChange={handlePageGo}
           />
           <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
             of
           </span>
           <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
-            1
+            {tot || 1}
           </span>
         </div>
         <button
@@ -252,7 +253,7 @@ export const AdminTransactionlogs = () => {
           className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Next"
           onClick={handlePageNext}
-          disabled={currentPage > 10}
+          disabled={currentPage >= tot}
         >
           <span className="sr-only">Next</span>
           <svg
