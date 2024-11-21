@@ -6,6 +6,7 @@ import Modal from "../../../common/components/modal/modal";
 import { create_ads, getCrewAds } from "../../../api/crew";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { formattedDate } from "../../../common/utils";
 export const Ads = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(350);
@@ -56,7 +57,10 @@ export const Ads = () => {
               <div className={`w-[110px] cursor-pointer underline ${ad.author ? 'text-yellow-200' : 'text-[red]' }`}
                 onClick={() => handleCrewUserInfo(ad.author)}
               >{ad.author ? ad.author.name : "Deleted User"}</div>
-              <div className="flex-1">{ad.content}</div>
+              <div className="flex-1">
+                {ad.content}
+                <div className="text-right text-sm text-yellow-200">{formattedDate(ad.createdAt)}</div>
+                </div>
             </div>
           ))}
       </div>
