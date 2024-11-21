@@ -57,10 +57,17 @@ export const Profile = () => {
   }, []);
 
   const video_data =
-    user && user.youtube && user.youtube.youtube
+    user &&
+    user.youtube &&
+    user.youtube.youtube &&
+    user.youtube.youtube.split("v=").length > 1
       ? user.youtube.youtube.split("v=")[1]
       : "";
-  const video_id = video_data ? video_data.split("&")[0] : "";
+
+  const video_id =
+    video_data && video_data.split("&").length > 0
+      ? video_data.split("&")[0]
+      : "";
 
   return (
     <Layout currentActiveTab={"headquarters"}>

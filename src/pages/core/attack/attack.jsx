@@ -12,6 +12,7 @@ const mock = [
     money: 100000,
   },
 ];
+
 export const Attack = () => {
   const [tab, setTab] = useState(0);
   const [name, setName] = useState("");
@@ -75,14 +76,11 @@ export const Attack = () => {
                 value={attackType}
                 onChange={(ev) => setAttackType(ev.target.value)}
               >
-                <option className="bg-secondary-green" value="Invasive">
-                  Invasive
+                <option className="bg-secondary-green" value={0}>
+                  For Troops
                 </option>
-                <option className="bg-secondary-green" value="Preventive">
-                  Preventive
-                </option>
-                <option className="bg-secondary-green" value="Unexpected">
-                  Unexpected
+                <option className="bg-secondary-green" value={1}>
+                  For Cash
                 </option>
               </select>
             </div>
