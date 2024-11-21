@@ -92,7 +92,7 @@ export const Profile = () => {
               <p className="text-sm text-[red] font-bold">
                 Net worth:{" "}
                 {user && user.netWorth
-                  ? user.netWorth.toLocaleString("en-US")
+                  ? Number(user.netWorth).toLocaleString("en-US")
                   : 0}
               </p>
             </div>
@@ -179,7 +179,7 @@ export const Profile = () => {
                     <td>Level</td>
                     <td>
                       {user && user.level
-                        ? user.level.toLocaleString("en-US")
+                        ? Number(user.level).toLocaleString("en-US")
                         : 1}
                     </td>
                   </tr>
@@ -187,7 +187,7 @@ export const Profile = () => {
                     <td>Total Recruits</td>
                     <td>
                       {user && user.recruits
-                        ? user.recruits.toLocaleString("en-US")
+                        ? Number(user.recruits).toLocaleString("en-US")
                         : 0}
                     </td>
                   </tr>
@@ -219,7 +219,7 @@ export const Profile = () => {
                       {
                         msg: `${
                           user && user.wins
-                            ? user.wins.toLocaleString("en-US")
+                            ? Number(user.wins).toLocaleString("en-US")
                             : 0
                         } Wins`,
                         type: "wins",
@@ -274,7 +274,7 @@ export const Profile = () => {
                       {
                         msg: `${
                           user && user.level
-                            ? user.level.toLocaleString("en-US")
+                            ? Number(user.level).toLocaleString("en-US")
                             : 1
                         } Level`,
                         type: "level",
@@ -303,7 +303,7 @@ export const Profile = () => {
                       {
                         msg: `${
                           user && user.defended_attacks
-                            ? user.defended_attacks.toLocaleString("en-US")
+                            ? Number(user.defended_attacks).toLocaleString("en-US")
                             : 0
                         } Defended Attacks`,
                         type: "defended",
@@ -456,7 +456,7 @@ export const Profile = () => {
                 MONEY available:
               </p>
               <p className="text-center text-green-600 font-bold">
-                ${user && user.money.toLocaleString("en-US")}
+                ${user && Number(user.money).toLocaleString("en-US")}
               </p>
               <div
                 className={`my-1 ${
@@ -503,7 +503,7 @@ export const Profile = () => {
                   <p className="text-[red] text-xs font-bold border-gray-900 border-2 text-center">
                     Attack items
                   </p>
-                  {user &&
+                  {user && user.items &&
                     user.items
                       .filter((i) => i.item.type === "attack")
                       .sort((x, y) => x.item.cost - y.item.cost)
@@ -528,7 +528,7 @@ export const Profile = () => {
                   <p className="text-blue-800 text-xs font-bold border-gray-900 border-2 text-center">
                     Defense items
                   </p>
-                  {user &&
+                  {user && user.items &&
                     user.items
                       .filter((i) => i.item.type === "defence")
                       .sort((x, y) => x.item.cost - y.item.cost)
@@ -550,7 +550,7 @@ export const Profile = () => {
                   <p className="text-white text-xs font-bold border-gray-900 border-2 text-center">
                     Combo items
                   </p>
-                  {user &&
+                  {user && user.items &&
                     user.items
                       .filter((i) => i.item.type === "combo")
                       .sort((x, y) => x.item.cost - y.item.cost)
@@ -572,7 +572,7 @@ export const Profile = () => {
                   <p className="text-green-500 text-xs font-bold border-gray-900 border-2 text-center">
                     Income items
                   </p>
-                  {user &&
+                  {user && user.items &&
                     user.items
                       .filter((i) => i.item.type === "income")
                       .sort((x, y) => x.item.cost - y.item.cost)
@@ -604,7 +604,7 @@ export const Profile = () => {
                 : "border-primary"
             }`}
           >
-            {user.youtube.enableYoutube ? (
+            {user && user.youtube && user.youtube.enableYoutube ? (
               <YouTube
                 videoId={video_id}
                 className="youtube flex justify-center"

@@ -259,7 +259,7 @@ export const AdminCrewList = () => {
             {crews &&
               crews.map((crew, index) => (
                 <tr
-                  className="bg-white border-b hover:bg-gray-50"
+                  className="bg-white border-b hover:bg-gray-50 cursor-pointer"
                   key={`admin_crewlist_${index}`}
                   onClick={() => handleCrewEdit(crew._id)}
                 >

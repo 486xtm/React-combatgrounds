@@ -5,6 +5,8 @@ import CrewLayout from "../layout/crew_layout";
 import Modal from "../../../common/components/modal/modal";
 import { create_ads, getCrewAds } from "../../../api/crew";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { formattedDate } from "../../../common/utils";
 export const Ads = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(350);
@@ -13,12 +15,16 @@ export const Ads = () => {
   const ads = useSelector(({ crew }) => crew.ads);
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const handleSubmit = () => {
     create_ads({ content: description }, dispatch);
     setIsModalOpen(false);
   };
-
+  const handleCrewUserInfo = (user) => {
+    if(user) {
+      navigate("/profile", { state: user });
+    }
+  }
   useEffect(() => {
     setDescriptionReaminLetters(350 - description.length);
   }, [description]);
@@ -48,8 +54,13 @@ export const Ads = () => {
               className="flex w-full border-b-[1px] border-secondary-green py-1"
               key={`crew_ads_${index}`}
             >
-              <div className={`w-[110px] ${ad.author ? 'text-yellow-200' : 'text-[red]' }`}>{ad.author ? ad.author.name : "Deleted User"}</div>
-              <div className="flex-1">{ad.content}</div>
+              <div className={`w-[110px] cursor-pointer underline ${ad.author ? 'text-yellow-200' : 'text-[red]' }`}
+                onClick={() => handleCrewUserInfo(ad.author)}
+              >{ad.author ? ad.author.name : "Deleted User"}</div>
+              <div className="flex-1">
+                {ad.content}
+                <div className="text-right text-sm text-yellow-200">{formattedDate(ad.createdAt)}</div>
+                </div>
             </div>
           ))}
       </div>

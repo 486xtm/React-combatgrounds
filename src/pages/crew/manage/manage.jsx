@@ -46,6 +46,11 @@ export const CrewManage = () => {
     setSelectedMember(member);
   };
 
+  const handleCrewUserInfo = (user) => {
+    if(user) {
+      navigate("/profile", { state: user });
+    }
+  }
   const handleChangeRank = () => {
     updateRole({ selectedMember, changeRole }, dispatch);
     setIsModalOpen(false);
@@ -115,8 +120,9 @@ export const CrewManage = () => {
               {members &&
                 members.map((member, index) => (
                   <div
-                    className="flex w-full text-center border-b-[1px] border-secondary-green"
+                    className="flex w-full text-center border-b-[1px] hover:bg-[#20270c] transition-all duration-300 border-secondary-green cursor-pointer"
                     key={`crew_manage_${index}`}
+                    onClick={() => handleCrewUserInfo(member)}
                   >
                     <div className="w-[20%] py-1">{member.name}</div>
                     <div className="w-[20%] py-1">{member.role}</div>

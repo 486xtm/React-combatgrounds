@@ -12,6 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { addBlockUser, removeBlockUser } from "../../../api/user";
 import { socket } from "../../../socket/socket";
+import { useNavigate } from "react-router-dom";
 
 export const MailCenter = () => {
   const mailType = localStorage.getItem("MAILTYPE") || "Inbox";
@@ -27,7 +28,7 @@ export const MailCenter = () => {
   const [unblockUserId, setUnblockUserId] = useState(null);
   const [viewUnreadMessages, setViewUnreadMessages] = useState(false);
   const user = useSelector(({ user }) => user.user);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const sentMessage = useSelector(({ mail }) => mail.sent);
   const receivedMessage = useSelector(({ mail }) => mail.received);
@@ -36,6 +37,11 @@ export const MailCenter = () => {
     sendMessage({ receiver, subject, content }, dispatch, socket);
   };
 
+  const handleUserClick = (user) => {
+    if(user) {
+      navigate("/profile", { state: user });
+    }
+  };
   const handleCheckAll = () => {
     const items = viewType === "Inbox" ? receivedMessage : sentMessage;
     if (!items) return;
@@ -199,10 +205,21 @@ export const MailCenter = () => {
                           />
                         </td>
                         <td>
-                          <span className="text-white text-sm font-bold underline cursor-pointer hover:text-secondary">
+                          <span
+                            className="text-white text-sm font-bold underline cursor-pointer hover:text-secondary"
+                            onClick={() =>
+                              handleUserClick(
+                                viewType !== "Inbox" ? msg.receiver : msg.sender
+                              )
+                            }
+                          >
                             {viewType !== "Inbox"
-                              ? msg.receiver ? msg.receiver.name : "Deleted User"
-                              : msg.sender ? msg.sender.name : "Deleted User"}
+                              ? msg.receiver
+                                ? msg.receiver.name
+                                : "Deleted User"
+                              : msg.sender
+                              ? msg.sender.name
+                              : "Deleted User"}
                           </span>
                         </td>
                         <td>
@@ -251,13 +268,15 @@ export const MailCenter = () => {
                     )}
                     {user &&
                       user.blocks &&
-                      user.blocks.filter((u) => u).map((usr, id) => {
-                        return (
-                          <option key={`block_${id}`} value={usr._id}>
-                            {usr.name}
-                          </option>
-                        );
-                      })}
+                      user.blocks
+                        .filter((u) => u)
+                        .map((usr, id) => {
+                          return (
+                            <option key={`block_${id}`} value={usr._id}>
+                              {usr.name}
+                            </option>
+                          );
+                        })}
                   </select>
                 </div>
                 <button
@@ -294,7 +313,9 @@ export const MailCenter = () => {
                   From:
                 </span>
                 <span className="text-white text-lg">
-                  {detailedViewMessage.sender ? detailedViewMessage.sender.name : "Deleted User"}
+                  {detailedViewMessage.sender
+                    ? detailedViewMessage.sender.name
+                    : "Deleted User"}
                 </span>
               </div>
               <div className="flex">
@@ -302,7 +323,9 @@ export const MailCenter = () => {
                   To:
                 </span>
                 <span className="text-white text-lg">
-                  {detailedViewMessage.receiver ? detailedViewMessage.receiver.name : "Deleted User"}
+                  {detailedViewMessage.receiver
+                    ? detailedViewMessage.receiver.name
+                    : "Deleted User"}
                 </span>
               </div>
               <div className="flex">
@@ -335,7 +358,10 @@ export const MailCenter = () => {
                 />
               </div>
               <button
-                onClick={() => {if(detailedViewMessage.sender) handleReply(detailedViewMessage.sender.name)}}
+                onClick={() => {
+                  if (detailedViewMessage.sender)
+                    handleReply(detailedViewMessage.sender.name);
+                }}
                 className="ml-[100px]"
               >
                 reply

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { socketURL } from "../../../common/constant";
 import { socket } from "../../../socket/socket";
 import { setUnreadCrewChatCount } from "../../../redux/crewSlice";
-
+import { formattedDate } from "../../../common/utils";
 export const CrewBoard = () => {
   const [text, setText] = useState("");
   const chatContainerRef = useRef(null);
@@ -16,13 +16,17 @@ export const CrewBoard = () => {
   const navigate = useNavigate();
 
   const board = useSelector(({ crew }) => crew.board);
-
+  const user = useSelector(({user}) => user.user);
   const handleSend = () => {
     if (!text) return;
     createCrewChat({ content: text }, dispatch, socket);
     setText("");
   };
-
+  const handleCrewUserInfo = (user) => {
+    if (user) {
+      navigate("/profile", { state: user });
+    }
+  };
   useEffect(() => {
     getCrewBoard(dispatch);
     dispatch(setUnreadCrewChatCount(0));
@@ -46,20 +50,38 @@ export const CrewBoard = () => {
         >
           {board &&
             board.map((message, index) => (
-              <div className="flex gap-2" key={index}>
+              <div className={`flex gap-2 ${user._id == (message.author ? message.author._id : "-") ? "" : "flex-row-reverse"}`} key={index}>
                 <span
-                  className={` max-w-[80%] break-words ml-auto py-1 px-5 bg-secondary-green rounded-xl`}
+                  className={` max-w-[80%] break-words py-1 px-5 bg-secondary-green rounded-xl ${user._id == (message.author ? message.author._id : "-") ? "ml-auto" : "mr-auto"} `}
                 >
+                  <div
+                    className="text-sm text-yellow-200  cursor-pointer "
+                    onClick={() => handleCrewUserInfo(message.author)}
+                  >
+                    <span className="underline">{message.author ? message.author.name : "Deleted User"}</span>{" "}
+                    <span className="text-[10px] text-gray-300">
+                       {formattedDate(message.author && message.createdAt)}
+                    </span>
+                  </div>
                   {message.content}
                 </span>
                 {message.author && message.author.avatar ? (
                   <img
-                    className="w-[30px] h-[30px] rounded-[50%]"
+                    className="w-[30px] h-[30px] rounded-[50%] cursor-pointer border border-dark-primary"
                     src={`${socketURL}/${message.author.avatar}`}
+                    onClick={() => handleCrewUserInfo(message.author)}
                   />
                 ) : (
-                  <div className={`w-[30px] h-[30px] rounded-[50%] border-[1px] font-[800] ${message.author ? "bg-[#50BDDF] border-[#50BDDF]" : "bg-black border-[red]"} flex items-center justify-center`}>
-                      {message.author ? message.author.name[0].toUpperCase() : "X"}
+                  <div
+                    className={`w-[30px] h-[30px] rounded-[50%] border-[1px] font-[800] ${
+                      message.author
+                        ? "bg-[#50BDDF] border-[#50BDDF]"
+                        : "bg-black border-[red]"
+                    } flex items-center justify-center`}
+                  >
+                    {message.author
+                      ? message.author.name[0].toUpperCase()
+                      : "X"}
                   </div>
                 )}
               </div>

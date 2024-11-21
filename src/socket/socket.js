@@ -8,7 +8,20 @@ import { setPendingInviteList, setUnreadCrewChatCount } from "../redux/crewSlice
 import { handleBossAttack } from "../redux/userSlice";
 
 export const socket = io(socketURL);
+const showNotification = ({title, content}) => {
+  if (Notification.permission === "granted") {
+    const notification = new Notification(title, {
+      body: content,
+      icon: "http://45.61.57.139:4173/favicon.ico", // Optional: Add your icon URL
+    });
 
+    notification.onclick = () => {
+      window.focus(); // Focus on the window when notification is clicked
+    };
+  } else {
+    console.error("Notification permission not granted.");
+  }
+};
 export const setupSocketListeners = () => {
   socket.on("onlinePlayer", (userList) => {
     store.dispatch(setOnlinePlayers(Object.values(userList)));
@@ -20,6 +33,7 @@ export const setupSocketListeners = () => {
     store.dispatch(
       setToast({ type: "info", msg: `New message arrived from ${data.from}` })
     );
+    showNotification({title: "New Msg", content: `New message arrived from ${data.from}`});
   });
 
   socket.on("_ambush", (data) => {

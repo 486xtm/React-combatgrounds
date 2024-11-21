@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { socketURL } from "../../../common/constant";
 import { FaTrashCan } from "react-icons/fa6";
+import { ROUTES } from "../../../common/constant";
 import {
   getCrewInfoById,
   removeChat,
   removeCrewAvatar,
   updateCrewInfo,
 } from "../../../api/admin";
+import { formattedDate } from "../../../common/utils";
 
 export const AdminCrewInfo = () => {
   const { crew_id } = useParams();
@@ -17,8 +19,14 @@ export const AdminCrewInfo = () => {
   const onlinePlayers = useSelector(({ online }) => online.onlinePlayers);
 
   const [crew, setCrew] = useState(null);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const handleUserInfo = (user) => {
+    if( user && user._id)
+      navigate(
+        ROUTES.ADMIN_ROUTES.USER_INFO.replace(":user_id", user._id)
+      );
+  }
   function sliceString(str) {
     if (str.length <= 8) {
       return str; // Return the original string if it's too short
@@ -225,7 +233,9 @@ export const AdminCrewInfo = () => {
         </div>
         <div className="flex rounded-2xl bg-white shadow-xl p-3 flex-1 gap-3">
           <div className="h-full w-[20%] flex flex-col items-center justify-center">
-            <div className="h-full relative shadow-glow border-yellow-200 border-[1px] flex flex-col justify-center items-center rounded-xl overflow-hidden bg-dark-primary min-w-full">
+            <div className="h-full relative shadow-glow border-yellow-200 border-[1px] flex flex-col justify-center items-center rounded-xl overflow-hidden bg-dark-primary min-w-full cursor-pointer"
+            onClick={() => handleUserInfo(crew.leader)}
+            >
               <img
                 src={
                   crew && crew.leader.avatar
@@ -238,7 +248,7 @@ export const AdminCrewInfo = () => {
                     : "grayscale"
                 }`}
               />
-              <div className="font-medium text-white my-1 text-xl">LEADER</div>
+              <div className="font-medium text-white my-1 text-lg">{crew && crew.leader && crew.leader.name} -L</div>
             </div>
           </div>
           <div className="flex-1 flex h-full rounded-lg flex-wrap justify-between gap-y-1">
@@ -246,7 +256,8 @@ export const AdminCrewInfo = () => {
               memberList.map((m, idx) => (
                 <div
                   key={`mem_${idx}`}
-                  className="w-[19%] h-[48%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 rounded-lg overflow-hidden flex flex-col items-center"
+                  className="w-[19%] h-[48%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 rounded-lg overflow-hidden flex flex-col items-center cursor-pointer"
+                  onClick={() => handleUserInfo(m)}
                 >
                   <img
                     className={`h-[85%] w-full border-b border-yellow-200 ${
@@ -288,9 +299,11 @@ export const AdminCrewInfo = () => {
           </p>
           <div className="flex flex-col gap-2">
             {crew
-              ? crew.board.map(({ author, content, _id }, idx) => (
-                  <div className="flex border-b py-5" key={`crew_board_${idx}`}>
-                    <div className="flex flex-col items-center w-[10%]">
+              ? crew.board.map(({ author, content, _id , createdAt }, idx) => (
+                  <div className="flex border-b py-5 relative" key={`crew_board_${idx}`}>
+                    <div className="flex flex-col items-center w-[10%] cursor-pointer"
+                      onClick={() => handleUserInfo(author)}
+                    >
                       <img
                         className="w-10 h-10 rounded-full border-[1px]"
                         src={
@@ -310,6 +323,7 @@ export const AdminCrewInfo = () => {
                     >
                       <FaTrashCan />
                     </div>
+                    <div className="absolute bottom-2 right-5">{formattedDate(createdAt)}</div>
                   </div>
                 ))
               : "---"}
