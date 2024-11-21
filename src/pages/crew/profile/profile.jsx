@@ -150,7 +150,7 @@ export const CrewProfile = () => {
             <div className="w-1/5 flex flex-col items-center justify-center h-[250px] cursor-pointer"
               onClick={() => handleCrewUserInfo(crewInfo && crewInfo.leader)}
             >
-              <div className="relative shadow-glow border-yellow-200 border-[1px] flex flex-col justify-center items-center rounded-xl overflow-hidden bg-dark-primary min-w-full">
+              <div className="relative shadow-glow_small hover:shadow-glow border-yellow-200 border-[1px] flex flex-col justify-center items-center rounded-xl overflow-hidden bg-dark-primary min-w-full">
                 <img
                   src={
                     crewInfo && crewInfo.leader.avatar
@@ -172,7 +172,7 @@ export const CrewProfile = () => {
                 memberList.map((m, idx) => (
                   <div
                     key={`mem_${idx}`}
-                    className="w-[19%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 h-[115px] rounded-lg overflow-hidden flex flex-col items-center cursor-pointer"
+                    className="w-[19%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 h-[115px] rounded-lg overflow-hidden flex flex-col items-center cursor-pointer  hover:shadow-glow"
                     onClick={() => handleCrewUserInfo(m)}
                   >
                     <img
