@@ -2,18 +2,9 @@ import React, { useEffect, useState } from "react";
 import { getNukeHistory } from "../../../../api/admin";
 import { useDispatch, useSelector } from "react-redux";
 import { formattedDate } from "../../../../common/utils";
-import { socketURL } from "../../../../common/constant";
-const mockdata = [
-  {
-    player: {
-      name: "sealife",
-      avatar: "",
-    },
-    country: { name: "Central Europe" },
-    type: "cash",
-    time: "2024-11-18 : 12.30.21",
-  },
-];
+import { ROUTES, socketURL } from "../../../../common/constant";
+import { useNavigate } from "react-router-dom";
+
 export const AdminNukeLogs = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -29,6 +20,13 @@ export const AdminNukeLogs = () => {
     setCurrentPage(x);
   };
 
+  const navigate = useNavigate()
+  const handleUserInfo = (user) => {
+    if( user && user._id)
+      navigate(
+        ROUTES.ADMIN_ROUTES.USER_INFO.replace(":user_id", user._id)
+      );
+  }
   const history = useSelector(({ admin }) => admin.nuke);
 
   useEffect(() => {
@@ -108,6 +106,7 @@ export const AdminNukeLogs = () => {
                 <tr
                   className="bg-white border-b hover:bg-gray-50 cursor-pointer"
                   key={`admin_Country_list_${index}`}
+                  onClick={() => handleUserInfo(log.player)}
                 >
                   <td className="w-4 p-4 leading-none">
                     <div className="flex items-center">

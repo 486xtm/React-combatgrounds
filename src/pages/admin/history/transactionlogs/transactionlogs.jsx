@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTransactionHistory } from "../../../../api/admin";
 import { formattedDate } from "../../../../common/utils";
-import { socketURL } from "../../../../common/constant";
+import { ROUTES, socketURL } from "../../../../common/constant";
+import { useNavigate } from "react-router-dom";
 const buyInfo = [
   {
     total: 1000,
@@ -60,6 +61,13 @@ export const AdminTransactionlogs = () => {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate()
+  const handleUserInfo = (user) => {
+    if( user && user._id)
+      navigate(
+        ROUTES.ADMIN_ROUTES.USER_INFO.replace(":user_id", user._id)
+      );
+  }
   useEffect(() => {
     getTransactionHistory(dispatch);
   }, []);
@@ -139,6 +147,7 @@ export const AdminTransactionlogs = () => {
                 <tr
                   className="bg-white border-b hover:bg-gray-50 cursor-pointer"
                   key={`admin_amount_list_${index}`}
+                  onClick={() => handleUserInfo(tx.userID)}
                 >
                   <td className="w-4 p-4 leading-none">
                     <div className="flex items-center">

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBattleHistory } from "../../../../api/admin";
-import { socketURL } from "../../../../common/constant";
+import { ROUTES, socketURL } from "../../../../common/constant";
 import { formattedDate } from "../../../../common/utils";
+import { useNavigate } from "react-router-dom";
 
 export const AdminBattleFieldLog = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,7 +17,13 @@ export const AdminBattleFieldLog = () => {
     setCurrentPage(currentPage - 1);
   };
   const handlePageGo = () => {};
-
+  const navigate = useNavigate()
+  const handleUserInfo = (user) => {
+    if( user && user._id)
+      navigate(
+        ROUTES.ADMIN_ROUTES.USER_INFO.replace(":user_id", user._id)
+      );
+  }
   const bts = useSelector(({ admin }) => admin.bts);
 
   useEffect(() => {
@@ -105,6 +112,7 @@ export const AdminBattleFieldLog = () => {
                 <tr
                   className="bg-white border-b hover:bg-gray-50 cursor-pointer"
                   key={`admin_Country_list_${index}`}
+                   onClick={() => handleUserInfo(battle.player)}
                 >
                   <td className="w-4 p-4 leading-none">
                     <div className="flex items-center">
