@@ -20,10 +20,14 @@ export const CrewProfile = () => {
   const [memberList, setMemberList] = useState([]);
   const crewInfo = useSelector(({ crew }) => crew.info);
   const onlinePlayers = useSelector(({ online }) => online.onlinePlayers);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { crew_id } = useParams();
-
+  const handleCrewUserInfo = (user) => {
+    if(user) {
+      navigate("/profile", { state: user });
+    }
+  }
   useEffect(() => {
     getCrewInfo({ crew_id }, dispatch);
   }, []);
@@ -69,7 +73,9 @@ export const CrewProfile = () => {
             <div className="w-1/2 border-r-[1px] border-secondary-green">
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-[50%] py-1">LEADER</div>
-                <div className="w-[50%] py-1 text-white underline">
+                <div className="w-[50%] py-1 text-white underline cursor-pointer"
+                  onClick={() => handleCrewUserInfo(crewInfo && crewInfo.leader)}
+                >
                   {crewInfo && crewInfo.leader ? crewInfo.leader.name : "---"}
                 </div>
               </div>
@@ -141,7 +147,9 @@ export const CrewProfile = () => {
         )}
         {tab == 0 && (
           <div className="flex w-full px-5 mt-5 gap-3">
-            <div className="w-1/5 flex flex-col items-center justify-center h-[250px] ">
+            <div className="w-1/5 flex flex-col items-center justify-center h-[250px] cursor-pointer"
+              onClick={() => handleCrewUserInfo(crewInfo && crewInfo.leader)}
+            >
               <div className="relative shadow-glow border-yellow-200 border-[1px] flex flex-col justify-center items-center rounded-xl overflow-hidden bg-dark-primary min-w-full">
                 <img
                   src={
@@ -156,7 +164,7 @@ export const CrewProfile = () => {
                       : "grayscale"
                   }`}
                 />
-                <div className="font-medium text-white my-1">LEADER</div>
+                <div className="font-medium text-sm text-white my-1">{crewInfo && crewInfo.leader.name}-L</div>
               </div>
             </div>
             <div className="flex-1 flex p-2 h-[250px] border-[1px] rounded-lg flex-wrap justify-between gap-y-1">
@@ -164,7 +172,8 @@ export const CrewProfile = () => {
                 memberList.map((m, idx) => (
                   <div
                     key={`mem_${idx}`}
-                    className="w-[19%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 h-[115px] rounded-lg overflow-hidden flex flex-col items-center"
+                    className="w-[19%] border-[1px] shadow-md shadow-dark-primary bg-dark-primary border-yellow-200 h-[115px] rounded-lg overflow-hidden flex flex-col items-center cursor-pointer"
+                    onClick={() => handleCrewUserInfo(m)}
                   >
                     <img
                       className={`h-[85px] w-full border-b border-yellow-200 ${
