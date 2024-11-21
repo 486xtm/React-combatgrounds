@@ -14,7 +14,11 @@ import { getUserInfo } from "./api/user";
 import { useToast } from "./ToastProvider";
 import { setToast } from "./redux/toastSlice";
 import { signOut } from "./api/auth";
-import { socket, setupSocketListeners, cleanupSocketListeners } from "./socket/socket";
+import {
+  socket,
+  setupSocketListeners,
+  cleanupSocketListeners,
+} from "./socket/socket";
 import { routes } from "./common/route";
 import New from "./pages/auth/New/New";
 import AdminLayout from "./common/components/admin_layout";
@@ -83,6 +87,19 @@ const App = () => {
     }
   }, [toast, dispatch, showSuccess, showError, showInfo]);
 
+  useEffect(() => {
+    // Request permission on component mount
+    if ('Notification' in window) {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                console.log('Notification permission granted.');
+            } else {
+                console.log('Notification permission denied.');
+            }
+        });
+    }
+}, []);
+  
   return (
     <Router>
       <Routes>
