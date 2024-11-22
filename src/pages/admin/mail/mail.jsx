@@ -15,7 +15,7 @@ export const AdminMail = () => {
   const tot = useSelector(({ admin }) => admin.tot);
 
   const handleMailDelete = (mail_id) => {
-    removeMail({ mail_id }, dispatch);
+    removeMail({ mail_id }, { currentPage }, dispatch);
     setCurrentPage(1);
   };
 
