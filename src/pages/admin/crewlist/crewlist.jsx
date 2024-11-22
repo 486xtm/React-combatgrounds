@@ -13,7 +13,7 @@ import { formattedDate } from "../../../common/utils";
 export const AdminCrewList = () => {
   /////////////////
   const [sortBy, setSortBy] = useState({ tag: "name", des: true });
-
+  // const tot = useSelector(({ admin }) => admin.tot);
   const handleSortName = () => {
     if (!sortBy) return;
     if (sortBy.tag === "name") {
@@ -373,7 +373,7 @@ export const AdminCrewList = () => {
             of
           </span>
           <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
-            3
+          1
           </span>
         </div>
         <button

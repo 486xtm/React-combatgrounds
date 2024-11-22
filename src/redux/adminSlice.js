@@ -35,7 +35,8 @@ const adminSlice = createSlice({
       state.dash = action.payload;
     },
     setMails: (state, action) => {
-      state.mails = action.payload;
+      state.mails = action.payload.mails;
+      state.tot = action.payload.tot;
     },
     setBattles: (state, action) => {
       state.battles = action.payload;

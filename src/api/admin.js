@@ -194,7 +194,7 @@ export const getAllMails = async (page, dispatch) => {
     const res = await axios.get(
       `${basicURL}/message/all?page=${page.currentPage}`
     );
-    dispatch(setMails(res.data.mails));
+    dispatch(setMails({mails: res.data.mails, tot: res.data.total}));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
