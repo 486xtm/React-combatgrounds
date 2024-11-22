@@ -33,11 +33,11 @@ export const getAllUserInfo = async (sortBy, page, dispatch) => {
   }
 };
 
-export const deleteUser = async (sortBy, data, dispatch) => {
+export const deleteUser = async (sortBy, page, data, dispatch) => {
   try {
     const res = await axios.delete(`${basicURL}/user/delete`, data);
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
-    getAllUserInfo(sortBy, dispatch);
+    getAllUserInfo(sortBy, page, dispatch);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -202,10 +202,10 @@ export const getAllMails = async (page, dispatch) => {
   }
 };
 
-export const removeMail = async (data, dispatch) => {
+export const removeMail = async (data, page, dispatch) => {
   try {
     const res = await axios.delete(`${basicURL}/message/remove`, data);
-    dispatch(setMails(res.data.mails));
+    getAllMails(page, dispatch);
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
   } catch (err) {
     dispatch(

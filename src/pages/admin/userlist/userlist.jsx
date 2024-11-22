@@ -87,7 +87,7 @@ export const AdminUserList = () => {
   const onlinePlayer = useSelector(({ online }) => online.onlinePlayers);
   const handleUserDelete = (e, user_id) => {
     e.stopPropagation();
-    deleteUser(sortBy, { user_id }, dispatch);
+    deleteUser(sortBy, { currentPage }, { user_id }, dispatch);
   };
 
   const handleUserEdit = (e, user_id) => {
