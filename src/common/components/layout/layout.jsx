@@ -60,8 +60,13 @@ export const Layout = ({
                 </div>
                 <div className="flex pt-1">
                   <div className="black text-sm ml-[90px] font-bold w-[200px] h-5 border-2 border-gray">
-                    <div className="bg-gray-100 text-center text-gray-500 w-[85%] h-full">
-                      85%
+                    <div
+                      className={`bg-gray-100 text-center text-gray-500 h-full`}
+                      style={{
+                        width: `${Number((user && user.strength) || 10)}%`,
+                      }}
+                    >
+                      {user && user.strength >= 10 && `${user.strength}%`}
                     </div>
                   </div>
                   <span className="text-secondary text-sm pl-[182px] font-bold">

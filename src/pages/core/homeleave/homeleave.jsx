@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout } from "../../../common/components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { homeleave } from "../../../api/training";
 
 export const HomeLeave = () => {
   const [cash, setCash] = useState("");
 
   const dispatch = useDispatch();
+  const user = useSelector(({ user }) => user.user);
 
   const handleClick = () => {
     homeleave({ cash }, dispatch);
@@ -20,15 +21,21 @@ export const HomeLeave = () => {
           Let your troops have some rest so they can come back stronger!
         </p>
         <div className="flex gap-3 mt-5 py-5">
-          <p className="text-white text-sm">$ Money cost:</p>
+          <p className="text-white text-sm">Money cost: $</p>
           <input
             className="text-white bg-black text-sm px-2 w-[100px] border border-white hover:boder-gray-500 rounded"
-            onChange={(e) => IoSwapVerticalSharp(e.target.value)}
+            onChange={(e) => setCash(e.target.value)}
           />
-          <button onClick={handleClick}>Go on Home Leave</button>
+          <button
+            onClick={handleClick}
+            className="bg-black border text-white rounded"
+          >
+            Go on Home Leave
+          </button>
         </div>
         <p className="text-white text-sm">
-          Rest level: <span className="text-secondary">100%</span>
+          Rest level:{" "}
+          <span className="text-secondary">{user && user.str5}%</span>
         </p>
       </div>
     </Layout>
