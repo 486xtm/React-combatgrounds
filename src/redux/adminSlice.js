@@ -11,6 +11,7 @@ const initialState = {
   nuke: [],
   txs: [],
   bts: [],
+  tot: 0,
 };
 
 const adminSlice = createSlice({
@@ -18,7 +19,8 @@ const adminSlice = createSlice({
   initialState,
   reducers: {
     setUsers: (state, action) => {
-      state.users = action.payload;
+      state.users = action.payload.users;
+      state.tot = action.payload.tot;
     },
     setCrews: (state, action) => {
       state.crews = action.payload;
@@ -39,13 +41,16 @@ const adminSlice = createSlice({
       state.battles = action.payload;
     },
     setNukeHisotry: (state, action) => {
-      state.nuke = action.payload;
+      state.nuke = action.payload.nuke;
+      state.tot = action.payload.tot;
     },
     setTransactionHistory: (state, action) => {
-      state.txs = action.payload;
+      state.txs = action.payload.txs;
+      state.tot = action.payload.tot;
     },
     setBattleHistory: (state, action) => {
-      state.bts = action.payload;
+      state.bts = action.payload.bts;
+      state.tot = action.payload.tot;
     },
   },
 });

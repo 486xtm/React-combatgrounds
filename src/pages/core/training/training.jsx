@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout } from "../../../common/components";
 import styles from "./styles.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { training } from "../../../api/training";
 
 export const Training = () => {
+  const [cash1, setCash1] = useState(0);
+  const [cash2, setCash2] = useState(0);
+  const [cash3, setCash3] = useState(0);
+  const [cash4, setCash4] = useState(0);
+
+  const dispatch = useDispatch();
+
+  const user = useSelector(({ user }) => user.user);
+
+  const handleTraning = () => {
+    training({ cash1, cash2, cash3, cash4 }, dispatch);
+  };
+
   return (
     <Layout>
       <div className="flex flex-col flex-1 gap-2">
@@ -19,21 +34,33 @@ export const Training = () => {
           <div className="flex justify-between">
             <div className="flex">
               <span className="text-white">$</span>
-              <input className="rounded text-sx w-[100px]" />
+              <input
+                className="rounded text-sx w-[100px]"
+                onChange={(e) => setCash1(e.target.value)}
+              />
             </div>
             <div className="flex">
               <span className="text-white">$</span>
-              <input className="rounded text-sx w-[100px]" />
+              <input
+                className="rounded text-sx w-[100px]"
+                onChange={(e) => setCash2(e.target.value)}
+              />
             </div>
           </div>
           <div className="flex justify-between">
             <div className="flex">
               <span className="text-white">$</span>
-              <input className="rounded text-sx w-[100px]" />
+              <input
+                className="rounded text-sx w-[100px]"
+                onChange={(e) => setCash3(e.target.value)}
+              />
             </div>
             <div className="flex">
               <span className="text-white">$</span>
-              <input className="rounded text-sx w-[100px]" />
+              <input
+                className="rounded text-sx w-[100px]"
+                onChange={(e) => setCash4(e.target.value)}
+              />
             </div>
           </div>
         </div>
@@ -42,22 +69,28 @@ export const Training = () => {
           them. The number of recruits who receive the training increases with
           the amount of money you pay.
         </p>
-        <button className="bg-black border border-white mx-auto text-white px-2 hover:border-gray-500">
+        <button
+          className="bg-black border border-white mx-auto text-white px-2 hover:border-gray-500"
+          onClick={handleTraning}
+        >
           Perform training
         </button>
         <div className="flex flex-col mx-[150px]">
           <p className="text-white text-sm">
-            Physical training level: <span className="text-secondary">50%</span>
+            Physical training level:{" "}
+            <span className="text-secondary">{user && user.str1}%</span>
           </p>
           <p className="text-white text-sm">
-            Combat training level: <span className="text-secondary">50%</span>
+            Combat training level:{" "}
+            <span className="text-secondary">{user && user.str2}%</span>
           </p>
           <p className="text-white text-sm">
-            Weapon training level: <span className="text-secondary">50%</span>
+            Weapon training level:{" "}
+            <span className="text-secondary">{user && user.str3}%</span>
           </p>
           <p className="text-white text-sm">
             Special operations training level:{" "}
-            <span className="text-secondary">50%</span>
+            <span className="text-secondary">{user && user.str4}%</span>
           </p>
         </div>
       </div>

@@ -12,14 +12,29 @@ export const AdminMail = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const mails = useSelector(({ admin }) => admin.mails);
+  const tot = useSelector(({ admin }) => admin.tot);
 
   const handleMailDelete = (mail_id) => {
     removeMail({ mail_id }, dispatch);
+    setCurrentPage(1);
+  };
+
+  const handlePageGo = (e) => {
+    setCurrentPage(Number(e.target.value));
+  };
+
+  const handlePageNext = () => {
+    if (currentPage === tot) return;
+    setCurrentPage(currentPage + 1);
+  };
+  const handlePagePrev = () => {
+    if (currentPage === 1) return;
+    setCurrentPage(currentPage - 1);
   };
 
   useEffect(() => {
-    getAllMails(dispatch);
-  }, []);
+    getAllMails({ currentPage }, dispatch);
+  }, [currentPage]);
 
   return (
     <>
@@ -218,6 +233,8 @@ export const AdminMail = () => {
           type="button"
           className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Previous"
+          disabled={Number(currentPage) == 1}
+          onClick={handlePagePrev}
         >
           <svg
             className="shrink-0 size-3.5"
@@ -239,19 +256,21 @@ export const AdminMail = () => {
           <input
             className="h-[38px] w-[40px] flex justify-center items-center border border-gray-200 text-gray-800 px-2 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none text-center"
             value={currentPage}
-            onChange={(ev) => setCurrentPage(Number(ev.target.value))}
+            onChange={handlePageGo}
           />
           <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
             of
           </span>
           <span className="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm">
-            1
+            {tot || 1}
           </span>
         </div>
         <button
           type="button"
           className="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-transparent"
           aria-label="Next"
+          disabled={currentPage >= tot}
+          onClick={handlePageNext}
         >
           <span className="sr-only">Next</span>
           <svg

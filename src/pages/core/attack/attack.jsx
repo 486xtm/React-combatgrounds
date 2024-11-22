@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout } from "../../../common/components";
 import Modal from "../../../common/components/modal/modal";
+import { getAttackableUsers, attackUser } from "../../../api/attack";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleShowModal } from "../../../redux/userSlice";
 const mock = [
   {
     name: "sealife",
@@ -8,111 +11,45 @@ const mock = [
     netWorth: 2000,
     money: 100000,
   },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
 ];
+
 export const Attack = () => {
   const [tab, setTab] = useState(0);
   const [name, setName] = useState("");
-  const [attackType, setAttackType] = useState("Invasive");
+  const [attackType, setAttackType] = useState(0);
   const [attackMsg, setAttackMsg] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  const [key, setKey] = useState("");
+  const [oponents, setOponents] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const atts = useSelector(({ user }) => user.atts);
+  const attackResult = useSelector(({ user }) => user.attackResult);
+  const user = useSelector(({ user }) => user.user);
+  const showModal = useSelector(({ user }) => user.showModal);
 
   const closeModal = () => {
-    setShowModal(false);
+    dispatch(toggleShowModal(false));
   };
+
   const handleAttack = () => {
-    setShowModal(true);
-    console.log(name, attackType, attackMsg);
+    attackUser({ name, type: attackType }, dispatch);
   };
+
+  const handleSearch = () => {
+    getAttackableUsers({ key }, dispatch);
+  };
+
+  useEffect(() => {
+    if (!atts) return;
+    setOponents(atts[tab ? "supporters" : "frees"] || []);
+  }, [tab, atts]);
+
+  useEffect(() => {
+    handleSearch();
+  }, []);
+
   return (
     <Layout currentActiveTab={"headquarters"} isHeaderFull>
       <div className="flex flex-1 flex-col items-center  py-5 relative mx-5">
@@ -139,14 +76,11 @@ export const Attack = () => {
                 value={attackType}
                 onChange={(ev) => setAttackType(ev.target.value)}
               >
-                <option className="bg-secondary-green" value="Invasive">
-                  Invasive
+                <option className="bg-secondary-green" value={0}>
+                  For Troops
                 </option>
-                <option className="bg-secondary-green" value="Preventive">
-                  Preventive
-                </option>
-                <option className="bg-secondary-green" value="Unexpected">
-                  Unexpected
+                <option className="bg-secondary-green" value={1}>
+                  For Cash
                 </option>
               </select>
             </div>
@@ -175,9 +109,13 @@ export const Attack = () => {
               <input
                 className="bg-transparent border-secondary-green shadow-inner w-[150px] shadow-[rgba(255,255,255,0.3)] border-[1px] rounded-sm px-1 text-sm py-[1px] text-yellow-200 placeholder-yellow-200 placeholder:opacity-70"
                 placeholder="Search By Name"
+                onChange={(e) => setKey(e.target.value)}
               />
 
-              <button className="ml-3 rounded-lg border font-bold  w-[100px] border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white ">
+              <button
+                className="ml-3 rounded-lg border font-bold  w-[100px] border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
+                onClick={handleSearch}
+              >
                 Search
               </button>
             </div>
@@ -214,92 +152,159 @@ export const Attack = () => {
               <div className="w-[10%] py-1">Action</div>
             </div>
             <div className="h-[395px] overflow-y-auto">
-              {mock.map((user, index) => (
-                <div
-                  className="flex w-full text-center border-b-[1px] border-secondary-green"
-                  key={`attack_list_${index}`}
-                >
-                  <div className="w-[10%] py-1">{index + 1}</div>
-                  <div className="w-[20%] py-1">{user.name}</div>
-                  <div className="w-[20%] py-1">
-                    {Number(user.recruits).toLocaleString()}
+              {oponents &&
+                oponents.map((user, index) => (
+                  <div
+                    className="flex w-full text-center border-b-[1px] border-secondary-green"
+                    key={`attack_list_${index}`}
+                  >
+                    <div className="w-[10%] py-1">{index + 1}</div>
+                    <div className="w-[20%] py-1">{user.name}</div>
+                    <div className="w-[20%] py-1">
+                      {Number(user.recruits).toLocaleString()}
+                    </div>
+                    <div className="w-[20%] py-1">
+                      {Number(user.netWorth).toLocaleString()}
+                    </div>
+                    <div className="w-[20%] py-1">
+                      ${Number(user.money).toLocaleString()}
+                    </div>
+                    <div className="w-[10%] py-1">
+                      <button
+                        className="mx-auto rounded-lg border font-bold text-xs px-2 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
+                        onClick={() => setName(user.name)}
+                      >
+                        Select
+                      </button>
+                    </div>
                   </div>
-                  <div className="w-[20%] py-1">
-                    {Number(user.netWorth).toLocaleString()}
-                  </div>
-                  <div className="w-[20%] py-1">
-                    ${Number(user.money).toLocaleString()}
-                  </div>
-                  <div className="w-[10%] py-1">
-                    <button
-                      className="mx-auto rounded-lg border font-bold text-xs px-2 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
-                      onClick={() => setName(user.name)}
-                    >
-                      Select
-                    </button>
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>
       </div>
       <Modal isOpen={showModal} onClose={closeModal}>
-        <div className="flex flex-col w-[600px] p-5 text-yellow-200 text-center">
-          <div className="flex justify-center gap-6 items-center">
-            <div className="w-[70px] text-center font-[900] text-red-500">
-              <div className="flex rounded-full mb-2 overflow-hidden w-[70px] h-[70px] border border-[red] shadow-glow shadow-[red]">
-                <img src="/pics/avatar.gif" className="w-full h-auto" />
+        {attackResult && (
+          <div className="flex flex-col w-[600px] p-5 text-yellow-200 text-center">
+            <div className="flex justify-center gap-6 items-center">
+              <div className="w-[70px] text-center font-[900] text-red-500">
+                <div className="flex rounded-full mb-2 overflow-hidden w-[70px] h-[70px] border border-[red] shadow-glow shadow-[red]">
+                  <img src="/pics/avatar.gif" className="w-full h-auto" />
+                </div>
+                {user && user.name}
               </div>
-              Sealife2
-            </div>
-            <img src="/attack/vs.png" className="w-[120px]" />
-            <div className="w-[70px] text-center font-[900] text-blue-500">
-              <div className="flex rounded-full mb-2 overflow-hidden w-[70px] h-[70px] border border-[blue] shadow-glow shadow-[blue]">
-                <img src="/pics/avatar.gif" className="w-full h-auto" />
+              <img src="/attack/vs.png" className="w-[120px]" />
+              <div className="w-[70px] text-center font-[900] text-blue-500">
+                <div className="flex rounded-full mb-2 overflow-hidden w-[70px] h-[70px] border border-[blue] shadow-glow shadow-[blue]">
+                  <img src="/pics/avatar.gif" className="w-full h-auto" />
+                </div>
+                {name}
               </div>
-              Sealife23
             </div>
+            <hr className="my-2" />
+            <div className="mb-5 text-white leading-[30px] font-bold">
+              <div className="">You just attacked {name}</div>
+              <div>
+                Your{" "}
+                <span className="text-green-500">
+                  {attackResult.att &&
+                    Number(attackResult.att.recruits).toLocaleString()}
+                </span>{" "}
+                recruits shoot for{" "}
+                <span className="text-green-500">
+                  {attackResult.att &&
+                    Number(attackResult.att.damage).toLocaleString()}
+                </span>{" "}
+                damage!
+              </div>
+              <div>{attackResult.def.name} defends your attack!</div>
+              <div>
+                {attackResult.def.name}'s{" "}
+                <span className="text-red-500">
+                  {attackResult.def &&
+                    Number(attackResult.def.recruits).toLocaleString()}
+                </span>{" "}
+                recruits shoot for{" "}
+                <span className="text-red-500">
+                  {attackResult.def &&
+                    Number(attackResult.def.damage).toLocaleString()}
+                </span>{" "}
+                damage!
+              </div>
+            </div>
+            <div className="mb-5 text-white leading-[30px] font-bold">
+              <div
+                className={attackResult.win ? "text-green-500" : "text-red-600"}
+              >
+                {attackResult && attackResult.level} Level has been
+                {attackResult.win ? " rewarded" : " deducted"}!
+              </div>
+              <div
+                className={`text-[25px] ${
+                  attackResult.win ? "text-green-500" : "text-red-700"
+                } my-2`}
+              >
+                You have {attackResult.win ? "won" : "lose"} the attack!
+              </div>
+              {/* <div>
+                Earning Yourself{" "}
+                <span className="text-green-500">$2,822,494</span>
+              </div>
+              <div>
+                You inflicted a loss of{" "}
+                <span className="text-green-500"> $19,354,243</span>
+              </div> */}
+              {attackType === 0 ? (
+                <>
+                  <div>
+                    Number of enemy recruits killed{": "}
+                    <span className="text-green-500">
+                      {attackResult.def && attackResult.def.loss}
+                    </span>
+                  </div>
+                  <div>
+                    Number of your recruits get killed{": "}
+                    <span className="text-green-500">
+                      {attackResult.att && attackResult.att.loss}
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    You destroyed enemy's items of worth{" "}
+                    <span className="text-green-500">
+                      $
+                      {attackResult.def &&
+                        (attackResult.def.loss || 0).toLocaleString()}
+                    </span>
+                  </div>
+                  <div>
+                    Your items got destroyed of worth{" "}
+                    <span className="text-green-500">
+                      $
+                      {attackResult.att &&
+                        (attackResult.att.loss || 0).toLocaleString()}
+                    </span>
+                  </div>
+                  <div>
+                    You got{" "}
+                    <span className="text-green-500">
+                      ${Number(attackResult.rewards || 0).toLocaleString()}
+                    </span>{" "}
+                    as reward{" "}
+                  </div>
+                </>
+              )}
+            </div>
+            <button
+              className="mx-auto rounded-lg border font-bold text-xs px-10 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
+              onClick={closeModal}
+            >
+              OK
+            </button>
           </div>
-          <hr className="my-2" />
-          <div className="mb-5 text-white leading-[30px] font-bold">
-            <div className="">You just attacked {name}</div>
-            <div>
-              Your <span className="text-green-500">67,678</span> recruits shoot
-              for <span className="text-green-500">137,140,026</span> damage!
-            </div>
-            <div>sealife22312 defends your attack!</div>
-            <div>
-              sealife22312's <spna className="text-red-500">68,181</spna>{" "}
-              recruits shoot for{" "}
-              <spna className="text-red-500">120,722,445</spna> damage!
-            </div>
-          </div>
-          <div className="mb-5 text-white leading-[30px] font-bold">
-            <div className="text-green-500">+5 Level has been rewarded!</div>
-            <div className="text-[25px] text-green-500 my-2">
-              You have won the attack!
-            </div>
-            <div>
-              Earning Yourself{" "}
-              <span className="text-green-500">$2,822,494</span>
-            </div>
-            <div>
-              You inflicted a loss of{" "}
-              <span className="text-green-500"> $19,354,243 </span>
-            </div>
-            <div>
-              Number of enemy recruits killed{" "}
-              <span className="text-green-500">377</span>
-            </div>
-          </div>
-          <button
-            className="mx-auto rounded-lg border font-bold text-xs px-10 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
-            onClick={closeModal}
-          >
-            OK
-          </button>
-        </div>
+        )}
       </Modal>
     </Layout>
   );
