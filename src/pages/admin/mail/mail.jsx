@@ -16,7 +16,6 @@ export const AdminMail = () => {
 
   const handleMailDelete = (mail_id) => {
     removeMail({ mail_id }, { currentPage }, dispatch);
-    setCurrentPage(1);
   };
 
   const handlePageGo = (e) => {
