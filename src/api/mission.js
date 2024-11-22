@@ -20,6 +20,7 @@ export const acceptMission = async (data, dispatch) => {
     const { user, msg } = res.data;
     dispatch(setUser(user));
     dispatch(setToast({ type: "success", msg }));
+    getMission(dispatch);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
