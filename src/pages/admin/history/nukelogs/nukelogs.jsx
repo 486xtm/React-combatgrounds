@@ -123,7 +123,7 @@ export const AdminNukeLogs = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 text-center leading-none">
-                    {index + 1}
+                    {(currentPage-1) * 20 + index + 1}
                   </td>
                   <td
                     scope="row"
