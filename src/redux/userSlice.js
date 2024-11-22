@@ -9,6 +9,7 @@ const initialState = {
   mission: null,
   showModal: false,
   attack_logs: {},
+  stats: null,
 };
 
 const userSlice = createSlice({
@@ -46,6 +47,9 @@ const userSlice = createSlice({
     setAttackLogs: (state, action) => {
       state.attack_logs = action.payload;
     },
+    setStats: (state, action) => {
+      state.stats = action.payload;
+    },
   },
 });
 
@@ -59,5 +63,6 @@ export const {
   toggleShowModal,
   setAttackLogs,
   setMission,
+  setStats,
 } = userSlice.actions;
 export default userSlice.reducer;
