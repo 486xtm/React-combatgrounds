@@ -34,7 +34,7 @@ export const Attack = () => {
   };
 
   const handleAttack = () => {
-    attackUser({ name, type: attackType }, dispatch);
+    attackUser({ name, type: attackType, message: attackMsg }, dispatch);
   };
 
   const handleSearch = () => {

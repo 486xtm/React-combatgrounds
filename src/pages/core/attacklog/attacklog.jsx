@@ -70,11 +70,11 @@ export const AttackLog = () => {
                         ? log.defenser.name
                         : log.attacker.name}
                     </div>
-                    <div className="w-[10%] py-1 text-green-500 ">
-                      {type === "Attacker" && log.result ? "Won" : "Lose"}
+                    <div className={`w-[10%] py-1 ${log.result ? "text-green-500" : "text-red-500" }`}>
+                      {type === "Attacker" && log.result ? "WON" : "LOSE"}
                     </div>
                     <div className="w-[40%] py-1">
-                      {Number(log.note).toLocaleString()}
+                      {log.note}
                     </div>
                     <div className="w-[25%] py-1">
                       {formattedDate(log.createdAt)}

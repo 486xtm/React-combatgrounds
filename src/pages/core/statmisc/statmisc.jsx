@@ -28,7 +28,7 @@ export const StatMisc = () => {
                       <span className="text-white">{id + 1}. </span>
                       {i.name}
                     </p>
-                    <p className="text-white text-sm">{i.att_win || 0}</p>
+                    <p className="text-white text-sm">{Number(i.att_win || 0).toLocaleString('en-US')}</p>
                   </div>
                 );
               })}
@@ -44,7 +44,7 @@ export const StatMisc = () => {
                       <span className="text-white">{id + 1}. </span>
                       {i.name}
                     </p>
-                    <p className="text-white text-sm">{i.def_win || 0}</p>
+                    <p className="text-white text-sm">{(i.def_win || 0).toLocaleString('en-US')}</p>
                   </div>
                 );
               })}
@@ -60,7 +60,7 @@ export const StatMisc = () => {
                       <span className="text-white">{id + 1}. </span>
                       {i.name}
                     </p>
-                    <p className="text-white text-sm">{i.damage || 0}</p>
+                    <p className="text-white text-sm">{Number(i.damage || 0).toLocaleString('en-US')}</p>
                   </div>
                 );
               })}
@@ -74,7 +74,7 @@ export const StatMisc = () => {
                       <span className="text-white">{id + 1}. </span>
                       {i.name}
                     </p>
-                    <p className="text-white text-sm">{i.level || 0}</p>
+                    <p className="text-white text-sm">{Number(i.level || 0).toLocaleString('en-US')}</p>
                   </div>
                 );
               })}
