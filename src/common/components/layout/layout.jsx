@@ -63,7 +63,7 @@ export const Layout = ({
                     <div
                       className={`bg-gray-100 text-center text-gray-500 h-full`}
                       style={{
-                        width: `${Number((user && user.strength) || 10)}%`,
+                        width: `${Number((user && user.strength) || 0)}%`,
                       }}
                     >
                       {user && user.strength >= 10 && `${user.strength}%`}
