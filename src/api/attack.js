@@ -41,7 +41,6 @@ export const getAttackLogs = async (dispatch) => {
     const { attacks, defences } = res.data;
     dispatch(setAttackLogs({ attacks, defences }));
     // dispatch(setToast({ type: "success", msg: res.data.msg || "succeess" }));
-    dispatch(toggleShowModal(true));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })

@@ -18,7 +18,7 @@ export const Attack = () => {
   const [name, setName] = useState("");
   const [attackType, setAttackType] = useState(0);
   const [attackMsg, setAttackMsg] = useState("");
-  // const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [key, setKey] = useState("");
   const [oponents, setOponents] = useState([]);
 
@@ -27,7 +27,7 @@ export const Attack = () => {
   const atts = useSelector(({ user }) => user.atts);
   const attackResult = useSelector(({ user }) => user.attackResult);
   const user = useSelector(({ user }) => user.user);
-  const showModal = useSelector(({ user }) => user.showModal);
+  const smodal = useSelector(({ user }) => user.showModal);
 
   const closeModal = () => {
     dispatch(toggleShowModal(false));
@@ -45,6 +45,11 @@ export const Attack = () => {
     if (!atts) return;
     setOponents(atts[tab ? "supporters" : "frees"] || []);
   }, [tab, atts]);
+
+  useEffect(() => {
+    if (smodal === undefined || smodal === null) return;
+    setShowModal(smodal);
+  }, [smodal]);
 
   useEffect(() => {
     handleSearch();
@@ -77,10 +82,10 @@ export const Attack = () => {
                 onChange={(ev) => setAttackType(ev.target.value)}
               >
                 <option className="bg-secondary-green" value={0}>
-                  For Troops
+                  Troops Barracks
                 </option>
                 <option className="bg-secondary-green" value={1}>
-                  For Cash
+                  Cash + Items
                 </option>
               </select>
             </div>

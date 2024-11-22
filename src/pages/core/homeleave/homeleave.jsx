@@ -24,7 +24,8 @@ export const HomeLeave = () => {
           <p className="text-white text-sm">Money cost: $</p>
           <input
             className="text-white bg-black text-sm px-2 w-[100px] border border-white hover:boder-gray-500 rounded"
-            onChange={(e) => setCash(e.target.value)}
+            value={Number(cash).toLocaleString("en-US")}
+            onChange={(e) => setCash(e.target.value.replace(/[^0-9]/g, ""))}
           />
           <button
             onClick={handleClick}

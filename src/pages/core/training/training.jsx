@@ -36,14 +36,16 @@ export const Training = () => {
               <span className="text-white">$</span>
               <input
                 className="rounded text-sx w-[100px]"
-                onChange={(e) => setCash1(e.target.value)}
+                value={Number(cash1).toLocaleString('en-US')}
+                onChange={(e) => setCash1(e.target.value.replace(/[^0-9]/g, ""))}
               />
             </div>
             <div className="flex">
               <span className="text-white">$</span>
               <input
                 className="rounded text-sx w-[100px]"
-                onChange={(e) => setCash2(e.target.value)}
+                value={Number(cash2).toLocaleString('en-US')}
+                onChange={(e) => setCash2(e.target.value.replace(/[^0-9]/g, ""))}
               />
             </div>
           </div>
@@ -52,14 +54,16 @@ export const Training = () => {
               <span className="text-white">$</span>
               <input
                 className="rounded text-sx w-[100px]"
-                onChange={(e) => setCash3(e.target.value)}
+                value={Number(cash3).toLocaleString('en-US')}
+                onChange={(e) => setCash3(e.target.value.replace(/[^0-9]/g, ""))}
               />
             </div>
             <div className="flex">
               <span className="text-white">$</span>
               <input
                 className="rounded text-sx w-[100px]"
-                onChange={(e) => setCash4(e.target.value)}
+                value={Number(cash4).toLocaleString('en-US')}
+                onChange={(e) => setCash4(e.target.value.replace(/[^0-9]/g, ""))}
               />
             </div>
           </div>

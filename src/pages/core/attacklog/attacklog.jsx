@@ -6,200 +6,6 @@ import { getAttackLogs } from "../../../api/attack";
 import { formattedDate } from "../../../common/utils";
 
 export const AttackLog = () => {
-  // const logs = [
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-  //   {
-  //     type: "Attacker",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Wow!",
-  //   },
-
-  //   {
-  //     type: "Defencer",
-  //     player: {
-  //       name: "sealife",
-  //     },
-  //     result: "won",
-  //     damageCaused: "320",
-  //     recruitsKilled: "1550",
-  //     note: "Oh, bad!",
-  //   },
-  // ];
-
   const [logs, setLogs] = useState([]);
   const [type, setType] = useState("Attacker");
 
@@ -248,7 +54,7 @@ export const AttackLog = () => {
               <div className="w-[5%] py-2">No</div>
               <div className="w-[20%] py-2">Enemy</div>
               <div className="w-[10%] py-2">Result</div>
-              <div className="w-[25%] py-2">Note</div>
+              <div className="w-[40%] py-2">Note</div>
               <div className="w-[25%] py-2">Date</div>
             </div>
             <div className="h-[492px] overflow-y-auto">
@@ -267,7 +73,7 @@ export const AttackLog = () => {
                     <div className="w-[10%] py-1 text-green-500 ">
                       {type === "Attacker" && log.result ? "Won" : "Lose"}
                     </div>
-                    <div className="w-[25%] py-1">
+                    <div className="w-[40%] py-1">
                       {Number(log.note).toLocaleString()}
                     </div>
                     <div className="w-[25%] py-1">
