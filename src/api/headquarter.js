@@ -1,15 +1,16 @@
 import axios from "./axios";
 import { setRound } from "../redux/roundSlice";
-import { setUpdateError } from "../redux/errorSlice";
 import { basicURL } from "../common/constant";
+import { setToast } from "../redux/toastSlice";
 
 export const getRound = async (dispatch) => {
   try {
     const res = await axios.get(`${basicURL}/round`);
     const { round, time, remain } = res.data;
-    dispatch(setRound({...round, time, remain }));
-    dispatch(setUpdateError(null));
+    dispatch(setRound({ ...round, time, remain }));
   } catch (err) {
-    dispatch(setUpdateError({ msg: err.response?.data.msg || err.message }));
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
   }
 };

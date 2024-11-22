@@ -66,7 +66,7 @@ export const Layout = ({
                         width: `${Number((user && user.strength) || 0)}%`,
                       }}
                     >
-                      {user && user.strength >= 10 && `${user.strength}%`}
+                      {user && user.strength >= 0 && `${user.strength}%`}
                     </div>
                   </div>
                   <span className="text-secondary text-sm pl-[182px] font-bold">
