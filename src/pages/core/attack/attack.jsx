@@ -4,6 +4,7 @@ import Modal from "../../../common/components/modal/modal";
 import { getAttackableUsers, attackUser } from "../../../api/attack";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleShowModal } from "../../../redux/userSlice";
+import { useNavigate } from "react-router-dom";
 const mock = [
   {
     name: "sealife",
@@ -28,7 +29,7 @@ export const Attack = () => {
   const attackResult = useSelector(({ user }) => user.attackResult);
   const user = useSelector(({ user }) => user.user);
   const smodal = useSelector(({ user }) => user.showModal);
-
+  const navigate = useNavigate();
   const closeModal = () => {
     dispatch(toggleShowModal(false));
   };
@@ -39,6 +40,12 @@ export const Attack = () => {
 
   const handleSearch = () => {
     getAttackableUsers({ key }, dispatch);
+  };
+
+  const handleUserClick = (user) => {
+    if(user) {
+      navigate("/profile", { state: user });
+    }
   };
 
   useEffect(() => {
@@ -164,7 +171,9 @@ export const Attack = () => {
                     key={`attack_list_${index}`}
                   >
                     <div className="w-[10%] py-1">{index + 1}</div>
-                    <div className="w-[20%] py-1">{user.name}</div>
+                    <div className="w-[20%] py-1 underline text-yellow-200 cursor-pointer"
+                      onClick={() => handleUserClick(user)}
+                    >{user.name}</div>
                     <div className="w-[20%] py-1">
                       {Number(user.recruits).toLocaleString()}
                     </div>

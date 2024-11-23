@@ -3,11 +3,17 @@ import styles from "./styles.module.css";
 import { Layout } from "../../../common/components";
 import { useDispatch, useSelector } from "react-redux";
 import { getStats } from "../../../api/user";
+import { useNavigate } from "react-router-dom";
 
 export const StatMisc = () => {
   const dispatch = useDispatch();
   const stats = useSelector(({ user }) => user.stats);
-
+  const navigate = useNavigate();
+  const handleUserClick = (user) => {
+    if(user) {
+      navigate("/profile", { state: user });
+    }
+  };
   useEffect(() => {
     getStats(dispatch);
   }, []);
@@ -26,7 +32,7 @@ export const StatMisc = () => {
                   <div className="flex" key={id}>
                     <p className="w-[200px] text-secondary text-sm">
                       <span className="text-white">{id + 1}. </span>
-                      {i.name}
+                      <span className="underline cursor-pointer" onClick={() => handleUserClick(i)}>{i.name}</span>
                     </p>
                     <p className="text-white text-sm">{Number(i.att_win || 0).toLocaleString('en-US')}</p>
                   </div>
@@ -42,7 +48,7 @@ export const StatMisc = () => {
                   <div className="flex" key={id}>
                     <p className="w-[200px] text-secondary text-sm">
                       <span className="text-white">{id + 1}. </span>
-                      {i.name}
+                      <span className="underline cursor-pointer" onClick={() => handleUserClick(i)}>{i.name}</span>
                     </p>
                     <p className="text-white text-sm">{(i.def_win || 0).toLocaleString('en-US')}</p>
                   </div>
@@ -58,7 +64,7 @@ export const StatMisc = () => {
                   <div className="flex" key={id}>
                     <p className="w-[200px] text-secondary text-sm">
                       <span className="text-white">{id + 1}. </span>
-                      {i.name}
+                      <span className="underline cursor-pointer" onClick={() => handleUserClick(i)}>{i.name}</span>
                     </p>
                     <p className="text-white text-sm">{Number(i.damage || 0).toLocaleString('en-US')}</p>
                   </div>
@@ -72,7 +78,7 @@ export const StatMisc = () => {
                   <div className="flex" key={id}>
                     <p className="w-[200px] text-secondary text-sm">
                       <span className="text-white">{id + 1}. </span>
-                      {i.name}
+                      <span className="underline cursor-pointer" onClick={() => handleUserClick(i)}>{i.name}</span>
                     </p>
                     <p className="text-white text-sm">{Number(i.level || 0).toLocaleString('en-US')}</p>
                   </div>
