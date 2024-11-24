@@ -218,8 +218,8 @@ export const Profile = () => {
                     handleMouseOver(
                       {
                         msg: `${
-                          user && user.wins
-                            ? Number(user.wins).toLocaleString("en-US")
+                          user && user.att_win
+                            ? Number(user.att_win).toLocaleString("en-US")
                             : 0
                         } Wins`,
                         type: "wins",
@@ -230,7 +230,7 @@ export const Profile = () => {
                   onMouseLeave={() => handleMouseLeave()}
                 />
                 <div className="flex flex-wrap">
-                  {new Array(Math.floor((user.wins || 0) / 70))
+                  {new Array(Math.floor((user.att_win || 0) / 70))
                     .fill()
                     .map((i, id) => (
                       <img src="/images/winmast.jpg" key={`winmast_${id}`} />
@@ -302,8 +302,8 @@ export const Profile = () => {
                     handleMouseOver(
                       {
                         msg: `${
-                          user && user.defended_attacks
-                            ? Number(user.defended_attacks).toLocaleString("en-US")
+                          user && user.def_win
+                            ? Number(user.def_win).toLocaleString("en-US")
                             : 0
                         } Defended Attacks`,
                         type: "defended",
@@ -315,7 +315,7 @@ export const Profile = () => {
                 />
 
                 <div className="flex flex-wrap">
-                  {new Array(Math.floor((user.defence_attacks || 0) / 10))
+                  {new Array(Math.floor((user.def_win || 0) / 10))
                     .fill()
                     .map((i, id) => (
                       <img

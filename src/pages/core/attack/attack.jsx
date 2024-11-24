@@ -258,7 +258,7 @@ export const Attack = () => {
                   attackResult.win ? "text-green-500" : "text-red-700"
                 } my-2`}
               >
-                You have {attackResult.win ? "won" : "lose"} the attack!
+                You have {attackResult.win ? "have won" : "have lost"} the attack!
               </div>
               {/* <div>
                 Earning Yourself{" "}
@@ -291,8 +291,8 @@ export const Attack = () => {
                     {`${attackResult && attackResult.win ? 'you cause ' : 'The enemy cause '}`} 
                     <span className="text-green-500">
                       $
-                      {attackResult.def &&
-                        (attackResult.def.loss || 0).toLocaleString()}
+                      {attackResult.win ? attackResult.def &&
+                        (attackResult.def.loss || 0).toLocaleString('en-US') : attackResult.att && (attackResult.att.loss || 0).toLocaleString('en-US')}
                     </span>
                     {` worth of damage to ${attackResult && attackResult.win ? 'your enemy' : 'you'}`}
                   </div>

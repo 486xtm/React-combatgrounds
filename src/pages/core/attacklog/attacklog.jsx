@@ -27,7 +27,7 @@ export const AttackLog = () => {
     <Layout currentActiveTab={"headquarters"}>
       <div className="flex-1 flex flex-col relative mx-5 mt-[20px]">
         {/* <img className="absolute" src="/attack/log_back.svg" /> */}
-        <p className="text-red-500 text-[30px] font-bold text-center text-shadow-glow my-2">
+        <p className="text-red-500 text-[30px] font-bold text-center my-2">
           Attack Logs
         </p>
         <div className="z-10">
@@ -70,8 +70,8 @@ export const AttackLog = () => {
                         ? log.defenser.name
                         : log.attacker.name}
                     </div>
-                    <div className={`w-[10%] py-1 ${log.result ? "text-green-500" : "text-red-500" }`}>
-                      {type === "Attacker" && log.result ? "WON" : "LOSE"}
+                    <div className={`w-[10%] py-1 ${!(type === 'Attacker' ^ log.result) ? "text-green-500" : "text-red-500" }`}>
+                      {!(type === "Attacker" ^ log.result) ? "WON" : "LOST"}
                     </div>
                     <div className="w-[40%] py-1">
                       {log.note}
