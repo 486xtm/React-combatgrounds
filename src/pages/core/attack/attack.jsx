@@ -271,42 +271,45 @@ export const Attack = () => {
               {attackType === 0 ? (
                 <>
                   <div>
-                    Number of enemy recruits killed{": "}
+                    You killed {" "}
                     <span className="text-green-500">
                       {attackResult.def && attackResult.def.loss}
                     </span>
+                    {" "} troops during the conflict
                   </div>
                   <div>
-                    Number of your recruits get killed{": "}
+                    {attackResult.def && attackResult.def.name} killed 
                     <span className="text-green-500">
                       {attackResult.att && attackResult.att.loss}
                     </span>
+                    {" troops during the conflict"}
                   </div>
                 </>
               ) : (
                 <>
                   <div>
-                    You destroyed enemy's items of worth{" "}
+                    {`${attackResult && attackResult.win ? 'you cause ' : 'The enemy cause '}`} 
                     <span className="text-green-500">
                       $
                       {attackResult.def &&
                         (attackResult.def.loss || 0).toLocaleString()}
                     </span>
+                    {` worth of damage to ${attackResult && attackResult.win ? 'your enemy' : 'you'}`}
                   </div>
-                  <div>
+                  {/* <div>
                     Your items got destroyed of worth{" "}
                     <span className="text-green-500">
                       $
                       {attackResult.att &&
                         (attackResult.att.loss || 0).toLocaleString()}
                     </span>
-                  </div>
+                  </div> */}
                   <div>
-                    You got{" "}
+                    {`${attackResult && attackResult.win ? 'You' : 'The enemy'} got `}
                     <span className="text-green-500">
-                      ${Number(attackResult.rewards || 0).toLocaleString()}
+                      ${Number(attackResult && attackResult.rewards || 0).toLocaleString()}
                     </span>{" "}
-                    as reward{" "}
+                    {" as reward"}
                   </div>
                 </>
               )}
