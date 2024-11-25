@@ -7,6 +7,7 @@ import Modal from "../../../common/components/modal/modal";
 import YouTube from "react-youtube";
 import Hover from "../../../common/components/hover/hover";
 import {
+  formattedDuration,
   getColorSchemaByCharacterType,
   getGradeString,
 } from "../../../common/utils";
@@ -54,7 +55,7 @@ export const Profile = () => {
     if (otherUser) {
       getUserById({ id: otherUser._id }, dispatch);
     }
-  }, []);
+  }, [otherUser]);
 
   const video_data =
     user &&
@@ -233,7 +234,11 @@ export const Profile = () => {
                   {new Array(Math.floor((user.att_win || 0) / 70))
                     .fill()
                     .map((i, id) => (
-                      <img src="/images/winmast.jpg" key={`winmast_${id}`} />
+                      <img
+                        src="/images/winmast.jpg"
+                        key={`winmast_${id}`}
+                        className="w-[10px] h-[12px]"
+                      />
                     ))}
                 </div>
                 <img
@@ -262,6 +267,7 @@ export const Profile = () => {
                       <img
                         src="/images/clicksmast.jpg"
                         key={`clickmast_${id}`}
+                        className="w-[10px] h-[12px]"
                       />
                     ))}
                 </div>
@@ -291,6 +297,7 @@ export const Profile = () => {
                       <img
                         src="/images/levelmast.jpg"
                         key={`levelmast_${id}`}
+                        className="w-[10px] h-[12px]"
                       />
                     ))}
                 </div>
@@ -321,6 +328,7 @@ export const Profile = () => {
                       <img
                         src="/images/defencemast.jpg"
                         key={`defencemast_${id}`}
+                        className="w-[10px] h-[12px]"
                       />
                     ))}
                 </div>
@@ -452,14 +460,11 @@ export const Profile = () => {
               >
                 MONEY
               </div>
-              <p className="text-center text-white font-bold text-sm">
-                MONEY available:
-              </p>
-              <p className="text-center text-green-600 font-bold">
+              <p className="text-center text-green-600 font-bold mb-1">
                 ${user && Number(user.money).toLocaleString("en-US")}
               </p>
               <div
-                className={`my-1 ${
+                className={`${
                   user.characterType === "Soldier"
                     ? "bg-dark-primary"
                     : user.characterType === "Navyseal"
@@ -467,20 +472,87 @@ export const Profile = () => {
                     : user.characterType === "Terrorist"
                     ? "bg-dark-terrorist"
                     : "bg-dark-primary"
-                } text-sm font-bold text-white text-center mt-3`}
+                } text-sm font-bold text-white text-center my-1`}
+              >
+                LAST ACTIVITIES
+              </div>
+              {/* navigate("/profile", { state: user }); */}
+              {user && !onlineStatus && (
+                <p className="text-white text-sm my-1 text-center">
+                  <b>Last Seen:</b>
+                  <span className="ml-2">
+                    {formattedDuration(user.lastSeen)}
+                  </span>
+                </p>
+              )}
+
+              {user && user.lastAttack && (
+                <div className="text-white text-sm mb-1 text-center">
+                  <b>Last Attacked:</b>
+                  <u
+                    className="text-secondary ml-2 cursor-pointer"
+                    onClick={() =>
+                      navigate("/profile", {
+                        state: user.lastAttack,
+                      })
+                    }
+                  >
+                    {user.lastAttack.name}
+                  </u>{" "}
+                  <p>{formattedDuration(user.lastAttackTime)}</p>
+                </div>
+              )}
+              {user && user.lastAttackedBy && (
+                <div className="text-white text-sm my-1 text-center">
+                  <b>Last Attacked By:</b>
+                  <u
+                    className="text-secondary ml-2 cursor-pointer"
+                    onClick={() =>
+                      navigate("/profile", {
+                        state: user.lastAttackedBy,
+                      })
+                    }
+                  >
+                    {user.lastAttackedBy.name}
+                  </u>{" "}
+                  <p>{formattedDuration(user.lastAttackedTime)}</p>
+                </div>
+              )}
+
+              <div
+                className={`${
+                  user.characterType === "Soldier"
+                    ? "bg-dark-primary"
+                    : user.characterType === "Navyseal"
+                    ? "bg-dark-navyseal"
+                    : user.characterType === "Terrorist"
+                    ? "bg-dark-terrorist"
+                    : "bg-dark-primary"
+                } text-sm font-bold text-white text-center my-1`}
               >
                 CREW
               </div>
               <p className="text-center text-white font-bold text-sm">
                 {user && user.crew ? (
-                  <Link
-                    to={ROUTES.MAIN_ROUTES.CREW_PROFILE.replace(
-                      ":crew_id",
-                      user.crew
-                    )}
-                  >
-                    {user.crew_rank}
-                  </Link>
+                  <>
+                    <Link
+                      to={ROUTES.MAIN_ROUTES.CREW_PROFILE.replace(
+                        ":crew_id",
+                        user.crew._id
+                      )}
+                    >
+                      <u>{user.crew_rank}</u>
+                    </Link>
+                    <img
+                      src={
+                        user && user.crew.avatar
+                          ? `${socketURL}/${user.crew.avatar}`
+                          : "/crew/crewpicdef.gif"
+                      }
+                      alt="avatar"
+                      className="mx-auto"
+                    />
+                  </>
                 ) : (
                   user && <span>{user.name} is not in crew at the moment</span>
                 )}
@@ -503,7 +575,8 @@ export const Profile = () => {
                   <p className="text-[red] text-xs font-bold border-gray-900 border-2 text-center">
                     Attack items
                   </p>
-                  {user && user.items &&
+                  {user &&
+                    user.items &&
                     user.items
                       .filter((i) => i.item.type === "attack")
                       .sort((x, y) => x.item.cost - y.item.cost)
@@ -528,7 +601,8 @@ export const Profile = () => {
                   <p className="text-blue-800 text-xs font-bold border-gray-900 border-2 text-center">
                     Defense items
                   </p>
-                  {user && user.items &&
+                  {user &&
+                    user.items &&
                     user.items
                       .filter((i) => i.item.type === "defence")
                       .sort((x, y) => x.item.cost - y.item.cost)
@@ -550,7 +624,8 @@ export const Profile = () => {
                   <p className="text-white text-xs font-bold border-gray-900 border-2 text-center">
                     Combo items
                   </p>
-                  {user && user.items &&
+                  {user &&
+                    user.items &&
                     user.items
                       .filter((i) => i.item.type === "combo")
                       .sort((x, y) => x.item.cost - y.item.cost)
@@ -572,7 +647,8 @@ export const Profile = () => {
                   <p className="text-green-500 text-xs font-bold border-gray-900 border-2 text-center">
                     Income items
                   </p>
-                  {user && user.items &&
+                  {user &&
+                    user.items &&
                     user.items
                       .filter((i) => i.item.type === "income")
                       .sort((x, y) => x.item.cost - y.item.cost)

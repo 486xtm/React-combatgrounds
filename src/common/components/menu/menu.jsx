@@ -7,6 +7,14 @@ import { signOut } from "../../../api/auth";
 import { useNavigate } from "react-router-dom";
 import { socket } from "../../../socket/socket";
 import { ROUTES } from "../../constant";
+import { getAttackLogs, getAttackableUsers } from "../../../api/attack";
+import {
+  getBosses,
+  getCrew,
+  getCrewAds,
+  getCrewBoard,
+  getInvites,
+} from "../../../api/crew";
 export const Menu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,8 +37,22 @@ export const Menu = () => {
         <Link to="/choosehelper" className={styles["link"]}>
           - <u>FIND A HELPER</u>
         </Link>
-        <Link to="/attacklog" className={styles["link"]}>
-          - <u>ATTACK LOG (0)</u>
+        <Link
+          to="/attacklog"
+          className={styles["link"]}
+          onClick={() => {
+            getAttackLogs(dispatch);
+          }}
+        >
+          -{" "}
+          <u>
+            ATTACK LOG{" "}
+            <span
+              className={`${user && user.unreadAttack ? "text-[red]" : ""}`}
+            >
+              ({`${user && user.unreadAttack}`})
+            </span>
+          </u>
         </Link>
         <Link
           to="/mailcenter"
@@ -61,7 +83,11 @@ export const Menu = () => {
 
       <div className={styles["menu-item"]}>ACTIONS</div>
       <div className={styles["sub-menu"]}>
-        <Link to="/attack" className={styles["link"]}>
+        <Link
+          to="/attack"
+          className={styles["link"]}
+          onClick={() => getAttackableUsers({ key: "" }, dispatch)}
+        >
           - <u>ATTACK</u>
         </Link>
         <Link to="/map" className={styles["link"]}>
@@ -124,16 +150,25 @@ export const Menu = () => {
             >
               - <u>MANAGE CREW</u>
             </Link>
-            <Link to={ROUTES.MAIN_ROUTES.CREW_BANK} className={styles["link"]}>
+            <Link
+              to={ROUTES.MAIN_ROUTES.CREW_BANK}
+              className={styles["link"]}
+              onClick={() => getCrew(dispatch)}
+            >
               - <u>CREW_BANK</u>
             </Link>
             <Link
               to={ROUTES.MAIN_ROUTES.CREW_BOSSES}
               className={styles["link"]}
+              onClick={() => getBosses(dispatch)}
             >
               - <u>CREW_BOSSES</u>
             </Link>
-            <Link to={ROUTES.MAIN_ROUTES.CREW_BOARD} className={styles["link"]}>
+            <Link
+              to={ROUTES.MAIN_ROUTES.CREW_BOARD}
+              className={styles["link"]}
+              onClick={() => getCrewBoard(dispatch)}
+            >
               -{" "}
               <u>
                 <span>CREW_BOARD </span>
@@ -152,6 +187,7 @@ export const Menu = () => {
             <Link
               to={ROUTES.MAIN_ROUTES.CREW_INVITES}
               className={styles["link"]}
+              onClick={() => getInvites(dispatch)}
             >
               -{" "}
               <u>
@@ -173,7 +209,11 @@ export const Menu = () => {
             </Link>
           </>
         )}
-        <Link to={ROUTES.MAIN_ROUTES.CREW_ADS} className={styles["link"]}>
+        <Link
+          to={ROUTES.MAIN_ROUTES.CREW_ADS}
+          className={styles["link"]}
+          onClick={() => getCrewAds(dispatch)}
+        >
           - <u>CREW_ADS</u>
         </Link>
       </div>

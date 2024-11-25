@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getAttackLogs } from "../../../api/attack";
 import { formattedDate } from "../../../common/utils";
+import { socketURL } from "../../../common/constant";
 
 export const AttackLog = () => {
   const [logs, setLogs] = useState([]);
@@ -54,8 +55,9 @@ export const AttackLog = () => {
               <div className="w-[5%] py-2">No</div>
               <div className="w-[20%] py-2">Enemy</div>
               <div className="w-[10%] py-2">Result</div>
-              <div className="w-[40%] py-2">Note</div>
+              <div className="w-[25%] py-2">Note</div>
               <div className="w-[25%] py-2">Date</div>
+              <div className="w-[15%] py-2">View</div>
             </div>
             <div className="h-[492px] overflow-y-auto">
               {logs &&
@@ -70,15 +72,26 @@ export const AttackLog = () => {
                         ? log.defenser.name
                         : log.attacker.name}
                     </div>
-                    <div className={`w-[10%] py-1 ${!(type === 'Attacker' ^ log.result) ? "text-green-500" : "text-red-500" }`}>
-                      {!(type === "Attacker" ^ log.result) ? "WON" : "LOST"}
+                    <div
+                      className={`w-[10%] py-1 ${
+                        !((type === "Attacker") ^ log.result)
+                          ? "text-green-500"
+                          : "text-red-500"
+                      }`}
+                    >
+                      {!((type === "Attacker") ^ log.result) ? "WON" : "LOST"}
                     </div>
-                    <div className="w-[40%] py-1">
-                      {log.note}
+                    <div className="w-[25%] py-1">
+                      {log.note.length < 10
+                        ? log.note
+                        : log.note.slice(0, 7) + "..." + log.note.slice(-3)}
                     </div>
                     <div className="w-[25%] py-1">
                       {formattedDate(log.createdAt)}
                     </div>
+                    <button className="mx-auto my-1 rounded-lg border font-bold text-xs px-5 py-1 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white">
+                      View
+                    </button>
                   </div>
                 ))}
             </div>

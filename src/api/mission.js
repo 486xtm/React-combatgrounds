@@ -1,6 +1,7 @@
 import { basicURL } from "../common/constant";
 import { setToast } from "../redux/toastSlice";
-import { setMission, setUser } from "../redux/userSlice";
+import { setMission } from "../redux/userSlice";
+import { getUserInfo } from "./user";
 import axios from "./axios";
 
 export const getMission = async (dispatch) => {
@@ -17,9 +18,9 @@ export const getMission = async (dispatch) => {
 export const acceptMission = async (data, dispatch) => {
   try {
     const res = await axios.post(`${basicURL}/user/accept_mission`, data);
-    const { user, msg } = res.data;
-    dispatch(setUser(user));
+    const { msg } = res.data;
     dispatch(setToast({ type: "success", msg }));
+    getUserInfo(dispatch);
     getMission(dispatch);
   } catch (err) {
     dispatch(

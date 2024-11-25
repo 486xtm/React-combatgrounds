@@ -3,7 +3,8 @@ import { setToast } from "../redux/toastSlice";
 import {
   setAttackables,
   setAttackResult,
-  toggleShowModal,setAttackLogs
+  toggleShowModal,
+  setAttackLogs,
 } from "../redux/userSlice";
 import axios from "./axios";
 
@@ -21,13 +22,13 @@ export const getAttackableUsers = async (data, dispatch) => {
   }
 };
 
-export const attackUser = async (data, dispatch) => {
+export const attackUser = async (data, search, dispatch) => {
   try {
     const res = await axios.post(`${basicURL}/user/attack`, data);
     const { attackResult, user } = res.data;
     dispatch(setAttackResult({ attackResult, user }));
-    // dispatch(setToast({ type: "success", msg: res.data.msg || "succeess" }));
     dispatch(toggleShowModal(true));
+    getAttackableUsers(search, dispatch);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
