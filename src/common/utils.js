@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const getGradeString = (grade) => {
   if (!grade) return "None";
   if (grade === 1) return "Sergeant";
@@ -33,6 +35,24 @@ export const formattedDate = (d) => {
 
   // Combine date and time
   return `${formattedDate} ${hours}:${minutes}:${seconds}`;
+};
+
+export const formattedDuration = (d) => {
+  const lastTime = new Date(d);
+  const duration = moment.duration(moment().diff(moment(lastTime)));
+
+  const days = Math.floor(duration.asDays());
+  const hours = duration.hours();
+  const minutes = duration.minutes();
+  const seconds = duration.seconds();
+
+  return `${
+    (days ? `${days} days ` : "") +
+    (hours ? `${hours} hours ` : "") +
+    (minutes ? `${minutes} minutes ` : "") +
+    (seconds ? `${seconds} seconds ` : "") +
+    "ago"
+  }`;
 };
 
 export const pagination = (data) => {

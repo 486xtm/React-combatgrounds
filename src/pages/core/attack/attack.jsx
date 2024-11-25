@@ -5,6 +5,7 @@ import { getAttackableUsers, attackUser } from "../../../api/attack";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleShowModal } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
+import { socketURL } from "../../../common/constant";
 const mock = [
   {
     name: "sealife",
@@ -35,7 +36,13 @@ export const Attack = () => {
   };
 
   const handleAttack = () => {
-    attackUser({ name, type: attackType, message: attackMsg }, dispatch);
+    attackUser(
+      { name, type: attackType, message: attackMsg },
+      { key },
+      dispatch
+    );
+    setName("");
+    setAttackMsg("");
   };
 
   const handleSearch = () => {
@@ -43,7 +50,7 @@ export const Attack = () => {
   };
 
   const handleUserClick = (user) => {
-    if(user) {
+    if (user) {
       navigate("/profile", { state: user });
     }
   };
@@ -171,9 +178,12 @@ export const Attack = () => {
                     key={`attack_list_${index}`}
                   >
                     <div className="w-[10%] py-1">{index + 1}</div>
-                    <div className="w-[20%] py-1 underline text-yellow-200 cursor-pointer"
+                    <div
+                      className="w-[20%] py-1 underline text-yellow-200 cursor-pointer"
                       onClick={() => handleUserClick(user)}
-                    >{user.name}</div>
+                    >
+                      {user.name}
+                    </div>
                     <div className="w-[20%] py-1">
                       {Number(user.recruits).toLocaleString()}
                     </div>
@@ -203,21 +213,37 @@ export const Attack = () => {
             <div className="flex justify-center gap-6 items-center">
               <div className="w-[70px] text-center font-[900] text-red-500">
                 <div className="flex rounded-full mb-2 overflow-hidden w-[70px] h-[70px] border border-[red] shadow-glow shadow-[red]">
-                  <img src="/pics/avatar.gif" className="w-full h-auto" />
+                  <img
+                    src={
+                      user.avatar
+                        ? `${socketURL}/${user.avatar}`
+                        : "/pics/avatar.gif"
+                    }
+                    className="w-full h-auto"
+                  />
                 </div>
                 {user && user.name}
               </div>
               <img src="/attack/vs.png" className="w-[120px]" />
               <div className="w-[70px] text-center font-[900] text-blue-500">
                 <div className="flex rounded-full mb-2 overflow-hidden w-[70px] h-[70px] border border-[blue] shadow-glow shadow-[blue]">
-                  <img src="/pics/avatar.gif" className="w-full h-auto" />
+                  <img
+                    src={
+                      attackResult.def && attackResult.def.avatar
+                        ? `${socketURL}/${attackResult.def.avatar}`
+                        : "/pics/avatar.gif"
+                    }
+                    className="w-full h-auto"
+                  />
                 </div>
-                {name}
+                {attackResult.def && attackResult.def.name}
               </div>
             </div>
             <hr className="my-2" />
             <div className="mb-5 text-white leading-[30px] font-bold">
-              <div className="">You just attacked {name}</div>
+              <div className="">
+                You just attacked {attackResult.def && attackResult.def.name}
+              </div>
               <div>
                 Your{" "}
                 <span className="text-green-500">
@@ -258,7 +284,8 @@ export const Attack = () => {
                   attackResult.win ? "text-green-500" : "text-red-700"
                 } my-2`}
               >
-                You have {attackResult.win ? "have won" : "have lost"} the attack!
+                You have {attackResult.win ? "have won" : "have lost"} the
+                attack!
               </div>
               {/* <div>
                 Earning Yourself{" "}
@@ -271,16 +298,22 @@ export const Attack = () => {
               {attackType === 0 ? (
                 <>
                   <div>
-                    You killed {" "}
+                    {"You killed "}
                     <span className="text-green-500">
-                      {attackResult.def && attackResult.def.loss}
-                    </span>
-                    {" "} troops during the conflict
+                      {attackResult.def &&
+                        Number(attackResult.def.loss || 0).toLocaleString(
+                          "en-US"
+                        )}
+                    </span>{" "}
+                    troops during the conflict
                   </div>
                   <div>
-                    {attackResult.def && attackResult.def.name} killed 
+                    {`${attackResult.def && attackResult.def.name} killed `}
                     <span className="text-green-500">
-                      {attackResult.att && attackResult.att.loss}
+                      {attackResult.att &&
+                        Number(attackResult.att.loss || 0).toLocaleString(
+                          "en-US"
+                        )}
                     </span>
                     {" troops during the conflict"}
                   </div>
@@ -288,13 +321,22 @@ export const Attack = () => {
               ) : (
                 <>
                   <div>
-                    {`${attackResult && attackResult.win ? 'you cause ' : 'The enemy cause '}`} 
+                    {`${
+                      attackResult && attackResult.win
+                        ? "you cause "
+                        : "The enemy cause "
+                    }`}
                     <span className="text-green-500">
                       $
-                      {attackResult.win ? attackResult.def &&
-                        (attackResult.def.loss || 0).toLocaleString('en-US') : attackResult.att && (attackResult.att.loss || 0).toLocaleString('en-US')}
+                      {attackResult.win
+                        ? attackResult.def &&
+                          (attackResult.def.loss || 0).toLocaleString("en-US")
+                        : attackResult.att &&
+                          (attackResult.att.loss || 0).toLocaleString("en-US")}
                     </span>
-                    {` worth of damage to ${attackResult && attackResult.win ? 'your enemy' : 'you'}`}
+                    {` worth of damage to ${
+                      attackResult && attackResult.win ? "your enemy" : "you"
+                    }`}
                   </div>
                   {/* <div>
                     Your items got destroyed of worth{" "}
@@ -305,9 +347,14 @@ export const Attack = () => {
                     </span>
                   </div> */}
                   <div>
-                    {`${attackResult && attackResult.win ? 'You' : 'The enemy'} got `}
+                    {`${
+                      attackResult && attackResult.win ? "You" : "The enemy"
+                    } got `}
                     <span className="text-green-500">
-                      ${Number(attackResult && attackResult.rewards || 0).toLocaleString()}
+                      $
+                      {Number(
+                        (attackResult && attackResult.rewards) || 0
+                      ).toLocaleString()}
                     </span>{" "}
                     {" as reward"}
                   </div>
