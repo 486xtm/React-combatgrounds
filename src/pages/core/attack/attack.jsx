@@ -272,7 +272,7 @@ export const Attack = () => {
                 damage!
               </div>
             </div>
-            <div className="mb-5 text-white leading-[30px] font-bold">
+            <div className="mb-2 text-white leading-[30px] font-bold">
               <div
                 className={attackResult.win ? "text-green-500" : "text-red-600"}
               >
@@ -361,8 +361,21 @@ export const Attack = () => {
                 </>
               )}
             </div>
+            <div className="flex flex-col mx-auto gap-2">
+              {attackResult.destroyedItems &&
+                attackResult.destroyedItems.map((i, id) => (
+                  <div className="flex" key={`destroyed_${id}`}>
+                    <img
+                      src={`/images/items/${i.item.avatar}`}
+                      alt={i.item.avatar}
+                      className="w-[25px] h-[25px] border"
+                    />
+                    <span className="text-white ml-4">{`You destroyed ${i.count} of ${i.item.name}`}</span>
+                  </div>
+                ))}
+            </div>
             <button
-              className="mx-auto rounded-lg border font-bold text-xs px-10 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
+              className="mt-3 mx-auto rounded-lg border font-bold text-xs px-10 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
               onClick={closeModal}
             >
               OK

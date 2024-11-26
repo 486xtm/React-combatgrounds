@@ -36,11 +36,14 @@ export const attackUser = async (data, search, dispatch) => {
   }
 };
 
-export const getAttackLogs = async (dispatch) => {
+export const getAttackLogs = async (data, dispatch) => {
   try {
-    const res = await axios.get(`${basicURL}/user/attack_logs`);
-    const { attacks, defences } = res.data;
-    dispatch(setAttackLogs({ attacks, defences }));
+    const urlSearchParams = new URLSearchParams(data).toString();
+    const res = await axios.get(
+      `${basicURL}/user/attack_logs?${urlSearchParams}`
+    );
+    const { logs, total } = res.data;
+    dispatch(setAttackLogs({ logs, total }));
     // dispatch(setToast({ type: "success", msg: res.data.msg || "succeess" }));
   } catch (err) {
     dispatch(

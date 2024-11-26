@@ -13,8 +13,7 @@ export const HallOfFame = () => {
   const [goRound, setGoRound] = useState("");
   const { roundId } = useParams();
   const hofData = useSelector(({ round }) => round.hofData);
-  if(roundId < 1)
-    navigate(ROUTES.MAIN_ROUTES.HEADQUARTER);
+  if (roundId < 1) navigate(ROUTES.MAIN_ROUTES.HEADQUARTER);
   useEffect(() => {
     getRoundLog({ roundId }, dispatch, navigate);
   }, [roundId]);
@@ -23,65 +22,70 @@ export const HallOfFame = () => {
     <Layout currentActiveTab={"hall-of-fame"}>
       <div className="flex flex-col flex-1">
         <img src="/pics/halloffame.gif" alt="halloffame.gif" className="mx-3" />
-        {hofData && !(Number(roundId || hofData.currentRound - 1) !==
-              hofData.currentRound - 1) && <>
-        <table className={styles["custom-table"]}>
-          <tbody>
-            <tr>
-              <td colSpan={3}>Combat Grounds Legends</td>
-            </tr>
-            <tr>
-              <td>Rank</td>
-              <td> Name</td>
-              <td>Points</td>
-            </tr>
+        {hofData &&
+          !(
+            Number(roundId || hofData.currentRound - 1) !==
+            hofData.currentRound - 1
+          ) && (
+            <>
+              <table className={styles["custom-table"]}>
+                <tbody>
+                  <tr>
+                    <td colSpan={3}>Combat Grounds Legends</td>
+                  </tr>
+                  <tr>
+                    <td>Rank</td>
+                    <td> Name</td>
+                    <td>Points</td>
+                  </tr>
 
-            {hofData &&
-              hofData.legends &&
-              hofData.legends.map((l, idx) => (
-                <tr key={`legend_${idx}`}>
-                  <td>{idx + 1}</td>
-                  <td>{l.name}</td>
-                  <td>{l.points}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+                  {hofData &&
+                    hofData.legends &&
+                    hofData.legends.map((l, idx) => (
+                      <tr key={`legend_${idx}`}>
+                        <td>{idx + 1}</td>
+                        <td>{l && l.name ? l.name : "Deleted User"}</td>
+                        <td>{l && l.points}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
 
-        <table className={styles["custom-table"]}>
-          <tbody>
-            <tr>
-              <td colSpan={2}>All-Time Highest Net Worth</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Net Worth</td>
-            </tr>
-            <tr>
-              <td>Black Rose</td>
-              <td>117,688,630</td>
-            </tr>
-          </tbody>
-        </table>
+              <table className={styles["custom-table"]}>
+                <tbody>
+                  <tr>
+                    <td colSpan={2}>All-Time Highest Net Worth</td>
+                  </tr>
+                  <tr>
+                    <td>Name</td>
+                    <td>Net Worth</td>
+                  </tr>
+                  <tr>
+                    <td>B3AST</td>
+                    <td>150,704,220</td>
+                  </tr>
+                </tbody>
+              </table>
 
-        <table className={styles["custom-table"]}>
-          <tbody>
-            <tr>
-              <td colSpan={2}>All-Time Highest Crew Networth</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Net Worth</td>
-            </tr>
-            <tr>
-              <td>Swamp Ass</td>
-              <td>367,529,832</td>
-            </tr>
-          </tbody>
-        </table>
-        </>}
+              <table className={styles["custom-table"]}>
+                <tbody>
+                  <tr>
+                    <td colSpan={2}>All-Time Highest Crew Networth</td>
+                  </tr>
+                  <tr>
+                    <td>Name</td>
+                    <td>Net Worth</td>
+                  </tr>
+                  <tr>
+                    <td>Adventure squad</td>
+                    <td>852,938,456</td>
+                  </tr>
+                </tbody>
+              </table>
+            </>
+          )}
         <p className="text-secondary text-xl text-center font-bold mt-5">
-        Results for Round{" "}
+          Results for Round{" "}
           {hofData && roundId
             ? roundId
             : hofData
@@ -111,9 +115,13 @@ export const HallOfFame = () => {
               hofData.round.topSupporters.map((l, idx) => (
                 <tr key={`top_supporter_${idx}`}>
                   <td>{idx + 1}</td>
-                  <td>{l.player.name}</td>
-                  <td>{Number(l.netWorth).toLocaleString()}</td>
-                  <td>{l.medals.name}</td>
+                  <td>
+                    {l && l.player && l.player.name
+                      ? l.player.name
+                      : "Deleted User"}
+                  </td>
+                  <td>{l && Number(l.netWorth).toLocaleString()}</td>
+                  <td>{l && l.medals && l.medals.name}</td>
                 </tr>
               ))}
           </tbody>
@@ -136,10 +144,14 @@ export const HallOfFame = () => {
               hofData.round.topFreePlayers.map((l, idx) => (
                 <tr key={`top_free_${idx}`}>
                   <td>{idx + 1}</td>
-                  <td>{l.player.name}</td>
-                  <td>{Number(l.netWorth).toLocaleString()}</td>
-                  <td>{l.medals.name}</td>
-                  <td>{l.prize}</td>
+                  <td>
+                    {l && l.player && l.player.name
+                      ? l.player.name
+                      : "Deleted User"}
+                  </td>
+                  <td>{l && Number(l.netWorth).toLocaleString()}</td>
+                  <td>{l && l.medals && l.medals.name}</td>
+                  <td>{l && l.prize}</td>
                 </tr>
               ))}
           </tbody>
@@ -163,11 +175,17 @@ export const HallOfFame = () => {
               hofData.round.topCrews.map((l, idx) => (
                 <tr key={`top_crew_${idx}`}>
                   <td>{idx + 1}</td>
-                  <td>{l.name}</td>
-                  <td>{l.leader.name}</td>
-                  <td>{Math.floor(Number(l.netWorth)).toLocaleString()}</td>
-                  <td>{l.medals.name}</td>
-                  <td>{l.prize}</td>
+                  <td>{l && l.name ? l.name : "Deleted User"}</td>
+                  <td>
+                    {l && l.leader && l.leader.name
+                      ? l.leader.name
+                      : "Deleted User"}
+                  </td>
+                  <td>
+                    {l && Math.floor(Number(l.netWorth)).toLocaleString()}
+                  </td>
+                  <td>{l && l.medals && l.medals.name}</td>
+                  <td>{l && l.prize}</td>
                 </tr>
               ))}
           </tbody>

@@ -138,7 +138,7 @@ export const Menu = () => {
             <Link
               to={ROUTES.MAIN_ROUTES.CREW_PROFILE.replace(
                 ":crew_id",
-                user.crew
+                user.crew._id
               )}
               className={styles["link"]}
             >
