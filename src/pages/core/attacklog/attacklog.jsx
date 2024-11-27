@@ -27,8 +27,11 @@ export const AttackLog = () => {
     if (!type || !attack_logs) return;
     setLogs(attack_logs.logs);
     setTotalPage(attack_logs.total);
+  }, [attack_logs]);
+
+  useEffect(() => {
     setPage(1);
-  }, [attack_logs, type]);
+  }, [type]);
 
   return (
     <Layout currentActiveTab={"headquarters"}>
