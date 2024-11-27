@@ -27,7 +27,6 @@ export const AttackLog = () => {
     if (!type || !attack_logs) return;
     setLogs(attack_logs.logs);
     setTotalPage(attack_logs.total);
-    setPage(1);
   }, [attack_logs, type]);
 
   return (
