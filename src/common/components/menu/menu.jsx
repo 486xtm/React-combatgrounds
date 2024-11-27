@@ -41,7 +41,7 @@ export const Menu = () => {
           to="/attacklog"
           className={styles["link"]}
           onClick={() => {
-            getAttackLogs(dispatch);
+            getAttackLogs({ page: 1, type: "attacker" }, dispatch);
           }}
         >
           -{" "}

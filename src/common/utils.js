@@ -60,7 +60,6 @@ export const pagination = (data) => {
   let pages = [];
   for (let i = -2; i < 3; i++) {
     const npage = Number(curPage) + i;
-    console.log(npage);
     if (npage > 0 && npage < totalPage) pages = [...pages, npage];
   }
   return pages;

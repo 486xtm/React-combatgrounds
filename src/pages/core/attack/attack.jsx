@@ -63,6 +63,7 @@ export const Attack = () => {
   useEffect(() => {
     if (smodal === undefined || smodal === null) return;
     setShowModal(smodal);
+    handleSearch();
   }, [smodal]);
 
   useEffect(() => {
