@@ -296,7 +296,7 @@ export const Attack = () => {
                 You inflicted a loss of{" "}
                 <span className="text-green-500"> $19,354,243</span>
               </div> */}
-              {attackType === 0 ? (
+              {Number(attackType) === 0 ? (
                 <>
                   <div>
                     {"You killed "}
