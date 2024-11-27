@@ -251,7 +251,7 @@ export const AttackLog = () => {
                   : "have lost"}{" "}
                 the attack!
               </div>
-              {selectedLog.type === 0 ? (
+              {Number(selectedLog.type) === 0 ? (
                 <>
                   <div>
                     {`${
