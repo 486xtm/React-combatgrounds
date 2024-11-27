@@ -117,7 +117,7 @@ export const AttackLog = () => {
           {Number(page) > 1 && (
             <span
               className="text-sm cursor-pointer"
-              onClick={() => setPage(Number(page > 0 || 1) - 1)}
+              onClick={() => setPage(Number((page > 0 && page) || 1) - 1)}
             >
               &lt;&lt;
             </span>
@@ -128,7 +128,7 @@ export const AttackLog = () => {
           }).map((p, idx) => (
             <span
               className={`px-1 cursor-pointer ${
-                p === Number(page)
+                Number(p) === Number(page)
                   ? "text-secondary text-lg font-bold"
                   : "text-white text-sm"
               }`}
@@ -141,7 +141,7 @@ export const AttackLog = () => {
           {Number(page) < Number(totalPage) && (
             <span
               className="text-sm cursor-pointer"
-              onClick={() => setPage(page + 1)}
+              onClick={() => setPage(Number(page) + 1)}
             >
               &gt;&gt;
             </span>
