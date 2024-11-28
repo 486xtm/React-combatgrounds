@@ -75,7 +75,7 @@ export const AttackLog = () => {
                     className="flex w-full text-center text-sm border-b-[1px] border-secondary-green"
                     key={`attack_log_list_${type + index}`}
                   >
-                    <div className="w-[5%] py-1">{index + 1}</div>
+                    <div className="w-[5%] py-1">{(page-1) * 50 +index + 1}</div>
                     <div className="w-[20%] py-1 text-yellow-200">
                       {type === "attacker"
                         ? log.defenser.name
