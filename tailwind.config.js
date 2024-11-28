@@ -20,6 +20,8 @@ export default {
           "linear-gradient(180deg, #47B0FF 0%, #3E9ADF 49%, #3587CB 100%)",
         "gradient-progressbar-thumb-dark":
           "linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.66) 51%, rgba(0, 0, 0, 0.88) 97%)",
+        "button-gradient": "linear-gradient(0deg, #323320 0%, #4C4D28 100%)",
+        
       },
       boxShadow: {
         "dark-purple": "0 2px 0 0 #4940AE",

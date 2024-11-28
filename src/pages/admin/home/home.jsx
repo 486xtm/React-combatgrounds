@@ -53,7 +53,7 @@ export const AdminHome = () => {
   return (
     <div className="w-full">
       <div className="flex justify-center">
-        <img src="/SignIn/mark.svg" />
+        <img src="/pictures/common/mark.svg" />
       </div>
       <p className="mx-auto text-3xl font-extrabold">
         Total Players: {dashboard ? dashboard.totalPlayers : "---"}

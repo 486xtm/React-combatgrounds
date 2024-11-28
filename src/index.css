@@ -58,12 +58,13 @@ div.desc.error {
   color: red;
 }
 
-button {
-  background-color: silver;
+/* button {
+  background-image: linear-gradient(0deg, #323320 0%, #4C4D28 100%);
+  color: #CACAB2;
   border-radius: 2px;
   padding: 3px;
   font-size: 13px;
-}
+} */
 
 [data-title]:hover::after {
   content: attr(data-title);
@@ -155,4 +156,21 @@ textarea {
 
 .min_calc_height {
   min-height: calc(100vh - 350px);
+}
+
+.sign_input:-webkit-autofill {
+  background-color: transparent !important; /* Prevent background color change */
+  box-shadow: 0 0 0px 1000px #323320 inset !important; /* Reset to original background */
+  -webkit-box-shadow: 0 0 0px 1000px #323320 inset !important;
+  -webkit-text-fill-color: #CACAB2;
+  color: #CACAB2 !important;
+  caret-color: #CACAB2 !important;
+}
+
+.sign_input:-moz-autofill {
+  background-color: transparent !important;
+}
+
+.sign_input:-ms-autofill {
+  background-color: transparent !important;
 }

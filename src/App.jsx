@@ -20,7 +20,6 @@ import {
   cleanupSocketListeners,
 } from "./socket/socket";
 import { routes } from "./common/route";
-import New from "./pages/auth/New/New";
 import AdminLayout from "./common/components/admin_layout";
 
 const ProtectedRoute = React.memo(({ children }) => {
@@ -126,7 +125,6 @@ const App = () => {
             }
           />
         ))}
-        <Route path="/new" element={<New />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

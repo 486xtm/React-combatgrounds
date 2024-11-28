@@ -1,4 +1,5 @@
 import SignIn from "../pages/auth/SignInPage/SignIn";
+import NewSignIn from "../pages/auth/New/NewSignIn";
 import SignUp from "../pages/auth/SignUpPage/SignUp";
 import {
   AttackLog,
@@ -44,7 +45,7 @@ export const routes = {
   auth: [
     {
       path: ROUTES.AUTH_ROUTES.SIGN_IN,
-      element: <SignIn />,
+      element: <NewSignIn />,
     },
     {
       path: ROUTES.AUTH_ROUTES.SING_UP,
@@ -60,7 +61,7 @@ export const routes = {
     },
     {
       path: "/",
-      element: <SignIn />
+      element: <NewSignIn />
     }
   ],
   main: [

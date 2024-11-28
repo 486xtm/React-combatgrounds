@@ -115,7 +115,7 @@ export const EditInfo = () => {
               <span className="text-sm text-white text-bold">
                 {descriptionReaminLetters} characters left
               </span>
-              <button onClick={changeBioSubmit}>Update Info</button>
+              <button className="bg-gray-100 px-2 rounded-md" onClick={changeBioSubmit}>Update Info</button>
             </div>
           </div>
           <div className="flex flex-col p-3 gap-3 border-t-2 border-gray-400">
@@ -133,7 +133,7 @@ export const EditInfo = () => {
               <span className="text-[red] text=xs font-bold">
                 Only GIF's-max 300*300/60k
               </span>
-              <button onClick={changeAvatar}>Submit</button>
+              <button className="bg-gray-100 px-2 rounded-md" onClick={changeAvatar}>Submit</button>
             </div>
           </div>
           <div className="flex flex-col border-t-2 border-gray-400 p-3 gap-5">
@@ -170,7 +170,7 @@ export const EditInfo = () => {
                 onChange={(e) => setAutoYoutube(e.target.checked)}
               />
             </div>
-            <button className="mx-auto" onClick={changeYoutubeSubmit}>
+            <button className="bg-gray-100 px-2 rounded-md mx-auto"  onClick={changeYoutubeSubmit}>
               submit
             </button>
           </div>
@@ -187,7 +187,7 @@ export const EditInfo = () => {
               <option value="Navyseal">Navyseal</option>
               <option value="Terrorist">Terrorist</option>
             </select>
-            <button className="ml-auto" onClick={changeCharacterTypeSubmit}>
+            <button className="bg-gray-100 px-2 rounded-md ml-auto" onClick={changeCharacterTypeSubmit}>
               submit
             </button>
           </div>
@@ -224,7 +224,7 @@ export const EditInfo = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
-            <button className="ml-auto" onClick={changePasswordSubmit}>
+            <button className="bg-gray-100 px-2 rounded-md ml-auto" onClick={changePasswordSubmit}>
               update
             </button>
 
@@ -249,7 +249,7 @@ export const EditInfo = () => {
               <span className="text-[red] font-bold text-sm">
                 An account activation Email is sent
               </span>
-              <button onClick={changeEmailSubmit}>submit</button>
+              <button className="bg-gray-100 px-2 rounded-md" onClick={changeEmailSubmit}>submit</button>
             </div>
           </div>
           <div className="flex flex-col gap-3 p-3 border-t-2 border-gray-400">
@@ -274,7 +274,7 @@ export const EditInfo = () => {
               <span className="text-sm text-[red] font-bold">
                 You can change your name only on the first day of a round
               </span>
-              <button onClick={changeNameSubmit}>submit</button>
+              <button className="bg-gray-100 px-2 rounded-md" onClick={changeNameSubmit}>submit</button>
             </div>
           </div>
         </div>

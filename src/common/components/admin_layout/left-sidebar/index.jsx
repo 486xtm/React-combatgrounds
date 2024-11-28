@@ -22,7 +22,7 @@ const LeftSidebar = () => {
         <span className="text-[#242928] font-[500] text-shadow-glow  font-laira md:text-[48px] text-[32px] italic leading-none transition-all duration-300">
           C G
         </span>
-        <img className="my-2 hidden lg:block" src = "/SignIn/mark.svg" />
+        <img className="my-2 hidden lg:block" src = "/pictures/common/mark.svg" />
       </div>
       <div className="flex flex-col flex-1 overflow-hidden">
         <div className="max-md:flex max-md:flex-col items-center w-full px-3 transition-all ">
