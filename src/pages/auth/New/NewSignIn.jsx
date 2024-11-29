@@ -42,7 +42,7 @@ const NewSignIn = () => {
           className="w-[500px]  mx-auto py-[40px]"
           src="/pictures/common/mark.svg"
         />
-        <div className="flex flex-col rounded-[1rem] w-[80%] md:w-[500px]  bg-[rgba(255,255,255,0.1)] mx-auto text-center md:pt-10 md:pb-20 pt-5 pb-10 md:px-10 px-5 mb-3">
+        <div className="flex flex-col rounded-[1rem] w-[80%] md:w-[500px]  shadow-glow_small  bg-[rgba(255,255,255,0.1)] mx-auto text-center md:pt-10 md:pb-20 pt-5 pb-10 md:px-10 px-5 mb-3">
           <div className="font-[700] md:text-[40px] text-[30px] text-[#F2F2EC] mb-5">
             LOGIN
           </div>
@@ -95,13 +95,13 @@ const NewSignIn = () => {
           </button>
         </div>
 
-        <div className="flex flex-col rounded-[1rem] w-[80%] 2xl:w-[400px] md:w-[500px]  bg-[rgba(255,255,255,0.1)] mx-auto text-center md:pt-10 md:pb-10 pt-5 pb-10 md:px-5 px-5 2xl:absolute 2xl:right-[150px] lg:right[100px] md:top-[200px] mb-4">
+        <div className="flex flex-col rounded-[1rem] w-[80%] 2xl:w-[400px] md:w-[500px]  bg-[rgba(255,255,255,0.1)] mx-auto text-center md:pt-10 md:pb-10 pt-5 pb-10 md:px-5 px-5 2xl:absolute left-[1100px] right-0  md:top-[200px] mb-4  shadow-glow_small ">
           <div className="font-[700] md:text-[32px] text-[20px] text-[#CACAB2] md:mb-5 mb-2">
-            CREATE AN ACCOUNT
+            CREATE ACCOUNT
           </div>
           <button
             onClick={() => navigate('/register')}
-            className="bg-button-gradient md:h-[47px] h-[35px] md:w-[300px] w-[200px] mx-auto md:rounded-[16px] rounded-[8px] md:text-[24px] text-[16px] font-extrabold text-[#CACAB2] md:mb-10 mb-5 flex items-center justify-center"
+            className={"md:h-[47px] h-[35px] md:w-[300px] w-[200px] mx-auto md:rounded-[16px] rounded-[8px] md:text-[24px] text-[16px] font-extrabold text-[#CACAB2] md:mb-10 mb-5 flex items-center justify-center " + styles['gradient_button']}
           >
             Sign Up!
           </button>

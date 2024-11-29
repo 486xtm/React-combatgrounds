@@ -8,3 +8,6 @@
 .sign_height {
   min-height: calc(100vh - 50px);
 }
+.gradient_button {
+  background-image: linear-gradient(0deg, #323320 0%, #4C4D28 100%);
+}
