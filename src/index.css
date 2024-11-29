@@ -174,3 +174,22 @@ textarea {
 .sign_input:-ms-autofill {
   background-color: transparent !important;
 }
+
+
+
+.signup_input:-webkit-autofill {
+  background-color: transparent !important; /* Prevent background color change */
+  box-shadow: 0 0 0px 1000px #1b1b13 inset !important; /* Reset to original background */
+  -webkit-box-shadow: 0 0 0px 1000px #1b1b13 inset !important;
+  -webkit-text-fill-color: #CACAB2;
+  color: #CACAB2 !important;
+  caret-color: #CACAB2 !important;
+}
+
+.signup_input:-moz-autofill {
+  background-color: transparent !important;
+}
+
+.signup_input:-ms-autofill {
+  background-color: transparent !important;
+}

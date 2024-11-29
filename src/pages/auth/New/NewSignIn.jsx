@@ -27,11 +27,11 @@ const NewSignIn = () => {
     }
   }, [isAuthenticated]);
 
-  useEffect(() => {
-    if (loginError) {
-      navigate("/register");
-    }
-  }, [loginError]);
+  // useEffect(() => {
+  //   if (loginError) {
+  //     navigate("/register");
+  //   }
+  // }, [loginError]);
 
   if (isLoading) return <Loading />;
 

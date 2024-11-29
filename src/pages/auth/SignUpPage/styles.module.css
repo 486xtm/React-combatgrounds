@@ -1,4 +1,4 @@
-.back {
+/* .back {
   background-image: url("/back.jpg");
   background-repeat: repeat;
   height: 100vh;
@@ -22,4 +22,26 @@
   background-repeat: no-repeat;
   background-size: contain;
   border-radius: 5px;
+} */
+
+.signup_container {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("/pictures/sign_up/signup_back.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.signup_height {
+  min-height: calc(100vh - 50px);
+}
+.gradient_button {
+  background-image: linear-gradient(0deg, #323320 0%, #1b1b13 100%);
+}
+
+.gradient_button:hover {
+  background-image: linear-gradient(0deg, #323320 0%, #1b1b13 0%);
+
+}
+.mark_svg {
+  filter: drop-shadow(2px 4px 6px black);
 }
