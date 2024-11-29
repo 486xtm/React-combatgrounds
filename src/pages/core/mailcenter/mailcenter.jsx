@@ -167,8 +167,8 @@ export const MailCenter = () => {
             >
               <u>clear all</u>
             </span>
-            <button onClick={handleDelete}>Delete</button>
-            <button onClick={ToggleViewMessages} className="w-[46px]">
+            <button className="bg-gray-100 px-2 rounded-md" onClick={handleDelete}>Delete</button>
+            <button onClick={ToggleViewMessages} className=" bg-gray-100 px-2 rounded-md">
               {viewUnreadMessages ? "All" : "Unread"}
             </button>
           </div>
@@ -280,7 +280,7 @@ export const MailCenter = () => {
                   </select>
                 </div>
                 <button
-                  className="text-xs w-[100px] disabled:bg-gray-500"
+                  className="bg-gray-100 px-2 rounded-md disabled:bg-gray-500"
                   disabled={!unblockUserId}
                   onClick={handleUnblock}
                 >
@@ -298,7 +298,7 @@ export const MailCenter = () => {
                     onChange={(e) => setBlockUserName(e.target.value)}
                   />
                 </div>
-                <button className="tex-xs w-[100px]" onClick={handleBlock}>
+                <button className="bg-gray-100 px-2 rounded-md" onClick={handleBlock}>
                   Block player
                 </button>
               </div>
@@ -362,7 +362,7 @@ export const MailCenter = () => {
                   if (detailedViewMessage.sender)
                     handleReply(detailedViewMessage.sender.name);
                 }}
-                className="ml-[100px]"
+                className="ml-[100px] bg-gray-100 px-2 rounded-md"
               >
                 reply
               </button>
@@ -403,7 +403,7 @@ export const MailCenter = () => {
               className="ml-[100px] rounded px-2 py-1"
               onChange={(e) => setContent(e.target.value)}
             ></textarea>
-            <button className="ml-[100px]" onClick={handleSubmit}>
+            <button className="ml-[100px] bg-gray-100 px-2 rounded-md" onClick={handleSubmit}>
               send
             </button>
           </div>

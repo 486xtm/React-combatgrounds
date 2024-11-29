@@ -39,7 +39,7 @@ const NewSignIn = () => {
     <div className={styles["sign_container"]}>
       <div className={styles["sign_height"]}>
         <img
-          className="w-[500px]  mx-auto py-[40px]"
+          className={"w-[500px]  mx-auto py-[40px] " +  styles["mark_svg"]}
           src="/pictures/common/mark.svg"
         />
         <div className="flex flex-col rounded-[1rem] w-[80%] md:w-[500px]  shadow-glow_small  bg-[rgba(255,255,255,0.1)] mx-auto text-center md:pt-10 md:pb-20 pt-5 pb-10 md:px-10 px-5 mb-3">

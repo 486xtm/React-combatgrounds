@@ -184,6 +184,8 @@ textarea {
   -webkit-text-fill-color: #CACAB2;
   color: #CACAB2 !important;
   caret-color: #CACAB2 !important;
+  border-color: #1b1b13 !important;
+  outline-color: #1b1b13 !important;
 }
 
 .signup_input:-moz-autofill {

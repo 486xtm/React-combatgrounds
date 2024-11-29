@@ -97,13 +97,13 @@ export const BattleFieldRegion = () => {
               }}
             />
             <button
-              className="text-[red] text-sm font-bold w-[50px]"
+              className="text-[red] text-sm font-bold w-[50px] bg-gray-100 px-2 rounded-md"
               onClick={handlePutGoClick}
             >
               GO!
             </button>
             <button
-              className="text-[red] text-sm font-bold w-[100px]"
+              className="text-[red] text-sm font-bold w-[100px] bg-gray-100 px-2 rounded-md"
               onClick={handlePutAllClick}
             >
               PUT ALL
@@ -123,34 +123,34 @@ export const BattleFieldRegion = () => {
               }}
             />
             <button
-              className="text-[red] text-sm font-bold w-[50px]"
+              className="text-[red] text-sm font-bold w-[50px] bg-gray-100 px-2 rounded-md"
               onClick={handleTakeGoClick}
             >
               GO!
             </button>
             <button
-              className="text-[red] text-sm font-bold w-[100px]"
+              className="text-[red] text-sm font-bold w-[100px] bg-gray-100 px-2 rounded-md"
               onClick={handleTakeAllClick}
             >
               TAKE ALL
             </button>
           </div>
           <button
-            className="text-sm text-[red] font-bold mt-5 w-[250px]"
+            className="text-sm text-[red] font-bold mt-5 w-[250px] bg-gray-100 px-2 rounded-md"
             onClick={() => handleGoClick(0)}
           >
             Exploit territory resources!
           </button>
           <p className="text-white text-xs">This option uses 25 turns</p>
           <button
-            className="text-sm text-[red] font-bold mt-5 w-[250px]"
+            className="text-sm text-[red] font-bold mt-5 w-[250px] bg-gray-100 px-2 rounded-md"
             onClick={() => handleGoClick(1)}
           >
             Recruit Massively in this region!
           </button>
           <p className="text-white text-xs">This option uses 15 turns</p>
           <button
-            className="text-sm text-[red] font-bold mt-5 w-[250px]"
+            className="text-sm text-[red] font-bold mt-5 w-[250px] bg-gray-100 px-2 rounded-md"
             onClick={() => handleGoClick(2)}
           >
             Gather intelligence in this region!

@@ -30,6 +30,7 @@
   background-image: url("/pictures/sign_up/signup_back.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  padding-bottom: 15px;
 }
 .signup_height {
   min-height: calc(100vh - 50px);

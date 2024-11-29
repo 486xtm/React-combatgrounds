@@ -11,28 +11,28 @@ import { FaAccessibleIcon } from "react-icons/fa";
 const SignUpPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const loginError = useSelector(({ error }) => error.login);
-  const registerError = useSelector(({ error }) => error.register);
-  const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
-  const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState("");
-  const [pass, setPass] = useState("");
+  // const loginError = useSelector(({ error }) => error.login);
+  // const registerError = useSelector(({ error }) => error.register);
+  // const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [user, setUser] = useState("");
+  // const [pass, setPass] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [cemail, setCEmail] = useState("");
+  // const [cemail, setCEmail] = useState("");
   const [newPass, setNewPass] = useState("");
   const [cpass, setCPass] = useState("");
   const [characterType, setCharacterType] = useState("Soldier");
-  const [hover, setHover] = useState(false);
-  const [hoverFag, setHoverFag] = useState(false);
-  const [hoverUserGuid, setHoverUserGuid] = useState(false);
+  // const [hover, setHover] = useState(false);
+  // const [hoverFag, setHoverFag] = useState(false);
+  // const [hoverUserGuid, setHoverUserGuid] = useState(false);
   const [agreeCheck, setAgreeCheck] = useState(false);
   const [accountCheck, setAccountCheck] = useState(false);
 
-  const handleLoginSubmit = async (e) => {
-    e.preventDefault();
-    await signIn({ username: user, password: pass }, dispatch);
-  };
+  // const handleLoginSubmit = async (e) => {
+  //   e.preventDefault();
+  //   await signIn({ username: user, password: pass }, dispatch);
+  // };
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
@@ -56,29 +56,29 @@ const SignUpPage = () => {
       //   navigate
       // );
       await signUp(
-        { username, email, cemail:email, newPass, cpass, characterType },
+        { username, email, cemail: email, newPass, cpass, characterType },
         dispatch,
         navigate
       );
     }
   };
-  useEffect(() => {
-    if (isAuthenticated) {
-      setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
-        navigate("/headquarter");
-      }, 5000);
-    }
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     setIsLoading(true);
+  //     setTimeout(() => {
+  //       setIsLoading(false);
+  //       navigate("/headquarter");
+  //     }, 5000);
+  //   }
+  // }, [isAuthenticated]);
 
-  useEffect(() => {
-    if (loginError) {
-      navigate("/register");
-    }
-  }, [loginError]);
+  // useEffect(() => {
+  //   if (loginError) {
+  //     navigate("/register");
+  //   }
+  // }, [loginError]);
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
   // return (
   //   <div className={"flex flex-col items-center bg-black " + styles["back"]}>
   //     <div className="w-[880px]">
@@ -372,8 +372,12 @@ const SignUpPage = () => {
   // );
   return (
     <div className={styles["signup_container"]}>
-      <div className={styles["signup_height"] + " flex items-center"}>
-        <div className="flex flex-col rounded-[1rem] w-[80%] md:w-[500px]  shadow-glow_small  bg-[rgba(255,255,255,0.1)] ml-[10%] text-center md:pt-10 md:pb-10 pt-5 pb-10 md:px-10 px-5 mb-3">
+      <div
+        className={
+          styles["signup_height"] + " flex flex-col justify-center py-5"
+        }
+      >
+        <div className="flex flex-col rounded-[1rem] w-[80%] md:w-[500px]  shadow-glow_small  bg-[rgba(255,255,255,0.1)] ml-[10%] text-center md:pt-10 md:pb-10 pt-5 pb-10 md:px-10 px-5 mb-3 md:mb-5">
           <img
             className={"w-[500px]  mx-auto " + styles["mark_svg"]}
             src="/pictures/common/mark.svg"
@@ -451,7 +455,7 @@ const SignUpPage = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-[8px] mb-2">
+            <div className="flex flex-col gap-[8px] mb-5">
               <div className="text-[#CACAB2] md:text-[20px] font-medium text-left">
                 Character Type
               </div>
@@ -533,6 +537,41 @@ const SignUpPage = () => {
               }
             >
               Sign Up!
+            </button>
+          </div>
+        </div>
+
+        <div className="flex flex-col rounded-[1rem] w-[80%]  md:w-[500px]  bg-[rgba(255,255,255,0.1)] 2xl:ml-[0px]  ml-[10%]  md:pt-10 md:pb-10 pt-5  md:px-10 px-4 2xl:absolute 2xl:right-[7%]  2xl:mt-[15vh] 2xl:top-0  mb-4  shadow-glow_small text-[#dfdfc3]">
+          <div
+            className={" mb-2 font-bold md:text-2xl text-lg " + styles["fontset"]}
+          >
+            What is CombatGrounds?
+          </div>
+          <div className={" mb-2 md:text-lg font-semibold text-sm " + styles["fontset"]}>
+            <p className="mb-3">
+              Combat Grounds is the best text-based strategy game:
+            </p>
+            <ul className="list-disc ml-10 mb-3">
+              <li>Become a Navy Seal, a Soldier, or a Terrorist.</li>
+              <li>
+                Win fantastic prizes just by playing and having a great time.
+              </li>
+              <li>
+                Experience the game at blazing speeds! No downloads! Nothing to
+                install! And best of all, it's FREE to play!
+              </li>
+            </ul>
+            Sign up NOW and join our great community!
+            <br />
+            <br />
+            <button
+              onClick={() => navigate("/login")}
+              className={
+                "md:h-[47px] h-[35px] md:w-[300px] w-[200px] mt-3 mx-auto md:rounded-[16px] rounded-[8px] md:text-[24px] text-[16px] font-extrabold text-[#CACAB2] flex items-center justify-center mb-4 " +
+                styles["gradient_button"]
+              }
+            >
+              Sign In
             </button>
           </div>
         </div>
