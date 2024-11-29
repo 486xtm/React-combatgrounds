@@ -137,7 +137,7 @@ export const CrewManage = () => {
                             onClick={() => {
                               handleBoot(member._id);
                             }}
-                            className=" rounded-lg border-2 px-2 border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white"
+                            className=" rounded-lg border-2 px-2 text-xs py-[2px] border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white"
                           >
                             Boot
                           </button>
@@ -145,7 +145,7 @@ export const CrewManage = () => {
                             onClick={() => {
                               handleMakeReader(member._id);
                             }}
-                            className=" rounded-lg border-2 px-2 border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white"
+                            className=" rounded-lg border-2 px-2 text-xs py-[2px] border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white"
                           >
                             Make leader
                           </button>
@@ -153,7 +153,7 @@ export const CrewManage = () => {
                             onClick={() => {
                               handleChangeRankModalShow(member._id);
                             }}
-                            className=" rounded-lg border-2 px-2 border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white"
+                            className=" rounded-lg border-2 px-2 text-xs py-[2px] border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white"
                           >
                             Change Rank
                           </button>
