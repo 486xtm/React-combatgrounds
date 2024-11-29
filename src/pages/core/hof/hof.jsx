@@ -61,8 +61,18 @@ export const HallOfFame = () => {
                     <td>Net Worth</td>
                   </tr>
                   <tr>
-                    <td>B3AST</td>
-                    <td>150,704,220</td>
+                    <td>
+                      {hofData &&
+                      hofData.highest_user_networth &&
+                      hofData.highest_user_networth.user
+                        ? hofData.highest_user_networth.user.name
+                        : "---"}
+                    </td>
+                    <td>
+                      {hofData && hofData.highest_user_networth
+                        ? hofData.highest_user_networth.value
+                        : "---"}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -77,8 +87,18 @@ export const HallOfFame = () => {
                     <td>Net Worth</td>
                   </tr>
                   <tr>
-                    <td>Adventure squad</td>
-                    <td>852,938,456</td>
+                    <td>
+                      {hofData && hofData.highest_crew_networth
+                        ? hofData.highest_crew_networth.crew
+                        : "---"}
+                    </td>
+                    <td>
+                      {hofData && hofData.highest_crew_networth
+                        ? Number(
+                            hofData.highest_crew_networth.value
+                          ).toLocaleString("en-US")
+                        : "---"}
+                    </td>
                   </tr>
                 </tbody>
               </table>

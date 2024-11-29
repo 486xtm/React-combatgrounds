@@ -39,16 +39,16 @@ const NewSignIn = () => {
     <div className={styles["sign_container"]}>
       <div className={styles["sign_height"]}>
         <img
-          className={"w-[500px]  mx-auto py-[40px] " +  styles["mark_svg"]}
+          className={"w-[500px]  mx-auto py-[40px] " + styles["mark_svg"]}
           src="/pictures/common/mark.svg"
         />
-        <div className="flex flex-col rounded-[1rem] w-[80%] md:w-[500px]  shadow-glow_small  bg-[rgba(255,255,255,0.1)] mx-auto text-center md:pt-10 md:pb-20 pt-5 pb-10 md:px-10 px-5 mb-3">
-          <div className="font-[700] md:text-[40px] text-[30px] text-[#F2F2EC] mb-5">
+        <div className="flex flex-col rounded-[1rem] w-[80%] md:w-[500px]  shadow-glow_small shadow-[black]  bg-[rgba(0,0,0,0.3)] mx-auto text-center md:pt-10 md:pb-20 pt-5 pb-10 md:px-10 px-5 mb-3">
+          <div className="font-[700] md:text-[40px] text-[30px] text-[mintcream] mb-5">
             LOGIN
           </div>
 
           <div className="flex flex-col gap-[8px] mb-5">
-            <div className="text-[#CACAB2] md:text-[20px] font-medium text-left">
+            <div className="text-[mintcream] md:text-[20px] font-medium text-left">
               Username
             </div>
             <div className="bg-[#323320] md:h-[56px] h-[40px] md:px-[24px] px-[12px]  md:py-[16px] md:rounded-[16px] rounded-[8px] flex">
@@ -56,7 +56,7 @@ const NewSignIn = () => {
                 <img src="/pictures/common/user.svg" />
               </div>
               <input
-                className="flex-1 text-[#CACAB2] md:text-[20px] placeholder:text-[#CACAB2] font-semibold bg-[#323320] sign_input"
+                className="flex-1 text-[mintcream] md:text-[20px] placeholder:text-[mintcream] font-semibold bg-[#323320] sign_input"
                 placeholder="Enter username"
                 autoComplete="off"
                 onChange={(e) => setUsername(e.target.value)}
@@ -65,7 +65,7 @@ const NewSignIn = () => {
           </div>
 
           <div className="flex flex-col gap-[8px] mb-2">
-            <div className="text-[#CACAB2] md:text-[20px] font-medium text-left">
+            <div className="text-[mintcream] md:text-[20px] font-medium text-left">
               Password
             </div>
             <div className="bg-[#323320] md:h-[56px] h-[40px] md:px-[24px] px-[12px] md:py-[16px] md:rounded-[16px] rounded-[8px] flex">
@@ -74,7 +74,7 @@ const NewSignIn = () => {
               </div>
               <input
                 type="password"
-                className="flex-1 text-[#CACAB2] md:text-[20px] placeholder:text-[#CACAB2] font-semibold bg-[#323320] sign_input"
+                className="flex-1 text-[mintcream] md:text-[20px] placeholder:text-[mintcream] font-semibold bg-[#323320] sign_input"
                 placeholder="Enter password"
                 autoComplete="off"
                 onChange={(e) => setPassword(e.target.value)}
@@ -83,25 +83,28 @@ const NewSignIn = () => {
           </div>
           <Link
             to="/forgotpass"
-            className="text-[#CACAB2] md:text-[20px] font-medium text-right mb-10 cursor-pointer"
+            className="text-[mintcream] md:text-[20px] font-medium text-right mb-10 cursor-pointer"
           >
             Forgot Password?
           </Link>
           <button
-            className="bg-[#191A12] hover:bg-[#22241a] md:h-[56px] h-[40px] md:rounded-[16px] rounded-[8px] shadow-lg backdrop-blur-md md:text-[24px] text-[16px] font-extrabold text-[#CACAB2]"
+            className="bg-[#191A12] hover:bg-[#22241a] md:h-[56px] h-[40px] md:rounded-[16px] rounded-[8px] shadow-lg backdrop-blur-md md:text-[24px] text-[16px] font-extrabold text-[mintcream]"
             onClick={() => handleLogin()}
           >
             G O
           </button>
         </div>
 
-        <div className="flex flex-col rounded-[1rem] w-[80%] 2xl:w-[400px] md:w-[500px]  bg-[rgba(255,255,255,0.1)] mx-auto text-center md:pt-10 md:pb-10 pt-5 pb-10 md:px-5 px-5 2xl:absolute left-[1100px] right-0  md:top-[200px] mb-4  shadow-glow_small ">
-          <div className="font-[700] md:text-[32px] text-[20px] text-[#CACAB2] md:mb-5 mb-2">
+        <div className="flex flex-col rounded-[1rem] w-[80%] 2xl:w-[400px] md:w-[500px]  bg-[rgba(0,0,0,0.3)] mx-auto text-center md:pt-10 md:pb-10 pt-5 pb-10 md:px-5 px-5 2xl:absolute left-[1100px] right-0  md:top-[200px] mb-4  shadow-glow_small shadow-[black] ">
+          <div className="font-[700] md:text-[32px] text-[20px] text-[mintcream] md:mb-5 mb-2">
             CREATE ACCOUNT
           </div>
           <button
-            onClick={() => navigate('/register')}
-            className={"md:h-[47px] h-[35px] md:w-[300px] w-[200px] mx-auto md:rounded-[16px] rounded-[8px] md:text-[24px] text-[16px] font-extrabold text-[#CACAB2] md:mb-10 mb-5 flex items-center justify-center " + styles['gradient_button']}
+            onClick={() => navigate("/register")}
+            className={
+              "md:h-[47px] h-[35px] md:w-[300px] w-[200px] mx-auto md:rounded-[16px] rounded-[8px] md:text-[24px] text-[16px] font-extrabold text-[mintcream] md:mb-10 mb-5 flex items-center justify-center " +
+              styles["gradient_button"]
+            }
           >
             Sign Up!
           </button>
@@ -109,19 +112,19 @@ const NewSignIn = () => {
           <div className="flex justify-between md:w-[300px] w-[250px] mx-auto">
             <Link
               to="/faq"
-              className="underline text-[#F2F2EC] cursor-pointer md:text-[20px]"
+              className="underline text-[mintcream] cursor-pointer md:text-[20px]"
             >
               FAQ’s
             </Link>
             <Link
               to="/userguide"
-              className="underline text-[#F2F2EC] cursor-pointer md:text-[20px]"
+              className="underline text-[mintcream] cursor-pointer md:text-[20px]"
             >
               User Guide
             </Link>
             <Link
               to="mailto:info@combatgrounds.com"
-              className="underline text-[#F2F2EC] cursor-pointer md:text-[20px]"
+              className="underline text-[mintcream] cursor-pointer md:text-[20px]"
             >
               Contact us
             </Link>
