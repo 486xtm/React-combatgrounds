@@ -79,6 +79,12 @@ export const AdminUserList = () => {
       setSortBy({ tag: "createdAt", des: !sortBy.des });
     } else setSortBy({ tag: "createdAt", des: true });
   };
+
+  const handleSortTransferedTurn = () => {
+    // if (sortBy.tag === "createdAt") {
+    //   setSortBy({ tag: "createdAt", des: !sortBy.des });
+    // } else setSortBy({ tag: "createdAt", des: true });
+  };
   ///////////
   const [currentPage, setCurrentPage] = useState(1);
   //////////
@@ -324,6 +330,26 @@ export const AdminUserList = () => {
               <th
                 scope="col"
                 className="cursor-pointer text-left text-gray-700 px-6 py-3"
+                onClick={handleSortTransferedTurn}
+              >
+                <div className="flex items-center gap-2">
+                  Transfered Turn
+                  {sortBy && sortBy.tag === "transferedTurn" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
+                </div>
+              </th>
+              <th
+                scope="col"
+                className="cursor-pointer text-left text-gray-700 px-6 py-3"
                 onClick={handleSortDate}
               >
                 <div className="flex items-center gap-2">
@@ -377,7 +403,7 @@ export const AdminUserList = () => {
                   </div>
                 </td>
                 <td className="px-6 py-4 text-center leading-none">
-                  {((currentPage-1) * 30) + index + 1}
+                  {(currentPage - 1) * 30 + index + 1}
                 </td>
                 <th
                   scope="row"
@@ -421,6 +447,9 @@ export const AdminUserList = () => {
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
                   {Number(user.bankedTurn).toLocaleString("en-US")}
+                </td>
+                <td className="px-6 py-4 text-left leading-none">
+                  {Number(user.transferedTurns).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
                   {formattedDate(user.createdAt)}

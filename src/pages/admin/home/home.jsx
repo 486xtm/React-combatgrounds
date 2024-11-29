@@ -70,6 +70,11 @@ export const AdminHome = () => {
       <div className="text-center mt-20 font-[900] text-[25px] text-gray-900">
         {dashboard ? dashboard.remain : "loading..."}
       </div>
+      <div className="text-center mt-20 font-[900] text-[25px] text-gray-900">
+        {dashboard
+          ? `Total transfered turns for this round: ${dashboard.turns}`
+          : "loading..."}
+      </div>
     </div>
   );
 };
