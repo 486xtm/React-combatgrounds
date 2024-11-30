@@ -3,14 +3,16 @@ import CrewLayout from "../layout/crew_layout";
 import { useDispatch, useSelector } from "react-redux";
 import { attackBoss, getBosses } from "../../../api/crew";
 import { socket } from "../../../socket/socket";
+import { useNavigate } from "react-router-dom";
 
 export const CrewBosses = () => {
   const bosses = useSelector(({ crew }) => crew.bosses);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleAttack = (boss_id) => {
-    attackBoss({ boss_id }, dispatch, socket);
+    attackBoss({ boss_id }, dispatch, socket, navigate);
   };
 
   useEffect(() => {

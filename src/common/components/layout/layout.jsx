@@ -18,7 +18,9 @@ export const Layout = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getUserInfo(dispatch);
+    if (isMenuShow) {
+      getUserInfo(dispatch);
+    }
   }, []);
 
   return (
