@@ -13,6 +13,10 @@ export const HomeLeave = () => {
     homeleave({ cash }, dispatch);
   };
 
+  const handleMaxHomeLeave = () => {
+    homeleave({ cash: -1 }, dispatch);
+  };
+
   return (
     <Layout>
       <div className="flex flex-col flex-1 items-center">
@@ -29,9 +33,15 @@ export const HomeLeave = () => {
           />
           <button
             onClick={handleClick}
-            className="bg-black border text-white rounded"
+            className="bg-black border text-white rounded px-2"
           >
             Go on Home Leave
+          </button>
+          <button
+            onClick={handleMaxHomeLeave}
+            className="bg-black border text-white rounded px-2"
+          >
+            Max
           </button>
         </div>
         <p className="text-white text-sm">

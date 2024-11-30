@@ -18,6 +18,10 @@ export const Training = () => {
     training({ cash1, cash2, cash3, cash4 }, dispatch);
   };
 
+  const handleMaxTraining = () => {
+    training({ cash1: -1, cash2, cash3, cash4 }, dispatch);
+  };
+
   return (
     <Layout>
       <div className="flex flex-col flex-1 gap-2">
@@ -81,12 +85,21 @@ export const Training = () => {
           them. The number of recruits who receive the training increases with
           the amount of money you pay.
         </p>
-        <button
-          className="bg-black border border-white mx-auto text-white px-2 hover:border-gray-500"
-          onClick={handleTraning}
-        >
-          Perform training
-        </button>
+        <div className="flex justify-center gap-3 my-5">
+          <button
+            className="bg-black border border-white text-white px-2 hover:border-gray-500 rounded"
+            onClick={handleTraning}
+          >
+            Perform training
+          </button>
+
+          <button
+            className="bg-black border border-white text-white px-2 hover:border-gray-500 rounded"
+            onClick={handleMaxTraining}
+          >
+            Max
+          </button>
+        </div>
         <div className="flex flex-col mx-[150px]">
           <p className="text-white text-sm">
             Physical training level:{" "}
