@@ -24,7 +24,7 @@ export const signIn = async (data, dispatch) => {
     dispatch(login());
   } catch (err) {
     dispatch(
-      setToast({ type: "error", msg: err.res?.data.msg || err.message })
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
     );
     dispatch(setLoginError({ msg: err.res?.data.msg || err.message }));
   }

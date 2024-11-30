@@ -4,6 +4,7 @@ import { setBank, setBosses, setCrew, setCrewAds } from "../redux/crewSlice";
 import { setToast } from "../redux/toastSlice";
 import { setUser } from "../redux/userSlice";
 import axios from "./axios";
+import { getUserInfo } from "./user";
 
 export const createCrew = async (data, dispatch, navigate) => {
   try {
@@ -109,11 +110,12 @@ export const getBosses = async (dispatch) => {
   }
 };
 
-export const attackBoss = async (data, dispatch, socket) => {
+export const attackBoss = async (data, dispatch, socket, navigate) => {
   try {
     const res = await axios.post(`${basicURL}/crew/attack_boss`, data);
     const { bosses, rewards, _msg, crew_members } = res.data;
     dispatch(setBosses(bosses));
+    getUserInfo(dispatch, navigate);
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
     socket.emit("attack_boss", { crew_members, msg: _msg, rewards });
   } catch (err) {
