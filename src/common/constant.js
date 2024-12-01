@@ -33,7 +33,7 @@ export const ROUTES = {
     ATTACKLOG: "/attacklog",
     TERRITORIES: "/territories",
     RAISE_FUND: "/raisefunds",
-    RECURIT: "/recurit",
+    RECRUIT: "/recruit",
     BOOT_CAMP: "/bootcamp",
     HOME_LEAVE: "/homelve",
     BAT_MAP: "/map",

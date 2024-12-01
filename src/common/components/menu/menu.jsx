@@ -107,7 +107,7 @@ export const Menu = () => {
 
       <div className={styles["menu-item"]}>MANAGE TROOPS</div>
       <div className={styles["sub-menu"]}>
-      <Link to="/recurit" className={styles["link"]}>
+      <Link to="/recruit" className={styles["link"]}>
           - <u>RECRUIT</u>
         </Link>
         <Link to="/bootcamp" className={styles["link"]}>

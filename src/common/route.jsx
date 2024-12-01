@@ -190,7 +190,7 @@ export const routes = {
       element: <Mission />
     }, 
     {
-      path: ROUTES.MAIN_ROUTES.RECURIT, 
+      path: ROUTES.MAIN_ROUTES.RECRUIT, 
       element: <Recurit />
     },
     {
