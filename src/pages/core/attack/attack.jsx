@@ -287,7 +287,7 @@ export const Attack = () => {
                   attackResult.win ? "text-green-500" : "text-red-700"
                 } my-2`}
               >
-                You have {attackResult.win ? "have won" : "have lost"} the
+                You {attackResult.win ? "have won" : "have lost"} the
                 attack!
               </div>
               {/* <div>
