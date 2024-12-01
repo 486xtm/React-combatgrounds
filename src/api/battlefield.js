@@ -1,6 +1,7 @@
 import axios from "./axios";
 
 import {
+  setBFs,
   setBattleField,
   setIsRuler,
   setRegion,
@@ -130,6 +131,18 @@ export const go = async (data, dispatch) => {
     dispatch(setUser(user));
     dispatch(setBattleField(battleField));
     dispatch(setToast({ type: "success", msg: res.data.msg }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const checkBFs = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/battlefield/all`);
+    const { battles } = res.data;
+    dispatch(setBFs(battles));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
