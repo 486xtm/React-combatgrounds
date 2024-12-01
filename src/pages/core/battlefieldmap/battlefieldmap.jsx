@@ -8,7 +8,7 @@ export const BattleFieldMap = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClickRegion = (regionId) => {
-    entryRegion({ regionId }, navigate,dispatch);
+    entryRegion({ regionId }, navigate, dispatch);
   };
 
   return (
@@ -43,9 +43,15 @@ export const BattleFieldMap = () => {
                       alt="Free Territory"
                       shape="polygon"
                       coords="178, 67, 163, 30, 122, 11, 65, 16, 15, 28, 6, 52, 20, 58, 43, 52, 35, 76, 35, 89, 133, 93"
+                      fill="rgba(0,0,0,1)"
+                      stroke="black"
+                      strokeWidth="15"
                       onClick={() => handleClickRegion(1)}
                     />
                     <area
+                      fill="rgba(0,0,0,1)"
+                      stroke="black"
+                      strokeWidth="15"
                       className="cursor-pointer"
                       alt="Controlled by RGKevinRG with 5 troops"
                       onClick={() => handleClickRegion(2)}
@@ -53,6 +59,9 @@ export const BattleFieldMap = () => {
                       coords="113, 154, 107, 144, 99, 129, 101, 117, 126, 123, 131, 106, 130, 97, 37, 94, 47, 128, 73, 145, 96, 160"
                     />
                     <area
+                      fill="rgba(0,0,0,1)"
+                      stroke="black"
+                      strokeWidth="15"
                       className="cursor-pointer"
                       alt="Controlled by RGKevinRG with 5 troops"
                       shape="polygon"
@@ -60,6 +69,9 @@ export const BattleFieldMap = () => {
                       onClick={() => handleClickRegion(3)}
                     />
                     <area
+                      fill="rgba(0,0,0,1)"
+                      stroke="black"
+                      strokeWidth="15"
                       className="cursor-pointer"
                       alt="Free Territory"
                       shape="polygon"
@@ -67,6 +79,9 @@ export const BattleFieldMap = () => {
                       onClick={() => handleClickRegion(4)}
                     />
                     <area
+                      fill="rgba(0,0,0,1)"
+                      stroke="black"
+                      strokeWidth="15"
                       className="cursor-pointer"
                       alt="Free Territory"
                       shape="polygon"
@@ -74,6 +89,9 @@ export const BattleFieldMap = () => {
                       onClick={() => handleClickRegion(5)}
                     />
                     <area
+                      fill="rgba(0,0,0,1)"
+                      stroke="black"
+                      strokeWidth="15"
                       className="cursor-pointer"
                       alt="Controlled by Phucked with 39243 troops"
                       shape="polygon"
@@ -81,6 +99,9 @@ export const BattleFieldMap = () => {
                       onClick={() => handleClickRegion(6)}
                     />
                     <area
+                      fill="rgba(0,0,0,1)"
+                      stroke="black"
+                      strokeWidth="15"
                       className="cursor-pointer"
                       alt="Controlled by RGKevinRG with 5 troops"
                       shape="polygon"
@@ -88,6 +109,9 @@ export const BattleFieldMap = () => {
                       onClick={() => handleClickRegion(7)}
                     />
                     <area
+                      fill="rgba(0,0,0,1)"
+                      stroke="black"
+                      strokeWidth="15"
                       className="cursor-pointer"
                       alt="Free Territory"
                       shape="polygon"
@@ -95,6 +119,9 @@ export const BattleFieldMap = () => {
                       onClick={() => handleClickRegion(8)}
                     />
                     <area
+                      fill="rgba(0,0,0,1)"
+                      stroke="black"
+                      strokeWidth="15"
                       className="cursor-pointer"
                       alt="Controlled by Chairsofter with 10 troops"
                       shape="polygon"
@@ -109,6 +136,9 @@ export const BattleFieldMap = () => {
                       onClick={() => handleClickRegion(10)}
                     />
                     <area
+                      fill="rgba(0,0,0,1)"
+                      stroke="black"
+                      strokeWidth="15"
                       className="cursor-pointer"
                       alt="Free Territory"
                       shape="polygon"
@@ -116,6 +146,9 @@ export const BattleFieldMap = () => {
                       onClick={() => handleClickRegion(11)}
                     />
                     <area
+                      fill="rgba(0,0,0,1)"
+                      stroke="black"
+                      strokeWidth="15"
                       className="cursor-pointer"
                       alt="Free Territory"
                       shape="polygon"

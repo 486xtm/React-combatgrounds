@@ -10,6 +10,7 @@ const initialState = {
   showModal: false,
   attack_logs: {},
   stats: null,
+  spy: null,
 };
 
 const userSlice = createSlice({
@@ -50,6 +51,9 @@ const userSlice = createSlice({
     setStats: (state, action) => {
       state.stats = action.payload;
     },
+    setSpyInfo: (state, action) => {
+      state.spy = action.payload;
+    },
   },
 });
 
@@ -64,5 +68,6 @@ export const {
   setAttackLogs,
   setMission,
   setStats,
+  setSpyInfo,
 } = userSlice.actions;
 export default userSlice.reducer;

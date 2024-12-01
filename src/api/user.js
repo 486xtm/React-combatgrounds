@@ -3,6 +3,7 @@ import axios from "./axios";
 import {
   setOther,
   setRankingData,
+  setSpyInfo,
   setStats,
   setUser,
 } from "../redux/userSlice";
@@ -205,6 +206,31 @@ export const getUserById = async (data, dispatch) => {
   try {
     const res = await axios.get(`${basicURL}/user/get_user?id=${data.id}`);
     dispatch(setOther(res.data.user));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const recruit = async (data, dispatch) => {
+  try {
+    const res = await axios.post(`${basicURL}/user/recruit`, data);
+    dispatch(setUser(res.data.user));
+    dispatch(setToast({ type: "success", msg: res.data.msg }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const hireSpy = async (data, dispatch) => {
+  try {
+    const res = await axios.post(`${basicURL}/user/spy`, data);
+    dispatch(setSpyInfo(res.data.info));
+    dispatch(setUser(res.data.user));
+    dispatch(setToast({ type: "success", msg: res.data.msg }));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })

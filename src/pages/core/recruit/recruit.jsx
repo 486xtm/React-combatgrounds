@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { Layout } from "../../../common/components";
+import { recruit } from "../../../api/user";
+import { useDispatch } from "react-redux";
 export const Recurit = () => {
   const [turn, setTurn] = useState(0);
   const [type, setType] = useState("US Army");
-  const handleRecurit = () => {};
+
+  const dispatch = useDispatch();
+
+  const handleRecurit = () => {
+    recruit({ turn, type }, dispatch);
+  };
+
   return (
     <Layout isHeaderFull>
       <div className="flex-1">
@@ -24,14 +32,18 @@ export const Recurit = () => {
               <input
                 className="text-black rounded px-1"
                 value={Number(turn).toLocaleString()}
-                onChange={(ev) =>
-                  setTurn(Number(ev.target.value.replace(/[^0-9]/g, "")))
+                onChange={(e) =>
+                  setTurn(Number(e.target.value.replace(/[^0-9]/g, "")))
                 }
               />
             </div>
             <div className="flex">
               <div className="w-[130px]">Select a place:</div>
-              <select className="text-black rounded flex-1" onChange={(ev) => setType(ev.target.value)} value={type}>
+              <select
+                className="text-black rounded flex-1"
+                onChange={(e) => setType(e.target.value)}
+                value={type}
+              >
                 <option value={"US Army"}>US Army</option>
                 <option value={"British Military"}>British Military</option>
                 <option value={"French Legion"}>French Legion</option>
