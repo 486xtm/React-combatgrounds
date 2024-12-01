@@ -1,9 +1,58 @@
-import React from "react";
-import { Layout } from "../../../common/components";
+import React, { useEffect } from "react";
+import { AnimatedCircle, Layout } from "../../../common/components";
 import { useNavigate } from "react-router-dom";
-import { entryRegion } from "../../../api/battlefield";
-import { useDispatch } from "react-redux";
-
+import { checkBFs, entryRegion } from "../../../api/battlefield";
+import { useDispatch, useSelector } from "react-redux";
+const position = [
+  {
+    left: 155,
+    top: 160,
+  },
+  {
+    left: 130,
+    top: 243,
+  },
+  {
+    left: 215,
+    top: 295,
+  },
+  {
+    left: 375,
+    top: 295,
+  },
+  {
+    left: 350,
+    top: 235,
+  },
+  {
+    left: 320,
+    top: 185,
+  },
+  {
+    left: 360,
+    top: 180,
+  },
+  {
+    left: 480,
+    top: 160,
+  },
+  {
+    left: 585,
+    top: 330,
+  },
+  {
+    left: 535,
+    top: 210,
+  },
+  {
+    left: 480,
+    top: 245,
+  },
+  {
+    left: 415,
+    top: 208,
+  },
+];
 export const BattleFieldMap = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -11,9 +60,15 @@ export const BattleFieldMap = () => {
     entryRegion({ regionId }, navigate, dispatch);
   };
 
+  const bfs = useSelector(({ battleField }) => battleField.bfs);
+  console.log(bfs);
+  useEffect(() => {
+    checkBFs(dispatch);
+  }, []);
+
   return (
     <Layout>
-      <div className="flex flex-1 flex-col items-center py-5">
+      <div className="flex flex-1 flex-col items-center py-5 relative">
         <table width="100%" border="0" cellSpacing="4" cellPadding="4">
           <tbody>
             <tr>
@@ -168,6 +223,19 @@ export const BattleFieldMap = () => {
             </tr>
           </tbody>
         </table>
+        <div className="absolute left-0 top-0">
+          {bfs &&
+            bfs.map(({ region }, index) => (
+              <AnimatedCircle
+                key={"map_state_" + index}
+                style={{
+                  position: "absolute",
+                  left: position[Number(region.id) - 1].left,
+                  top: position[Number(region.id) - 1].top,
+                }}
+              />
+            ))}
+        </div>
       </div>
     </Layout>
   );

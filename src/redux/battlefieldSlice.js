@@ -4,6 +4,7 @@ const initialState = {
   info: null,
   isRuler: false,
   region: null,
+  bfs: null,
 };
 
 const battleFieldSlice = createSlice({
@@ -19,9 +20,12 @@ const battleFieldSlice = createSlice({
     setRegion: (state, action) => {
       state.region = action.payload;
     },
+    setBFs: (state, action) => {
+      state.bfs = action.payload;
+    },
   },
 });
 
-export const { setBattleField, setIsRuler, setRegion } =
+export const { setBattleField, setIsRuler, setRegion, setBFs } =
   battleFieldSlice.actions;
 export default battleFieldSlice.reducer;
