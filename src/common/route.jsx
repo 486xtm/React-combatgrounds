@@ -26,6 +26,8 @@ import {
   Subscribe,
   Attack,
   Mission,
+  Recurit,
+  Spy
 } from "../pages/core";
 import {
   Invites,
@@ -186,6 +188,14 @@ export const routes = {
     {
       path: ROUTES.MAIN_ROUTES.MISSION,
       element: <Mission />
+    }, 
+    {
+      path: ROUTES.MAIN_ROUTES.RECURIT, 
+      element: <Recurit />
+    },
+    {
+      path: ROUTES.MAIN_ROUTES.SPY,
+      element: <Spy />
     }
   ],
   admin: [

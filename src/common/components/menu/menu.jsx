@@ -99,10 +99,17 @@ export const Menu = () => {
         <Link to="/nukecountry" className={styles["link"]}>
           - <u>NUKE COUNTRIES</u>
         </Link>
+
+        <Link to="/spy" className={styles["link"]}>
+          - <u>HIRE SPIES</u>
+        </Link>
       </div>
 
       <div className={styles["menu-item"]}>MANAGE TROOPS</div>
       <div className={styles["sub-menu"]}>
+      <Link to="/recurit" className={styles["link"]}>
+          - <u>RECRUIT</u>
+        </Link>
         <Link to="/bootcamp" className={styles["link"]}>
           - <u>TRAINING</u>
         </Link>

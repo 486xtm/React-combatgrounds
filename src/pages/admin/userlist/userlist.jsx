@@ -14,7 +14,7 @@ import { formattedDate } from "../../../common/utils";
 export const AdminUserList = () => {
   ///////////
   const [sortBy, setSortBy] = useState({ tag: "name", des: true }); //{tag: 'Jone', des: true}
-
+  const dashboard = useSelector(({ admin }) => admin.dash);
   const handleSortName = () => {
     if (sortBy.tag === "name") {
       setSortBy({ tag: "name", des: !sortBy.des });
@@ -115,7 +115,7 @@ export const AdminUserList = () => {
   return (
     <div>
       <h1 className="text-[30px] -mx-8 mt-4 text-gray-700 font-manrope font-extrabold">
-        Total Users : {users.length}
+        Total Users : {dashboard ? dashboard.totalPlayers : "---"}
       </h1>
       <div className="flex  items-center justify-between flex-column md:flex-row flex-wrap -mx-10 mt-5 rounded-t-lg  md:space-y-0 py-4 bg-white pr-5">
         <div></div>

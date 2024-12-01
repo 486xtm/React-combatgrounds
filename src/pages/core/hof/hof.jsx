@@ -70,7 +70,7 @@ export const HallOfFame = () => {
                     </td>
                     <td>
                       {hofData && hofData.highest_user_networth
-                        ? hofData.highest_user_networth.value
+                        ? Number(hofData.highest_user_networth.value).toLocaleString("en-US")
                         : "---"}
                     </td>
                   </tr>

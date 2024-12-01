@@ -22,5 +22,7 @@ export * from './shop/shop';
 export * from './onlinePlayer/online';
 export * from './buyturns/buyturns';
 export * from './subscribe/subscribe';
-export * from './attack/attack'
-export * from './mission/mission'
+export * from './attack/attack';
+export * from './mission/mission';
+export * from './recruit/recruit';
+export * from './spy/spy'

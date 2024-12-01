@@ -38,13 +38,13 @@ export const Mission = () => {
           {mission && <span className="font-[700]"> Do you accept?</span>}
           <div className="flex w-full justify-between absolute bottom-10 px-10">
             <button
-              className="text-[red] bg-transparent border-[4px] rounded-lg text-md w-[80px] py-1 hover:shadow-glow hover:shadow-[red] font-bold border-[red]"
+              className="text-[red] bg-transparent border-[4px] rounded-lg text-md w-[100px] py-1 hover:shadow-glow hover:shadow-[red] font-bold border-[red]"
               onClick={handleAcceptMission}
             >
               A C C E P T
             </button>
             <button
-              className="text-blue-500 bg-transparent border-[4px] rounded-lg text-md w-[80px] py-1 hover:shadow-glow hover:shadow-blue-500 font-bold border-blue-500"
+              className="text-blue-500 bg-transparent border-[4px] rounded-lg text-md w-[100px] py-1 hover:shadow-glow hover:shadow-blue-500 font-bold border-blue-500"
               onClick={handleDenyMission}
             >
               D E N Y
