@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { socketURL } from "../../../common/constant";
 import { FaTrashCan } from "react-icons/fa6";
 import { ROUTES } from "../../../common/constant";
+import { DeleteAlert } from "../../../common/components/delete_alert/delete";
 import {
   getCrewInfoById,
   removeChat,
@@ -19,6 +20,7 @@ export const AdminCrewInfo = () => {
   const onlinePlayers = useSelector(({ online }) => online.onlinePlayers);
 
   const [crew, setCrew] = useState(null);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleUserInfo = (user) => {
@@ -46,6 +48,7 @@ export const AdminCrewInfo = () => {
 
   const handleCrewAvatarRemove = () => {
     removeCrewAvatar({ crew_id }, dispatch);
+    setShowDeleteAlert(false);
   };
 
   const handleUpdateCrew = () => {
@@ -111,7 +114,7 @@ export const AdminCrewInfo = () => {
 
           <div
             className={`absolute flex items-center justify-center left-0 top-0 w-full h-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 z-30 text-black bg-white`}
-            onClick={handleCrewAvatarRemove}
+            onClick={() => setShowDeleteAlert(true)}
           >
             <FaTrashCan />
           </div>
@@ -337,6 +340,7 @@ export const AdminCrewInfo = () => {
       >
         Update
       </button>
+      <DeleteAlert isOpen={showDeleteAlert} onClose={() => setShowDeleteAlert(false)} onDelete={handleCrewAvatarRemove} />
     </div>
   );
 };

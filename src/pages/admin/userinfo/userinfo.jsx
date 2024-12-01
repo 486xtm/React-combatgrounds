@@ -9,7 +9,7 @@ import styles from "./styles.module.css";
 import Hover from "../../../common/components/hover/hover";
 import { FaTrashCan } from "react-icons/fa6";
 import { deleteUser, removeAvatar, resetUser } from "../../../api/admin";
-
+import { DeleteAlert } from "../../../common/components/delete_alert/delete";
 export const AdminUserInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,7 +22,8 @@ export const AdminUserInfo = () => {
   const [itemInfo, setItemInfo] = useState({});
   const [hoverType, setHoverType] = useState(1);
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(600);
-
+  const [deleteType, setDeleteType] = useState(0);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const handleMouseOver = (item, type) => {
     setShowHover(true);
     setItemInfo(item);
@@ -37,12 +38,13 @@ export const AdminUserInfo = () => {
   };
 
   const handleRemoveUser = () => {
-    deleteUser({ user_id }, dispatch);
+    deleteUser({ tag: "name", des: true }, 1, { user_id }, dispatch);
     navigate(ROUTES.ADMIN_ROUTES.USER_LIST);
   };
 
   const handleAvatarRemove = () => {
     removeAvatar({ user_id }, dispatch);
+    setShowDeleteAlert(false);
   };
 
   useEffect(() => {
@@ -70,7 +72,10 @@ export const AdminUserInfo = () => {
           className="relative flex my-10 w-[235px] h-[235px] overflow-hidden rounded-full border-[1px] border-gray-400 shadow-lg mx-auto "
           onMouseOver={() => setImgHover(true)}
           onMouseLeave={() => setImgHover(false)}
-          onMouseDown={handleAvatarRemove}
+          onMouseDown={() => {
+            setDeleteType(0);
+            setShowDeleteAlert(true);
+          }}
         >
           <img
             src={
@@ -363,7 +368,10 @@ export const AdminUserInfo = () => {
               Update
             </button>
             <button
-              onClick={handleRemoveUser}
+              onClick={() => {
+                setDeleteType(1);
+                setShowDeleteAlert(true);
+              }}
               className="bg-red-500 rounded-lg py-2 w-1/3 mx-auto text-white shadow-lg  hover:bg-red-400 mt-2"
             >
               Remove
@@ -504,6 +512,11 @@ export const AdminUserInfo = () => {
           </div>
         )}
       </Hover>
+      <DeleteAlert
+        isOpen={showDeleteAlert}
+        onClose={() => setShowDeleteAlert(false)}
+        onDelete={deleteType == 0 ? handleAvatarRemove : handleRemoveUser}
+      />
     </div>
   );
 };

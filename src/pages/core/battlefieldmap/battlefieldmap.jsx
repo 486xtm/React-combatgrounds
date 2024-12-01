@@ -61,7 +61,6 @@ export const BattleFieldMap = () => {
   };
 
   const bfs = useSelector(({ battleField }) => battleField.bfs);
-  console.log(bfs);
   useEffect(() => {
     checkBFs(dispatch);
   }, []);

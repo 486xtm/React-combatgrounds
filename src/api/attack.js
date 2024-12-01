@@ -24,6 +24,7 @@ export const getAttackableUsers = async (data, dispatch) => {
 
 export const attackUser = async (data, search, dispatch) => {
   try {
+    dispatch(toggleShowModal(false));
     const res = await axios.post(`${basicURL}/user/attack`, data);
     const { attackResult, user } = res.data;
     dispatch(setAttackResult({ attackResult, user }));
@@ -33,6 +34,7 @@ export const attackUser = async (data, search, dispatch) => {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
     );
+    dispatch(toggleShowModal(false));
   }
 };
 

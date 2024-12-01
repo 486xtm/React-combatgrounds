@@ -11,10 +11,11 @@ import { deleteUser, getAllUserInfo } from "../../../api/admin";
 import { getRole } from "../../../common/utils";
 import { ROUTES, socketURL } from "../../../common/constant";
 import { formattedDate } from "../../../common/utils";
+import { DeleteAlert } from "../../../common/components/delete_alert/delete";
 export const AdminUserList = () => {
-  ///////////
   const [sortBy, setSortBy] = useState({ tag: "name", des: true }); //{tag: 'Jone', des: true}
   const dashboard = useSelector(({ admin }) => admin.dash);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const handleSortName = () => {
     if (sortBy.tag === "name") {
       setSortBy({ tag: "name", des: !sortBy.des });
@@ -85,9 +86,7 @@ export const AdminUserList = () => {
     //   setSortBy({ tag: "createdAt", des: !sortBy.des });
     // } else setSortBy({ tag: "createdAt", des: true });
   };
-  ///////////
   const [currentPage, setCurrentPage] = useState(1);
-  //////////
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onlinePlayer = useSelector(({ online }) => online.onlinePlayers);
@@ -96,12 +95,7 @@ export const AdminUserList = () => {
     deleteUser(sortBy, { currentPage }, { user_id }, dispatch);
   };
 
-  const handleUserEdit = (e, user_id) => {
-    console.log(user_id);
-  };
-
   useEffect(() => {
-    console.log("s==>", sortBy);
     if (!sortBy) return;
     getAllUserInfo(sortBy, { currentPage }, dispatch, navigate);
   }, [sortBy, currentPage]);
@@ -554,6 +548,7 @@ export const AdminUserList = () => {
           </svg>
         </button>
       </div>
+      <DeleteAlert isOpen={showDeleteAlert} onClose={() => showDeleteAlert(false)} />
     </div>
   );
 };

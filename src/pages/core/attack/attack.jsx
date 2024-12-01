@@ -32,6 +32,8 @@ export const Attack = () => {
   const smodal = useSelector(({ user }) => user.showModal);
   const navigate = useNavigate();
   const closeModal = () => {
+    setName("");
+    setAttackMsg("");
     dispatch(toggleShowModal(false));
   };
 
@@ -41,8 +43,8 @@ export const Attack = () => {
       { key },
       dispatch
     );
-    setName("");
-    setAttackMsg("");
+    // setShowModal(true)
+
   };
 
   const handleSearch = () => {
@@ -375,12 +377,21 @@ export const Attack = () => {
                   </div>
                 ))}
             </div>
-            <button
-              className="mt-3 mx-auto rounded-lg border font-bold text-xs px-10 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
-              onClick={closeModal}
-            >
-              OK
-            </button>
+            <div className="flex">
+              <button
+                className="mt-3 mx-auto rounded-lg border font-bold text-xs px-10 py-1 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
+                onClick={closeModal}
+              >
+                Close
+              </button>
+
+              <button
+                className="mt-3 mx-auto rounded-lg border font-bold text-xs px-10 py-1 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
+                onClick={handleAttack}
+              >
+                Attack Again
+              </button>
+            </div>
           </div>
         )}
       </Modal>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const DeleteAlert = ({ isOpen, onClose = () => {}, onDelete = () => {} }) => {
+export const DeleteAlert = ({ isOpen, onClose = () => {}, onDelete = () => {} }) => {
   const handleDelete = () => {
     onDelete();
   };
@@ -54,4 +54,3 @@ const DeleteAlert = ({ isOpen, onClose = () => {}, onDelete = () => {} }) => {
   );
 };
 
-export default DeleteAlert;
