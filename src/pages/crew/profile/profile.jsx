@@ -10,8 +10,8 @@ function sliceString(str) {
   if (str.length <= 8) {
     return str; // Return the original string if it's too short
   }
-  const firstPart = str.slice(0, 5);
-  const lastPart = str.slice(-3);
+  const firstPart = str.slice(0, 4);
+  const lastPart = str.slice(-2);
   return firstPart + "..." + lastPart;
 }
 

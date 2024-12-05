@@ -64,7 +64,7 @@ export const CrewBank = () => {
             <div className="w-[20%] py-2">
               <button
                 onClick={handleDepositMax}
-                className="w-[100px] rounded-lg border-2 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white "
+                className="w-[120px] rounded-lg border-2 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white "
               >
                 Deposit Max!
               </button>
@@ -86,7 +86,7 @@ export const CrewBank = () => {
             <div className="w-[20%] py-2">
               <button
                 onClick={handleDeposit}
-                className="w-[100px] rounded-lg border-2 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
+                className="w-[120px] rounded-lg border-2 border-yellow-200 bg-transparent shadow-glow_small hover:shadow-white"
               >
                 Deposit
               </button>

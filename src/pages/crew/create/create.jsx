@@ -32,42 +32,42 @@ export const Create = () => {
     <CrewLayout title="Create">
       <div className="flex flex-wrap text-white px-5 mt-[50px]">
         <div className="flex flex-col w-[280px] gap-3 mr-2">
-          <div className="gap-5 flex justify-between">
+          <div className="flex justify-between">
             <span>Crew Name : </span>
             <input
               className="bg-transparent border-secondary-green shadow-inner shadow-[rgba(255,255,255,0.3)] border-[1px] rounded-sm text-white px-1 text-sm py-[1px]"
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="gap-5 flex w-[280px] justify-between">
+          <div className="flex w-[280px] justify-between">
             <span>Rank 1 : </span>
             <input
               onChange={(ev) => setRank1(ev.target.value)}
               className="bg-transparent border-secondary-green shadow-inner shadow-[rgba(255,255,255,0.3)] border-[1px] rounded-sm text-white px-1 text-sm py-[1px]"
             />
           </div>
-          <div className="gap-5 flex w-[280px] justify-between">
+          <div className="flex w-[280px] justify-between">
             <span>Rank 2 : </span>
             <input
               onChange={(ev) => setRank2(ev.target.value)}
               className="bg-transparent border-secondary-green shadow-inner shadow-[rgba(255,255,255,0.3)] border-[1px] rounded-sm text-white px-1 text-sm py-[1px]"
             />
           </div>
-          <div className="gap-5 flex w-[280px] justify-between">
+          <div className="flex w-[280px] justify-between">
             <span>Rank 3 : </span>
             <input
               onChange={(ev) => setRank3(ev.target.value)}
               className="bg-transparent border-secondary-green shadow-inner shadow-[rgba(255,255,255,0.3)] border-[1px] rounded-sm text-white px-1 text-sm py-[1px]"
             />
           </div>
-          <div className="gap-5 flex w-[280px] justify-between">
+          <div className="flex w-[280px] justify-between">
             <span>Rank 4 : </span>
             <input
               onChange={(ev) => setRank4(ev.target.value)}
               className="bg-transparent border-secondary-green shadow-inner shadow-[rgba(255,255,255,0.3)] border-[1px] rounded-sm text-white px-1 text-sm py-[1px]"
             />
           </div>
-          <div className="gap-5 flex w-[280px] justify-between">
+          <div className="flex w-[280px] justify-between">
             <span>Rank 5 : </span>
             <input
               onChange={(ev) => setRank5(ev.target.value)}
