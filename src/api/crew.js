@@ -156,7 +156,7 @@ export const dealInvite = async (data, dispatch, navigate) => {
     dispatch(setInvites(invites));
     dispatch(setUser(user));
     dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
-    if(data.type) navigate(`/crew_profile/${user.crew}`);
+    if (data.type) navigate(`/crew_profile/${user.crew}`);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -237,8 +237,9 @@ export const getCrewInfo = async (data, dispatch) => {
 export const getCrewBoard = async (dispatch) => {
   try {
     const res = await axios.get(`${basicURL}/crew/crew_board`);
-    const { board } = res.data;
+    const { board, user } = res.data;
     dispatch(setBoard(board));
+    dispatch(setUser(user));
   } catch (err) {
     setToast({ type: "error", msg: err.response?.data.msg || err.message });
   }
