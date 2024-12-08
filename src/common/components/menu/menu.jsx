@@ -107,7 +107,7 @@ export const Menu = () => {
 
       <div className={styles["menu-item"]}>MANAGE TROOPS</div>
       <div className={styles["sub-menu"]}>
-      <Link to="/recruit" className={styles["link"]}>
+        <Link to="/recruit" className={styles["link"]}>
           - <u>RECRUIT</u>
         </Link>
         <Link to="/bootcamp" className={styles["link"]}>
@@ -181,10 +181,12 @@ export const Menu = () => {
                 <span>CREW_BOARD </span>
                 <span
                   className={
-                    unreadCrewChatCount ? "text-secondary" : "text-white"
+                    user && user.unreadCrewBoard
+                      ? "text-secondary"
+                      : "text-white"
                   }
                 >
-                  ({unreadCrewChatCount || 0})
+                  ({user.unreadCrewBoard || 0})
                 </span>
               </u>
             </Link>
