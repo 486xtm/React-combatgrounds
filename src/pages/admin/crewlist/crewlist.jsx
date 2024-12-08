@@ -8,7 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAllCrew, removeCrew } from "../../../api/admin";
-import { ROUTES, socketURL } from "../../../common/constant";
+import { ROUTES, publicURL } from "../../../common/constant";
 import { formattedDate } from "../../../common/utils";
 export const AdminCrewList = () => {
   /////////////////
@@ -289,7 +289,7 @@ export const AdminCrewList = () => {
                       className="w-10 h-10 rounded-full border-[1px]"
                       src={
                         crew.avatar
-                          ? `${socketURL}/${crew.avatar}`
+                          ? `${publicURL}/${crew.avatar}`
                           : "/crew/crewpicdef.gif"
                       }
                       alt="Crew avatar"

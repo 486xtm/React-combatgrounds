@@ -4,7 +4,7 @@ import styles from "../styles.module.css"; // Ensure this file includes the anim
 import { createCrewChat, getCrewBoard } from "../../../api/crew";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { socketURL } from "../../../common/constant";
+import { publicURL } from "../../../common/constant";
 import { socket } from "../../../socket/socket";
 import { setUnreadCrewChatCount } from "../../../redux/crewSlice";
 import { formattedDate } from "../../../common/utils";
@@ -68,7 +68,7 @@ export const CrewBoard = () => {
                 {message.author && message.author.avatar ? (
                   <img
                     className="w-[30px] h-[30px] rounded-[50%] cursor-pointer border border-dark-primary"
-                    src={`${socketURL}/${message.author.avatar}`}
+                    src={`${publicURL}/${message.author.avatar}`}
                     onClick={() => handleCrewUserInfo(message.author)}
                   />
                 ) : (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { socketURL } from "../../../common/constant";
+import { publicURL } from "../../../common/constant";
 import { FaTrashCan } from "react-icons/fa6";
 import { ROUTES } from "../../../common/constant";
 import { DeleteAlert } from "../../../common/components/delete_alert/delete";
@@ -106,7 +106,7 @@ export const AdminCrewInfo = () => {
           <img
             src={
               crew && crew.avatar
-                ? `${socketURL}/${crew.avatar}`
+                ? `${publicURL}/${crew.avatar}`
                 : "/crew/crewpicdef.gif"
             }
             className={`mx-auto z-20 border-b border-yellow-200 min-w-full`}
@@ -242,7 +242,7 @@ export const AdminCrewInfo = () => {
               <img
                 src={
                   crew && crew.leader.avatar
-                    ? `${socketURL}/${crew.leader.avatar}`
+                    ? `${publicURL}/${crew.leader.avatar}`
                     : "/pics/avatar.gif"
                 }
                 className={`mx-auto z-20 h-[90%] w-auto border-b border-yellow-200 min-w-full ${
@@ -268,7 +268,7 @@ export const AdminCrewInfo = () => {
                     }`}
                     src={
                       m.avatar
-                        ? `${socketURL}/${m.avatar}`
+                        ? `${publicURL}/${m.avatar}`
                         : "/avatar/default.gif"
                     }
                   />
@@ -311,7 +311,7 @@ export const AdminCrewInfo = () => {
                         className="w-10 h-10 rounded-full border-[1px]"
                         src={
                           author.avatar
-                            ? `${socketURL}/${author.avatar}`
+                            ? `${publicURL}/${author.avatar}`
                             : "/pics/avatar.gif"
                         }
                         alt="author avatar"

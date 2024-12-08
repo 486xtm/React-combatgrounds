@@ -4,7 +4,7 @@ import styles from "../styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getCrewInfo } from "../../../api/crew";
-import { socketURL } from "../../../common/constant";
+import { publicURL } from "../../../common/constant";
 
 function sliceString(str) {
   if (str.length <= 8) {
@@ -136,7 +136,7 @@ export const CrewProfile = () => {
                   className="w-auto h-[150px]"
                   src={
                     crewInfo && crewInfo.avatar
-                      ? `${socketURL}/${crewInfo.avatar}`
+                      ? `${publicURL}/${crewInfo.avatar}`
                       : "/crew/crewpicdef.gif"
                   }
                   alt="img"
@@ -154,7 +154,7 @@ export const CrewProfile = () => {
                 <img
                   src={
                     crewInfo && crewInfo.leader.avatar
-                      ? `${socketURL}/${crewInfo.leader.avatar}`
+                      ? `${publicURL}/${crewInfo.leader.avatar}`
                       : "/pics/avatar.gif"
                   }
                   className={`mx-auto z-20 h-[220px] w-auto border-b border-yellow-200 min-w-full ${
@@ -181,7 +181,7 @@ export const CrewProfile = () => {
                       }`}
                       src={
                         m.avatar
-                          ? `${socketURL}/${m.avatar}`
+                          ? `${publicURL}/${m.avatar}`
                           : "/avatar/default.gif"
                       }
                     />

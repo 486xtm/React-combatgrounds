@@ -3,7 +3,7 @@ import { FaTrashCan } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMails, removeMail } from "../../../api/admin";
 import { formattedDate } from "../../../common/utils";
-import { ROUTES, socketURL } from "../../../common/constant";
+import { ROUTES, publicURL } from "../../../common/constant";
 import { useNavigate } from "react-router-dom";
 
 export const AdminMail = () => {
@@ -151,7 +151,7 @@ export const AdminMail = () => {
                           className="w-10 h-10 rounded-full border-[1px]"
                           src={
                             mail.sender && mail.sender.avatar
-                              ? `${socketURL}/${mail.sender.avatar}`
+                              ? `${publicURL}/${mail.sender.avatar}`
                               : "/pics/avatar.gif"
                           }
                           alt="Crew avatar"
@@ -183,7 +183,7 @@ export const AdminMail = () => {
                           className="w-10 h-10 rounded-full border-[1px]"
                           src={
                             mail.receiver && mail.receiver.avatar
-                              ? `${socketURL}/${mail.receiver.avatar}`
+                              ? `${publicURL}/${mail.receiver.avatar}`
                               : "/pics/avatar.gif"
                           }
                           alt="Crew avatar"

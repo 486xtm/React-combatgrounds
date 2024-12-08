@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import YouTube from "react-youtube";
-import { ROUTES, socketURL } from "../../../common/constant";
+import { ROUTES, publicURL } from "../../../common/constant";
 import { getUserById } from "../../../api/user";
 import { useDispatch, useSelector } from "react-redux";
 import { getGradeString } from "../../../common/utils";
@@ -80,7 +80,7 @@ export const AdminUserInfo = () => {
           <img
             src={
               user && user.avatar
-                ? `${socketURL}/${user.avatar}`
+                ? `${publicURL}/${user.avatar}`
                 : "/pics/avatar.gif"
             }
             alt="avatar"

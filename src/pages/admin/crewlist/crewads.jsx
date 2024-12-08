@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaTrashCan } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { getCrewAds, removeAdById } from "../../../api/admin";
-import { ROUTES, socketURL } from "../../../common/constant";
+import { ROUTES, publicURL } from "../../../common/constant";
 import { useNavigate } from "react-router-dom";
 import { formattedDate } from "../../../common/utils";
 export const AdminCrewAds = () => {
@@ -128,7 +128,7 @@ export const AdminCrewAds = () => {
                         className="w-10 h-10 rounded-full border-[1px]"
                         src={
                           ad && ad.author && ad.author.avatar
-                            ? `${socketURL}/${ad.author.avatar}`
+                            ? `${publicURL}/${ad.author.avatar}`
                             : "/pics/avatar.gif"
                         }
                         alt="Crew avatar"

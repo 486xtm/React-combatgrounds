@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, getAllUserInfo } from "../../../api/admin";
 import { getRole } from "../../../common/utils";
-import { ROUTES, socketURL } from "../../../common/constant";
+import { ROUTES, publicURL } from "../../../common/constant";
 import { formattedDate } from "../../../common/utils";
 import { DeleteAlert } from "../../../common/components/delete_alert/delete";
 export const AdminUserList = () => {
@@ -408,7 +408,7 @@ export const AdminUserList = () => {
                       className="w-10 h-10 rounded-full border-[1px]"
                       src={
                         user && user.avatar
-                          ? `${socketURL}/${user.avatar}`
+                          ? `${publicURL}/${user.avatar}`
                           : "/pics/avatar.gif"
                       }
                       alt="User avatar"

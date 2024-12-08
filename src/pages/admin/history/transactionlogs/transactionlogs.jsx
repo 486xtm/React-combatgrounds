@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTransactionHistory } from "../../../../api/admin";
 import { formattedDate } from "../../../../common/utils";
-import { ROUTES, socketURL } from "../../../../common/constant";
+import { ROUTES, publicURL } from "../../../../common/constant";
 import { useNavigate } from "react-router-dom";
 const buyInfo = [
   {
@@ -177,7 +177,7 @@ export const AdminTransactionlogs = () => {
                         className="w-10 h-10 rounded-full border-[1px]"
                         src={
                           tx.userID && tx.userID.avatar
-                            ? `${socketURL}/${tx.userID.avatar}`
+                            ? `${publicURL}/${tx.userID.avatar}`
                             : "/pics/avatar.gif"
                         }
                         alt="Crew avatar"

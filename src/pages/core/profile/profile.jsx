@@ -12,7 +12,7 @@ import {
   getGradeString,
 } from "../../../common/utils";
 import { getUserById } from "../../../api/user";
-import { ROUTES, socketURL } from "../../../common/constant";
+import { ROUTES, publicURL } from "../../../common/constant";
 import { getCrewInfo } from "../../../api/crew";
 
 export const Profile = () => {
@@ -440,7 +440,7 @@ export const Profile = () => {
                 <img
                   src={
                     user && user.avatar
-                      ? `${socketURL}/${user.avatar}`
+                      ? `${publicURL}/${user.avatar}`
                       : "/pics/avatar.gif"
                   }
                   alt="avatar"
@@ -546,7 +546,7 @@ export const Profile = () => {
                     <img
                       src={
                         user && user.crew.avatar
-                          ? `${socketURL}/${user.crew.avatar}`
+                          ? `${publicURL}/${user.crew.avatar}`
                           : "/crew/crewpicdef.gif"
                       }
                       alt="avatar"

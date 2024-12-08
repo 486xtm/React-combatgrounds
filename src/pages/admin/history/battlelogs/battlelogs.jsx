@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBattleHistory } from "../../../../api/admin";
-import { ROUTES, socketURL } from "../../../../common/constant";
+import { ROUTES, publicURL } from "../../../../common/constant";
 import { formattedDate } from "../../../../common/utils";
 import { useNavigate } from "react-router-dom";
 
@@ -150,7 +150,7 @@ export const AdminBattleFieldLog = () => {
                         className="w-10 h-10 rounded-full border-[1px]"
                         src={
                           battle.player && battle.player.avatar
-                            ? `${socketURL}/${battle.player.avatar}`
+                            ? `${publicURL}/${battle.player.avatar}`
                             : "/pics/avatar.gif"
                         }
                         alt="Crew avatar"

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getNukeHistory } from "../../../../api/admin";
 import { useDispatch, useSelector } from "react-redux";
 import { formattedDate } from "../../../../common/utils";
-import { ROUTES, socketURL } from "../../../../common/constant";
+import { ROUTES, publicURL } from "../../../../common/constant";
 import { useNavigate } from "react-router-dom";
 
 export const AdminNukeLogs = () => {
@@ -134,7 +134,7 @@ export const AdminNukeLogs = () => {
                         className="w-10 h-10 rounded-full border-[1px]"
                         src={
                           log.player && log.player.avatar
-                            ? `${socketURL}/${log.player.avatar}`
+                            ? `${publicURL}/${log.player.avatar}`
                             : "/pics/avatar.gif"
                         }
                         alt="Crew avatar"

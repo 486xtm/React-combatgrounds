@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getAttackLogs } from "../../../api/attack";
 import { formattedDate, pagination } from "../../../common/utils";
-import { socketURL } from "../../../common/constant";
+import { publicURL } from "../../../common/constant";
 import Modal from "../../../common/components/modal/modal";
 
 export const AttackLog = () => {
@@ -158,7 +158,7 @@ export const AttackLog = () => {
                   <img
                     src={
                       selectedLog.attacker && selectedLog.attacker.avatar
-                        ? `${socketURL}/${selectedLog.attacker.avatar}`
+                        ? `${publicURL}/${selectedLog.attacker.avatar}`
                         : "/pics/avatar.gif"
                     }
                     className="w-full h-auto"
@@ -174,7 +174,7 @@ export const AttackLog = () => {
                   <img
                     src={
                       selectedLog.defenser && selectedLog.defenser.avatar
-                        ? `${socketURL}/${selectedLog.defenser.avatar}`
+                        ? `${publicURL}/${selectedLog.defenser.avatar}`
                         : "/pics/avatar.gif"
                     }
                     className="w-full h-auto"

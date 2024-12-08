@@ -5,7 +5,7 @@ import { getAttackableUsers, attackUser } from "../../../api/attack";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleShowModal } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
-import { socketURL } from "../../../common/constant";
+import { publicURL } from "../../../common/constant";
 const mock = [
   {
     name: "sealife",
@@ -219,7 +219,7 @@ export const Attack = () => {
                   <img
                     src={
                       user.avatar
-                        ? `${socketURL}/${user.avatar}`
+                        ? `${publicURL}/${user.avatar}`
                         : "/pics/avatar.gif"
                     }
                     className="w-full h-auto"
@@ -233,7 +233,7 @@ export const Attack = () => {
                   <img
                     src={
                       attackResult.def && attackResult.def.avatar
-                        ? `${socketURL}/${attackResult.def.avatar}`
+                        ? `${publicURL}/${attackResult.def.avatar}`
                         : "/pics/avatar.gif"
                     }
                     className="w-full h-auto"
