@@ -1,8 +1,9 @@
-export const socketURL = "https://war-grounds.com";
-export const basicURL = "https://war-grounds.com/api";
-export const publicURL = "https://war-grounds.com"
-// export const basicURL = "http://localhost:5000/api";
-// export const publicURL = "http://localhost:5000";
+// export const socketURL = "https://war-grounds.com";
+// export const basicURL = "https://war-grounds.com/api";
+// export const publicURL = "https://war-grounds.com"
+export const basicURL = "http://localhost:5000/api";
+export const publicURL = "http://localhost:5000";
+export const socketURL = "http://localhost:5000";
 
 // export const CLIENT_ID = "AeXdhQLr6V9uqDM6ds6XQ1Y2dLsnhYIThxxo6_PrcXd7dL2MW_mczHejWCap-SIVkuXYu2_LV_9PXYly";
 // export const APP_SECRET = "ENkJHI1fuHQQlJuRQOf9dALVB1v7u2tkR7g2MoiYy7IOGDHRUY2v3x2lHc7POeg2NRlER3j8x1FaO6Hs";
