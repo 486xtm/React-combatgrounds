@@ -75,16 +75,28 @@ export const AdminUserList = () => {
     } else setSortBy({ tag: "bankedTurn", des: true });
   };
 
+  const handleSortSpent = () => {
+    if (sortBy.tag === "spent") {
+      setSortBy({ tag: "spent", des: !sortBy.des });
+    } else setSortBy({ tag: "spent", des: true });
+  };
+
+  const handleSortCurrentRoundSpent = () => {
+    if (sortBy.tag === "currentRoundSpent") {
+      setSortBy({ tag: "currentRoundSpent", des: !sortBy.des });
+    } else setSortBy({ tag: "currentRoundSpent", des: true });
+  };
+
   const handleSortDate = () => {
     if (sortBy.tag === "createdAt") {
       setSortBy({ tag: "createdAt", des: !sortBy.des });
     } else setSortBy({ tag: "createdAt", des: true });
   };
 
-  const handleSortTransferedTurn = () => {
-    // if (sortBy.tag === "createdAt") {
-    //   setSortBy({ tag: "createdAt", des: !sortBy.des });
-    // } else setSortBy({ tag: "createdAt", des: true });
+  const handleSortTransferedTurns = () => {
+    if (sortBy.tag === "transferedTurns") {
+      setSortBy({ tag: "transferedTurns", des: !sortBy.des });
+    } else setSortBy({ tag: "transferedTurns", des: true });
   };
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
@@ -324,11 +336,51 @@ export const AdminUserList = () => {
               <th
                 scope="col"
                 className="cursor-pointer text-left text-gray-700 px-6 py-3"
-                onClick={handleSortTransferedTurn}
+                onClick={handleSortTransferedTurns}
               >
                 <div className="flex items-center gap-2">
                   Transfered Turn
                   {sortBy && sortBy.tag === "transferedTurn" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
+                </div>
+              </th>
+              <th
+                scope="col"
+                className="cursor-pointer text-left text-gray-700 px-6 py-3"
+                onClick={handleSortSpent}
+              >
+                <div className="flex items-center gap-2">
+                  spent
+                  {sortBy && sortBy.tag === "spent" && (
+                    <a className="flex items-center cursor-pointer">
+                      <span
+                        className={`transform transition-transform duration-300 ${
+                          sortBy.des ? "rotate-0" : "rotate-180"
+                        }`}
+                      >
+                        <FaArrowDown19 />
+                      </span>
+                    </a>
+                  )}
+                </div>
+              </th>
+              <th
+                scope="col"
+                className="cursor-pointer text-left text-gray-700 px-6 py-3"
+                onClick={handleSortCurrentRoundSpent}
+              >
+                <div className="flex items-center gap-2">
+                  spent for current round
+                  {sortBy && sortBy.tag === "currentRoundSpent" && (
                     <a className="flex items-center cursor-pointer">
                       <span
                         className={`transform transition-transform duration-300 ${
@@ -415,35 +467,45 @@ export const AdminUserList = () => {
                     />
                   </div>
                   <div className="ps-3 text-left">
-                    <div className="text-base font-semibold">{user.name}</div>
+                    <div className="text-base font-semibold">
+                      {user && user.name ? user.name : "deleted user"}
+                    </div>
                     <div className="font-normal text-gray-500">
-                      {user.email}
+                      {user && user.email}
                     </div>
                   </div>
                 </th>
                 <td className="px-6 py-4 text-left leading-none">
-                  {getRole(user.role)}
+                  {getRole(user && user.role)}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.money).toLocaleString("en-US")}
+                  {Number(user && user.money).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.turn).toLocaleString("en-US")}
+                  {Number(user && user.turn).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.level).toLocaleString("en-US")}
+                  {Number(user && user.level).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.recruits).toLocaleString("en-US")}
+                  {Number(user && user.recruits).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.netWorth).toLocaleString("en-US")}
+                  {Number(user && user.netWorth).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.bankedTurn).toLocaleString("en-US")}
+                  {Number(user && user.bankedTurn).toLocaleString("en-US")}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
-                  {Number(user.transferedTurns).toLocaleString("en-US")}
+                  {Number(user && user.transferedTurns).toLocaleString("en-US")}
+                </td>
+                <td className="px-6 py-4 text-left leading-none">
+                  {Number((user && user.spent) || 0).toLocaleString("en-US")}
+                </td>
+                <td className="px-6 py-4 text-left leading-none">
+                  {Number((user && user.currentRoundSpent) || 0).toLocaleString(
+                    "en-US"
+                  )}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
                   {formattedDate(user.createdAt)}
@@ -548,7 +610,10 @@ export const AdminUserList = () => {
           </svg>
         </button>
       </div>
-      <DeleteAlert isOpen={showDeleteAlert} onClose={() => showDeleteAlert(false)} />
+      <DeleteAlert
+        isOpen={showDeleteAlert}
+        onClose={() => showDeleteAlert(false)}
+      />
     </div>
   );
 };
