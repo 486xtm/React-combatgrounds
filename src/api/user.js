@@ -11,6 +11,7 @@ import { login } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
 import { basicURL } from "../common/constant";
 import { setUnreadMessagesCount } from "../redux/mailSlice";
+import { setUnreadCrewChatCount } from "../redux/crewSlice";
 
 export const getUserInfo = async (dispatch, navigate) => {
   try {
@@ -19,6 +20,7 @@ export const getUserInfo = async (dispatch, navigate) => {
     dispatch(setUser(user));
     dispatch(login());
     dispatch(setUnreadMessagesCount(unreadMessagesCount));
+    dispatch(setUnreadCrewChatCount(user.unreadCrewBoard));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })

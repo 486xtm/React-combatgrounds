@@ -181,12 +181,12 @@ export const Menu = () => {
                 <span>CREW_BOARD </span>
                 <span
                   className={
-                    user && user.unreadCrewBoard
+                    unreadCrewChatCount
                       ? "text-secondary"
                       : "text-white"
                   }
                 >
-                  ({user.unreadCrewBoard || 0})
+                  ({unreadCrewChatCount || 0})
                 </span>
               </u>
             </Link>
