@@ -34,7 +34,7 @@ export const ChooseHelper = () => {
                 </span>
               </b>
               <p>
-                Combat Grounds is a free, strategic role-playing game that you
+                War Grounds is a free, strategic role-playing game that you
                 can play daily using only your Web browser. It is text based and
                 very straightforward. Proceed by clicking on options. Master the
                 basics and, slowly but surely, you'll get the hang of it. What
@@ -63,7 +63,7 @@ export const ChooseHelper = () => {
               </p>
               <br />
               <p>
-                Time to hit the Combat Grounds! Again, please read the user
+                Time to hit the War Grounds! Again, please read the user
                 guide or the{" "}
                 <b>
                   <u>FAQ</u>

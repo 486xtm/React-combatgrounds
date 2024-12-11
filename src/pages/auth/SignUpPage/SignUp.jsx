@@ -97,7 +97,7 @@ const SignUpPage = () => {
   //               Member login
   //             </div>
   //             <div className={"text-white text-xs " + styles["fontset"]}>
-  //               Already have a CombatGrounds account? Login here.
+  //               Already have a WarGrounds account? Login here.
   //             </div>
   //             {loginError ? (
   //               <div
@@ -155,11 +155,11 @@ const SignUpPage = () => {
   //                 "text-white mb-2 font-bold text-lg " + styles["fontset"]
   //               }
   //             >
-  //               What is CombatGrounds?
+  //               What is WarGrounds?
   //             </div>
   //             <div className={"text-white mb-2 text-xs " + styles["fontset"]}>
   //               <p className="mb-3">
-  //                 Combat Grounds is the best text-based strategy game:
+  //                 War Grounds is the best text-based strategy game:
   //               </p>
   //               <ul className="list-disc ml-10 mb-3">
   //                 <li>Become a Navy Seal, a Soldier, or a Terrorist.</li>
@@ -220,7 +220,7 @@ const SignUpPage = () => {
   //         <div
   //           className={"text-white mb-3 font-bold text-lg " + styles["fontset"]}
   //         >
-  //           Create your CombatGrounds account
+  //           Create your WarGrounds account
   //         </div>
   //         <div className={"text-white text-xs " + styles["fontset"]}>
   //           It's free and easy. Just fill out the account info below.
@@ -331,7 +331,7 @@ const SignUpPage = () => {
   //                   value={accountCheck}
   //                   onChange={() => setAccountCheck(!accountCheck)}
   //                 />
-  //                 <div>This is my ONLY CombatGrounds.com Account.</div>
+  //                 <div>This is my ONLY WarGrounds.com Account.</div>
   //               </div>
   //             </div>
   //             <div className="flex flex-col">
@@ -351,11 +351,11 @@ const SignUpPage = () => {
   //     </div>
 
   //     <footer className="text-center">
-  //       <b>Copyright © 2024-2025 CombatGrounds.com. All rights reserved.</b>
+  //       <b>Copyright © 2024-2025 WarGrounds.com. All rights reserved.</b>
   //       <br />
   //       <a
   //         className="underline font-bold hover:decoration-[yellow] hover:text-[yellow]"
-  //         href="mailto:info@combatgrounds.com"
+  //         href="mailto:info@WarGrounds.com"
   //       >
   //         Contact us.
   //       </a>
@@ -380,7 +380,7 @@ const SignUpPage = () => {
         <div className="flex flex-col rounded-[1rem] w-[80%] md:w-[500px]  shadow-glow_small  bg-[rgba(255,255,255,0.1)] ml-[10%] text-center md:pt-10 md:pb-10 pt-5 pb-10 md:px-10 px-5 mb-3 md:mb-5">
           <img
             className={"w-[500px]  mx-auto " + styles["mark_svg"]}
-            src="/pictures/common/mark.svg"
+            src="/pictures/common/mark.png"
           />
           <div className="flex flex-col gap-[8px] mb-2">
             <div className="text-[#CACAB2] md:text-[20px] font-medium text-left">
@@ -526,7 +526,7 @@ const SignUpPage = () => {
                   <FaCheck />
                 </span>
               </label>
-              <div>This is my ONLY CombatGrounds.com Account.</div>
+              <div>This is my ONLY WarGrounds.com Account.</div>
             </div>
 
             <button
@@ -545,11 +545,11 @@ const SignUpPage = () => {
           <div
             className={" mb-2 font-bold md:text-2xl text-lg " + styles["fontset"]}
           >
-            What is CombatGrounds?
+            What is WarGrounds?
           </div>
           <div className={" mb-2 md:text-lg font-semibold text-sm " + styles["fontset"]}>
             <p className="mb-3">
-              Combat Grounds is the best text-based strategy game:
+              War Grounds is the best text-based strategy game:
             </p>
             <ul className="list-disc ml-10 mb-3">
               <li>Become a Navy Seal, a Soldier, or a Terrorist.</li>
@@ -577,7 +577,7 @@ const SignUpPage = () => {
         </div>
       </div>
       <div className={"text-white text-center md:text-[20px] text-[16px]"}>
-        © Combat Grounds 2024 : All Rights Reserved
+        © War Grounds 2024-2025 : All Rights Reserved
       </div>
     </div>
   );

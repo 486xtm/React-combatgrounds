@@ -100,7 +100,7 @@ export const UserGuide = () => {
     >
       <div className="flex flex-col flex-1 py-[20px]">
         <div className="text-center text-[#81843C] text-[30px] font-bold">
-          Combat Grounds User Guide
+          War Grounds User Guide
         </div>
         <div className="bg-[#81843C] w-[630px] border-[1px] mx-auto px-[20px] py-[30px] space-y-4">
           <div className="underline font-bold text-[20px] text-[yellow] text-center mb-5">
@@ -133,11 +133,11 @@ export const UserGuide = () => {
             <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">1 - Introduction</div>
             <section id="M1_1" className="font-bold">1.1 - Overview</section>
             <div>
-              Combat Grounds is a free, strategic Role-Play Game that you can
+              War Grounds is a free, strategic Role-Play Game that you can
               play daily using only your web browser. The game is text based and
               very simple to play.
               <br />
-              In Combat Grounds, the objective is to develop your character by
+              In War Grounds, the objective is to develop your character by
               building your army, gaining power and money. You can choose to be
               a Navy seal, a Soldier or a Terrorist.
               <br />
@@ -145,7 +145,7 @@ export const UserGuide = () => {
               depends on the recruits, recruits' strength, money and weapons of
               the character.
               <br />
-              Combat Grounds is played in rounds of 10 days. At the end of each
+              War Grounds is played in rounds of 10 days. At the end of each
               round, the winners are given prizes.
               <br />
               If you have any suggestions or find any errors in the game, please
@@ -156,7 +156,7 @@ export const UserGuide = () => {
             <div>
               At the end of each round, prizes are given to best players and
               best crews. The players who have the greatest number of points are
-              called "the combatgrounds legends".
+              called "the WarGrounds legends".
             </div>
             <div>
               <div className="w-2/3 mx-auto flex flex-wrap">

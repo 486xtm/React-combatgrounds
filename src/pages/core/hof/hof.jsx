@@ -31,7 +31,7 @@ export const HallOfFame = () => {
               <table className={styles["custom-table"]}>
                 <tbody>
                   <tr>
-                    <td colSpan={3}>Combat Grounds Legends</td>
+                    <td colSpan={3}>War Grounds Legends</td>
                   </tr>
                   <tr>
                     <td>Rank</td>

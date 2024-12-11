@@ -271,12 +271,12 @@ const MyComponent = () => {
               <td colSpan="7" valign="center" align="center">
                 {isInitial ? (
                   <div className="desc text-left leading-4 w-[320px]">
-                    Combat Grounds is a text-based multiplayer strategy game for
+                    War Grounds is a text-based multiplayer strategy game for
                     those who want to jump into a world of politics and dominate
                     the battlefield through words and strength.
                     <br />
                     <br />
-                    At Combat Grounds you can become a Navy Seal, a Soldier, or
+                    At War Grounds you can become a Navy Seal, a Soldier, or
                     a Terrorist. Where is the enemy? Who are your allies? In an
                     environment where the only certainty you have is yourself,
                     can you survive?
@@ -410,7 +410,7 @@ const MyComponent = () => {
                 />
               </td>
               <td>
-                <Link to="mailto:info@combatgrounds.com">
+                <Link to="mailto:info@WarGrounds.com">
                   <img
                     src="imgs/index_r11_c12.jpg"
                     width="71"

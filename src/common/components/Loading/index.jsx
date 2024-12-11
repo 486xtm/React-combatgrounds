@@ -20,7 +20,7 @@ const Loading = () => {
       }
     >
       <div className="md:w-[800px] w-[350px]  md:mb-5 mb-3 md:-mt-32 -mt-20">
-        <img src="/pictures/common/mark.svg" className="w-full h-auto" alt="" />
+        <img src="/pictures/common/mark.png" className="w-full h-auto" alt="" />
       </div>
       <div className="flex md:mb-5 mb-2">
         <div className="flex">
@@ -65,11 +65,11 @@ const Loading = () => {
       </div>
 
       <footer className="text-center">
-        <b>Copyright © 2024-2025 CombatGrounds.com. All rights reserved.</b>
+        <b>Copyright © 2024-2025 WarGrounds.com. All rights reserved.</b>
         <br />
         <a
           className="underline decoration-white hover:decoration-yellow-400"
-          href="mailto:info@combatgrounds.com"
+          href="mailto:info@WarGrounds.com"
         >
           Contact us.
         </a>

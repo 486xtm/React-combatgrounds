@@ -100,7 +100,7 @@ export const Layout = ({
         </div>
       </div>
       <p className="font-bold text-xs text-black mt-4">
-        Copyright © 2024-2025 CombatGrounds.com. All rights reserved.
+        Copyright © 2024-2025 WarGrounds.com. All rights reserved.
       </p>
       <p className="font-bold text-xs text-black mb-5 underline cursor-pointer">
         Contact us

@@ -63,7 +63,7 @@ const questions = {
       question: "I lost my password! How do I get it back?",
       section: "M19",
       content:
-        'Not a problem. You can use the "Forgot password" function to retrieve it. The link is in the site`s home page. Your account information will be sent to your e-mail address registered on Combat Grounds.',
+        'Not a problem. You can use the "Forgot password" function to retrieve it. The link is in the site`s home page. Your account information will be sent to your e-mail address registered on War Grounds.',
     },
     {
       id: "1.10",
@@ -132,9 +132,9 @@ const questions = {
   game: [
     {
       id: "2.1",
-      question: "What is Combat Grounds? How do I play?",
+      question: "What is War Grounds? How do I play?",
       content:
-        "Combat Grounds is a free, strategic Role-Play Game that you can play daily using only your web browser. You can choose to be a Navy seal, a Soldier, or a Terrorist. The objective of the game is to dominate the battlefield and be on top at all times. The players are ranked according to their net worth, which depends on the recruits, recruits' strength, money, and weapons of the character. Combat Grounds is played in rounds of 10 days. At the end of each round, the winners are given prizes and the characters are reset. This game is text-based: there are no graphics, and you take action by clicking on the different options in the control panel. It's a bit hard at the beginning, but when you get into it, it's a lot of fun. Try to message some players to become friends; they may teach you some tips and tricks on how to play better. The most important thing is to read the user guide and the FAQ, as it helps a lot.",
+        "War Grounds is a free, strategic Role-Play Game that you can play daily using only your web browser. You can choose to be a Navy seal, a Soldier, or a Terrorist. The objective of the game is to dominate the battlefield and be on top at all times. The players are ranked according to their net worth, which depends on the recruits, recruits' strength, money, and weapons of the character. War Grounds is played in rounds of 10 days. At the end of each round, the winners are given prizes and the characters are reset. This game is text-based: there are no graphics, and you take action by clicking on the different options in the control panel. It's a bit hard at the beginning, but when you get into it, it's a lot of fun. Try to message some players to become friends; they may teach you some tips and tricks on how to play better. The most important thing is to read the user guide and the FAQ, as it helps a lot.",
       section: "M21",
     },
     {
@@ -162,7 +162,7 @@ const questions = {
       id: "2.5",
       question: "What are the prizes at the end of a round?",
       content:
-        "At the end of each round, prizes are given to the best players and best crews. The players who have the greatest number of points are called 'the Combat Grounds legends'.",
+        "At the end of each round, prizes are given to the best players and best crews. The players who have the greatest number of points are called 'the War Grounds legends'.",
       section: "M25",
     },
     {

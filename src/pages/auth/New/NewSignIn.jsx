@@ -40,7 +40,7 @@ const NewSignIn = () => {
       <div className={styles["sign_height"]}>
         <img
           className={"w-[500px]  mx-auto py-[40px] " + styles["mark_svg"]}
-          src="/pictures/common/mark.svg"
+          src="/pictures/common/mark.png"
         />
         <div className="flex flex-col rounded-[1rem] w-[80%] md:w-[500px]  shadow-glow_small shadow-[black]  bg-[rgba(0,0,0,0.3)] mx-auto text-center md:pt-10 md:pb-20 pt-5 pb-10 md:px-10 px-5 mb-3">
           <div className="font-[700] md:text-[40px] text-[30px] text-[mintcream] mb-5">
@@ -88,7 +88,9 @@ const NewSignIn = () => {
             Forgot Password?
           </Link>
           <button
-            className="bg-[#191A12] hover:bg-[#22241a] md:h-[56px] h-[40px] md:rounded-[16px] rounded-[8px] shadow-lg backdrop-blur-md md:text-[24px] text-[16px] font-extrabold text-[mintcream]"
+            className={
+              "md:h-[47px] h-[35px] w-full mx-auto md:rounded-[16px] rounded-[8px] md:text-[24px] text-[16px] font-extrabold text-[mintcream] md:mb-10 mb-5 flex items-center justify-center " +
+              styles["gradient_button"]}
             onClick={() => handleLogin()}
           >
             G O
@@ -123,7 +125,7 @@ const NewSignIn = () => {
               User Guide
             </Link>
             <Link
-              to="mailto:info@combatgrounds.com"
+              to="mailto:info@WarGrounds.com"
               className="underline text-[mintcream] cursor-pointer md:text-[20px]"
             >
               Contact us
@@ -132,7 +134,7 @@ const NewSignIn = () => {
         </div>
       </div>
       <div className={"text-white text-center md:text-[20px] text-[16px]"}>
-        © Combat Grounds 2024 : All Rights Reserved
+        © War Grounds 2024-2025 : All Rights Reserved
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const showNotification = ({ title, content }) => {
   if (Notification.permission === "granted") {
     const notification = new Notification(title, {
       body: content,
-      icon: "https://war-grounds.com/favicon.ico", // Optional: Add your icon URL
+      icon: "https://war-grounds.com/favicon.png", // Optional: Add your icon URL
     });
 
     notification.onclick = () => {

@@ -152,7 +152,7 @@ export const BuyTurns = () => {
           <div className="leading-none mb-5">
             Want to play more? Buy turns now and qualify for the cash prize at
             the end of the round! <br />
-            <br /> We thank all our supporters. Without you, Combatgrounds
+            <br /> We thank all our supporters. Without you, WarGrounds
             wouldn't be open today. <br />
             <br /> Paypal allows you to make payments using your credit card,
             bank account, and more. <br />
