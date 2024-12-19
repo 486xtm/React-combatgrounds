@@ -15,6 +15,7 @@ import {
   getCrewBoard,
   getInvites,
 } from "../../../api/crew";
+import { getRound } from "../../../api/headquarter";
 export const Menu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,7 +32,9 @@ export const Menu = () => {
     <div className={styles["menu-container"]}>
       <div className={styles["menu-item"]}>MEMBERS</div>
       <div className={styles["sub-menu"]}>
-        <Link to="/headquarter" className={styles["link"]}>
+        <Link to="/headquarter"
+        onClick={() => {getRound(dispatch);}}
+        className={styles["link"]}>
           - <u>HEADQUARTERS</u>
         </Link>
         <Link to="/choosehelper" className={styles["link"]}>
@@ -145,8 +148,11 @@ export const Menu = () => {
             <Link
               to={ROUTES.MAIN_ROUTES.CREW_PROFILE.replace(
                 ":crew_id",
-                user.crew._id
+                user.crew._id || user.crew
               )}
+              // onClick={() => {
+              //   getCrewInfo({ crew_id:user.crew._id }, dispatch);
+              // }}
               className={styles["link"]}
             >
               - <u>CREW_PROFILE</u>
