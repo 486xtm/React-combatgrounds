@@ -21,7 +21,11 @@ export const Profile = () => {
 
   const currentUser = useSelector(({ user }) => user.user);
   const otherUserInfoAll = useSelector(({ user }) => user.other);
-  const user = otherUser ? otherUserInfoAll || otherUser : currentUser;
+  const user_1 = otherUser ? otherUserInfoAll || otherUser : currentUser;
+  const user = {
+    ...user_1,
+    medals: user_1.medals ? [...user_1.medals].sort((a, b) => Number(a.medal.id) - Number(b.medal.id)) : []
+  };
   const onlinePlayers = useSelector(({ online }) => online.onlinePlayers);
   const onlineStatus = onlinePlayers
     ? !!onlinePlayers.find((x) => x._id === user._id)
@@ -130,6 +134,19 @@ export const Profile = () => {
                 className="mx-auto"
               />
             </div>
+          </div>
+          <div
+            className={`border-t-2 ${
+              user.characterType === "Soldier"
+                ? "border-primary"
+                : user.characterType === "Navyseal"
+                ? "border-navyseal"
+                : user.characterType === "Terrorist"
+                ? "border-terrorist"
+                : "border-primary"
+            }`}
+          >
+            <img src="/pictures/chrismas/chrismas.jpg" />
           </div>
           <div
             className={`flex border-t-2 ${
@@ -669,6 +686,7 @@ export const Profile = () => {
               </div>
             </div>
           </div>
+          
           <div
             className={`border-t-2 ${
               user.characterType === "Soldier"
