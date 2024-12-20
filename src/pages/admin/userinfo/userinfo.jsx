@@ -183,7 +183,7 @@ export const AdminUserInfo = () => {
             <div className="w-[100px]">Role: </div>{" "}
             <select
               className="border-[1px] rounded-md px-2 py-1 shadow-sm focus:border-gray py-1-600 flex-1"
-              value={user && user.role ? user.role : 0}
+              value={user && Number(user.role) > 0  ? 1 :  Number(user.role) == -1 ? -1 : 0}
               onChange={(ev) => setUser({ ...user, role: ev.target.value })}
             >
               <option value={-1}>Admin</option>
