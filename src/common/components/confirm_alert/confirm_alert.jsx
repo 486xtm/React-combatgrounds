@@ -34,8 +34,8 @@ export const ConfirmAlert = ({
       onClick={handleOverlayClick}
     >
       <div
-        className={`bg-white rounded-lg shadow-lg p-6 w-1/3 transform transition-all duration-300 ${
-          isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+        className={`bg-white rounded-lg shadow-lg p-6 min-w-1/3 transform transition-all duration-300 ${
+          isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 my-auto"
         }`}
       >
         <h2 className="text-lg font-bold mb-4">Are you sure?</h2>
