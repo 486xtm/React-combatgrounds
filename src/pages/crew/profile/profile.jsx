@@ -133,7 +133,7 @@ export const CrewProfile = () => {
               <div className="flex text-center items-center justify-center font-medium text-yellow-200 border-b-[1px] border-secondary-green">
                 <div className="w-full py-1">Description</div>
               </div>
-              <div className="text-left flex break-all text-xs overflow-y-auto px-2 py-1 mb-3 h-[100px] font-medium text-white ">
+              <div className="text-left flex break-all whitespace-pre-line text-xs overflow-y-auto px-2 py-1 mb-3 h-[100px] font-medium text-white ">
                 {(crewInfo && crewInfo.description) || "---"}
               </div>
               <div className="flex text-center h-[150px] items-center justify-center font-medium text-yellow-200 border-t-[1px] border-secondary-green overflow-hidden">
@@ -152,7 +152,9 @@ export const CrewProfile = () => {
         )}
         {tab == 0 && (
           <div className="flex flex-col w-full mt-3 px-5 gap-3">
-            <div className="text-lg font-bold">Crew Name : {crewInfo && crewInfo.name} </div>
+            <div className="text-lg font-bold">
+              Crew Name : {crewInfo && crewInfo.name}{" "}
+            </div>
             <div className="flex flex-row">
               <div
                 className="w-1/5 flex flex-col items-center justify-center h-[250px] cursor-pointer"
