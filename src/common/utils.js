@@ -75,13 +75,13 @@ export const getRole = (role) => {
 export const formattedNumber = (n) => {
   const num = Number(n);
   if (n > 1000_000_000) {
-    return `${(n / 1000_000_000).toFixed(2)}B+`;
+    return `${Math.floor(n / 1000_000_000)}B`;
   }
   if (n > 1000_000) {
-    return `${(n / 1000_000).toFixed(2)}M+`;
+    return `${Math.floor(n / 1000_000)}M`;
   }
   if (n > 1000) {
-    return `${(n / 1000).toFixed(2)}K+`;
+    return `${Math.floor(n / 1000)}K`;
   }
   return Math.floor(n);
 };
