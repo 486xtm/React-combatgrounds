@@ -24,7 +24,11 @@ export const Profile = () => {
   const user_1 = otherUser ? otherUserInfoAll || otherUser : currentUser;
   const user = {
     ...user_1,
-    medals: user_1.medals ? [...user_1.medals].sort((a, b) => Number(a.medal.id) - Number(b.medal.id)) : []
+    medals: user_1.medals
+      ? [...user_1.medals].sort(
+          (a, b) => Number(a.medal.id) - Number(b.medal.id)
+        )
+      : [],
   };
   const onlinePlayers = useSelector(({ online }) => online.onlinePlayers);
   const onlineStatus = onlinePlayers
@@ -101,7 +105,14 @@ export const Profile = () => {
                   : 0}
               </p>
             </div>
-            <div className="flex px-2 relative mt-3">
+            <p className="text-[0.5rem] text-white mr-auto border border-gray px-1 py-1 rounded mt-1">
+              {Number(user.role) != 0
+                ? "Supporter+"
+                : Boolean(user.isSupporter)
+                ? "Supporter"
+                : "Free Player"}
+            </p>
+            <div className="flex px-2 relative mt-2">
               {user && user.grade ? (
                 <img
                   src={`/pics/${getGradeString(
@@ -686,7 +697,7 @@ export const Profile = () => {
               </div>
             </div>
           </div>
-          
+
           <div
             className={`border-t-2 ${
               user.characterType === "Soldier"
