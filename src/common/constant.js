@@ -1,6 +1,6 @@
 export const socketURL = "https://war-grounds.com";
 export const basicURL = "https://war-grounds.com/api";
-export const publicURL = "https://war-grounds.com"
+export const publicURL = "https://war-grounds.com";
 // export const basicURL = "http://localhost:5000/api";
 // export const publicURL = "http://localhost:5000";
 // export const socketURL = "http://localhost:5000";

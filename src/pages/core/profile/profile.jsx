@@ -39,6 +39,7 @@ export const Profile = () => {
   const [selectedItem, setSelectedItem] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [hoverType, setHoverType] = useState(1);
+  console.log(user && user.description);
 
   const handleMouseOver = (item, type) => {
     setShowHover(true);
@@ -448,9 +449,9 @@ export const Profile = () => {
               >
                 DESCRIPTION
               </div>
-              <div className="text-xs text-white hyphens-auto break-all">
+              <p className="text-xs text-white hyphens-auto break-all whitespace-pre-line">
                 {user && user.description}
-              </div>
+              </p>
               <div
                 className={`my-1 ${
                   user.characterType === "Soldier"
