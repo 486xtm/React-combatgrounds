@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import CrewLayout from "../layout/crew_layout";
-import styles from "../styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getCrewInfo } from "../../../api/crew";
 import { publicURL } from "../../../common/constant";
+import { formattedNumber } from "../../../common/utils";
 
 function sliceString(str) {
   if (str.length <= 8) {
@@ -175,7 +175,8 @@ export const CrewProfile = () => {
                     }`}
                   />
                   <div className="font-medium text-sm text-white my-1">
-                    {crewInfo && crewInfo.leader.name}-L
+                    {crewInfo && sliceString(crewInfo.leader.name)}&nbsp;
+                    {crewInfo && formattedNumber(crewInfo.leader.netWorth)}
                   </div>
                 </div>
               </div>
@@ -199,7 +200,8 @@ export const CrewProfile = () => {
                       />
                       <div className="font-medium text-white text-xs mt-1">
                         {m.name
-                          ? sliceString(m.name) + ` - R${m.role}`
+                          ? sliceString(m.name) +
+                            ` - ${formattedNumber(m.netWorth)}`
                           : "------"}
                       </div>
                     </div>

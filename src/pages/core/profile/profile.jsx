@@ -13,7 +13,6 @@ import {
 } from "../../../common/utils";
 import { getUserById } from "../../../api/user";
 import { ROUTES, publicURL } from "../../../common/constant";
-import { getCrewInfo } from "../../../api/crew";
 
 export const Profile = () => {
   const location = useLocation();
