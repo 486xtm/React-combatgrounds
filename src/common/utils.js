@@ -71,3 +71,17 @@ export const getRole = (role) => {
   if (role === -1 || role === "-1") return "Admin";
   return "Supporter";
 };
+
+export const formattedNumber = (n) => {
+  const num = Number(n);
+  if (n > 1000_000_000) {
+    return `${(n / 1000_000_000).toFixed(2)}B+`;
+  }
+  if (n > 1000_000) {
+    return `${(n / 1000_000).toFixed(2)}M+`;
+  }
+  if (n > 1000) {
+    return `${(n / 1000).toFixed(2)}K+`;
+  }
+  return Math.floor(n);
+};

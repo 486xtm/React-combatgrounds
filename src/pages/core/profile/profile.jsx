@@ -13,7 +13,6 @@ import {
 } from "../../../common/utils";
 import { getUserById } from "../../../api/user";
 import { ROUTES, publicURL } from "../../../common/constant";
-import { getCrewInfo } from "../../../api/crew";
 
 export const Profile = () => {
   const location = useLocation();
@@ -39,7 +38,6 @@ export const Profile = () => {
   const [selectedItem, setSelectedItem] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [hoverType, setHoverType] = useState(1);
-  console.log(user && user.description);
 
   const handleMouseOver = (item, type) => {
     setShowHover(true);
