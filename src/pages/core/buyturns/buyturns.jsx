@@ -6,6 +6,7 @@ import { transfer, verifyPaymentOrder } from "../../../api/payment";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../../../api/axios";
 import { setToast } from "../../../redux/toastSlice";
+import { ConfirmAlert } from "../../../common/components/confirm_alert/confirm_alert";
 
 const buyInfo = [
   {
@@ -79,6 +80,7 @@ export const BuyTurns = () => {
   const [transferTurn, setTransferTurn] = useState("");
   const [receiver, setReceiver] = useState("");
   const [agent, setAgent] = useState(localStorage.getItem("agent"));
+  const [showConfirmAlert, setShowConfirmAlert] = useState(false);
 
   const handleBuy = (buy) => {
     setShow(false);
@@ -104,7 +106,7 @@ export const BuyTurns = () => {
     }
   };
   const handleTransfer = () => {
-    transfer({ transferTurn }, dispatch);
+    setShowConfirmAlert(true);
   };
 
   const createOrder = (data, actions) => {
@@ -152,8 +154,8 @@ export const BuyTurns = () => {
           <div className="leading-none mb-5">
             Want to play more? Buy turns now and qualify for the cash prize at
             the end of the round! <br />
-            <br /> We thank all our supporters. Without you, WarGrounds
-            wouldn't be open today. <br />
+            <br /> We thank all our supporters. Without you, WarGrounds wouldn't
+            be open today. <br />
             <br /> Paypal allows you to make payments using your credit card,
             bank account, and more. <br />
             The turns will be credited to your account immediately after the
@@ -298,6 +300,17 @@ export const BuyTurns = () => {
           </div>
         </div>
       </Layout>
+      <ConfirmAlert
+        isOpen={showConfirmAlert}
+        onAccept={() => {
+          transfer({ transferTurn }, dispatch);
+          setShowConfirmAlert(false);
+        }}
+        onClose={() => setShowConfirmAlert(false)}
+        description={
+          "Once you transfer turns, then you can't take out them back"
+        }
+      />
     </PayPalScriptProvider>
   );
 };

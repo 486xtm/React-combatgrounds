@@ -18,6 +18,7 @@ import {
   setIsRuler,
   setRegion,
 } from "../../../redux/battlefieldSlice";
+import { ConfirmAlert } from "../../../common/components/confirm_alert/confirm_alert";
 
 export const BattleFieldRegion = () => {
   const { region_id } = useParams();
@@ -31,9 +32,15 @@ export const BattleFieldRegion = () => {
 
   const [takeTroops, setTakeTroops] = useState("");
   const [putTroops, setPutTroops] = useState("");
+  const [showConfirmAlert, setShowConfirmAlert] = useState(false);
 
   const handleConquer = () => {
-    conquerRegion({ region_id, type: !!battleField }, dispatch, navigate, socket);
+    conquerRegion(
+      { region_id, type: !!battleField },
+      dispatch,
+      navigate,
+      socket
+    );
   };
 
   const handlePutGoClick = () => {
@@ -57,6 +64,10 @@ export const BattleFieldRegion = () => {
 
   const handleGoClick = (operationType) => {
     if (!battleField) return;
+    if (operationType === 2) {
+      setShowConfirmAlert(true);
+      return;
+    }
     go({ battleFieldId: battleField._id, operationType }, dispatch);
   };
 
@@ -191,6 +202,18 @@ export const BattleFieldRegion = () => {
           </div>
         )
       )}
+
+      <ConfirmAlert
+        isOpen={showConfirmAlert}
+        onAccept={() => {
+          go({ battleFieldId: battleField._id, operationType: 2 }, dispatch);
+          setShowConfirmAlert(false);
+        }}
+        onClose={() => setShowConfirmAlert(false)}
+        description={
+          "This operation requires 200 turns.\nAlso you should have at least 75,000 troops.\nAre you ready?"
+        }
+      />
     </Layout>
   );
 };

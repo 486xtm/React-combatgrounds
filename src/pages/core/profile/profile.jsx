@@ -38,7 +38,6 @@ export const Profile = () => {
   const [selectedItem, setSelectedItem] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [hoverType, setHoverType] = useState(1);
-  console.log(user && user.description);
 
   const handleMouseOver = (item, type) => {
     setShowHover(true);
