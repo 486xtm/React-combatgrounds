@@ -106,7 +106,7 @@ export const Profile = () => {
                   : 0}
               </p>
             </div>
-            <p className="text-[0.5rem] text-white mr-auto border border-gray px-1 py-1 rounded mt-1">
+            <p className="text-[0.7rem] text-white mr-auto border border-gray px-1 py-1 rounded mt-1">
               {Number(user.role) != 0
                 ? "Supporter+"
                 : Boolean(user.isSupporter)
