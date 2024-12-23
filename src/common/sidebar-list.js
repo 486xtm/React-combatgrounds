@@ -21,6 +21,11 @@ export const SidebarListOne = [
     link: "/admin/crew",
     icon: AnnalesIcon(),
   },
+  {
+    title: "Round",
+    link: "/admin/round",
+    icon: PlannerIcon(),
+  },
 ];
 
 export const SidebarListTwo = [

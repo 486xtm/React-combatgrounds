@@ -3,8 +3,7 @@ import { useLocation } from "react-router";
 import HomeIcon from "../../../assets/icons/home";
 import AngleLeft from "../../../assets/icons/angle-left";
 const Breadcrumbs = () => {
-
-  const {pathname} = useLocation()
+  const { pathname } = useLocation();
   // Split the pathname into segments and filter out any empty strings
   const pathSegments = pathname.split("/").filter((x) => x);
 
@@ -16,7 +15,9 @@ const Breadcrumbs = () => {
   });
 
   const styledHomeIcon = React.cloneElement(HomeIcon(), {
-    className: `w-4 h-4 ${crumbs.length > 0 ? 'fill-[#667085] opacity-50' : 'fill-custom-dark'} hover:fill-custom-dark hover:opacity-100 transition-all`,
+    className: `w-4 h-4 ${
+      crumbs.length > 0 ? "fill-[#667085] opacity-50" : "fill-custom-dark"
+    } hover:fill-custom-dark hover:opacity-100 transition-all`,
   });
 
   return (
@@ -26,9 +27,16 @@ const Breadcrumbs = () => {
           <a href="/">{styledHomeIcon}</a>
         </li>
         {crumbs.map((crumb, i) => (
-          <li key={crumb.href} className="inline-flex items-center font-semibold">
+          <li
+            key={crumb.href}
+            className="inline-flex items-center font-semibold"
+          >
             {/* Add a separator except for the first item */}
-            {i >= 0 && <span className="mx-4"><AngleLeft /></span>}
+            {i >= 0 && (
+              <span className="mx-4">
+                <AngleLeft />
+              </span>
+            )}
 
             {/* If it's the last item, don't wrap in a link */}
             {i === crumbs.length - 1 ? (

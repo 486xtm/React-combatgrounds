@@ -27,7 +27,7 @@ export const HeadQuarter = React.memo(() => {
             {`Round ${round.id} ends in: ${round.remain}`}
           </p>
           <p className="text-secondary text-center font-bold text-sm">
-            Cash Bounty at: $27
+            Cash Bounty at: {(round && round.bounty) || "$25"}
           </p>
           <p className="text-secondary text-center text-tiny mt-3">
             You get turns, money and recruits every 10 minutes as long as you

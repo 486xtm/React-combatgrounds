@@ -27,7 +27,7 @@ import {
   Attack,
   Mission,
   Recurit,
-  Spy
+  Spy,
 } from "../pages/core";
 import {
   Invites,
@@ -40,7 +40,17 @@ import {
   CrewManage,
   CrewEdit,
 } from "../pages/crew";
-import {AdminHome, AdminUserList, AdminCrew, AdminUserInfo, AdminData, AdminHistory, AdminMail, AdminCrewInfo} from '../pages/admin';
+import {
+  AdminHome,
+  AdminUserList,
+  AdminCrew,
+  AdminUserInfo,
+  AdminData,
+  AdminHistory,
+  AdminMail,
+  AdminCrewInfo,
+  RoundData,
+} from "../pages/admin";
 import { ROUTES } from "./constant";
 
 export const routes = {
@@ -63,8 +73,8 @@ export const routes = {
     },
     {
       path: "/",
-      element: <NewSignIn />
-    }
+      element: <NewSignIn />,
+    },
   ],
   main: [
     {
@@ -183,53 +193,57 @@ export const routes = {
 
     {
       path: ROUTES.MAIN_ROUTES.ATTACK,
-      element: <Attack />
+      element: <Attack />,
     },
     {
       path: ROUTES.MAIN_ROUTES.MISSION,
-      element: <Mission />
-    }, 
+      element: <Mission />,
+    },
     {
-      path: ROUTES.MAIN_ROUTES.RECRUIT, 
-      element: <Recurit />
+      path: ROUTES.MAIN_ROUTES.RECRUIT,
+      element: <Recurit />,
     },
     {
       path: ROUTES.MAIN_ROUTES.SPY,
-      element: <Spy />
-    }
+      element: <Spy />,
+    },
   ],
   admin: [
     {
       path: ROUTES.ADMIN_ROUTES.HOME,
-      element : <AdminHome />
+      element: <AdminHome />,
     },
     {
       path: ROUTES.ADMIN_ROUTES.USER_LIST,
-      element : <AdminUserList/>
+      element: <AdminUserList />,
     },
     {
       path: ROUTES.ADMIN_ROUTES.USER_INFO,
-      element: <AdminUserInfo />
+      element: <AdminUserInfo />,
     },
     {
       path: ROUTES.ADMIN_ROUTES.CREW_LIST,
-      element: <AdminCrew />
-    }, 
+      element: <AdminCrew />,
+    },
+    {
+      path: ROUTES.ADMIN_ROUTES.ROUND_DATA,
+      element: <RoundData />,
+    },
     {
       path: ROUTES.ADMIN_ROUTES.GAME_DATA,
-      element: <AdminData />
-    }, 
+      element: <AdminData />,
+    },
     {
       path: ROUTES.ADMIN_ROUTES.MAIL_LIST,
-      element: <AdminMail />
-    }, 
+      element: <AdminMail />,
+    },
     {
       path: ROUTES.ADMIN_ROUTES.HISTORY,
-      element: <AdminHistory />
+      element: <AdminHistory />,
     },
     {
       path: ROUTES.ADMIN_ROUTES.CREW_INFO,
-      element: <AdminCrewInfo />
-    }
-  ]
+      element: <AdminCrewInfo />,
+    },
+  ],
 };

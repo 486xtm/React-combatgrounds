@@ -44,7 +44,16 @@ export const HallOfFame = () => {
                     hofData.legends.map((l, idx) => (
                       <tr key={`legend_${idx}`}>
                         <td>{idx + 1}</td>
-                        <td>{l && l.name ? l.name : "Deleted User"}</td>
+                        <td
+                          className="cursor-pointer"
+                          onClick={() =>
+                            navigate(ROUTES.MAIN_ROUTES.PROFILE, {
+                              state: { _id: l._id },
+                            })
+                          }
+                        >
+                          <u>{l && l.name ? l.name : "Deleted User"}</u>
+                        </td>
                         <td>{l && l.points}</td>
                       </tr>
                     ))}
@@ -61,16 +70,26 @@ export const HallOfFame = () => {
                     <td>Net Worth</td>
                   </tr>
                   <tr>
-                    <td>
-                      {hofData &&
-                      hofData.highest_user_networth &&
-                      hofData.highest_user_networth.user
-                        ? hofData.highest_user_networth.user.name
-                        : "---"}
+                    <td className="cursor-pointer">
+                      <u
+                        onClick={() =>
+                          navigate(ROUTES.MAIN_ROUTES.PROFILE, {
+                            state: hofData.highest_user_networth.user,
+                          })
+                        }
+                      >
+                        {hofData &&
+                        hofData.highest_user_networth &&
+                        hofData.highest_user_networth.user
+                          ? hofData.highest_user_networth.user.name
+                          : "---"}
+                      </u>
                     </td>
                     <td>
                       {hofData && hofData.highest_user_networth
-                        ? Number(hofData.highest_user_networth.value).toLocaleString("en-US")
+                        ? Number(
+                            hofData.highest_user_networth.value
+                          ).toLocaleString("en-US")
                         : "---"}
                     </td>
                   </tr>
@@ -135,10 +154,19 @@ export const HallOfFame = () => {
               hofData.round.topSupporters.map((l, idx) => (
                 <tr key={`top_supporter_${idx}`}>
                   <td>{idx + 1}</td>
-                  <td>
-                    {l && l.player && l.player.name
-                      ? l.player.name
-                      : "Deleted User"}
+                  <td
+                    className="cursor-pointer"
+                    onClick={() =>
+                      navigate(ROUTES.MAIN_ROUTES.PROFILE, {
+                        state: { _id: l.player._id },
+                      })
+                    }
+                  >
+                    <u>
+                      {l && l.player && l.player.name
+                        ? l.player.name
+                        : "Deleted User"}
+                    </u>
                   </td>
                   <td>{l && Number(l.netWorth).toLocaleString()}</td>
                   <td>{l && l.medals && l.medals.name}</td>
@@ -164,10 +192,19 @@ export const HallOfFame = () => {
               hofData.round.topFreePlayers.map((l, idx) => (
                 <tr key={`top_free_${idx}`}>
                   <td>{idx + 1}</td>
-                  <td>
-                    {l && l.player && l.player.name
-                      ? l.player.name
-                      : "Deleted User"}
+                  <td
+                    className="cursor-pointer"
+                    onClick={() =>
+                      navigate(ROUTES.MAIN_ROUTES.PROFILE, {
+                        state: { _id: l.player._id },
+                      })
+                    }
+                  >
+                    <u>
+                      {l && l.player && l.player.name
+                        ? l.player.name
+                        : "Deleted User"}
+                    </u>
                   </td>
                   <td>{l && Number(l.netWorth).toLocaleString()}</td>
                   <td>{l && l.medals && l.medals.name}</td>

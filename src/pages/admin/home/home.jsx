@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -7,6 +7,7 @@ import { getDashBoardData } from "../../../api/admin";
 export const AdminHome = () => {
   const dispatch = useDispatch();
   const dashboard = useSelector(({ admin }) => admin.dash);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     getDashBoardData(dispatch);
@@ -73,6 +74,14 @@ export const AdminHome = () => {
       <div className="text-center mt-20 font-[900] text-[25px] text-gray-900">
         {dashboard
           ? `Total transfered turns for this round: ${dashboard.turns}`
+          : "loading..."}
+      </div>
+      <div
+        className="text-center mt-10 font-[900] text-[25px] text-gray-900 cursor-pointer hover:text-gray-600"
+        onClick={() => setShowModal(true)}
+      >
+        {dashboard
+          ? `Cash Bounty: ${dashboard.bounty ? dashboard.bounty : "$0"}`
           : "loading..."}
       </div>
     </div>
