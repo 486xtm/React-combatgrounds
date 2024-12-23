@@ -360,7 +360,19 @@ export const Profile = () => {
                     ))}
                 </div>
               </div>
-
+              <div
+                className={`mt-1 mb-7 ${
+                  user.characterType === "Soldier"
+                    ? "bg-dark-primary"
+                    : user.characterType === "Navyseal"
+                    ? "bg-dark-navyseal"
+                    : user.characterType === "Terrorist"
+                    ? "bg-dark-terrorist"
+                    : "bg-dark-primary"
+                } text-sm font-bold text-white text-center my-5 `}
+              >
+                ACHIEVEMENTS
+              </div>
               <div
                 className={`my-1 ${
                   user.characterType === "Soldier"

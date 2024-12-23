@@ -15,6 +15,7 @@ import { setToast } from "../redux/toastSlice";
 import axios from "./axios";
 import { getCountryInfo } from "./country";
 import { getBosses } from "./crew";
+import { getRound } from "./headquarter";
 import { getUserById } from "./user";
 
 //admin
@@ -25,7 +26,7 @@ export const getAllUserInfo = async (sortBy, page, dispatch) => {
       `${basicURL}/user/all_infor?${urlSearchParams}&page=${page.currentPage}`
     );
     const { users, total } = res.data;
-    dispatch(setUsers({users, tot: total}));
+    dispatch(setUsers({ users, tot: total }));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -194,7 +195,7 @@ export const getAllMails = async (page, dispatch) => {
     const res = await axios.get(
       `${basicURL}/message/all?page=${page.currentPage}`
     );
-    dispatch(setMails({mails: res.data.mails, tot: res.data.total}));
+    dispatch(setMails({ mails: res.data.mails, tot: res.data.total }));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
@@ -378,6 +379,18 @@ export const getBattleHistory = async (page, dispatch) => {
       `${basicURL}/battlefield/history?page=${page.currentPage}`
     );
     dispatch(setBattleHistory({ bts: res.data.history, tot: res.data.total }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const updateBounty = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/round/bounty`, data);
+    dispatch({ type: "success", msg: res.msg || "success" });
+    getRound(dispatch);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })

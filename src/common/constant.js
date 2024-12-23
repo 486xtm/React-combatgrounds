@@ -63,6 +63,7 @@ export const ROUTES = {
     USER_LIST: "/admin/user",
     USER_INFO: "/admin/user/:user_id",
     CREW_LIST: "/admin/crew",
+    ROUND_DATA: "/admin/round",
     GAME_DATA: "/admin/data",
     MAIL_LIST: "/admin/mail",
     HISTORY: "/admin/history",
