@@ -10,32 +10,32 @@ import { ConfirmAlert } from "../../../common/components/confirm_alert/confirm_a
 
 const buyInfo = [
   {
-    total: 1000,
-    turns: 1000,
+    total: 1150,
+    turns: 1150,
     bonus: 0,
     cost: 5,
   },
   {
-    total: 2250,
-    turns: 2000,
+    total: 2550,
+    turns: 2300,
     bonus: 250,
     cost: 10,
   },
   {
-    total: 3500,
-    turns: 3000,
+    total: 3950,
+    turns: 3450,
     bonus: 500,
     cost: 15,
   },
   {
-    total: 4750,
-    turns: 4000,
+    total: 5750,
+    turns: 5000,
     bonus: 750,
     cost: 20,
   },
   {
-    total: 6000,
-    turns: 5000,
+    total: 7250,
+    turns: 6250,
     bonus: 1000,
     cost: 25,
   },
