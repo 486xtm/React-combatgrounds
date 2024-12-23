@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   info: {},
   hofData: null,
+  salesEnabled: false,
 };
 
 const roundSlice = createSlice({
@@ -15,8 +16,11 @@ const roundSlice = createSlice({
     setHofRound: (state, action) => {
       state.hofData = action.payload;
     },
+    setSalesEnabled: (state, action) => {
+      state.info.salesEnabled = action.payload;
+    },
   },
 });
 
-export const { setRound, setHofRound } = roundSlice.actions;
+export const { setRound, setHofRound, setSalesEnabled } = roundSlice.actions;
 export default roundSlice.reducer;

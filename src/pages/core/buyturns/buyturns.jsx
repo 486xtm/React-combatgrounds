@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "../../../api/axios";
 import { setToast } from "../../../redux/toastSlice";
 import { ConfirmAlert } from "../../../common/components/confirm_alert/confirm_alert";
+import { getPaymentOptions } from "../../../api/admin";
 
 const buyInfo = [
   {
@@ -71,6 +72,69 @@ const buyInfo = [
   // },
 ];
 
+const buyInfo2 = [
+  {
+    total: 1000,
+    turns: 1000,
+    bonus: 0,
+    cost: 5,
+  },
+  {
+    total: 2250,
+    turns: 2000,
+    bonus: 250,
+    cost: 10,
+  },
+  {
+    total: 3500,
+    turns: 3000,
+    bonus: 500,
+    cost: 15,
+  },
+  {
+    total: 4750,
+    turns: 4000,
+    bonus: 700,
+    cost: 20,
+  },
+  {
+    total: 6000,
+    turns: 5000,
+    bonus: 1000,
+    cost: 25,
+  },
+  {
+    total: 7250,
+    turns: 6000,
+    bonus: 1250,
+    cost: 30,
+  },
+  {
+    total: 13000,
+    turns: 10000,
+    bonus: 3000,
+    cost: 50,
+  },
+  {
+    total: 27500,
+    turns: 20000,
+    bonus: 7500,
+    cost: 100,
+  },
+  {
+    total: 75000,
+    turns: 50000,
+    bonus: 25000,
+    cost: 250,
+  },
+  // {
+  //   total: 175000,
+  //   turns: 100000,
+  //   bonus: 75000,
+  //   cost: 500,
+  // },
+];
+
 export const BuyTurns = () => {
   const [show, setShow] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -81,6 +145,8 @@ export const BuyTurns = () => {
   const [receiver, setReceiver] = useState("");
   const [agent, setAgent] = useState(localStorage.getItem("agent"));
   const [showConfirmAlert, setShowConfirmAlert] = useState(false);
+
+  const salesEnabled = useSelector(({ round }) => round.info.salesEnabled);
 
   const handleBuy = (buy) => {
     setShow(false);
@@ -145,6 +211,10 @@ export const BuyTurns = () => {
     dispatch(setToast({ type: "error", msg: data }));
     console.log("ERROR!", data, actions);
   };
+
+  useEffect(() => {
+    getPaymentOptions(dispatch);
+  }, []);
 
   return (
     <PayPalScriptProvider options={{ "client-id": CLIENT_ID }}>
@@ -240,7 +310,7 @@ export const BuyTurns = () => {
             </div>
           </div>
           <div className="mb-5">
-            {buyInfo.map((buy, index) => (
+            {(salesEnabled ? buyInfo : buyInfo2).map((buy, index) => (
               <div className="flex text-lg" key={`buy_turn_${index}`}>
                 <div className="w-[20%] border-[gray] border-[1px] leading-7">
                   {buy.total.toLocaleString("en-US")}

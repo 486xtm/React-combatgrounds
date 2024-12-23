@@ -11,6 +11,7 @@ import {
   setTransactionHistory,
   setUsers,
 } from "../redux/adminSlice";
+import { setSalesEnabled } from "../redux/roundSlice";
 import { setToast } from "../redux/toastSlice";
 import axios from "./axios";
 import { getCountryInfo } from "./country";
@@ -391,6 +392,30 @@ export const updateBounty = async (data, dispatch) => {
     const res = await axios.patch(`${basicURL}/round/bounty`, data);
     dispatch({ type: "success", msg: res.msg || "success" });
     getRound(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const updateSalesEnabled = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/payment/option`, data);
+    dispatch({ type: "success", msg: res.msg || "success" });
+    getPaymentOptions(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+};
+
+export const getPaymentOptions = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/payment/option`);
+    dispatch({ type: "success", msg: res.msg || "success" });
+    dispatch(setSalesEnabled(res.data.salesEnabled));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
