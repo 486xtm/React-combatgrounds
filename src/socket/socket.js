@@ -43,7 +43,7 @@ export const setupSocketListeners = () => {
   });
 
   socket.on("_ambush", (data) => {
-    store.dispatch(setToast({ type: "info", msg: data._msg }));
+    // store.dispatch(setToast({ type: "info", msg: data._msg }));
     if (data.ambushType === 1) {
       if (window.location.pathname === `/battlefield/${data.region_id}`) {
         setTimeout(() => {

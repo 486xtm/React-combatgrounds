@@ -51,13 +51,13 @@ export const Ads = () => {
         {ads &&
           ads.map((ad, index) => (
             <div
-              className="flex w-full border-b-[1px] border-secondary-green py-1"
+              className="flex w-full border-b-[1px] border-secondary-green py-1 gap-2"
               key={`crew_ads_${index}`}
             >
-              <div className={`w-[110px] cursor-pointer underline ${ad.author ? 'text-yellow-200' : 'text-[red]' }`}
+              <div className={`w-[90px] break-all text-center cursor-pointer underline ${ad.author ? 'text-yellow-200' : 'text-[red]' }`}
                 onClick={() => handleCrewUserInfo(ad.author)}
               >{ad.author ? ad.author.name : "Deleted User"}</div>
-              <div className="flex-1">
+              <div className="flex-1 break-all">
                 {ad.content}
                 <div className="text-right text-sm text-yellow-200">{formattedDate(ad.createdAt)}</div>
                 </div>
