@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Header, Menu } from "../../../common/components";
 import styles from "./styles.module.css";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { findHelpers } from "../../../api/user";
+import { ROUTES } from "../../../common/constant";
 
 export const ChooseHelper = () => {
   const user = useSelector(({ user }) => user.user);
+  const helpers = useSelector(( { user }) => user.helpers);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    findHelpers(dispatch);
+  }, []);
 
   return (
     <div className={styles["choose-helper-container"]}>
@@ -86,12 +96,12 @@ export const ChooseHelper = () => {
               <div className="w-full border-b-2 border-grey-100 text-center">
                 <p className="text-secondary text-lg font-bold">Helpers</p>
               </div>
-              <div className="w-full px-3">
-                <p className="text-white text-sm">
-                  <b>
-                    <u>Andrii</u>, <u>Alex</u>
-                  </b>
-                </p>
+              <div className="w-full px-3 flex gap-2 cursor-pointer">
+                {helpers && helpers.map((h, idx) => (
+                  <div key={`helper_${idx}`} className="font-bold text-sm underline text-secondary"  onClick={() => navigate(ROUTES.MAIN_ROUTES.PROFILE, {state: {_id: h._id}})}>
+                    {h.name}
+                  </div>
+                ))}
               </div>
             </div>
           </div>

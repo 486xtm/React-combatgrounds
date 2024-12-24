@@ -1,6 +1,7 @@
 import axios from "./axios";
 
 import {
+  setHelpers,
   setOther,
   setRankingData,
   setSpyInfo,
@@ -239,3 +240,15 @@ export const hireSpy = async (data, dispatch) => {
     );
   }
 };
+
+export const findHelpers = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/user/helpers`);
+    dispatch(setHelpers(res.data.helpers));
+    dispatch(setToast({ type: "success", msg: res.data.msg }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+}

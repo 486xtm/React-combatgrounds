@@ -11,6 +11,7 @@ const initialState = {
   attack_logs: {},
   stats: null,
   spy: null,
+  helpers: []
 };
 
 const userSlice = createSlice({
@@ -54,6 +55,9 @@ const userSlice = createSlice({
     setSpyInfo: (state, action) => {
       state.spy = action.payload;
     },
+    setHelpers: (state, action) => {
+      state.helpers = action.payload;
+    }
   },
 });
 
@@ -69,5 +73,6 @@ export const {
   setMission,
   setStats,
   setSpyInfo,
+  setHelpers
 } = userSlice.actions;
 export default userSlice.reducer;

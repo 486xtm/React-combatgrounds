@@ -94,7 +94,7 @@ export const Profile = () => {
         >
           <div className={`flex flex-col px-3 py-4`}>
             <div className="flex justify-between">
-              <p className="text-sm text-secondary font-bold">
+              <p className={`text-sm ${user.isHelper ? 'text-blue-400' : 'text-secondary'} font-bold`}>
                 {user && user.name}
               </p>
               <p className="text-sm text-[red] font-bold">
@@ -104,13 +104,18 @@ export const Profile = () => {
                   : 0}
               </p>
             </div>
-            <p className="text-[0.7rem] text-white mr-auto border border-gray px-1 py-1 rounded mt-1">
+            <div className="flex gap-2">
+            <p className="text-[0.7rem] text-white border border-gray px-1 py-1 rounded mt-1">
               {Number(user.role) != 0
                 ? "Supporter+"
                 : Boolean(user.isSupporter)
                 ? "Supporter"
                 : "Free Player"}
             </p>
+            {user && user.isHelper && <p className="text-[0.7rem] text-white border border-gray px-1 py-1 rounded mt-1">
+              Helper
+            </p>}
+            </div>
             <div className="flex px-2 relative mt-2">
               {user && user.grade ? (
                 <img
