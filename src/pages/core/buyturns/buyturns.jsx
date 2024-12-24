@@ -150,8 +150,8 @@ export const BuyTurns = () => {
 
   const handleBuy = (buy) => {
     setShow(false);
+    setBuyTurn(buy);
     setTimeout(() => {
-      setBuyTurn(buy);
       setShow(true);
     }, 100);
   };
