@@ -300,7 +300,7 @@ export const Attack = () => {
               </div> */}
               {Number(attackType) === 0 ? (
                 <>
-                  <div>
+                  {attackResult.win && <div>
                     {"You killed "}
                     <span className="text-green-500">
                       {attackResult.def &&
@@ -309,8 +309,8 @@ export const Attack = () => {
                         )}
                     </span>{" "}
                     troops during the conflict
-                  </div>
-                  <div>
+                  </div>}
+                  {!attackResult.win && <div>
                     {`${attackResult.def && attackResult.def.name} killed `}
                     <span className="text-green-500">
                       {attackResult.att &&
@@ -319,7 +319,7 @@ export const Attack = () => {
                         )}
                     </span>
                     {" troops during the conflict"}
-                  </div>
+                  </div>}
                 </>
               ) : (
                 <>
