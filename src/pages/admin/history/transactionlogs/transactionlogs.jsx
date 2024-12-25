@@ -195,7 +195,7 @@ export const AdminTransactionlogs = () => {
 
                   <td className="px-6 py-4 text-center  leading-none">
                     <div className="w-[100%] hyphens-auto">
-                      {buyInfo.find((val) => val.cost == tx.amount).total}
+                      {tx.total ? tx.total : buyInfo.find((val) => val.cost == tx.amount).total}
                     </div>
                   </td>
                   <td className="px-6 py-4 text-center  leading-none">
