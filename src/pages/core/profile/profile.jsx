@@ -25,8 +25,8 @@ export const Profile = () => {
     ...user_1,
     medals: user_1.medals
       ? [...user_1.medals].sort(
-          (a, b) => Number(a.medal.id) - Number(b.medal.id)
-        )
+        (a, b) => Number(a.medal.id) - Number(b.medal.id)
+      )
       : [],
   };
   const onlinePlayers = useSelector(({ online }) => online.onlinePlayers);
@@ -66,9 +66,9 @@ export const Profile = () => {
 
   const video_data =
     user &&
-    user.youtube &&
-    user.youtube.youtube &&
-    user.youtube.youtube.split("v=").length > 1
+      user.youtube &&
+      user.youtube.youtube &&
+      user.youtube.youtube.split("v=").length > 1
       ? user.youtube.youtube.split("v=")[1]
       : "";
 
@@ -82,15 +82,14 @@ export const Profile = () => {
       <div className="flex-1">
         <img src="/pics/user.gif" alt="user.gif" className="block" />
         <div
-          className={`mx-3 border-2 ${
-            user.characterType === "Soldier"
-              ? "border-primary"
-              : user.characterType === "Navyseal"
+          className={`mx-3 border-2 ${user.characterType === "Soldier"
+            ? "border-primary"
+            : user.characterType === "Navyseal"
               ? "border-navyseal"
               : user.characterType === "Terrorist"
-              ? "border-terrorist"
-              : "border-primary"
-          } flex flex-col mb-10`}
+                ? "border-terrorist"
+                : "border-primary"
+            } flex flex-col mb-10`}
         >
           <div className={`flex flex-col px-3 py-4`}>
             <div className="flex justify-between">
@@ -105,16 +104,16 @@ export const Profile = () => {
               </p>
             </div>
             <div className="flex gap-2">
-            <p className="text-[0.7rem] text-white border border-gray px-1 py-1 rounded mt-1">
-              {Number(user.role) != 0
-                ? "Supporter+"
-                : Boolean(user.isSupporter)
-                ? "Supporter"
-                : "Free Player"}
-            </p>
-            {user && user.isHelper && <p className="text-[0.7rem] text-white border border-gray px-1 py-1 rounded mt-1">
-              Helper
-            </p>}
+              <p className="text-[0.7rem] text-white border border-gray px-1 py-1 rounded mt-1">
+                {Number(user.role) != 0
+                  ? "Supporter+"
+                  : Boolean(user.isSupporter)
+                    ? "Supporter"
+                    : "Free Player"}
+              </p>
+              {user && user.isHelper && <p className="text-[0.7rem] text-white border border-gray px-1 py-1 rounded mt-1">
+                Helper
+              </p>}
             </div>
             <div className="flex px-2 relative mt-2">
               {user && user.grade ? (
@@ -142,56 +141,52 @@ export const Profile = () => {
                 </div>
               ) : null}
               <img
-                src={`/images/${
-                  onlineStatus ? "onlineimg.gif" : "offlineimg.gif"
-                }`}
+                src={`/images/${onlineStatus ? "onlineimg.gif" : "offlineimg.gif"
+                  }`}
                 alt="online"
                 className="mx-auto"
               />
             </div>
           </div>
           <div
-            className={`border-t-2 ${
-              user.characterType === "Soldier"
-                ? "border-primary"
-                : user.characterType === "Navyseal"
+            className={`border-t-2 ${user.characterType === "Soldier"
+              ? "border-primary"
+              : user.characterType === "Navyseal"
                 ? "border-navyseal"
                 : user.characterType === "Terrorist"
-                ? "border-terrorist"
-                : "border-primary"
-            }`}
+                  ? "border-terrorist"
+                  : "border-primary"
+              }`}
           >
             <img src="/pictures/chrismas/chrismas.jpg" />
           </div>
           <div
-            className={`flex border-t-2 ${
-              user.characterType === "Soldier"
-                ? "border-t-primary"
-                : user.characterType === "Navyseal"
+            className={`flex border-t-2 ${user.characterType === "Soldier"
+              ? "border-t-primary"
+              : user.characterType === "Navyseal"
                 ? "border-t-navyseal"
                 : user.characterType === "Terrorist"
-                ? "border-t-terrorist"
-                : "border-t-primary"
-            } border-transparent`}
+                  ? "border-t-terrorist"
+                  : "border-t-primary"
+              } border-transparent`}
           >
             <div
-              className={`flex flex-col px-3 py-2 flex-1 border-r-2 ${
-                user.characterType === "Soldier"
-                  ? "border-r-primary"
-                  : user.characterType === "Navyseal"
+              className={`flex flex-col px-3 py-2 flex-1 border-r-2 ${user.characterType === "Soldier"
+                ? "border-r-primary"
+                : user.characterType === "Navyseal"
                   ? "border-r-navyseal"
                   : user.characterType === "Terrorist"
-                  ? "border-r-terrorist"
-                  : "border-r-primary"
-              } border-transparent`}
+                    ? "border-r-terrorist"
+                    : "border-r-primary"
+                } border-transparent`}
             >
               <table
                 className={
                   user.characterType === "Soldier"
                     ? styles["custom-table"]
                     : user.characterType === "Navyseal"
-                    ? styles["navyseal-table"]
-                    : styles["terrorist-table"]
+                      ? styles["navyseal-table"]
+                      : styles["terrorist-table"]
                 }
               >
                 <tbody>
@@ -250,11 +245,10 @@ export const Profile = () => {
                   onMouseOver={() =>
                     handleMouseOver(
                       {
-                        msg: `${
-                          user && user.att_win
-                            ? Number(user.att_win).toLocaleString("en-US")
-                            : 0
-                        } Wins`,
+                        msg: `${user && user.att_win
+                          ? Number(user.att_win).toLocaleString("en-US")
+                          : 0
+                          } Wins`,
                         type: "wins",
                       },
                       2
@@ -280,11 +274,10 @@ export const Profile = () => {
                   onMouseOver={() =>
                     handleMouseOver(
                       {
-                        msg: `${
-                          user && user.recruits
-                            ? user.recruits.toLocaleString("en-US")
-                            : 0
-                        } Recruits`,
+                        msg: `${user && user.recruits
+                          ? user.recruits.toLocaleString("en-US")
+                          : 0
+                          } Recruits`,
                         type: "recruits",
                       },
                       2
@@ -310,11 +303,10 @@ export const Profile = () => {
                   onMouseOver={() =>
                     handleMouseOver(
                       {
-                        msg: `${
-                          user && user.level
-                            ? Number(user.level).toLocaleString("en-US")
-                            : 1
-                        } Level`,
+                        msg: `${user && user.level
+                          ? Number(user.level).toLocaleString("en-US")
+                          : 1
+                          } Level`,
                         type: "level",
                       },
                       2
@@ -340,11 +332,10 @@ export const Profile = () => {
                   onMouseOver={() =>
                     handleMouseOver(
                       {
-                        msg: `${
-                          user && user.def_win
-                            ? Number(user.def_win).toLocaleString("en-US")
-                            : 0
-                        } Defended Attacks`,
+                        msg: `${user && user.def_win
+                          ? Number(user.def_win).toLocaleString("en-US")
+                          : 0
+                          } Defended Attacks`,
                         type: "defended",
                       },
                       2
@@ -366,28 +357,42 @@ export const Profile = () => {
                 </div>
               </div>
               <div
-                className={`mt-1 mb-7 ${
-                  user.characterType === "Soldier"
-                    ? "bg-dark-primary"
-                    : user.characterType === "Navyseal"
+                className={`mt-1 mb-2 ${user.characterType === "Soldier"
+                  ? "bg-dark-primary"
+                  : user.characterType === "Navyseal"
                     ? "bg-dark-navyseal"
                     : user.characterType === "Terrorist"
-                    ? "bg-dark-terrorist"
-                    : "bg-dark-primary"
-                } text-sm font-bold text-white text-center my-5 `}
+                      ? "bg-dark-terrorist"
+                      : "bg-dark-primary"
+                  } text-sm font-bold text-white text-center my-5 `}
               >
                 ACHIEVEMENTS
               </div>
+              {user && user.achievements ? (<div className="flex flex-wrap justify-center gap-1">
+                {user.achievements
+                  .map((item, index) => (
+                    <img
+                      onMouseOver={() =>
+                        handleMouseOver(item, 4)
+                      }
+                      onMouseLeave={() => handleMouseLeave()}
+                      key={`achievement_${index}`}
+                      src={`${publicURL}/${item.avatar}`}
+                      className="cursor-pointer rounded"
+                      width="55"
+                      height="55"
+                    />
+                  ))}
+              </div>) : (<span>No achievements</span>)}
               <div
-                className={`my-1 ${
-                  user.characterType === "Soldier"
-                    ? "bg-dark-primary"
-                    : user.characterType === "Navyseal"
+                className={`mt-1 ${user.characterType === "Soldier"
+                  ? "bg-dark-primary"
+                  : user.characterType === "Navyseal"
                     ? "bg-dark-navyseal"
                     : user.characterType === "Terrorist"
-                    ? "bg-dark-terrorist"
-                    : "bg-dark-primary"
-                } text-sm font-bold text-white text-center my-5 `}
+                      ? "bg-dark-terrorist"
+                      : "bg-dark-primary"
+                  } text-sm font-bold text-white text-center mb-5`}
               >
                 MEDALS
               </div>
@@ -452,15 +457,14 @@ export const Profile = () => {
             </div>
             <div className="flex flex-col px-3 py-2 flex-1 w-1/2">
               <div
-                className={`my-1 ${
-                  user.characterType === "Soldier"
-                    ? "bg-dark-primary"
-                    : user.characterType === "Navyseal"
+                className={`my-1 ${user.characterType === "Soldier"
+                  ? "bg-dark-primary"
+                  : user.characterType === "Navyseal"
                     ? "bg-dark-navyseal"
                     : user.characterType === "Terrorist"
-                    ? "bg-dark-terrorist"
-                    : "bg-dark-primary"
-                } text-sm font-bold text-white text-center`}
+                      ? "bg-dark-terrorist"
+                      : "bg-dark-primary"
+                  } text-sm font-bold text-white text-center`}
               >
                 DESCRIPTION
               </div>
@@ -468,15 +472,14 @@ export const Profile = () => {
                 {user && user.description}
               </p>
               <div
-                className={`my-1 ${
-                  user.characterType === "Soldier"
-                    ? "bg-dark-primary"
-                    : user.characterType === "Navyseal"
+                className={`my-1 ${user.characterType === "Soldier"
+                  ? "bg-dark-primary"
+                  : user.characterType === "Navyseal"
                     ? "bg-dark-navyseal"
                     : user.characterType === "Terrorist"
-                    ? "bg-dark-terrorist"
-                    : "bg-dark-primary"
-                } text-sm font-bold text-white text-center`}
+                      ? "bg-dark-terrorist"
+                      : "bg-dark-primary"
+                  } text-sm font-bold text-white text-center`}
               >
                 PLAYER'S AVATAR
               </div>
@@ -492,15 +495,14 @@ export const Profile = () => {
                 />
               </div>
               <div
-                className={`my-1 ${
-                  user.characterType === "Soldier"
-                    ? "bg-dark-primary"
-                    : user.characterType === "Navyseal"
+                className={`my-1 ${user.characterType === "Soldier"
+                  ? "bg-dark-primary"
+                  : user.characterType === "Navyseal"
                     ? "bg-dark-navyseal"
                     : user.characterType === "Terrorist"
-                    ? "bg-dark-terrorist"
-                    : "bg-dark-primary"
-                } text-sm font-bold text-white text-center`}
+                      ? "bg-dark-terrorist"
+                      : "bg-dark-primary"
+                  } text-sm font-bold text-white text-center`}
               >
                 MONEY
               </div>
@@ -508,15 +510,14 @@ export const Profile = () => {
                 ${user && Number(user.money).toLocaleString("en-US")}
               </p>
               <div
-                className={`${
-                  user.characterType === "Soldier"
-                    ? "bg-dark-primary"
-                    : user.characterType === "Navyseal"
+                className={`${user.characterType === "Soldier"
+                  ? "bg-dark-primary"
+                  : user.characterType === "Navyseal"
                     ? "bg-dark-navyseal"
                     : user.characterType === "Terrorist"
-                    ? "bg-dark-terrorist"
-                    : "bg-dark-primary"
-                } text-sm font-bold text-white text-center my-1`}
+                      ? "bg-dark-terrorist"
+                      : "bg-dark-primary"
+                  } text-sm font-bold text-white text-center my-1`}
               >
                 LAST ACTIVITIES
               </div>
@@ -564,15 +565,14 @@ export const Profile = () => {
               )}
 
               <div
-                className={`${
-                  user.characterType === "Soldier"
-                    ? "bg-dark-primary"
-                    : user.characterType === "Navyseal"
+                className={`${user.characterType === "Soldier"
+                  ? "bg-dark-primary"
+                  : user.characterType === "Navyseal"
                     ? "bg-dark-navyseal"
                     : user.characterType === "Terrorist"
-                    ? "bg-dark-terrorist"
-                    : "bg-dark-primary"
-                } text-sm font-bold text-white text-center my-1`}
+                      ? "bg-dark-terrorist"
+                      : "bg-dark-primary"
+                  } text-sm font-bold text-white text-center my-1`}
               >
                 CREW
               </div>
@@ -602,15 +602,14 @@ export const Profile = () => {
                 )}
               </p>
               <div
-                className={`my-1 ${
-                  user.characterType === "Soldier"
-                    ? "bg-dark-primary"
-                    : user.characterType === "Navyseal"
+                className={`my-1 ${user.characterType === "Soldier"
+                  ? "bg-dark-primary"
+                  : user.characterType === "Navyseal"
                     ? "bg-dark-navyseal"
                     : user.characterType === "Terrorist"
-                    ? "bg-dark-terrorist"
-                    : "bg-dark-primary"
-                } text-sm font-bold text-white text-center mt-3`}
+                      ? "bg-dark-terrorist"
+                      : "bg-dark-primary"
+                  } text-sm font-bold text-white text-center mt-3`}
               >
                 SUPPLIES
               </div>
@@ -715,15 +714,14 @@ export const Profile = () => {
           </div>
 
           <div
-            className={`border-t-2 ${
-              user.characterType === "Soldier"
-                ? "border-primary"
-                : user.characterType === "Navyseal"
+            className={`border-t-2 ${user.characterType === "Soldier"
+              ? "border-primary"
+              : user.characterType === "Navyseal"
                 ? "border-navyseal"
                 : user.characterType === "Terrorist"
-                ? "border-terrorist"
-                : "border-primary"
-            }`}
+                  ? "border-terrorist"
+                  : "border-primary"
+              }`}
           >
             {user && user.youtube && user.youtube.enableYoutube ? (
               <YouTube
@@ -765,6 +763,13 @@ export const Profile = () => {
               ({Number(itemInfo.count).toLocaleString("en-US")})
             </div>
             <div className="text-white text-xs">{itemInfo.description}</div>
+          </div>
+        )}
+        {hoverType == 4 && (
+          <div>
+            <div className="text-white text-xs leading-none">
+              {itemInfo.name}
+            </div>
           </div>
         )}
       </Hover>
