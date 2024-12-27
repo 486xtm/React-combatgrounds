@@ -476,7 +476,7 @@ export const AdminUserList = () => {
                   </div>
                 </th>
                 <td className="px-6 py-4 text-left leading-none">
-                  {getRole(user && user.role)}
+                  {getRole(user)}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
                   {Number(user && user.money).toLocaleString("en-US")}
