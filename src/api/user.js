@@ -3,6 +3,7 @@ import axios from "./axios";
 import {
   setHelpers,
   setOther,
+  setRaiseFundParams,
   setRankingData,
   setSpyInfo,
   setStats,
@@ -246,6 +247,51 @@ export const findHelpers = async (dispatch) => {
     const res = await axios.get(`${basicURL}/user/helpers`);
     dispatch(setHelpers(res.data.helpers));
     dispatch(setToast({ type: "success", msg: res.data.msg }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+}
+
+export const getRaiseFundParams = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/user/raisefund_params`);
+    dispatch(setRaiseFundParams(res.data.params));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+}
+
+export const addRaiseFundParams = async (data, dispatch) => {
+  try {
+    const res = await axios.post(`${basicURL}/user/raisefund_params`, data);
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+}
+
+export const updateRaiseFundParams = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/user/raisefund_params`, data);
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+}
+
+export const removeRaiseFundParams = async (data, dispatch) => {
+  try {
+    const res = await axios.delete(`${basicURL}/user/raisefund_params`, data);
+    dispatch(setToast({ type: "success", msg: res.data.msg || "success" }));
+    getRaiseFundParams(dispatch);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })

@@ -11,7 +11,8 @@ const initialState = {
   attack_logs: {},
   stats: null,
   spy: null,
-  helpers: []
+  helpers: [],
+  raisefundParams: []
 };
 
 const userSlice = createSlice({
@@ -57,6 +58,9 @@ const userSlice = createSlice({
     },
     setHelpers: (state, action) => {
       state.helpers = action.payload;
+    },
+    setRaiseFundParams: (state, action) => {
+      state.raisefundParams = action.payload;
     }
   },
 });
@@ -73,6 +77,7 @@ export const {
   setMission,
   setStats,
   setSpyInfo,
-  setHelpers
+  setHelpers,
+  setRaiseFundParams
 } = userSlice.actions;
 export default userSlice.reducer;
