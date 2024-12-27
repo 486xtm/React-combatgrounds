@@ -71,7 +71,7 @@ export const getRole = (user) => {
     return "Free Player";
   }
 
-  if (Boolean(isSupporter || false)) {
+  if (Number(role || 0)) {
     return "Supporter+"
   }
 
