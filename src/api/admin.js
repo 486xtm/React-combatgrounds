@@ -1,4 +1,5 @@
 import { basicURL } from "../common/constant";
+import { setAllAchievements } from "../redux/achievementSlice";
 import {
   setAds,
   setBattleHistory,
@@ -81,16 +82,16 @@ export const getAllCrew = async (sortBy, dispatch) => {
         sortBy.tag !== "leader" && sortBy.tag !== "members"
           ? crews
           : crews.sort((a, b) => {
-              if (sortBy.tag === "leader") {
-                return sortBy.des
-                  ? a.leader.name.localeCompare(b.leader.name)
-                  : -1 * a.leader.name.localeCompare(b.leader.name);
-              } else {
-                return sortBy.des
-                  ? a.members.length - b.members.length
-                  : b.members.length - a.members.length;
-              }
-            })
+            if (sortBy.tag === "leader") {
+              return sortBy.des
+                ? a.leader.name.localeCompare(b.leader.name)
+                : -1 * a.leader.name.localeCompare(b.leader.name);
+            } else {
+              return sortBy.des
+                ? a.members.length - b.members.length
+                : b.members.length - a.members.length;
+            }
+          })
       )
     );
   } catch (err) {
@@ -433,3 +434,38 @@ export const getPaymentOptions = async (dispatch) => {
     );
   }
 };
+
+export const getAllAchievements = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/achievement/all`);
+    dispatch(setAllAchievements(res.data.achievements));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error ", msg: err.response?.data.msg || err.message })
+    )
+  }
+}
+
+export const addAchievementToUsers = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/achievement/user`, data);
+    setToast({ type: "success", msg: res.data.msg || "success " });
+    getUserById({ id: data.user_id }, dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error ", msg: err.response?.data.msg || err.message })
+    )
+  }
+}
+
+export const removeAchievementFromUsers = async (data, dispatch) => {
+  try {
+    const res = await axios.delete(`${basicURL}/achievement/user`, data);
+    setToast({ type: "success", msg: res.data.msg || "success " });
+    getUserById({ id: data.user_id }, dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error ", msg: err.response?.data.msg || err.message })
+    )
+  }
+}

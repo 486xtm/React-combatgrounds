@@ -11,6 +11,7 @@ import onlineReducer from "./onlineSlice";
 import shopReducer from "./shopSlice";
 import crweReducer from "./crewSlice";
 import adminReducer from './adminSlice';
+import achievementReducer from './achievementSlice';
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +26,7 @@ export const store = configureStore({
     online: onlineReducer,
     shop: shopReducer,
     crew: crweReducer,
-    admin: adminReducer
+    admin: adminReducer,
+    achievements: achievementReducer
   },
 });
