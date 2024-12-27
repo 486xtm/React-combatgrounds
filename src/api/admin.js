@@ -411,6 +411,17 @@ export const updateSalesEnabled = async (data, dispatch) => {
   }
 };
 
+export const updateIsHolidayRound = async (data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/round/holiday`, data);
+    dispatch({ type: "success", msg: res.msg || "success" });
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+}
+
 export const getPaymentOptions = async (dispatch) => {
   try {
     const res = await axios.get(`${basicURL}/payment/option`);
