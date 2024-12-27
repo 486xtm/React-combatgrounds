@@ -85,19 +85,19 @@ export const AdminCrewInfo = () => {
         <div className="flex flex-col w-[24%] rounded-xl bg-white px-3 py-5 items-center cursor-pointer shadow-md">
           <span className="font-bold text-xxl">Net Worth</span>
           <span className="font-bold text-xxl">
-            {crew ? crew.netWorth.toLocaleString("en-US") : "---"}
+            {crew && crew.netWorth ? Number(crew.netWorth).toLocaleString("en-US") : "---"}
           </span>
         </div>
         <div className="flex flex-col w-[24%] rounded-xl bg-white px-3 py-5 items-center cursor-pointer shadow-md">
           <span className="font-bold text-xxl">Average Net Worth</span>
           <span className="font-bold text-xxl">
-            {crew ? crew.averageNetworth.toLocaleString("en-US") : "---"}
+            {crew && crew.averageNetworth ? Number(crew.averageNetworth).toLocaleString("en-US") : "---"}
           </span>
         </div>
         <div className="flex flex-col w-[24%] rounded-xl bg-white px-3 py-5 items-center cursor-pointer shadow-md">
           <span className="font-bold text-xxl">Cash in Bank</span>
           <span className="font-bold text-xxl">
-            {crew ? crew.money.toLocaleString("en-US") : "---"}
+            {crew && crew.money ? Number(crew.money).toLocaleString("en-US") : "---"}
           </span>
         </div>
       </div>
@@ -241,12 +241,12 @@ export const AdminCrewInfo = () => {
             >
               <img
                 src={
-                  crew && crew.leader.avatar
+                  crew && crew.leader && crew.leader.avatar
                     ? `${publicURL}/${crew.leader.avatar}`
                     : "/pics/avatar.gif"
                 }
                 className={`mx-auto z-20 h-[90%] w-auto border-b border-yellow-200 min-w-full ${
-                  crew && !!onlinePlayers.find((x) => x._id === crew.leader._id)
+                  crew && crew.leader && !!onlinePlayers.find((x) => x._id === crew.leader._id)
                     ? ""
                     : "grayscale"
                 }`}

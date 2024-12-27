@@ -28,6 +28,7 @@ export const AdminHome = () => {
     // Chart data
     chart.data = [
       { role: "Admin", count: dashboard.admins },
+      { role: "Supporter+", count: dashboard.supporterPlus },
       { role: "Supporter", count: dashboard.supporters },
       { role: "Free Player", count: dashboard.freePlayers },
     ];
@@ -43,7 +44,8 @@ export const AdminHome = () => {
     series.colors.list = [
       am4core.color("#FF6384"),
       am4core.color("#36A2EB"),
-      am4core.color("#FFCE56"),
+      am4core.color("#ffaf00"),
+      am4core.color("#9400d3"),
     ];
 
     // Cleanup chart on component unmount
