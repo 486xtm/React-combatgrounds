@@ -8,14 +8,18 @@ import { getGradeString, getRole } from "../../../common/utils";
 import styles from "./styles.module.css";
 import Hover from "../../../common/components/hover/hover";
 import { FaTrashCan } from "react-icons/fa6";
-import { deleteUser, removeAvatar, resetUser } from "../../../api/admin";
+import { addAchievementToUsers, deleteUser, getAllAchievements, removeAchievementFromUsers, removeAvatar, resetUser } from "../../../api/admin";
 import { DeleteAlert } from "../../../common/components/delete_alert/delete";
+import Modal from "../../../common/components/modal/modal";
+import { ConfirmAlert } from "../../../common/components/confirm_alert/confirm_alert";
+
 export const AdminUserInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { user_id } = useParams();
   const userInfo = useSelector(({ user }) => user.other);
+
+  const { user_id } = useParams();
   const [user, setUser] = useState(userInfo);
   const [imgHover, setImgHover] = useState(false);
   const [showHover, setShowHover] = useState(false);
@@ -24,6 +28,11 @@ export const AdminUserInfo = () => {
   const [descriptionReaminLetters, setDescriptionReaminLetters] = useState(600);
   const [deleteType, setDeleteType] = useState(0);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const [showAchievementModal, setShowAchievementModal] = useState(false);
+  const [showRemoveAchivementModal, setShowRemoveAchievementModal] = useState(null);
+
+  const achievements = useSelector(({ achievements }) => achievements.all);
+
   const handleMouseOver = (item, type) => {
     setShowHover(true);
     setItemInfo(item);
@@ -47,8 +56,20 @@ export const AdminUserInfo = () => {
     setShowDeleteAlert(false);
   };
 
+  const handleAddAchievement = (achievement_id) => {
+    addAchievementToUsers({ achievement_id, user_id }, dispatch);
+  }
+
+  const handleRemoveAchievement = () => {
+    removeAchievementFromUsers({ user_id, achievement_id: showRemoveAchivementModal._id }, dispatch);
+    setShowRemoveAchievementModal(null);
+  }
+
   useEffect(() => {
-    if (user_id) getUserById({ id: user_id }, dispatch);
+    if (user_id) {
+      getUserById({ id: user_id }, dispatch);
+      getAllAchievements(dispatch);
+    }
   }, [user_id]);
 
   useEffect(() => {
@@ -87,9 +108,8 @@ export const AdminUserInfo = () => {
             className="w-full h-auto   "
           />
           <div
-            className={`left-0 bg-[rgba(255,255,255,0.6)] w-[235px] transition-opacity duration-300 h-[235px] right-0 absolute top-0 flex items-center text-gray-700 justify-center text-[40px] ${
-              imgHover ? "opacity-100" : "opacity-0"
-            }`}
+            className={`left-0 bg-[rgba(255,255,255,0.6)] w-[235px] transition-opacity duration-300 h-[235px] right-0 absolute top-0 flex items-center text-gray-700 justify-center text-[40px] ${imgHover ? "opacity-100" : "opacity-0"
+              }`}
           >
             <FaTrashCan />
           </div>
@@ -397,7 +417,7 @@ export const AdminUserInfo = () => {
                     <div className="w-[40%]">
                       <input
                         value={count ? count : 0}
-                        onChange={() => {}}
+                        onChange={() => { }}
                         disabled
                         className="rounded-md border-2 w-[100%] px-2"
                       />
@@ -422,7 +442,7 @@ export const AdminUserInfo = () => {
                     <div className="w-[40%]">
                       <input
                         value={count ? count : 0}
-                        onChange={() => {}}
+                        onChange={() => { }}
                         disabled
                         className="rounded-md border-2 w-[100%] px-2"
                       />
@@ -448,7 +468,7 @@ export const AdminUserInfo = () => {
                     <div className="w-[40%]">
                       <input
                         value={count ? count : 0}
-                        onChange={() => {}}
+                        onChange={() => { }}
                         disabled
                         className="rounded-md border-2 w-[100%] px-2"
                       />
@@ -473,13 +493,48 @@ export const AdminUserInfo = () => {
                     <div className="w-[40%]">
                       <input
                         value={count ? count : 0}
-                        onChange={() => {}}
+                        onChange={() => { }}
                         disabled
                         className="rounded-md border-2 w-[100%] px-2"
                       />
                     </div>
                   </div>
                 ))}
+          </div>
+          <div className="bg-gray-100 shadow-lg rounded-lg py-3 ml-4 relative">
+            <div className="flex gap-2 text-center mb-3 font-[900] text-[20px] justify-center items-center">
+              <span>Achievements</span>
+              <div className="border-[3px] rounded-lg px-2 border-gray-800 cursor-pointer hover:border-green-600 hover:text-green-600" onClick={() => setShowAchievementModal(true)}>+</div>
+            </div>
+            {user && user.achievements && user.achievements.length ? (<div className="flex flex-wrap justify-center gap-1">
+              {Array.from(user.achievements).sort((a, b) => a.id - b.id)
+                .map((item, index) => (
+                  <img
+                    key={`achievement_${index}`}
+                    src={`${publicURL}/${item.avatar}`}
+                    className="cursor-pointer rounded"
+                    width="55"
+                    height="55"
+                    onClick={() => setShowRemoveAchievementModal(item)}
+                  />
+                ))}
+            </div>) : (<p className="text-center">No achievements</p>)}
+            <Modal isOpen={showAchievementModal} onClose={() => setShowAchievementModal(false)}>
+              <div className="flex flex-wrap gap-2">
+                {Array.from(achievements).sort((a, b) => a.id - b.id)
+                  .map((item, index) => (
+                    <img
+                      key={`achievement_${index}`}
+                      src={`${publicURL}/${item.avatar}`}
+                      className="cursor-pointer rounded"
+                      width="55"
+                      height="55"
+                      onClick={() => handleAddAchievement(item._id)}
+                    />
+                  ))}
+              </div>
+            </Modal>
+            <ConfirmAlert isOpen={showRemoveAchivementModal} onClose={() => setShowRemoveAchievementModal(null)} description="Please click OK to remove achievement from this user." onAccept={handleRemoveAchievement} />
           </div>
         </div>
       </div>
