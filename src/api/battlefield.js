@@ -4,6 +4,7 @@ import {
   setBFs,
   setBattleField,
   setIsRuler,
+  setParams,
   setRegion,
 } from "../redux/battlefieldSlice";
 import { setUser } from "../redux/userSlice";
@@ -150,4 +151,51 @@ export const checkBFs = async (dispatch) => {
   }
 };
 
-export const getRegions = async () => {};
+//admin-params
+export const getAllParams = async (dispatch) => {
+  try {
+    const res = await axios.get(`${basicURL}/battlefield/params`);
+    const { params } = res.data;
+    dispatch(setParams(params));
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+}
+
+export const removeParams = async(data, dispatch) => {
+  try {
+    const res = await axios.delete(`${basicURL}/battlefield/params`, data);
+    dispatch(setToast({type: 'success', msg: res.data.msg || "success"}));
+    getAllParams(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+}
+
+export const updateParams = async(data, dispatch) => {
+  try {
+    const res = await axios.patch(`${basicURL}/battlefield/params`, data);
+    dispatch(setToast({type: 'success', msg: res.data.msg || "success"}));
+    getAllParams(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+}
+
+export const addParams = async(data, dispatch) => {
+  try {
+    const res = await axios.post(`${basicURL}/battlefield/params`, data);
+    dispatch(setToast({type: 'success', msg: res.data.msg || "success"}));
+    getAllParams(dispatch);
+  } catch (err) {
+    dispatch(
+      setToast({ type: "error", msg: err.response?.data.msg || err.message })
+    );
+  }
+}

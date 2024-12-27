@@ -14,19 +14,18 @@ export const getColorSchemaByCharacterType = (characterType) => {
   return characterType === "Soldier"
     ? "dark-primary"
     : characterType === "Navyseal"
-    ? "dark-navyseal"
-    : characterType === "Terrorist"
-    ? "dark-terrorist"
-    : "primary";
+      ? "dark-navyseal"
+      : characterType === "Terrorist"
+        ? "dark-terrorist"
+        : "primary";
 };
 
 export const formattedDate = (d) => {
   const date = new Date(d);
 
   // Format date
-  const formattedDate = `${date.getDate()}/${
-    date.getMonth() + 1
-  }/${date.getFullYear()}`;
+  const formattedDate = `${date.getDate()}/${date.getMonth() + 1
+    }/${date.getFullYear()}`;
 
   // Format time
   const hours = String(date.getHours()).padStart(2, "0"); // Add leading zero
@@ -46,13 +45,12 @@ export const formattedDuration = (d) => {
   const minutes = duration.minutes();
   const seconds = duration.seconds();
 
-  return `${
-    (days ? `${days} days ` : "") +
+  return `${(days ? `${days} days ` : "") +
     (hours ? `${hours} hours ` : "") +
     (minutes ? `${minutes} minutes ` : "") +
     (seconds ? `${seconds} seconds ` : "") +
     "ago"
-  }`;
+    }`;
 };
 
 export const pagination = (data) => {
@@ -65,10 +63,18 @@ export const pagination = (data) => {
   return pages;
 };
 
-export const getRole = (role) => {
-  if (role === undefined || role === null) return "N/A";
-  if (role === 0 || role === "0") return "Free Player";
-  if (role === -1 || role === "-1") return "Admin";
+export const getRole = (user) => {
+  if (!user) return "N/A";
+  const { role, isSupporter } = user;
+  if (role === -1) return "Admin";
+  if (!Number(role || 0) && !Boolean(isSupporter || false)) {
+    return "Free Player";
+  }
+
+  if (Boolean(isSupporter || false)) {
+    return "Supporter+"
+  }
+
   return "Supporter";
 };
 

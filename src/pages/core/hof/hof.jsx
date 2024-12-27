@@ -63,7 +63,7 @@ export const HallOfFame = () => {
               <table className={styles["custom-table"]}>
                 <tbody>
                   <tr>
-                    <td colSpan={2}>All-Time Highest Net Worth</td>
+                    <td colSpan={2} style={{ color: "red"}}>All-Time Highest Net Worth</td>
                   </tr>
                   <tr>
                     <td>Name</td>
@@ -99,7 +99,7 @@ export const HallOfFame = () => {
               <table className={styles["custom-table"]}>
                 <tbody>
                   <tr>
-                    <td colSpan={2}>All-Time Highest Crew Networth</td>
+                    <td colSpan={2} style={{ color: "blue"}}>All-Time Highest Crew Networth</td>
                   </tr>
                   <tr>
                     <td>Name</td>
@@ -115,6 +115,68 @@ export const HallOfFame = () => {
                       {hofData && hofData.highest_crew_networth
                         ? Number(
                             hofData.highest_crew_networth.value
+                          ).toLocaleString("en-US")
+                        : "---"}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table className={styles["custom-table"]}>
+                <tbody>
+                  <tr>
+                    <td colSpan={2} style={{ color: "green"}}>All-Time Holiday Highest Net Worth</td>
+                  </tr>
+                  <tr>
+                    <td>Name</td>
+                    <td>Net Worth</td>
+                  </tr>
+                  <tr>
+                    <td className="cursor-pointer">
+                      <u
+                        onClick={() =>
+                          navigate(ROUTES.MAIN_ROUTES.PROFILE, {
+                            state: hofData.highest_holiday_user_networth.user,
+                          })
+                        }
+                      >
+                        {hofData &&
+                        hofData.highest_holiday_user_networth &&
+                        hofData.highest_holiday_user_networth.user
+                          ? hofData.highest_holiday_user_networth.user.name
+                          : "---"}
+                      </u>
+                    </td>
+                    <td>
+                      {hofData && hofData.highest_holiday_user_networth
+                        ? Number(
+                            hofData.highest_holiday_user_networth.value
+                          ).toLocaleString("en-US")
+                        : "---"}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table className={styles["custom-table"]}>
+                <tbody>
+                  <tr>
+                    <td colSpan={2} style={{ color: "darkviolet"}}>All-Time Holiday Highest Crew Networth</td>
+                  </tr>
+                  <tr>
+                    <td>Name</td>
+                    <td>Net Worth</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      {hofData && hofData.highest_holiday_crew_networth
+                        ? hofData.highest_holiday_crew_networth.crew
+                        : "---"}
+                    </td>
+                    <td>
+                      {hofData && hofData.highest_holiday_crew_networth
+                        ? Number(
+                            hofData.highest_holiday_crew_networth.value
                           ).toLocaleString("en-US")
                         : "---"}
                     </td>

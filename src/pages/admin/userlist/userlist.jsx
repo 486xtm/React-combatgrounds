@@ -155,7 +155,7 @@ export const AdminUserList = () => {
         </div>
       </div>
       <div className="overflow-x-auto shadow-md  -mx-10  bg-white px-2 min_calc_height">
-        <table className="w-full min-w-[1300px] text-sm text-left overflow-x-auto ">
+        <table className="w-full min-w-[1300px] text-sm text-left overflow-x-auto">
           <thead>
             <tr className="text-xs uppercase bg-gray-50">
               <th scope="col" className="p-4">
@@ -476,7 +476,7 @@ export const AdminUserList = () => {
                   </div>
                 </th>
                 <td className="px-6 py-4 text-left leading-none">
-                  {getRole(user && user.role)}
+                  {getRole(user)}
                 </td>
                 <td className="px-6 py-4 text-left leading-none">
                   {Number(user && user.money).toLocaleString("en-US")}

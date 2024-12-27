@@ -378,7 +378,7 @@ export const BuyTurns = () => {
         }}
         onClose={() => setShowConfirmAlert(false)}
         description={
-          "Once you transfer turns, then you can't take out them back"
+          "Once you transfer turns, you cannot put them back into storage."
         }
       />
     </PayPalScriptProvider>
