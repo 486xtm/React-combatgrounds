@@ -369,7 +369,7 @@ export const Profile = () => {
                 ACHIEVEMENTS
               </div>
               {user && user.achievements ? (<div className="flex flex-wrap justify-center gap-1">
-                {user.achievements
+                {Array.from(user.achievements).sort((a, b) => a.id - b.id)
                   .map((item, index) => (
                     <img
                       onMouseOver={() =>

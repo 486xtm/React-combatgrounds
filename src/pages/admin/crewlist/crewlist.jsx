@@ -299,7 +299,7 @@ export const AdminCrewList = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 text-center leading-none">
-                    {crew.leader.name}
+                    {crew.leader && crew.leader.name}
                   </td>
                   <td className="px-6 py-4 text-center leading-none">
                     {Number(crew.money).toLocaleString("en-US")}
