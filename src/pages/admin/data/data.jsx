@@ -5,7 +5,8 @@ import { BattleField } from "./battlefield/battlefield";
 import { ShopItems } from "./shop/shop";
 import { NukeCountry } from "./nukecountry/nukecountry";
 import { CrewBosses } from "./crewbosses/crewbosses";
-const tabs = ["Battle Field", "Nuke Countries", "Shop Items", "Crew Bosses"];
+import { Params } from "./params/params";
+const tabs = ["Battle Field", "Nuke Countries", "Shop Items", "Crew Bosses", "Params"];
 export const AdminData = () => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
 
@@ -27,6 +28,7 @@ export const AdminData = () => {
       <TabPanel isActive={activeTabIndex === 1}><NukeCountry/></TabPanel>
       <TabPanel isActive={activeTabIndex === 2}><ShopItems/></TabPanel>
       <TabPanel isActive={activeTabIndex === 3}><CrewBosses/></TabPanel>
+      <TabPanel isActive={activeTabIndex === 4}><Params/></TabPanel>
     </div>
   );
 };
