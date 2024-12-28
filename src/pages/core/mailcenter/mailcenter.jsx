@@ -90,8 +90,8 @@ export const MailCenter = () => {
     setReceiver("");
   };
   useEffect(() => {
-    getMessage(dispatch);
-  }, [viewType]);
+    if (detailedViewMessage === null) getMessage(dispatch);
+  }, [viewType, detailedViewMessage]);
 
   useEffect(() => {
     setMessages(
@@ -206,7 +206,7 @@ export const MailCenter = () => {
                         </td>
                         <td>
                           <span
-                            className="text-white text-sm font-bold underline cursor-pointer hover:text-secondary"
+                            className={`${viewType === 'Inbox' && !msg.read ? 'text-secondary' : 'text-white'} text-sm font-bold underline cursor-pointer hover:text-secondary`}
                             onClick={() =>
                               handleUserClick(
                                 viewType !== "Inbox" ? msg.receiver : msg.sender
@@ -224,9 +224,9 @@ export const MailCenter = () => {
                         </td>
                         <td>
                           <span
-                            className="text-white text-sm font-bold underline cursor-pointer hover:text-secondary"
+                            className={`${viewType === 'Inbox' && !msg.read ? 'text-secondary' : 'text-white'} text-sm font-bold underline cursor-pointer hover:text-secondary`}
                             onClick={() => {
-                              checkMessage({ msgId: msg._id }, dispatch);
+                              if (viewType === 'Inbox') checkMessage({ msgId: msg._id }, dispatch);
                               setDetailedViewMessage(msg);
                             }}
                           >
@@ -234,7 +234,7 @@ export const MailCenter = () => {
                           </span>
                         </td>
                         <td>
-                          <span className="text-white text-sm font-bold">
+                          <span className={`${viewType === 'Inbox' && !msg.read ? 'text-secondary' : 'text-white'} text-sm font-bold`}>
                             {moment(msg.created_at).format(
                               "MMMM Do, YYYY, h:mm A"
                             )}
@@ -312,7 +312,7 @@ export const MailCenter = () => {
                 <span className="w-[100px] text-white font-bold text-lg">
                   From:
                 </span>
-                <span className="text-white text-lg">
+                <span className={`${detailedViewMessage.unread ? 'text-secondary' : 'text-white'} text-lg`}>
                   {detailedViewMessage.sender
                     ? detailedViewMessage.sender.name
                     : "Deleted User"}
