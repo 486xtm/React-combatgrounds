@@ -81,7 +81,7 @@ export const HeadQuarter = React.memo(() => {
                   Attacks won
                 </div>
                 <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold text-center">
-                  0
+                  {Number(user.att_win || 0).toLocaleString('en-US')}
                 </div>
               </div>
               <div className="flex w-full">
@@ -89,7 +89,7 @@ export const HeadQuarter = React.memo(() => {
                   Attacks lost
                 </div>
                 <div className="text-white border border-gray-100 text-sm flex-1 bg-dark-primary font-bold text-center">
-                  0
+                  {Number(user.att_lose || 0).toLocaleString('en-US')}
                 </div>
               </div>
               <div className="flex w-full">
@@ -97,7 +97,7 @@ export const HeadQuarter = React.memo(() => {
                   Successful defends
                 </div>
                 <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold text-center">
-                  0
+                  {Number(user.def_win || 0).toLocaleString('en-US')}
                 </div>
               </div>
               <div className="flex w-full">
@@ -105,7 +105,7 @@ export const HeadQuarter = React.memo(() => {
                   Unsuccessful defends
                 </div>
                 <div className="text-white border border-gray-100 text-sm flex-1 bg-dark-primary font-bold text-center">
-                  0
+                  {Number(user.def_lose || 0).toLocaleString('en-US')}
                 </div>
               </div>
             </div>
