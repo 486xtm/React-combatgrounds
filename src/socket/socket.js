@@ -42,6 +42,13 @@ export const setupSocketListeners = () => {
     });
   });
 
+  socket.on("new login detected", () => {
+    localStorage.setItem(
+      "EXPIRATION_DATE",
+      new Date().getTime() - 10 * 60 * 1000
+    );
+  });
+
   socket.on("_ambush", (data) => {
     // store.dispatch(setToast({ type: "info", msg: data._msg }));
     if (data.ambushType === 1) {
