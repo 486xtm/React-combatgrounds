@@ -88,17 +88,17 @@ export const CrewBoard = () => {
             ))}
         </div>
       </div>
-      <div className="absolute ml-3 mt-[12px] flex gap-2 h-[30px]">
-        <input
+      <div className="mt-[70px] flex flex-col gap-1 h-[200px] bg-[#141408] rounded-lg pb-2">
+        <textarea
           placeholder="Type a message..."
-          className="w-[300px] text-xs resize-none h-[30px] px-[7px] py-[3px] rounded-lg bg-transparent border-yellow-200 border-[1px] shadow-inner shadow-[rgba(255,255,255,0.3)]"
+          className="text-xs resize-none m-3 px-[7px] py-[3px] rounded-lg flex-1 bg-transparent border-yellow-200 border-[1px] shadow-inner shadow-[rgba(255,255,255,0.3)]"
           onChange={(ev) => setText(ev.target.value)}
           value={text}
-          rows={1}
+          rows={5}
         />
         <button
           onClick={handleSend}
-          className="rounded-lg border-2 px-4 border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white shadow-inherit"
+          className="rounded-lg border-2 px-4 ml-auto mr-5 border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white shadow-inherit"
         >
           Send
         </button>
