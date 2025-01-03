@@ -148,7 +148,7 @@ export const Profile = () => {
               />
             </div>
           </div>
-          <div
+          {/* <div
             className={`border-t-2 ${user.characterType === "Soldier"
               ? "border-primary"
               : user.characterType === "Navyseal"
@@ -159,7 +159,7 @@ export const Profile = () => {
               }`}
           >
             <img src="/pictures/chrismas/chrismas.jpg" />
-          </div>
+          </div> */}
           <div
             className={`flex border-t-2 ${user.characterType === "Soldier"
               ? "border-t-primary"

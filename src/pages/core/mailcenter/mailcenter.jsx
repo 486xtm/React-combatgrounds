@@ -357,7 +357,7 @@ export const MailCenter = () => {
                   defaultValue={detailedViewMessage.content}
                 />
               </div>
-              <button
+              {viewType !== 'Sent' && <button
                 onClick={() => {
                   if (detailedViewMessage.sender)
                     handleReply(detailedViewMessage.sender.name);
@@ -365,7 +365,7 @@ export const MailCenter = () => {
                 className="ml-[100px] bg-gray-100 px-2 rounded-md"
               >
                 reply
-              </button>
+              </button>}
             </div>
           )
         ) : (

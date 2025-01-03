@@ -3,10 +3,6 @@ import { getRaiseFundParams, updateRaiseFundParams } from '../../../../api/user'
 import { useDispatch, useSelector } from 'react-redux';
 
 export const RaiseFundParams = () => {
-  const [val0, setVal0] = useState(0);
-  const [val1, setVal1] = useState(0);
-  const [val2, setVal2] = useState(0);
-  const [val3, setVal3] = useState(0);
   const [loading, setLoading] = useState(false);
   const [params, setParams] = useState([]);
 
@@ -45,7 +41,8 @@ export const RaiseFundParams = () => {
                 if (v._id !== p._id) {
                   return v;
                 }
-                return { ...v, value: Number(e.target.value.replace(/[^0-9]/g, "") || 0) }
+                console.log(e.target.value, '->', e.target.value.replace(/[^0-9.]/g, ""))
+                return { ...v, value: Number(e.target.value.replace(/[^0-9.]/g, "") || 0) }
               }))
             }}
           />
