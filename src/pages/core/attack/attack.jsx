@@ -4,20 +4,16 @@ import Modal from "../../../common/components/modal/modal";
 import { getAttackableUsers, attackUser } from "../../../api/attack";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleShowModal } from "../../../redux/userSlice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { publicURL } from "../../../common/constant";
-const mock = [
-  {
-    name: "sealife",
-    recruits: 2000,
-    netWorth: 2000,
-    money: 100000,
-  },
-];
 
 export const Attack = () => {
+
+  const location = useLocation();
+  const initialName = location.state;
+
   const [tab, setTab] = useState(0);
-  const [name, setName] = useState("");
+  const [name, setName] = useState(initialName || "");
   const [attackType, setAttackType] = useState(0);
   const [attackMsg, setAttackMsg] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -157,9 +153,8 @@ export const Attack = () => {
                 </div>
               </div>
               <div
-                className={` absolute right-0 rounded-lg h-[2px] bg-yellow-200 -mt-2 ${
-                  tab == 0 ? "mr-[125px] w-[100px]" : "mr-[35px] w-[90px]"
-                } transition-all duration-200`}
+                className={` absolute right-0 rounded-lg h-[2px] bg-yellow-200 -mt-2 ${tab == 0 ? "mr-[125px] w-[100px]" : "mr-[35px] w-[90px]"
+                  } transition-all duration-200`}
               ></div>
             </div>
           </div>
@@ -283,9 +278,8 @@ export const Attack = () => {
                 {attackResult.win ? " rewarded" : " deducted"}!
               </div>
               <div
-                className={`text-[25px] ${
-                  attackResult.win ? "text-green-500" : "text-red-700"
-                } my-2`}
+                className={`text-[25px] ${attackResult.win ? "text-green-500" : "text-red-700"
+                  } my-2`}
               >
                 You {attackResult.win ? "have won" : "have lost"} the
                 attack!
@@ -324,22 +318,20 @@ export const Attack = () => {
               ) : (
                 <>
                   <div>
-                    {`${
-                      attackResult && attackResult.win
+                    {`${attackResult && attackResult.win
                         ? "you cause "
                         : "The enemy cause "
-                    }`}
+                      }`}
                     <span className="text-green-500">
                       $
                       {attackResult.win
                         ? attackResult.def &&
-                          (attackResult.def.loss || 0).toLocaleString("en-US")
+                        (attackResult.def.loss || 0).toLocaleString("en-US")
                         : attackResult.att &&
-                          (attackResult.att.loss || 0).toLocaleString("en-US")}
+                        (attackResult.att.loss || 0).toLocaleString("en-US")}
                     </span>
-                    {` worth of damage to ${
-                      attackResult && attackResult.win ? "your enemy" : "you"
-                    }`}
+                    {` worth of damage to ${attackResult && attackResult.win ? "your enemy" : "you"
+                      }`}
                   </div>
                   {/* <div>
                     Your items got destroyed of worth{" "}
@@ -350,9 +342,8 @@ export const Attack = () => {
                     </span>
                   </div> */}
                   <div>
-                    {`${
-                      attackResult && attackResult.win ? "You" : "The enemy"
-                    } got `}
+                    {`${attackResult && attackResult.win ? "You" : "The enemy"
+                      } got `}
                     <span className="text-green-500">
                       $
                       {Number(

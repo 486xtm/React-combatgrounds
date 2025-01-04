@@ -127,19 +127,32 @@ export const Profile = () => {
                 />
               ) : null}
               {user && currentUser && user._id !== currentUser._id ? (
-                <div
-                  onClick={() => {
-                    localStorage.setItem("MAILTYPE", "Compose");
-                    localStorage.setItem("RECEIVER", user && user.name);
-                    navigate("/mailcenter");
-                  }}
-                  className={`my-auto cursor-pointer absolute top-1/2 right-0 px-2 transform -translate-y-1/2 text-white text-sm font-bold bg-${getColorSchemaByCharacterType(
-                    user.characterType
-                  )}`}
-                >
-                  Message this player
+                <div className="flex flex-col absolute gap-1 right-0 top-2">
+                  <div
+                    onClick={() => {
+                      localStorage.setItem("MAILTYPE", "Compose");
+                      localStorage.setItem("RECEIVER", user && user.name);
+                      navigate("/mailcenter");
+                    }}
+                    className={`my-auto cursor-pointer top-1/2 right-0 px-2 transform -translate-y-1/2 text-white text-sm font-bold bg-${getColorSchemaByCharacterType(
+                      user.characterType
+                    )}`}
+                  >
+                    Message this player
+                  </div>
+                  <div
+                    onClick={() => {
+                      navigate(ROUTES.MAIN_ROUTES.ATTACK, { state: user && user.name })
+                    }}
+                    className={`my-auto cursor-pointer top-1/2 right-0 px-2 transform -translate-y-1/2 text-white text-center text-sm font-bold bg-${getColorSchemaByCharacterType(
+                      user.characterType
+                    )}`}
+                  >
+                    Attack this player
+                  </div>
                 </div>
               ) : null}
+
               <img
                 src={`/images/${onlineStatus ? "onlineimg.gif" : "offlineimg.gif"
                   }`}

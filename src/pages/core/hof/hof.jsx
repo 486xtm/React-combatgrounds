@@ -210,6 +210,7 @@ export const HallOfFame = () => {
               <td>Name</td>
               <td>Net Worth</td>
               <td>Medals</td>
+              <td>Prize</td>
             </tr>
             {hofData &&
               hofData.round &&
@@ -232,6 +233,7 @@ export const HallOfFame = () => {
                   </td>
                   <td>{l && Number(l.netWorth).toLocaleString()}</td>
                   <td>{l && l.medals && l.medals.name}</td>
+                  <td>{l && l.prize && hofData.round.bounty ? (!idx ? `${hofData.round.bounty} & ` : '') + l.prize : l.prize}</td>
                 </tr>
               ))}
           </tbody>
