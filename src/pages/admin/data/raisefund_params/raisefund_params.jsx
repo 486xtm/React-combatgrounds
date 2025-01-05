@@ -35,14 +35,14 @@ export const RaiseFundParams = () => {
           <span className="text-xl font-bold w-[300px]">{p.title}</span>
           <input
             className="border border-gray-400 rounded p-1 ml-2"
-            value={Number(p.value || 0).toLocaleString('en-US')} // Controlled input
+            value={(p.value)} // Controlled input
             onChange={(e) => {
               setParams(params.map((v) => {
                 if (v._id !== p._id) {
                   return v;
                 }
-                console.log(e.target.value, '->', e.target.value.replace(/[^0-9.]/g, ""))
-                return { ...v, value: Number(e.target.value.replace(/[^0-9.]/g, "") || 0) }
+                // console.log(e.target.value, '->', e.target.value.replace(/[^0-9.]/g, ""))
+                return { ...v, value: e.target.value }
               }))
             }}
           />
