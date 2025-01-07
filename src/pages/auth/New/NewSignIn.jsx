@@ -97,7 +97,7 @@ const NewSignIn = () => {
           </button>
         </div>
 
-        <div className="flex flex-col rounded-[1rem] w-[80%] 2xl:w-[400px] md:w-[500px]  bg-[rgba(0,0,0,0.3)] mx-auto text-center md:pt-10 md:pb-10 pt-5 pb-10 md:px-5 px-5 2xl:absolute left-[1100px] right-0  md:top-[200px] mb-4  shadow-glow_small shadow-[black] ">
+        <div className="flex flex-col rounded-[1rem] w-[80%] md:w-[500px]  bg-[rgba(0,0,0,0.3)] mx-auto text-center md:pt-10 md:pb-10 pt-5 pb-10 md:px-5 px-5 left-[1100px] right-0  md:top-[200px] mb-4  shadow-glow_small shadow-[black] ">
           <div className="font-[700] md:text-[32px] text-[20px] text-[mintcream] md:mb-5 mb-2">
             CREATE ACCOUNT
           </div>
