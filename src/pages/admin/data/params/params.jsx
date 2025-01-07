@@ -9,7 +9,7 @@ export const Params = () => {
   const [regionType, setRegionType] = useState(0);
   const [minReward, setMinReward] = useState(0);
   const [maxReward, setMaxReward] = useState(0);
-  const [recruitsLimit, setRecruitsLimit] = useState(0);
+  // const [recruitsLimit, setRecruitsLimit] = useState(0);
   const [vals, setVals] = useState([]);
   const dispatch = useDispatch();
 
@@ -25,12 +25,13 @@ export const Params = () => {
   }, [params]);
 
   const handleAddClicked = () => {
-    addParams({ operationType, regionType, minReward, maxReward, recruitsLimit }, dispatch);
+    addParams({ operationType, regionType, minReward, maxReward }, dispatch);
+    // addParams({ operationType, regionType, minReward, maxReward, recruitsLimit }, dispatch);
     setOperationType(0);
     setRegionType(0);
     setMinReward(0);
     setMaxReward(0);
-    setRecruitsLimit(0);
+    // setRecruitsLimit(0);
   }
 
   const handleEdit = (v) => {
@@ -53,7 +54,7 @@ export const Params = () => {
           <tr className='text-xs uppercase bg-gray-100'>
             <th className='text-gray-700 py-3'>Operation Type</th>
             <th className='text-gray-700 py-3'>Region Type</th>
-            <th className='text-gray-700 py-3'>Recruits Limit</th>
+            {/* <th className='text-gray-700 py-3'>Recruits Limit</th> */}
             <th className='text-gray-700 py-3'>Min Reward</th>
             <th className='text-gray-700 py-3'>Max Reward</th>
             <th className='text-gray-700 py-3'>Actions</th>
@@ -65,32 +66,32 @@ export const Params = () => {
               <td><input className='w-full bg-transparent p-2 text-center' value={Number(p.operationType).toLocaleString('en-US')} onChange={(e) => {
                 setVals(vals.map((v) => {
                   if (v._id !== p._id) return v;
-                  return { ...v, operationType: Number(e.target.value.replace(/[^0-9]/g, "")) }
+                  return { ...v, operationType: e.target.value }
                 }))
               }} /></td>
               <td><input className='w-full bg-transparent p-2 text-center' value={Number(p.regionType).toLocaleString('en-US')} onChange={(e) => {
                 setVals(vals.map((v) => {
                   if (v._id !== p._id) return v;
-                  return { ...v, regionType: Number(e.target.value.replace(/[^0-9]/g, "")) }
+                  return { ...v, regionType: e.target.value }
                 }))
               }} /></td>
-              <td><input className='w-full bg-transparent p-2 text-center' value={Number(p.recruitsLimit).toLocaleString('en-US')} onChange={(e) => {
+              {/* <td><input className='w-full bg-transparent p-2 text-center' value={Number(p.recruitsLimit).toLocaleString('en-US')} onChange={(e) => {
                 setVals(vals.map((v) => {
                   if (v._id !== p._id) return v;
-                  return { ...v, recruitsLimit: Number(e.target.value.replace(/[^0-9]/g, "")) }
+                  return { ...v, recruitsLimit: e.target.value }
                 }))
-              }} /></td>
+              }} /></td> */}
               <td><input className='w-full bg-transparent p-2 text-center' value={Number(p.minReward).toLocaleString('en-US')} onChange={(e) => {
                 setVals(vals.map((v) => {
                   if (v._id !== p._id) return v;
-                  return { ...v, minReward: Number(e.target.value.replace(/[^0-9]/g, "")) }
+                  return { ...v, minReward: e.target.value }
                 }))
               }} /></td>
               <td><input className='w-full bg-transparent p-2 text-center' value={Number(p.maxReward).toLocaleString('en-US')} onChange={(e) => {
                 console.log('okokok', p._id);
                 setVals(vals.map((v) => {
                   if (v._id !== p._id) return v;
-                  return { ...v, maxReward: Number(e.target.value.replace(/[^0-9]/g, "")) }
+                  return { ...v, maxReward: e.target.value }
                 }))
               }} /></td>
               <td className="px-6 py-4 ">
@@ -116,11 +117,11 @@ export const Params = () => {
             </tr>
           ))}
           <tr className='bg-white border hover:bg-gray-50'>
-            <td><input className='w-full bg-transparent p-2 text-center' value={Number(operationType).toLocaleString('en-US')} onChange={(e) => setOperationType(Number(e.target.value.replace(/[^0-9]/g, "")))} /></td>
-            <td><input className='w-full bg-transparent p-2 text-center' value={Number(regionType).toLocaleString('en-US')} onChange={(e) => setRegionType(Number(e.target.value.replace(/[^0-9]/g, "")))} /></td>
-            <td><input className='w-full bg-transparent p-2 text-center' value={Number(recruitsLimit).toLocaleString('en-US')} onChange={(e) => setRecruitsLimit(Number(e.target.value.replace(/[^0-9]/g, "")))} /></td>
-            <td><input className='w-full bg-transparent p-2 text-center' value={Number(minReward).toLocaleString('en-US')} onChange={(e) => setMinReward(Number(e.target.value.replace(/[^0-9]/g, "")))} /></td>
-            <td><input className='w-full bg-transparent p-2 text-center' value={Number(maxReward).toLocaleString('en-US')} onChange={(e) => setMaxReward(Number(e.target.value.replace(/[^0-9]/g, "")))} /></td>
+            <td><input className='w-full bg-transparent p-2 text-center' value={(operationType)} onChange={(e) => setOperationType((e.target.value))} /></td>
+            <td><input className='w-full bg-transparent p-2 text-center' value={(regionType)} onChange={(e) => setRegionType((e.target.value))} /></td>
+            {/* <td><input className='w-full bg-transparent p-2 text-center' value={(recruitsLimit)} onChange={(e) => setRecruitsLimit((e.target.value))} /></td> */}
+            <td><input className='w-full bg-transparent p-2 text-center' value={(minReward)} onChange={(e) => setMinReward((e.target.value))} /></td>
+            <td><input className='w-full bg-transparent p-2 text-center' value={(maxReward)} onChange={(e) => setMaxReward((e.target.value))} /></td>
             <td>
               <button onClick={handleAddClicked} className='w-full py-3 bg-blue-500 rounded text-white font-bold'>Add</button>
             </td>
