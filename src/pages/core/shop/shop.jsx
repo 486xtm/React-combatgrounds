@@ -5,11 +5,13 @@ import Modal from "../../../common/components/modal/modal";
 import { useDispatch, useSelector } from "react-redux";
 import { buyItems, getItems, sellItems } from "../../../api/shop";
 import { getGradeString } from "../../../common/utils";
+import { ConfirmAlert } from '../../../common/components/confirm_alert/confirm_alert';
 
 export const Shop = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
   const [vals, setVals] = useState({});
+  const [showSellAlertModal, setShowSellAlertModal] = useState(null);
 
   const openModal = (item) => {
     setSelectedItem(item);
@@ -33,6 +35,7 @@ export const Shop = () => {
     buyItems({ vals, type }, dispatch);
   };
   const handleSell = (type) => {
+    setShowSellAlertModal(null);
     sellItems({ vals, type }, dispatch);
   };
 
@@ -129,7 +132,7 @@ export const Shop = () => {
                     Buy
                   </button>
                   <button
-                    onClick={() => handleSell("attack")}
+                    onClick={() => setShowSellAlertModal("attack")}
                     className="bg-[white] text-black w-10"
                   >
                     Sell
@@ -189,7 +192,7 @@ export const Shop = () => {
                     Buy
                   </button>
                   <button
-                    onClick={() => handleSell("defence")}
+                    onClick={() => setShowSellAlertModal("defence")}
                     className="bg-[white] text-black w-10"
                   >
                     Sell
@@ -249,7 +252,7 @@ export const Shop = () => {
                     Buy
                   </button>
                   <button
-                    onClick={() => handleSell("combo")}
+                    onClick={() => setShowSellAlertModal("combo")}
                     className="bg-[white] text-black w-10"
                   >
                     Sell
@@ -309,7 +312,7 @@ export const Shop = () => {
                     Buy
                   </button>
                   <button
-                    onClick={() => handleSell("income")}
+                    onClick={() => setShowSellAlertModal("income")}
                     className="bg-[white] text-black w-10"
                   >
                     Sell
@@ -393,6 +396,9 @@ export const Shop = () => {
           </button>
         </div>
       </Modal>
+      <ConfirmAlert isOpen={showSellAlertModal} onClose={() => setShowSellAlertModal(null)} description="Please click OK to sell this items." onAccept={() => {
+        handleSell(showSellAlertModal)}
+       } />
     </Layout>
   );
 };
