@@ -29,7 +29,7 @@ export const attackUser = async (data, search, dispatch) => {
     const { attackResult, user } = res.data;
     dispatch(setAttackResult({ attackResult, user }));
     dispatch(toggleShowModal(true));
-    getAttackableUsers(search, dispatch);
+    // getAttackableUsers(search, dispatch);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
