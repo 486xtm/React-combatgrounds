@@ -201,16 +201,15 @@ export const AdminUserInfo = () => {
           </div>
           <div className="flex items-center">
             <div className="w-[100px]">Role: </div>{" "}
-            {/* <select
-              className="border-[1px] rounded-md px-2 py-1 shadow-sm focus:border-gray py-1-600 flex-1"
-              value={user && user.role && Number(user.role) > 0  ? 1 : (user && user.role && Number(user.role) == -1 ? -1 : 0)}
-              onChange={(ev) => setUser({ ...user, role: ev.target.value })}
-            >
-              <option value={-1}>Admin</option>
-              <option value={1}>Supporter</option>
-              <option value={0}>FreePlayer</option>
-            </select> */}
             <span>{getRole(user)}</span>
+          </div>
+          <div className="flex items-center">
+            <div className="w-[100px]">Subscribe: </div>{" "}
+            <input
+              value={user && user.role ? user.role : 0}
+              onChange={(ev) => setUser({ ...user, role: ev.target.value })}
+              className="border-[1px] rounded-md px-2 py-1 shadow-sm focus:border-gray-600 flex-1"
+            />
           </div>
           <div className="flex items-center">
             <div className="w-[100px]">Character: </div>{" "}

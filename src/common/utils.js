@@ -66,7 +66,7 @@ export const pagination = (data) => {
 export const getRole = (user) => {
   if (!user) return "N/A";
   const { role, isSupporter } = user;
-  if (role === -1) return "Admin";
+  if (Number(role) === -1) return "Admin";
   if (!Number(role || 0) && !Boolean(isSupporter || false)) {
     return "Free Player";
   }
