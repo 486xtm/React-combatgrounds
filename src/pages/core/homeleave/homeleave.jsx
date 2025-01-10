@@ -46,7 +46,7 @@ export const HomeLeave = () => {
         </div>
         <p className="text-white text-sm">
           Rest level:{" "}
-          <span className="text-secondary">{user && user.str5}%</span>
+          <span className="text-secondary">{user && Number(user.str5).toFixed(1)}%</span>
         </p>
       </div>
     </Layout>

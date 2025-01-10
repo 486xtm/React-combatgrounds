@@ -103,19 +103,19 @@ export const Training = () => {
         <div className="flex flex-col mx-[150px]">
           <p className="text-white text-sm">
             Physical training level:{" "}
-            <span className="text-secondary">{user && user.str1}%</span>
+            <span className="text-secondary">{user && Number(user.str1).toFixed(1)}%</span>
           </p>
           <p className="text-white text-sm">
             Combat training level:{" "}
-            <span className="text-secondary">{user && user.str2}%</span>
+            <span className="text-secondary">{user && Number(user.str2).toFixed(1)}%</span>
           </p>
           <p className="text-white text-sm">
             Weapon training level:{" "}
-            <span className="text-secondary">{user && user.str3}%</span>
+            <span className="text-secondary">{user && Number(user.str3).toFixed(1)}%</span>
           </p>
           <p className="text-white text-sm">
             Special operations training level:{" "}
-            <span className="text-secondary">{user && user.str4}%</span>
+            <span className="text-secondary">{user && Number(user.str4).toFixed(1)}%</span>
           </p>
         </div>
       </div>

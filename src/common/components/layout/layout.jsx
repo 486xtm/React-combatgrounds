@@ -65,10 +65,10 @@ export const Layout = ({
                     <div
                       className={`bg-gray-100 text-center text-gray-500 h-full`}
                       style={{
-                        width: `${Number((user && user.strength) || 0)}%`,
+                        width: `${Number((user && user.strength) || 0).toFixed(1)}%`,
                       }}
                     >
-                      {user && user.strength >= 0 && `${user.strength}%`}
+                      {user && user.strength >= 0 && `${Number(user.strength).toFixed(1)}%`}
                     </div>
                   </div>
                   <span className="text-secondary text-sm pl-[182px] font-bold">
