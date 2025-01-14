@@ -84,14 +84,14 @@ export const Params = () => {
               <td><input className='w-full bg-transparent p-2 text-center' value={Number(p.minReward).toLocaleString('en-US')} onChange={(e) => {
                 setVals(vals.map((v) => {
                   if (v._id !== p._id) return v;
-                  return { ...v, minReward: e.target.value }
+                  return { ...v, minReward: e.target.value.replace(/[^0-9]/g, "")}
                 }))
               }} /></td>
               <td><input className='w-full bg-transparent p-2 text-center' value={Number(p.maxReward).toLocaleString('en-US')} onChange={(e) => {
                 console.log('okokok', p._id);
                 setVals(vals.map((v) => {
                   if (v._id !== p._id) return v;
-                  return { ...v, maxReward: e.target.value }
+                  return { ...v, maxReward: e.target.value.replace(/[^0-9]/g, "") }
                 }))
               }} /></td>
               <td className="px-6 py-4 ">

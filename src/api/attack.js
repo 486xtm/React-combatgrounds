@@ -29,12 +29,14 @@ export const attackUser = async (data, search, dispatch) => {
     const { attackResult, user } = res.data;
     dispatch(setAttackResult({ attackResult, user }));
     dispatch(toggleShowModal(true));
-    // getAttackableUsers(search, dispatch);
+    // getA ttackableUsers(search, dispatch);
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
     );
-    dispatch(toggleShowModal(false));
+    if (err.response?.data.msg.startsWith('You can attack in')) {
+      dispatch(toggleShowModal(true));
+    }
   }
 };
 
@@ -46,7 +48,6 @@ export const getAttackLogs = async (data, dispatch) => {
     );
     const { logs, total } = res.data;
     dispatch(setAttackLogs({ logs, total }));
-    // dispatch(setToast({ type: "success", msg: res.data.msg || "succeess" }));
   } catch (err) {
     dispatch(
       setToast({ type: "error", msg: err.response?.data.msg || err.message })

@@ -251,7 +251,7 @@ export const AttackLog = () => {
                   : "have lost"}{" "}
                 the attack!
               </div>
-              {Number(selectedLog.type) === 0 ? (
+              {/* {Number(selectedLog.type) === 0 ? ( */}
                 <>
                   <div>
                     {`${
@@ -265,7 +265,7 @@ export const AttackLog = () => {
                     } killed `}
                     <span className="text-green-500">
                       {selectedLog.def &&
-                        Number(selectedLog.def.loss || 0).toLocaleString(
+                        Number(selectedLog.def.loss1 || 0).toLocaleString(
                           "en-US"
                         )}
                     </span>{" "}
@@ -281,14 +281,14 @@ export const AttackLog = () => {
                     } killed `}
                     <span className="text-green-500">
                       {selectedLog.att &&
-                        Number(selectedLog.att.loss || 0).toLocaleString(
+                        Number(selectedLog.att.loss1 || 0).toLocaleString(
                           "en-US"
                         )}
                     </span>
                     {" troops during the conflict"}
                   </div>
                 </>
-              ) : (
+              {/* ) : ( */}
                 <>
                   <div>
                     {`${
@@ -300,9 +300,9 @@ export const AttackLog = () => {
                       $
                       {selectedLog.result
                         ? selectedLog.def &&
-                          (selectedLog.def.loss || 0).toLocaleString("en-US")
+                          (selectedLog.def.loss2 || 0).toLocaleString("en-US")
                         : selectedLog.att &&
-                          (selectedLog.att.loss || 0).toLocaleString("en-US")}
+                          (selectedLog.att.loss2 || 0).toLocaleString("en-US")}
                     </span>
                     {` worth of damage to ${
                       selectedLog && selectedLog.result ? "your enemy" : "you"
@@ -323,7 +323,7 @@ export const AttackLog = () => {
                     {" as reward"}
                   </div>
                 </>
-              )}
+              {/* )} */}
             </div>
             <div className="flex flex-col mx-auto gap-2">
               {selectedLog.destroyedItems &&

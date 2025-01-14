@@ -38,8 +38,6 @@ export const Attack = () => {
       { key },
       dispatch
     );
-    // setShowModal(true)
-
   };
 
   const handleSearch = () => {
