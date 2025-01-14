@@ -34,14 +34,17 @@ export const CrewManage = () => {
 
   const members = useSelector(({ crew }) => crew.members);
 
-  const handleBoot = (memberID) => {
+  const handleBoot = (e, memberID) => {
+    e.stopPropagation();
     bootMember({ memberID }, dispatch);
   };
 
-  const handleMakeReader = (newLeader) => {
+  const handleMakeReader = (e, newLeader) => {
+    e.stopPropagation();
     makeLeader({ newLeader }, dispatch);
   };
-  const handleChangeRankModalShow = (member) => {
+  const handleChangeRankModalShow = (e, member) => {
+    e.stopPropagation();
     setIsModalOpen(true);
     setSelectedMember(member);
   };
@@ -134,24 +137,24 @@ export const CrewManage = () => {
                       user._id === members[0]._id ? (
                         <div className="flex justify-between">
                           <button
-                            onClick={() => {
-                              handleBoot(member._id);
+                            onClick={(e) => {
+                              handleBoot(e, member._id);
                             }}
                             className=" rounded-lg border-2 px-2 text-xs py-[2px] border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white"
                           >
                             Boot
                           </button>
                           <button
-                            onClick={() => {
-                              handleMakeReader(member._id);
+                            onClick={(e) => {
+                              handleMakeReader(e, member._id);
                             }}
                             className=" rounded-lg border-2 px-2 text-xs py-[2px] border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white"
                           >
                             Make leader
                           </button>
                           <button
-                            onClick={() => {
-                              handleChangeRankModalShow(member._id);
+                            onClick={(e) => {
+                              handleChangeRankModalShow(e, member._id);
                             }}
                             className=" rounded-lg border-2 px-2 text-xs py-[2px] border-yellow-200 bg-transparent hover:shadow-glow_small hover:shadow-white"
                           >

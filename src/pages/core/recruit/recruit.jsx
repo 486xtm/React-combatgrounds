@@ -10,6 +10,7 @@ export const Recurit = () => {
 
   const handleRecurit = () => {
     recruit({ turn, type }, dispatch);
+    setTurn(0);
   };
 
   return (

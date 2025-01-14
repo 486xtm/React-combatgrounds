@@ -14,7 +14,6 @@ export const Attack = () => {
 
   const [tab, setTab] = useState(0);
   const [name, setName] = useState(initialName || "");
-  const [attackType, setAttackType] = useState(0);
   const [attackMsg, setAttackMsg] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [key, setKey] = useState("");
@@ -35,7 +34,7 @@ export const Attack = () => {
 
   const handleAttack = () => {
     attackUser(
-      { name, type: attackType, message: attackMsg },
+      { name, message: attackMsg },
       { key },
       dispatch
     );
@@ -85,7 +84,7 @@ export const Attack = () => {
                 onChange={(ev) => setName(ev.target.value)}
               />
             </div>
-            <div className="flex">
+            {/* <div className="flex">
               <div className="w-[70%] text-yellow-200 font-medium">
                 Attack type:
               </div>
@@ -101,7 +100,7 @@ export const Attack = () => {
                   Cash + Items
                 </option>
               </select>
-            </div>
+            </div> */}
             <div className="flex">
               <div className="w-[70%] text-yellow-200 font-medium">
                 Attack Message:
@@ -292,13 +291,15 @@ export const Attack = () => {
                 You inflicted a loss of{" "}
                 <span className="text-green-500"> $19,354,243</span>
               </div> */}
-              {Number(attackType) === 0 ? (
+
+
+              {/* {Number(attackType) === 0 ? ( */}
                 <>
                   {attackResult.win && <div>
                     {"You killed "}
                     <span className="text-green-500">
                       {attackResult.def &&
-                        Number(attackResult.def.loss || 0).toLocaleString(
+                        Number(attackResult.def.loss1 || 0).toLocaleString(
                           "en-US"
                         )}
                     </span>{" "}
@@ -308,14 +309,14 @@ export const Attack = () => {
                     {`${attackResult.def && attackResult.def.name} killed `}
                     <span className="text-green-500">
                       {attackResult.att &&
-                        Number(attackResult.att.loss || 0).toLocaleString(
+                        Number(attackResult.att.loss1 || 0).toLocaleString(
                           "en-US"
                         )}
                     </span>
                     {" troops during the conflict"}
                   </div>}
                 </>
-              ) : (
+              {/* ) : ( */}
                 <>
                   <div>
                     {`${attackResult && attackResult.win
@@ -326,9 +327,9 @@ export const Attack = () => {
                       $
                       {attackResult.win
                         ? attackResult.def &&
-                        (attackResult.def.loss || 0).toLocaleString("en-US")
+                        (attackResult.def.loss2 || 0).toLocaleString("en-US")
                         : attackResult.att &&
-                        (attackResult.att.loss || 0).toLocaleString("en-US")}
+                        (attackResult.att.loss2 || 0).toLocaleString("en-US")}
                     </span>
                     {` worth of damage to ${attackResult && attackResult.win ? "your enemy" : "you"
                       }`}
@@ -353,7 +354,7 @@ export const Attack = () => {
                     {" as reward"}
                   </div>
                 </>
-              )}
+              {/* )} */}
             </div>
             <div className="flex flex-col mx-auto gap-2">
               {attackResult.destroyedItems &&
