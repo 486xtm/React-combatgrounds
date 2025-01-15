@@ -1,0 +1,67 @@
+.alertOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.alertContainer {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 90%;
+  width: 400px;
+}
+
+.alertTitle {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.alertMessage {
+  margin-bottom: 1.5rem;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background: #e0e0e0;
+}
+
+.deleteButton {
+  background: #dc3545;
+  color: white;
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 480px) {
+  .alertContainer {
+    padding: 1.5rem;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+    padding: 0.75rem;
+  }
+} 

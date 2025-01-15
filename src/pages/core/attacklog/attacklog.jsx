@@ -245,10 +245,10 @@ export const AttackLog = () => {
                     : "text-red-700"
                 } my-2`}
               >
-                You have{" "}
+                You have
                 {!(type === "attacker") ^ selectedLog.result
-                  ? "have won"
-                  : "have lost"}{" "}
+                  ? " won"
+                  : " lost"}{" "}
                 the attack!
               </div>
               {/* {Number(selectedLog.type) === 0 ? ( */}
