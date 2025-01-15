@@ -174,7 +174,7 @@ export const Attack = () => {
                   >
                     <div className="w-[10%] py-1">{index + 1}</div>
                     <div
-                      className="w-[20%] py-1 underline text-yellow-200 cursor-pointer"
+                      className={`w-[20%] py-1 underline ${!user.attackable ? 'text-yellow-200' : 'text-green-400'} cursor-pointer`}
                       onClick={() => handleUserClick(user)}
                     >
                       {user.name}
