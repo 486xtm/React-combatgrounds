@@ -36,7 +36,7 @@ const MaterialCard = ({ data }) => {
   return (
     <div className="shadow-card rounded-lg">
       <div className="flex items-center gap-4 px-5 py-7 bg-white rounded-t-lg">
-        <img src={data.logo} width={32} className="object-contain" />
+        <img src={data.logo} width={32} className="object-contain" alt="data_logo" />
         <div className="flex flex-col justify-center flex-1 gap-2">
           <h3 className="w-full font-manrope font-extrabold">{data.name}</h3>
           <ProgressBar percent={completed} />

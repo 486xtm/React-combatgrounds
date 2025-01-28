@@ -78,6 +78,7 @@ export const BattleFieldMap = () => {
                   width="400"
                   height="50"
                   align="right"
+                  alt="battle.png"
                 />
               </td>
             </tr>
@@ -216,6 +217,7 @@ export const BattleFieldMap = () => {
                     width="570"
                     height="301"
                     useMap="#FPMap0"
+                    alt="map.png"
                   />
                 </p>
               </td>

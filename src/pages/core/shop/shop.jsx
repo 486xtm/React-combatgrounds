@@ -382,7 +382,7 @@ export const Shop = () => {
           </div>
           <div className="border-2 w-full flex ">
             <div className="w-2/5 flex items-center justify-center">
-              <img src={`/images/items/${selectedItem && selectedItem.pic}`} />
+              <img src={`/images/items/${selectedItem && selectedItem.pic}`} alt="item-pic" />
             </div>
             <div className="w-[60%] text-center border-l-2">
               {selectedItem && selectedItem.description}

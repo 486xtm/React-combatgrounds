@@ -70,6 +70,7 @@ export const CrewBoard = () => {
                     className="w-[30px] h-[30px] rounded-[50%] cursor-pointer border border-dark-primary"
                     src={`${publicURL}/${message.author.avatar}`}
                     onClick={() => handleCrewUserInfo(message.author)}
+                    alt={message.author.avatar}
                   />
                 ) : (
                   <div

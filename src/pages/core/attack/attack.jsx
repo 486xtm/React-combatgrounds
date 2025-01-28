@@ -68,8 +68,8 @@ export const Attack = () => {
   return (
     <Layout currentActiveTab={"headquarters"} isHeaderFull>
       <div className="flex flex-1 flex-col items-center  py-5 relative mx-5">
-        <img width="500" height="50" src="/pics/attackplay.gif" />
-        <img src="/attack/back.svg" className="w-full absolute top-[70px]" />
+        <img width="500" height="50" src="/pics/attackplay.gif" alt="attackplay.gif" />
+        <img src="/attack/back.svg" className="w-full absolute top-[70px]" alt="attack_back.svg" />
         <div className=" w-full min-h-[750px] text-white px-5 pt-10 z-10 flex flex-col gap-3">
           <div className="gap-3 flex flex-col mx-auto">
             <div className="flex">
@@ -215,11 +215,12 @@ export const Attack = () => {
                         : "/pics/avatar.gif"
                     }
                     className="w-full h-auto"
+                    alt="user_avatar.png"
                   />
                 </div>
                 {user && user.name}
               </div>
-              <img src="/attack/vs.png" className="w-[120px]" />
+              <img src="/attack/vs.png" className="w-[120px]" alt="vs.png" />
               <div className="w-[70px] text-center font-[900] text-blue-500">
                 <div className="flex rounded-full mb-2 overflow-hidden w-[70px] h-[70px] border border-[blue] shadow-glow shadow-[blue]">
                   <img
@@ -229,6 +230,7 @@ export const Attack = () => {
                         : "/pics/avatar.gif"
                     }
                     className="w-full h-auto"
+                    alt="enemy_avatar.png"
                   />
                 </div>
                 {attackResult.def && attackResult.def.name}

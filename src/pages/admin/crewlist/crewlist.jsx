@@ -292,7 +292,7 @@ export const AdminCrewList = () => {
                           ? `${publicURL}/${crew.avatar}`
                           : "/crew/crewpicdef.gif"
                       }
-                      alt="Crew avatar"
+                      alt="Crew_avatar"
                     />
                     <div className="ps-3 text-left">
                       <div className="text-base font-semibold">{crew.name}</div>

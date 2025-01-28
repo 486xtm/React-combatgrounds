@@ -120,6 +120,7 @@ export const MailCenter = () => {
           width="500"
           height="150"
           className="mx-auto"
+          alt="mail.gif"
         />
         <div
           className="flex px-3 py-2 justify-between border border-white mx-5"

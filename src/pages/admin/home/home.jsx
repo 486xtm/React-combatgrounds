@@ -56,7 +56,7 @@ export const AdminHome = () => {
   return (
     <div className="w-full">
       <div className="flex justify-center">
-        <img src="/pictures/common/mark.png" />
+        <img src="/pictures/common/mark.png" alt="mark.png" />
       </div>
       <p className="mx-auto text-3xl font-extrabold">
         Total Players: {dashboard ? dashboard.totalPlayers : "---"}

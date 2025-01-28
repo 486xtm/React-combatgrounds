@@ -110,6 +110,7 @@ export const AdminCrewInfo = () => {
                 : "/crew/crewpicdef.gif"
             }
             className={`mx-auto z-20 border-b border-yellow-200 min-w-full`}
+            alt="crewpic.gif"
           />
 
           <div
@@ -250,6 +251,7 @@ export const AdminCrewInfo = () => {
                     ? ""
                     : "grayscale"
                 }`}
+                alt="avatar.gif"
               />
               <div className="font-medium text-white my-1 text-lg">{crew && crew.leader && crew.leader.name} -L</div>
             </div>
@@ -271,6 +273,7 @@ export const AdminCrewInfo = () => {
                         ? `${publicURL}/${m.avatar}`
                         : "/avatar/default.gif"
                     }
+                    alt="avatar.gif"
                   />
                   <div className="font-medium text-white text-xs mt-1">
                     {m.name ? sliceString(m.name) + ` - R${m.role}` : "------"}
@@ -286,6 +289,7 @@ export const AdminCrewInfo = () => {
                   <img
                     src="/avatar/default.gif"
                     className={`h-[85%] w-full border-b border-yellow-200`}
+                    alt="default.gif"
                   />
                   <div className="font-medium text-white text-xs mt-1">
                     {"------"}
@@ -314,7 +318,7 @@ export const AdminCrewInfo = () => {
                             ? `${publicURL}/${author.avatar}`
                             : "/pics/avatar.gif"
                         }
-                        alt="author avatar"
+                        alt="author_avatar"
                       />
                       <span>{author.name}</span>
                     </div>

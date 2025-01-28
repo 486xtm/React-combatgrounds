@@ -232,7 +232,7 @@ export const BuyTurns = () => {
             payment is processed.
           </div>
           <div className="flex justify-center mb-5">
-            <img src="/images/paypalverified.gif" />
+            <img src="/images/paypalverified.gif" alt="paypalverified.gif" />
           </div>
           <div className="text-[yellow] text-xl font-bold mb-5">
             You currently have {user && user.bankedTurn ? user.bankedTurn : 0}{" "}
@@ -328,6 +328,7 @@ export const BuyTurns = () => {
                   <img
                     onClick={() => handleBuy(buy)}
                     src="/images/x-click-but23.gif"
+                    alt="x-click-but.png"
                   />
                 </div>
               </div>
@@ -335,9 +336,8 @@ export const BuyTurns = () => {
           </div>
           {show && (
             <div
-              className={`transition-opacity duration-300 ${
-                show ? "animate-fadeIn" : "animate-fadeOut"
-              }`}
+              className={`transition-opacity duration-300 ${show ? "animate-fadeIn" : "animate-fadeOut"
+                }`}
             >
               <PayPalButtons
                 className="transition-all duration-300"

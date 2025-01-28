@@ -277,6 +277,7 @@ export const Profile = () => {
                         src="/images/winmast.jpg"
                         key={`winmast_${id}`}
                         className="w-[10px] h-[12px]"
+                        alt="winmast.png"
                       />
                     ))}
                 </div>
@@ -306,6 +307,7 @@ export const Profile = () => {
                         src="/images/clicksmast.jpg"
                         key={`clickmast_${id}`}
                         className="w-[10px] h-[12px]"
+                        alt="clickmast.png"
                       />
                     ))}
                 </div>
@@ -335,6 +337,7 @@ export const Profile = () => {
                         src="/images/levelmast.jpg"
                         key={`levelmast_${id}`}
                         className="w-[10px] h-[12px]"
+                        alt="levelmast.png"
                       />
                     ))}
                 </div>
@@ -365,6 +368,7 @@ export const Profile = () => {
                         src="/images/defencemast.jpg"
                         key={`defencemast_${id}`}
                         className="w-[10px] h-[12px]"
+                        alt="defencemast.png"
                       />
                     ))}
                 </div>
@@ -394,6 +398,7 @@ export const Profile = () => {
                       className="cursor-pointer rounded"
                       width="55"
                       height="55"
+                      alt="achievement.png"
                     />
                   ))}
               </div>) : (<span>No achievements</span>)}
@@ -426,6 +431,7 @@ export const Profile = () => {
                           key={`medal_${item.medal.type}_${index}`}
                           src={`/images/medals/medal${item.medal.id}.png`}
                           className="cursor-pointer"
+                          alt="medal.png"
                         />
                       ))}
                   </div>
@@ -444,6 +450,7 @@ export const Profile = () => {
                           key={`medal_${item.medal.type}_${index}`}
                           src={`/images/medals/medal${item.medal.id}.png`}
                           className="cursor-pointer"
+                          alt="medal2.png"
                         />
                       ))}
                   </div>
@@ -462,6 +469,7 @@ export const Profile = () => {
                           key={`medal_${item.medal.type}_${index}`}
                           src={`/images/medals/medal${item.medal.id}.png`}
                           className="cursor-pointer"
+                          alt="medal3.png"
                         />
                       ))}
                   </div>
@@ -845,7 +853,7 @@ export const Profile = () => {
           </div>
           <div className="border-2 w-full flex ">
             <div className="w-2/5 flex items-center justify-center">
-              <img src={`/images/items/${selectedItem && selectedItem.pic}`} />
+              <img src={`/images/items/${selectedItem && selectedItem.pic}`} alt="item-logo" />
             </div>
             <div className="w-[60%] text-center border-l-2">
               {selectedItem && selectedItem.description}

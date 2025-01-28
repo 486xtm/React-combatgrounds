@@ -20,20 +20,20 @@ const Loading = () => {
       }
     >
       <div className="md:w-[800px] w-[350px]  md:mb-5 mb-3 md:-mt-32 -mt-20">
-        <img src="/pictures/common/mark.png" className="w-full h-auto" alt="" />
+        <img src="/pictures/common/mark.png" className="w-full h-auto" alt="mark.png" />
       </div>
       <div className="flex md:mb-5 mb-2">
         <div className="flex">
           {generate_arr(loading).map((val, index) => (
             <div className="md:w-[56px] w-[28px]" key = {"loading1_" + index}>
-              <img src="/pictures/common/bullet_f.svg" />
+              <img src="/pictures/common/bullet_f.svg" alt="bullet.png" />
             </div>
           ))}
         </div>
         <div className="flex">
           {generate_arr(5 - loading).map((val, index) => (
             <div className="md:w-[56px] w-[28px]" key = {"loading2_" + index} >
-            <img  src="/pictures/common/bullet.svg" />
+            <img src="/pictures/common/bullet.svg" alt="bullet.svg" />
             </div>
           ))}
         </div>

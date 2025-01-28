@@ -16,7 +16,7 @@ export const Recurit = () => {
   return (
     <Layout isHeaderFull>
       <div className="flex-1">
-        <img className="mx-auto mt-10 mb-5" src="/pics/recruit.gif" />
+        <img className="mx-auto mt-10 mb-5" src="/pics/recruit.gif" alt="recruit.gif" />
         <div className="bg-[#456822] w-[500px] h-[250px] mx-auto p-3 flex flex-col items-center gap-3 text-white text-md">
           <div className="text-center border border-white  leading-none py-2 w-full bg-[#669933]">
             Become more terrifying in the battlefield by recruiting new <br />

@@ -80,7 +80,7 @@ const MyComponent = () => {
                       src="imgs/spacer.gif"
                       width={width}
                       height="1"
-                      alt=""
+                      alt="spacer.gif"
                     />
                   </td>
                 )
@@ -93,7 +93,7 @@ const MyComponent = () => {
                   src="imgs/index_r1_c1.jpg"
                   width="603"
                   height="150"
-                  alt=""
+                  alt="img_r1_c1.gif"
                 />
               </td>
               <td colSpan="2">
@@ -101,11 +101,11 @@ const MyComponent = () => {
                   src="imgs/index_r1_c11.jpg"
                   width="277"
                   height="51"
-                  alt=""
+                  alt="index_r1_c11.jpg"
                 />
               </td>
               <td>
-                <img src="imgs/spacer.gif" width="1" height="51" alt="" />
+                <img src="imgs/spacer.gif" width="1" height="51" alt="spacer.gif" />
               </td>
             </tr>
             <tr>
@@ -115,12 +115,12 @@ const MyComponent = () => {
                     src="imgs/index_r2_c11.png"
                     width="277"
                     height="78"
-                    alt="Sign Up!"
+                    alt="Sign_Up!"
                   />
                 </Link>
               </td>
               <td>
-                <img src="imgs/spacer.gif" width="1" height="78" alt="" />
+                <img src="imgs/spacer.gif" width="1" height="78" alt="spacer.gif" />
               </td>
             </tr>
             <tr>
@@ -129,11 +129,11 @@ const MyComponent = () => {
                   src="imgs/index_r3_c11.jpg"
                   width="277"
                   height="21"
-                  alt=""
+                  alt="index_r3_c11.jpg"
                 />
               </td>
               <td>
-                <img src="imgs/spacer.gif" width="1" height="21" alt="" />
+                <img src="imgs/spacer.gif" width="1" height="21" alt="spacer.gif" />
               </td>
             </tr>
             <tr>
@@ -142,7 +142,7 @@ const MyComponent = () => {
                   src="imgs/index_r4_c1.jpg"
                   width="76"
                   height="101"
-                  alt=""
+                  alt="index_r4_c1.jpg"
                 />
               </td>
               <td
@@ -209,11 +209,11 @@ const MyComponent = () => {
                   src="imgs/index_r4_c8.jpg"
                   width="588"
                   height="101"
-                  alt=""
+                  alt="inde_r4_c8.jpg"
                 />
               </td>
               <td>
-                <img src="imgs/spacer.gif" width="1" height="70" alt="" />
+                <img src="imgs/spacer.gif" width="1" height="70" alt="spacer.gif" />
               </td>
             </tr>
             <tr>
@@ -230,12 +230,12 @@ const MyComponent = () => {
                     }
                     width="96"
                     height="31"
-                    alt=""
+                    alt="index_r5_c6.jpg"
                   />
                 </Link>
               </td>
               <td>
-                <img src="imgs/spacer.gif" width="1" height="31" alt="" />
+                <img src="imgs/spacer.gif" width="1" height="31" alt="spacer.gif" />
               </td>
             </tr>
             <tr>
@@ -244,7 +244,7 @@ const MyComponent = () => {
                   src="imgs/index_r6_c1.jpg"
                   width="367"
                   height="31"
-                  alt=""
+                  alt="index_r6_c1.jpg"
                 />
               </td>
               <td rowSpan="5" colSpan="3">
@@ -252,11 +252,11 @@ const MyComponent = () => {
                   src="imgs/index_r6_c10.jpg"
                   width="513"
                   height="279"
-                  alt=""
+                  alt="index_r6_c10.jpg"
                 />
               </td>
               <td>
-                <img src="imgs/spacer.gif" width="1" height="31" alt="" />
+                <img src="imgs/spacer.gif" width="1" height="31" alt="spacer.gif" />
               </td>
             </tr>
             <tr>
@@ -265,7 +265,7 @@ const MyComponent = () => {
                   src="imgs/index_r7_c1.jpg"
                   width="22"
                   height="268"
-                  alt=""
+                  alt="index_r7_c1.jpg"
                 />
               </td>
               <td colSpan="7" valign="center" align="center">
@@ -308,11 +308,11 @@ const MyComponent = () => {
                   src="imgs/index_r7_c9.jpg"
                   width="25"
                   height="181"
-                  alt=""
+                  alt="index_r7_c9.jpg"
                 />
               </td>
               <td>
-                <img src="imgs/spacer.gif" width="1" height="169" alt="" />
+                <img src="imgs/spacer.gif" width="1" height="169" alt="spacer.gif" />
               </td>
             </tr>
             <tr>
@@ -321,11 +321,11 @@ const MyComponent = () => {
                   src="imgs/index_r8_c2.jpg"
                   width="320"
                   height="12"
-                  alt=""
+                  alt="index_r8_c2.jpg"
                 />
               </td>
               <td>
-                <img src="imgs/spacer.gif" width="1" height="12" alt="" />
+                <img src="imgs/spacer.gif" width="1" height="12" alt="spacer.gif" />
               </td>
             </tr>
             <tr>
@@ -334,7 +334,7 @@ const MyComponent = () => {
                   src="imgs/index_r9_c2.jpg"
                   width="120"
                   height="20"
-                  alt=""
+                  alt="index_r9_c2.jpg"
                 />
               </td>
               <td>
@@ -351,7 +351,7 @@ const MyComponent = () => {
                     }
                     width="29"
                     height="20"
-                    alt=""
+                    alt="index_r9_c4.jpg"
                   />
                 </Link>
               </td>
@@ -369,7 +369,7 @@ const MyComponent = () => {
                     }
                     width="70"
                     height="20"
-                    alt=""
+                    alt="index_r9_c5_f2.gif"
                   />
                 </Link>
               </td>
@@ -378,11 +378,11 @@ const MyComponent = () => {
                   src="imgs/index_r9_c7.jpg"
                   width="126"
                   height="20"
-                  alt=""
+                  alt="index_r9_c7.jpg"
                 />
               </td>
               <td>
-                <img src="imgs/spacer.gif" width="1" height="20" alt="" />
+                <img src="imgs/spacer.gif" width="1" height="20" alt="spacer.gif" />
               </td>
             </tr>
             <tr>
@@ -397,7 +397,7 @@ const MyComponent = () => {
                 </Link>
               </td>
               <td>
-                <img src="imgs/spacer.gif" width="1" height="47" alt="" />
+                <img src="imgs/spacer.gif" width="1" height="47" alt="spacer.gif" />
               </td>
             </tr>
             <tr>
@@ -406,7 +406,7 @@ const MyComponent = () => {
                   src="imgs/index_r11_c10.jpg"
                   width="442"
                   height="20"
-                  alt=""
+                  alt="index_r11_c10.jpg"
                 />
               </td>
               <td>
@@ -415,12 +415,12 @@ const MyComponent = () => {
                     src="imgs/index_r11_c12.jpg"
                     width="71"
                     height="20"
-                    alt=""
+                    alt="index_r11_c12.jpg"
                   />
                 </Link>
               </td>
               <td>
-                <img src="imgs/spacer.gif" width="1" height="20" alt="" />
+                <img src="imgs/spacer.gif" width="1" height="20" alt="spacer.gif" />
               </td>
             </tr>
           </tbody>

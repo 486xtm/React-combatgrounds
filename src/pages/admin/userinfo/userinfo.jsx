@@ -132,6 +132,7 @@ export const AdminUserInfo = () => {
                       key={`medal_${item.medal.type}_${index}`}
                       src={`/images/medals/medal${item.medal.id}.png`}
                       className="cursor-pointer"
+                      alt="medals"
                     />
                   ))}
               </div>
@@ -147,6 +148,7 @@ export const AdminUserInfo = () => {
                       key={`medal_${item.medal.type}_${index}`}
                       src={`/images/medals/medal${item.medal.id}.png`}
                       className="cursor-pointer"
+                      alt="medals"
                     />
                   ))}
               </div>
@@ -162,6 +164,7 @@ export const AdminUserInfo = () => {
                       key={`medal_${item.medal.type}_${index}`}
                       src={`/images/medals/medal${item.medal.id}.png`}
                       className="cursor-pointer"
+                      alt="medals"
                     />
                   ))}
               </div>
@@ -515,7 +518,8 @@ export const AdminUserInfo = () => {
                     width="55"
                     height="55"
                     onClick={() => setShowRemoveAchievementModal(item)}
-                  />
+                    alt="medals"
+                    />
                 ))}
             </div>) : (<p className="text-center">No achievements</p>)}
             <Modal isOpen={showAchievementModal} onClose={() => setShowAchievementModal(false)}>
@@ -529,6 +533,7 @@ export const AdminUserInfo = () => {
                       width="55"
                       height="55"
                       onClick={() => handleAddAchievement(item._id)}
+                      alt="medals"
                     />
                   ))}
               </div>

@@ -30,6 +30,7 @@ export const Training = () => {
           height="100"
           src="/pics/boot.gif"
           className="mx-auto"
+          alt="bott.gif"
         />
         <p className="text-center text-sm text-[red] font-bold">
           {/* Invalid amount of money! */}

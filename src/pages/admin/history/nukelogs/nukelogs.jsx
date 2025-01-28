@@ -137,7 +137,7 @@ export const AdminNukeLogs = () => {
                             ? `${publicURL}/${log.player.avatar}`
                             : "/pics/avatar.gif"
                         }
-                        alt="Crew avatar"
+                        alt="Crew_avatar"
                       />
                       <div className="ps-3 text-left">
                         <div className="text-base font-semibold">

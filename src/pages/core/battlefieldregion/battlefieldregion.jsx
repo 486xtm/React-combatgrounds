@@ -92,6 +92,7 @@ export const BattleFieldRegion = () => {
             width="350"
             height="150"
             className="mt-5"
+            alt="region.png"
           />
           <p className="text-[red] text-lg font-bold">
             You control this territory with {battleField.recruits} recruits
@@ -175,6 +176,7 @@ export const BattleFieldRegion = () => {
               src={`/pics/region${region.id}.gif`}
               width="350"
               height="150"
+              alt="region.png"
             />
             <p className="text-[red] text-xl font-bold my-5">
               {!battleField ? (

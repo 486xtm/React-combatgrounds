@@ -173,6 +173,7 @@ export const CrewProfile = () => {
                         ? ""
                         : "grayscale"
                     }`}
+                    alt="avatar"
                   />
                   <div className="font-medium text-sm text-white my-1">
                     {crewInfo && sliceString(crewInfo.leader.name)}&nbsp;
@@ -197,6 +198,7 @@ export const CrewProfile = () => {
                             ? `${publicURL}/${m.avatar}`
                             : "/avatar/default.gif"
                         }
+                        alt="default-avatar.gif"
                       />
                       <div className="font-medium text-white text-xs mt-1">
                         {m.name
@@ -215,6 +217,7 @@ export const CrewProfile = () => {
                       <img
                         src="/avatar/default.gif"
                         className={`h-[85px] w-full border-b border-yellow-200`}
+                        alt="default.gif"
                       />
                       <div className="font-medium text-white text-xs mt-1">
                         {"------"}

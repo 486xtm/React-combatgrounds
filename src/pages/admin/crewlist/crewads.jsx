@@ -131,7 +131,7 @@ export const AdminCrewAds = () => {
                             ? `${publicURL}/${ad.author.avatar}`
                             : "/pics/avatar.gif"
                         }
-                        alt="Crew avatar"
+                        alt="Crew_avatar"
                       />
                     </div>
                     <div className="ps-3 text-left">

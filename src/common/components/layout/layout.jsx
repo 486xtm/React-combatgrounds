@@ -25,7 +25,7 @@ export const Layout = ({
 
   return (
     <div className={styles["layout-container"]}>
-      {isHeaderFull && <img src="./images/index_r1_c1.jpg" width="880" />}
+      {isHeaderFull && <img src="./images/index_r1_c1.jpg" width="880" alt="index_r1_c1.png" />}
       <Header currentActiveTab={currentActiveTab} />
       <div className="flex flex-col w-[870px] border-primary border-2 bg-black">
         {isMenuShow && (

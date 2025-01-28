@@ -39,8 +39,8 @@ export const HeadQuarter = React.memo(() => {
             Minutes Left:
           </p>
           <div className="flex mx-auto">
-            <img src={`/images/${round.time === 10 ? 1 : 0}.gif`} />
-            <img src={`/images/${round.time % 10}.gif`} />
+            <img src={`/images/${round.time === 10 ? 1 : 0}.gif`} alt="roundtime1.png" />
+            <img src={`/images/${round.time % 10}.gif`} alt="roundtime2.png" />
           </div>
           <div className="flex gap-[100px] justify-center">
             <div className="flex flex-col w-[280px]">

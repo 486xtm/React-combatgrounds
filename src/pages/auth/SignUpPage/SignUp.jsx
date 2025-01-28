@@ -381,6 +381,7 @@ const SignUpPage = () => {
           <img
             className={"w-[500px]  mx-auto " + styles["mark_svg"]}
             src="/pictures/common/mark.png"
+            alt="mark.png"
           />
           <div className="flex flex-col gap-[8px] mb-2">
             <div className="text-[#CACAB2] md:text-[20px] font-medium text-left">
@@ -388,7 +389,7 @@ const SignUpPage = () => {
             </div>
             <div className="bg-[#1b1b13] md:h-[56px] h-[40px] md:px-[24px] px-[12px]  md:py-[16px] md:rounded-[16px] rounded-[8px] flex">
               <div className="flex items-center mr-2">
-                <img src="/pictures/common/user.svg" />
+                <img src="/pictures/common/user.svg" alt="user.svg" />
               </div>
               <input
                 className="flex-1 text-[#CACAB2] md:text-[20px] placeholder:text-[#CACAB2] font-semibold bg-transparent signup_input"
@@ -423,7 +424,7 @@ const SignUpPage = () => {
               </div>
               <div className="bg-[#1b1b13] md:h-[56px] h-[40px] md:px-[24px] px-[12px] md:py-[16px] md:rounded-[16px] rounded-[8px] flex">
                 <div className="flex items-center mr-2">
-                  <img src="/pictures/common/pass.svg" />
+                  <img src="/pictures/common/pass.svg" alt="pass.svg" />
                 </div>
                 <input
                   type="password"
@@ -442,7 +443,7 @@ const SignUpPage = () => {
               </div>
               <div className="bg-[#1b1b13] md:h-[56px] h-[40px] md:px-[24px] px-[12px] md:py-[16px] md:rounded-[16px] rounded-[8px] flex">
                 <div className="flex items-center mr-2">
-                  <img src="/pictures/common/pass.svg" />
+                  <img src="/pictures/common/pass.svg" alt="pass.svg" />
                 </div>
                 <input
                   type="password"

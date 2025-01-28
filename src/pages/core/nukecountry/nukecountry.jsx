@@ -21,7 +21,7 @@ export const NukeCountry = () => {
   return (
     <Layout currentActiveTab={"headquarters"} isHeaderFull={true}>
       <div className="flex flex-col flex-1">
-        <img src="/pics/nuke.gif" width="500" className="mx-auto" />
+        <img src="/pics/nuke.gif" width="500" className="mx-auto" alt="nuke.gif" />
         <p className="text-center text-white text-sm">
           Nuke Country will cost you
           <span className="text-[red]"> $1,000,000,000</span>.

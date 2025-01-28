@@ -27,7 +27,7 @@ export const Spy = () => {
   return (
     <Layout>
       <div className="flex-1 p-[100px] relative">
-        <img src="/pics/SPY.gif" className="mx-auto w-full" />
+        <img src="/pics/SPY.gif" className="mx-auto w-full" alt="spy.gif" />
         {!showResult ? (
           <div className="absolute top-[270px] flex flex-col items-center gap-3 text-center left-0 right-0 text-white">
             <span className="font-bold">

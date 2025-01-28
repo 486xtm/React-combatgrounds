@@ -162,13 +162,14 @@ export const AttackLog = () => {
                         : "/pics/avatar.gif"
                     }
                     className="w-full h-auto"
+                    alt="avatar.png"
                   />
                 </div>
                 {selectedLog.attacker
                   ? selectedLog.attacker.name
                   : "deleted user"}
               </div>
-              <img src="/attack/vs.png" className="w-[120px]" />
+              <img src="/attack/vs.png" className="w-[120px]" alt="vs.png" />
               <div className="w-[70px] text-center font-[900] text-blue-500">
                 <div className="flex rounded-full mb-2 overflow-hidden w-[70px] h-[70px] border border-[blue] shadow-glow shadow-[blue]">
                   <img
@@ -178,6 +179,7 @@ export const AttackLog = () => {
                         : "/pics/avatar.gif"
                     }
                     className="w-full h-auto"
+                    alt="avatar.gif"
                   />
                 </div>
                 {selectedLog.defenser

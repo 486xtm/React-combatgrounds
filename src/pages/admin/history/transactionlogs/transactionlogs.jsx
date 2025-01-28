@@ -180,7 +180,7 @@ export const AdminTransactionlogs = () => {
                             ? `${publicURL}/${tx.userID.avatar}`
                             : "/pics/avatar.gif"
                         }
-                        alt="Crew avatar"
+                        alt="Crew_avatar"
                       />
                       <div className="ps-3 text-left">
                         <div className="text-base font-semibold">

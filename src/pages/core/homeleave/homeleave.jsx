@@ -20,7 +20,7 @@ export const HomeLeave = () => {
   return (
     <Layout>
       <div className="flex flex-col flex-1 items-center">
-        <img width="500" height="100" src="pics/homelve.jpg" />
+        <img width="500" height="100" src="pics/homelve.jpg" alt="homelve.jpg" />
         <p className="text-center text-white font-bold text-sm">
           Let your troops have some rest so they can come back stronger!
         </p>

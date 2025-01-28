@@ -154,7 +154,7 @@ export const AdminMail = () => {
                               ? `${publicURL}/${mail.sender.avatar}`
                               : "/pics/avatar.gif"
                           }
-                          alt="Crew avatar"
+                          alt="Crew_avatar"
                         />
                       </div>
                       <div className="ps-3 text-left">
@@ -186,7 +186,7 @@ export const AdminMail = () => {
                               ? `${publicURL}/${mail.receiver.avatar}`
                               : "/pics/avatar.gif"
                           }
-                          alt="Crew avatar"
+                          alt="Crew_avatar"
                         />
                       </div>
                       <div className="ps-3 text-left">

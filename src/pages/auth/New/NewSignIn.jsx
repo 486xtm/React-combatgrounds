@@ -41,7 +41,8 @@ const NewSignIn = () => {
         <img
           className={"w-[500px]  mx-auto py-[40px] " + styles["mark_svg"]}
           src="/pictures/common/mark.png"
-        />
+          alt="mark.png"
+          />
         <div className="flex flex-col rounded-[1rem] w-[80%] md:w-[500px]  shadow-glow_small shadow-[black]  bg-[rgba(0,0,0,0.3)] mx-auto text-center md:pt-10 md:pb-20 pt-5 pb-10 md:px-10 px-5 mb-3">
           <div className="font-[700] md:text-[40px] text-[30px] text-[mintcream] mb-5">
             LOGIN
@@ -53,7 +54,7 @@ const NewSignIn = () => {
             </div>
             <div className="bg-[#323320] md:h-[56px] h-[40px] md:px-[24px] px-[12px]  md:py-[16px] md:rounded-[16px] rounded-[8px] flex">
               <div className="flex items-center mr-2">
-                <img src="/pictures/common/user.svg" />
+                <img src="/pictures/common/user.svg" alt="user.svg" />
               </div>
               <input
                 className="flex-1 text-[mintcream] md:text-[20px] placeholder:text-[mintcream] font-semibold bg-[#323320] sign_input"
@@ -70,7 +71,7 @@ const NewSignIn = () => {
             </div>
             <div className="bg-[#323320] md:h-[56px] h-[40px] md:px-[24px] px-[12px] md:py-[16px] md:rounded-[16px] rounded-[8px] flex">
               <div className="flex items-center mr-2">
-                <img src="/pictures/common/pass.svg" />
+                <img src="/pictures/common/pass.svg" alt="pass.svg" />
               </div>
               <input
                 type="password"
