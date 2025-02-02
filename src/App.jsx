@@ -21,6 +21,7 @@ import {
 } from "./socket/socket";
 import { routes } from "./common/route";
 import AdminLayout from "./common/components/admin_layout";
+import { logout } from "./redux/authSlice";
 
 const ProtectedRoute = React.memo(({ children }) => {
   const dispatch = useDispatch();
@@ -41,13 +42,12 @@ const ProtectedRoute = React.memo(({ children }) => {
       getUserInfo(dispatch, navigate);
     }
   }, [dispatch, navigate]);
-
   const token = localStorage.getItem("ACCESS_TOKEN");
-  if (!isAuthenticated && !token) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (isAuthenticated && token) return children;
+  else {
+    dispatch(logout());
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
-
-  return isAuthenticated && token ? children : null;
 });
 
 const App = () => {
@@ -88,17 +88,17 @@ const App = () => {
 
   useEffect(() => {
     // Request permission on component mount
-    if ('Notification' in window) {
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                console.log('Notification permission granted.');
-            } else {
-                console.log('Notification permission denied.');
-            }
-        });
+    if ("Notification" in window) {
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          console.log("Notification permission granted.");
+        } else {
+          console.log("Notification permission denied.");
+        }
+      });
     }
-}, []);
-  
+  }, []);
+
   return (
     <Router>
       <Routes>

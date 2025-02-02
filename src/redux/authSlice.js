@@ -16,6 +16,9 @@ const authSlice = createSlice({
     logout: (state) => {
       state.isAuthenticated = false;
       state.isInitial = false;
+      localStorage.removeItem("ACCESS_TOKEN");
+      localStorage.removeItem("EXPIRATION_DATE");
+      localStorage.removeItem("MAILTYPE");
     },
   },
 });

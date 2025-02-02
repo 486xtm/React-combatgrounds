@@ -54,9 +54,6 @@ export const signUp = async (data, dispatch, navigate) => {
 
 export const signOut = async (dispatch, navigate, socket) => {
   try {
-    localStorage.removeItem("ACCESS_TOKEN");
-    localStorage.removeItem("EXPIRATION_DATE");
-    localStorage.removeItem("MAILTYPE");
     socket.emit("logout");
     dispatch(logout());
   } catch (err) {

@@ -25,6 +25,9 @@ export const Ads = () => {
       navigate("/profile", { state: user });
     }
   }
+  const handlePast = (ev) =>{
+    ev.preventDefault();
+  }
   useEffect(() => {
     setDescriptionReaminLetters(350 - description.length);
   }, [description]);
@@ -69,12 +72,13 @@ export const Ads = () => {
           <div className="text-center mb-2 text-xl">Post a Crew Ad</div>
           <textarea
             className="flex-1 text-sm px-2 py-1 rounded-md shadow-inner shadow-[rgba(255,255,255,0.3)] bg-transparent border-secondary-green border-[1px] w-[400px]"
-            maxLength={600}
+            maxLength={350}
             rows={10}
             value={description}
             onChange={(e) => {
               setDescription(e.target.value);
             }}
+            onPaste={handlePast}
           />
           <div className="text-sm text-white text-bold flex justify-between">
             {descriptionReaminLetters} characters left
