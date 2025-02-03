@@ -56,23 +56,23 @@ const contents = [
     section: "M8",
     title: [],
   },
-  {
-    id: "Casino",
-    section: "M9",
-    title: ["9.1 - Roll Dice", "9.2 - Russian roulette"],
-  },
-  {
-    id: "Bank",
-    section: "M10",
-    title: [],
-  },
+  // {
+  //   id: "Casino",
+  //   section: "M9",
+  //   title: ["9.1 - Roll Dice", "9.2 - Russian roulette"],
+  // },
+  // {
+  //   id: "Bank",
+  //   section: "M10",
+  //   title: [],
+  // },
   {
     id: "Crews",
     section: "M11",
     title: [
-      "11.1 - Joining a crew",
-      "11.2 - Creating a crew",
-      "11.3 - Crew Bosses",
+      "9.1 - Joining a crew",
+      "9.2 - Creating a crew",
+      "9.3 - Crew Bosses",
     ],
   },
   {
@@ -118,10 +118,13 @@ export const UserGuide = () => {
                 {val.id}
               </a>
               {val.title.map((list, i) => (
-                <div key={i} >
-                <a className="ml-5 font-medium underline" href = {`#${val.section}_${i+1}`}>
-                  {list}
-                </a>
+                <div key={i}>
+                  <a
+                    className="ml-5 font-medium underline"
+                    href={`#${val.section}_${i + 1}`}
+                  >
+                    {list}
+                  </a>
                 </div>
               ))}
             </div>
@@ -130,12 +133,16 @@ export const UserGuide = () => {
           <br />
           <br />
           <section id="M1" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">1 - Introduction</div>
-            <section id="M1_1" className="font-bold">1.1 - Overview</section>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              1 - Introduction
+            </div>
+            <section id="M1_1" className="font-bold">
+              1.1 - Overview
+            </section>
             <div>
-              War Grounds is a free, strategic Role-Play Game that you can
-              play daily using only your web browser. The game is text based and
-              very simple to play.
+              War Grounds is a free, strategic Role-Play Game that you can play
+              daily using only your web browser. The game is text based and very
+              simple to play.
               <br />
               In War Grounds, the objective is to develop your character by
               building your army, gaining power and money. You can choose to be
@@ -145,136 +152,96 @@ export const UserGuide = () => {
               depends on the recruits, recruits' strength, money and weapons of
               the character.
               <br />
-              War Grounds is played in rounds of 10 days. At the end of each
+              War Grounds is played in rounds of 7 days. At the end of each
               round, the winners are given prizes.
               <br />
               If you have any suggestions or find any errors in the game, please
               report them to the administrators by sending a support ticket
               (Support link under the control panel) or an E-mail to the admin.
             </div>
-            <section id="M1_2"className="font-bold">1.2 - Prizes at the end of a round</section>
+            <section id="M1_2" className="font-bold">
+              1.2 - Prizes at the end of a round
+            </section>
             <div>
               At the end of each round, prizes are given to best players and
               best crews. The players who have the greatest number of points are
               called "the WarGrounds legends".
             </div>
             <div>
-              <div className="w-2/3 mx-auto flex flex-wrap">
-                <div className="border w-full  text-center font-bold border-[#201d1d]">
-                  Top Players
-                </div>
-                <div className="w-1/4 border border-[#201d1d]">Rank# 1</div>
-                <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  Ultimate Medal and 25 points
-                </div>
-                <div className="w-1/4 border border-[#201d1d]">Rank# 2</div>
-                <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  Medal of Honor and 16 points
-                </div>
-                <div className="w-1/4 border border-[#201d1d]">Rank# 3</div>
-                <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  War Hero Medal and 12 points
-                </div>
-                <div className="w-1/4 border border-[#201d1d]">Rank# 4</div>
-                <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  Elite Medal and 10 points
-                </div>
-                <div className="w-1/4 border border-[#201d1d]">Rank# 5</div>
-                <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  Veteran's Medal and 8 points
-                </div>
-              </div>
-              <br />
-              <div className="w-2/3 mx-auto flex flex-wrap">
+              <div className="w-full px-5 text-center mx-auto flex flex-wrap">
                 <div className="border w-full  text-center font-bold border-[#201d1d]">
                   Top supporters
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 1</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  Cash prize and 15,000 turns
+                  Medal of Honor, Cash prize, 20,000 turns and 25 points
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 2</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  100,000 turns
+                  Distinguished Service Cross, 16,000 turns and 16 points
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 3</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  50,000 turns
+                  Silver Star, 12,000 turns and 12 points
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 4</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  25,000 turns
+                  Legion of Merit, 8,000 turns and 10 points
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 5</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  15,000 turns
+                  Soldier's Medal, 4,000 turns and 8 points
                 </div>
               </div>
               <br />
-              <div className="w-2/3 mx-auto flex flex-wrap">
+              <div className="w-full px-5 text-center mx-auto flex flex-wrap">
                 <div className="border w-full  text-center font-bold border-[#201d1d]">
                   Top Free Players
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 1</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  20,000 turns
+                  Bronze Star, 15,000 turns and 8 points
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 2</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  10,000 turns
+                  Purple Heart, 12,000 turns and 5 points
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 3</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  7,000 turns
+                  Meritorious Service, 9,000 turnsand 4 points
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 4</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  5,000 turns
+                  Joint Service Commendation, 6,000 turns and 3 points
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 5</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  3,000 turns
+                  Joint Service Achievement, 3,000 turns and 2 points
                 </div>
               </div>
               <br />
-              <div className="w-2/3 mx-auto flex flex-wrap">
+              <div className="w-full px-5 text-center mx-auto flex flex-wrap">
                 <div className="border w-full  text-center font-bold border-[#201d1d]">
                   Top crews
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 1</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  90,000 turns, Gold Medal and 16 points
+                  90,000 turns, Prisoner of War and 16 points
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 2</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  40,000 turns, Silver Medal and 12 points
+                  60,000 turns, National Defense Service and 12 points
                 </div>
                 <div className="w-1/4 border border-[#201d1d]">Rank# 3</div>
                 <div className="w-3/4 border border-[#201d1d]">
-                  {" "}
-                  15,000 turns, Bronze medal and 8 points
+                  30,000 turns, Global War on Terror and 8 points
                 </div>
               </div>
               <br />
             </div>
-            <section id="M1_3" className="font-bold">1.3 - Getting Started</section>
+            <section id="M1_3" className="font-bold">
+              1.3 - Getting Started
+            </section>
             <div>
               You start with 4000 turns, 200 recruits and $50,000,000. There are
               several strategies to play. When first starting out, you can
@@ -352,10 +319,12 @@ export const UserGuide = () => {
               <br />
               <br />
               Note: You will not receive any additional turns every 10 minutes
-              if you already have more than 1,500 turns (or 2000 turns if you are
-              a VIP player).
+              if you already have more than 1,500 turns (or 2000 turns if you
+              are a VIP player).
             </div>
-            <section id="M1_4" className="font-bold">1.4 - Quick Start</section>
+            <section id="M1_4" className="font-bold">
+              1.4 - Quick Start
+            </section>
             <ul className="list-outside list-decimal ml-10">
               <li>Go to the Recruit option to engage troops.</li>
               <li>
@@ -420,8 +389,14 @@ export const UserGuide = () => {
             </div>
           </section>
           <section id="M2" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer"> 2 - Layout</div>
-            <section id="M2_1" className="font-bold"> 2 - 1 Horizontal menu</section>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              {" "}
+              2 - Layout
+            </div>
+            <section id="M2_1" className="font-bold">
+              {" "}
+              2 - 1 Horizontal menu
+            </section>
             <div>
               Main Page - This is the main page, here you can login to the game.
               It contains some game statistics such as the number of players
@@ -443,7 +418,9 @@ export const UserGuide = () => {
               <br />
               News - Announcements about the game are posted here.
             </div>
-            <section id="M2_2" className="font-bold">2.2 - Control Panel</section>
+            <section id="M2_2" className="font-bold">
+              2.2 - Control Panel
+            </section>
             <div>
               Members
               <br />
@@ -538,7 +515,9 @@ export const UserGuide = () => {
               Logout - To logout from the game.
               <br />
             </div>
-            <section id="M2_3" className="font-bold">2.3 - Stats table</section>
+            <section id="M2_3" className="font-bold">
+              2.3 - Stats table
+            </section>
             <div>
               It is at the top of all in-game pages. It shows your important
               statistics such as your money, net worth, recruits, recruits'
@@ -546,8 +525,12 @@ export const UserGuide = () => {
             </div>
           </section>
           <section id="M3" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">3 - Actions</div>
-            <section id = "M3_1" className="font-bold">3.1 - Attack</section>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              3 - Actions
+            </div>
+            <section id="M3_1" className="font-bold">
+              3.1 - Attack
+            </section>
             <ul className="list-disc list-outside ml-10">
               <li>Click on "attack" in your control panel.</li>
               <li>Look for an opponent using one of the search options.</li>
@@ -587,7 +570,9 @@ export const UserGuide = () => {
                 attack the player.
               </li>
             </ul>
-            <section id = "M3_2" className="font-bold">3.2 - Raise funds</section>
+            <section id="M3_2" className="font-bold">
+              3.2 - Raise funds
+            </section>
 
             <div>
               This is the safest way to collect money. You have four different
@@ -596,7 +581,9 @@ export const UserGuide = () => {
               having some of them leave you.
             </div>
 
-            <section id = "M3_3" className="font-bold">3.3 - Battlefield</section>
+            <section id="M3_3" className="font-bold">
+              3.3 - Battlefield
+            </section>
             <div>
               If a region is free, you can conquer it and bring in your troops.
               You can then exploit its resources or recruit massively. The more
@@ -606,7 +593,9 @@ export const UserGuide = () => {
               successfully, your level increases.
             </div>
 
-            <section id = "M3_4" className="font-bold">3.4 - Nuke country</section>
+            <section id="M3_4" className="font-bold">
+              3.4 - Nuke country
+            </section>
             <div>
               To nuke a country, you need $1,000,000,000 and a certain level.
               When you Nuke a country you receive money or recruits. You can
@@ -614,21 +603,29 @@ export const UserGuide = () => {
               proportional to the number of turns you use and the level you
               have.
             </div>
-            <section id = "M3_5" className="font-bold">3.5 - Hire spies</section>
+            <section id="M3_5" className="font-bold">
+              3.5 - Hire spies
+            </section>
             <div>
               If you are a supporter, you can obtain here secret information
               about your opponents.
             </div>
           </section>
           <section id="M4" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">4 - Manage troops</div>
-            <section id = "M4_1" className="font-bold">4.1 - Recruit</section>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              4 - Manage troops
+            </div>
+            <section id="M4_1" className="font-bold">
+              4.1 - Recruit
+            </section>
             <div>
               To enlarge your troops and become more powerful. The more turns
               you use, the more you can recruit. The number of troops and their
               training level depends on where you recruit them.
             </div>
-            <section id = "M4_2" className="font-bold">4.2 - Training</section>
+            <section id="M4_2" className="font-bold">
+              4.2 - Training
+            </section>
             <div>
               To keep your troops ready for the battle, you always need to train
               them. When your troops are well trained, they are more efficient
@@ -641,7 +638,9 @@ export const UserGuide = () => {
               their best. The number of recruits who receive the training
               increases with the amount of money you pay.
             </div>
-            <section id = "M4_3" className="font-bold">4.3 - Home leave</section>
+            <section id="M4_3" className="font-bold">
+              4.3 - Home leave
+            </section>
             <div>
               Your recruits get tired when you do actions. You should send them
               home to recuperate and come back stronger. The number of recruits
@@ -649,7 +648,9 @@ export const UserGuide = () => {
             </div>
           </section>
           <section id="M5" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">5 - Missions</div>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              5 - Missions
+            </div>
             <div>
               Every day, you have the opportunity to do some missions. When you
               complete a mission successfully, your level increases and you are
@@ -660,7 +661,9 @@ export const UserGuide = () => {
             </div>
           </section>
           <section id="M6" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">6 - Subscribe</div>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              6 - Subscribe
+            </div>
             <div>
               You can subscribe as a VIP player for only $20 a month and get
               many advantages: 10 extra turns every 10 minutes and support
@@ -668,7 +671,9 @@ export const UserGuide = () => {
             </div>
           </section>
           <section id="M7" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">7 - Shop </div>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              7 - Shop{" "}
+            </div>
             <div>
               You can buy weapons in the military shop. You can only purchase a
               limited amount of each item. Click on an item to view its
@@ -703,7 +708,9 @@ export const UserGuide = () => {
             </div>
           </section>
           <section id="M8" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">8 - Military grades</div>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              8 - Military grades
+            </div>
             <div>
               Military grades are assigned to players depending on their level
               and recruits proficiency. Some weapons are available to graded
@@ -737,23 +744,31 @@ export const UserGuide = () => {
               <br />
             </div>
           </section>
-          <section id="M9" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">9 - Casino</div>
+          {/* <section id="M9" className="space-y-4">
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              9 - Casino
+            </div>
 
-            <section id = "M9_1" className="font-bold">9.1 - Roll Dice</section>
+            <section id="M9_1" className="font-bold">
+              9.1 - Roll Dice
+            </section>
             <div>
               You bet a certain amount of money, and guess a number between 1
               and 6 for each die. If you win, you receive money depending on the
               cash and the number of turns you bet.
             </div>
-            <section id = "M9_2" className="font-bold">9.2 - Russian roulette</section>
+            <section id="M9_2" className="font-bold">
+              9.2 - Russian roulette
+            </section>
             <div>
               In this game, you guess a number from 1 to 3. It costs $1,000,000
               to play and you may win money or recruits.
             </div>
           </section>
           <section id="M10" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">10 - Bank</div>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              10 - Bank
+            </div>
             <div>
               Just like in the real world, you have a bank account and petty
               cash. The money you use anywhere is the cash you have on you.
@@ -764,27 +779,36 @@ export const UserGuide = () => {
               You are able to put up to 20% of your money in the bank and you
               are allowed 3 transactions a day.
             </div>
-          </section>
+          </section> */}
           <section id="M11" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">11 - Crews</div>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              9 - Crews
+            </div>
             <div>
               Crews are like teams or groups of people. They can attack crew
               bosses, host meetings, and declare war to other crews.
             </div>
-            <section id = "M11_1" className="font-bold"> 11.1 - Joining a crew</section>
+            <section id="M11_1" className="font-bold">
+              {" "}
+              9.1 - Joining a crew
+            </section>
             <div>
               To join a crew you must receive an Invitation from the crew. You
               can ask for a crew invite in the crew ads or ask players directly.
               To view your crew invitations go to Crew Invites in the Control
               panel.
             </div>
-            <section id = "M11_2" className="font-bold">11.2 - Creating a crew</section>
+            <section id="M11_2" className="font-bold">
+              9.2 - Creating a crew
+            </section>
             <div>
               Under the Crew submenu, click on Create Crew. Follow the
               instructions to create your crew. You cannot create a crew if
               you're already in one.
             </div>
-            <section id = "M11_3" className="font-bold">11.3 - Crew Bosses</section>
+            <section id="M11_3" className="font-bold">
+              9.3 - Crew Bosses
+            </section>
             <div>
               The crew leader or a rank 1 member can attack each Crew Boss once
               a day: It takes $2,000,000,000 from the Crew bank. If you win,
@@ -795,30 +819,35 @@ export const UserGuide = () => {
             </div>
           </section>
           <section id="M12" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">12 - Medals</div>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              10 - Medals
+            </div>
             <div>
               At the end of each round, 8 different medals are given to the
               leaders.
               <br />
               <br />
-              &nbsp; &nbsp; &gt; &gt; Ultimate Medal <br />
-              &nbsp; &nbsp; &gt; &gt; Medal of Honor <br />
-              &nbsp; &nbsp; &gt; &gt; War Hero Medal
+              &gt;&gt; Medal of Honor <br />
+              &gt;&gt; Distinguished Service Cross <br />
+              &gt;&gt; Silver Star <br />
+              &gt;&gt; Legion of Merit <br />
+              &gt;&gt; Soldier's Medal <br />
+              &gt;&gt; Bronze Star <br />
+              &gt;&gt; Purple Heart <br />
+              &gt;&gt; Meritorious Service <br />
+              &gt;&gt; Joint Service Commendation <br />
+              &gt;&gt; Joint Service Achievement
               <br />
-              &nbsp; &nbsp; &gt; &gt; Elite Medal
-              <br />
-              &nbsp; &nbsp; &gt; &gt; Veteran's Medal
-              <br />
-              &nbsp; &nbsp; &gt; &gt; Gold Medal
-              <br />
-              &nbsp; &nbsp; &gt; &gt; Silver Medal
-              <br />
-              &nbsp; &nbsp; &gt; &gt; Bronze Medal
-              <br />
+              &gt;&gt; Prisoner of War <br />
+              &gt;&gt; National Defense Service <br />
+              &gt;&gt; Global War on Terror <br />
             </div>
           </section>
           <section id="M13" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer"> 13 - Game rules</div>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              {" "}
+              11 - Game rules
+            </div>
             <div className="font-bold">1. Multiple Accounts</div>
             Only one account per person is allowed. Account sharing counts as
             multiple accounts and is therefore forbidden. Account trading is not
@@ -879,7 +908,9 @@ export const UserGuide = () => {
             </b>
           </section>
           <section id="M14" className="space-y-4">
-            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">14 - Support</div>
+            <div className="font-bold hover:text-[yellow] hover:text-[20px] transition-all cursor-pointer">
+              12 - Support
+            </div>
             <div>
               If you need technical support please contact our Customer Service
               by sending a support ticket in the Support section of the control

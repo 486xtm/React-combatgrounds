@@ -155,7 +155,7 @@ const questions = {
       id: "2.4",
       question: "What is a round?",
       content:
-        "Every 10 days a new round starts, and the players' stats are reset: everything starts over from scratch, and players can change their username. This makes it fair for newcomers and gives everyone a bigger chance to win. All player stats get reset at the end of the round except for the purchased turns and the medals.",
+        "Every 7 days a new round starts, and the players' stats are reset: everything starts over from scratch, and players can change their username. This makes it fair for newcomers and gives everyone a bigger chance to win. All player stats get reset at the end of the round except for the purchased turns and the medals.",
       section: "M24",
     },
     {
@@ -169,7 +169,7 @@ const questions = {
       id: "2.6",
       question: "What are medals?",
       content:
-        "At the end of each round, 8 different medals are given to the leaders.",
+        "At the end of each round, 13 different medals are given to the leaders.",
       section: "M26",
     },
     {
@@ -261,14 +261,14 @@ const questions = {
       section: "M219",
       question: "What is the casino?",
       content:
-        "At the casino, you can try your chance to win some money or recruits.",
+        "Casino has been removed.",
     },
     {
       id: "2.20",
       section: "M220",
       question: "What is the bank?",
       content:
-        "Just like in the real world, you have a bank account and petty cash. The money you use anywhere is the cash you have on you. However, keeping money in your pocket is risky. Another player can attack you and steal it; depositing part of it in the bank is not a bad idea. You are able to put 20% of your money in the bank and you have 3 transactions a day.",
+        "Bank has been removed.",
     },
     {
       id: "2.21",
@@ -339,7 +339,7 @@ const questions = {
       section: "M230",
       question: "Which weapons are used when I attack?",
       content:
-        "Your best weapons are automatically used when you attack someone. You can tweak a bit how they are used by selecting the attack type:",
+        "Different attack types have been removed.",
     },
   ],
   payment: [
@@ -430,7 +430,7 @@ export const FAQ = () => {
             <div className="font-bold mb-3">1 - Account Questions</div>
             {questions.account.map((val, index) => (
               <section id={val.section} key={index}>
-                <div className="font-[600] mb-3 transition-all duration-200 hover:text-[yellow] hover:text-[20px]">
+                <div className="font-[600] mb-3 transition-all duration-200 hover:text-[yellow] hover:text-[20px] cursor-pointer">
                   {val.id} - {val.question}
                 </div>
                 <div className="mb-3 leading-none">{val.content}</div>
@@ -441,47 +441,108 @@ export const FAQ = () => {
             <div className="font-bold mb-3">2 - Gameplay-related Questions</div>
             {questions.game.map((val, index) => (
               <section id={val.section} key={index}>
-                <div className="font-[600] mb-3 transition-all duration-200 hover:text-[yellow] hover:text-[20px]">
+                <div className="font-[600] mb-3 transition-all duration-200 hover:text-[yellow] hover:text-[20px] cursor-pointer">
                   {val.id} - {val.question}
                 </div>
                 <div className="mb-3 leading-none">{val.content}</div>
                 {val.id == "2.5" ? (
                   <div>
-                    <div className="w-2/3 mx-auto flex flex-wrap">
-                      <div className="border w-full  text-center font-bold border-[#201d1d]">Top Players</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 1</div><div className="w-3/4 border border-[#201d1d]">	Ultimate Medal and 25 points</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 2</div><div className="w-3/4 border border-[#201d1d]">		Medal of Honor and 16 points</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 3</div><div className="w-3/4 border border-[#201d1d]">		War Hero Medal and 12 points</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 4</div><div className="w-3/4 border border-[#201d1d]">	Elite Medal and 10 points</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 5</div><div className="w-3/4 border border-[#201d1d]">	Veteran's Medal and 8 points</div>
-                    </div>
-                    <br/>
-                    <div className="w-2/3 mx-auto flex flex-wrap">
-                      <div className="border w-full  text-center font-bold border-[#201d1d]">Top supporters</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 1</div><div className="w-3/4 border border-[#201d1d]">	Cash prize and 15,000 turns</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 2</div><div className="w-3/4 border border-[#201d1d]">			100,000 turns</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 3</div><div className="w-3/4 border border-[#201d1d]">			50,000 turns</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 4</div><div className="w-3/4 border border-[#201d1d]">		25,000 turns</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 5</div><div className="w-3/4 border border-[#201d1d]">		15,000 turns</div>
-                    </div>
-                    <br/>
-                    <div className="w-2/3 mx-auto flex flex-wrap">
-                      <div className="border w-full  text-center font-bold border-[#201d1d]">Top Free Players</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 1</div><div className="w-3/4 border border-[#201d1d]">		20,000 turns</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 2</div><div className="w-3/4 border border-[#201d1d]">			10,000 turns</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 3</div><div className="w-3/4 border border-[#201d1d]">			7,000 turns</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 4</div><div className="w-3/4 border border-[#201d1d]">		5,000 turns</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 5</div><div className="w-3/4 border border-[#201d1d]">		3,000 turns</div>
-                    </div>
-                    <br/>
-                    <div className="w-2/3 mx-auto flex flex-wrap">
+                    <div className="w-full px-5 text-center mx-auto flex flex-wrap">
                       <div className="border w-full  text-center font-bold border-[#201d1d]">
-                      Top crews</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 1</div><div className="w-3/4 border border-[#201d1d]">			90,000 turns, Gold Medal and 16 points</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 2</div><div className="w-3/4 border border-[#201d1d]">				40,000 turns, Silver Medal and 12 points</div>
-                      <div className="w-1/4 border border-[#201d1d]">Rank# 3</div><div className="w-3/4 border border-[#201d1d]">		15,000 turns, Bronze medal and 8 points</div>
+                        Top supporters
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 1
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        Medal of Honor, Cash prize, 20,000 turns and 25 points
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 2
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        Distinguished Service Cross, 16,000 turns and 16 points
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 3
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        Silver Star, 12,000 turns and 12 points
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 4
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        Legion of Merit, 8,000 turns and 10 points
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 5
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        Soldier's Medal, 4,000 turns and 8 points
+                      </div>
                     </div>
-                    <br/>
+                    <br />
+                    <div className="w-full px-5 text-center mx-auto flex flex-wrap">
+                      <div className="border w-full  text-center font-bold border-[#201d1d]">
+                        Top Free Players
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 1
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        Bronze Star, 15,000 turns and 8 points
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 2
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        Purple Heart, 12,000 turns and 5 points
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 3
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        Meritorious Service, 9,000 turnsand 4 points
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 4
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        Joint Service Commendation, 6,000 turns and 3 points
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 5
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        Joint Service Achievement, 3,000 turns and 2 points
+                      </div>
+                    </div>
+                    <br />
+                    <div className="w-full px-5 text-center mx-auto flex flex-wrap">
+                      <div className="border w-full  text-center font-bold border-[#201d1d]">
+                        Top crews
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 1
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        90,000 turns, Prisoner of War and 16 points
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 2
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        60,000 turns, National Defense Service and 12 points
+                      </div>
+                      <div className="w-1/4 border border-[#201d1d]">
+                        Rank# 3
+                      </div>
+                      <div className="w-3/4 border border-[#201d1d]">
+                        30,000 turns, Global War on Terror and 8 points
+                      </div>
+                    </div>
+                    <br />
                   </div>
                 ) : (
                   ""
@@ -489,16 +550,20 @@ export const FAQ = () => {
                 {val.id == "2.6" ? (
                   <div className="ml-4">
                     <br />
-                    &gt;&gt; Ultimate Medal <br />
                     &gt;&gt; Medal of Honor <br />
-                    &gt;&gt; War Hero Medal <br />
-                    &gt;&gt; Elite Medal <br />
-                    &gt;&gt; Veteran's Medal <br />
-                    &gt;&gt; Gold Medal <br />
-                    &gt;&gt; Silver Medal
-                    <br />
-                    &gt;&gt; Bronze Medal
-                    <br />
+                    &gt;&gt; Distinguished Service Cross <br />
+                    &gt;&gt; Silver Star <br />
+                    &gt;&gt; Legion of Merit <br />
+                    &gt;&gt; Soldier's Medal <br />
+                    &gt;&gt; Bronze Star <br />
+                    &gt;&gt; Purple Heart <br />
+                    &gt;&gt; Meritorious Service <br />
+                    &gt;&gt; Joint Service Commendation <br />
+                    &gt;&gt; Joint Service Achievement<br />
+                    &gt;&gt; Prisoner of War <br />
+                    &gt;&gt; National Defense Service <br />
+                    &gt;&gt; Global War on Terror <br />
+
                     <br />
                   </div>
                 ) : (
@@ -526,24 +591,6 @@ export const FAQ = () => {
                 ) : (
                   ""
                 )}
-                {val.id == "2.30" ? (
-                  <ul className="list-outside list-disc ml-10">
-                    <br />
-                    <li>
-                      Invasive attack is better when you have attack weapons.
-                    </li>
-                    <li>
-                      Preventive attack is better when you have defense weapons.
-                    </li>
-                    <li>
-                      Unexpected attack is better when you have both defense and
-                      attack weapons.
-                    </li>
-                    <br />
-                  </ul>
-                ) : (
-                  ""
-                )}
               </section>
             ))}
           </div>
@@ -551,7 +598,7 @@ export const FAQ = () => {
             <div className="font-bold mb-3">3 - Payment Questions</div>
             {questions.payment.map((val, index) => (
               <section id={val.section} key={index}>
-                <div className="font-[600] mb-3 transition-all duration-200 hover:text-[yellow] hover:text-[20px]">
+                <div className="font-[600] mb-3 transition-all duration-200 hover:text-[yellow] hover:text-[20px] cursor-pointer">
                   {val.id} - {val.question}
                 </div>
                 <div className="mb-3 leading-none">{val.content}</div>
