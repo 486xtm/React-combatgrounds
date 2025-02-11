@@ -43,7 +43,7 @@ const ProtectedRoute = React.memo(({ children }) => {
     }
   }, [dispatch, navigate]);
   const token = localStorage.getItem("ACCESS_TOKEN");
-  if (isAuthenticated && token) return children;
+  if (token) return children;
   else {
     dispatch(logout());
     return <Navigate to="/" state={{ from: location }} replace />;

@@ -3,8 +3,8 @@ import styles from "./styles.module.css";
 import { Menu } from "../menu/menu";
 import { Header } from "../header/header";
 
-import { useDispatch, useSelector } from "react-redux";
-import { getUserInfo } from "../../../api/user";
+import { useSelector } from "react-redux";
+// import { getUserInfo } from "../../../api/user";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constant";
 export const Layout = ({
@@ -15,13 +15,13 @@ export const Layout = ({
 }) => {
   const user = useSelector(({ user }) => user.user);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (isMenuShow) {
-      getUserInfo(dispatch);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (isMenuShow) {
+  //     getUserInfo(dispatch);
+  //   }
+  // }, []);
 
   return (
     <div className={styles["layout-container"]}>

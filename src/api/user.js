@@ -9,7 +9,7 @@ import {
   setStats,
   setUser,
 } from "../redux/userSlice";
-import { login } from "../redux/authSlice";
+import { login, logout } from "../redux/authSlice";
 import { setToast } from "../redux/toastSlice";
 import { basicURL } from "../common/constant";
 import { setUnreadMessagesCount } from "../redux/mailSlice";
@@ -24,10 +24,7 @@ export const getUserInfo = async (dispatch, navigate) => {
     dispatch(setUnreadMessagesCount(unreadMessagesCount));
     dispatch(setUnreadCrewChatCount(user.unreadCrewBoard));
   } catch (err) {
-    dispatch(
-      setToast({ type: "error", msg: err.response?.data.msg || err.message })
-    );
-    navigate("/login");
+    dispatch(logout());
   }
 };
 
@@ -252,7 +249,7 @@ export const findHelpers = async (dispatch) => {
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
     );
   }
-}
+};
 
 export const getRaiseFundParams = async (dispatch) => {
   try {
@@ -263,7 +260,7 @@ export const getRaiseFundParams = async (dispatch) => {
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
     );
   }
-}
+};
 
 export const addRaiseFundParams = async (data, dispatch) => {
   try {
@@ -274,7 +271,7 @@ export const addRaiseFundParams = async (data, dispatch) => {
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
     );
   }
-}
+};
 
 export const updateRaiseFundParams = async (data, dispatch) => {
   try {
@@ -285,7 +282,7 @@ export const updateRaiseFundParams = async (data, dispatch) => {
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
     );
   }
-}
+};
 
 export const removeRaiseFundParams = async (data, dispatch) => {
   try {
@@ -297,4 +294,4 @@ export const removeRaiseFundParams = async (data, dispatch) => {
       setToast({ type: "error", msg: err.response?.data.msg || err.message })
     );
   }
-}
+};
