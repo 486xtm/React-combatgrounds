@@ -82,7 +82,7 @@ export const Subscribe = () => {
               <li>
                 <b>Max turns build up raised by 500</b> - You will keep
                 receiving additional turns every 10 minutes until you accumulate
-                2,000 turns.
+                2,500 turns.
               </li>
               <li>
                 <b>Support ticket priority</b> - Your support tickets will be
