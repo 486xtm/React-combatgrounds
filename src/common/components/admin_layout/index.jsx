@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LeftSidebar from "./left-sidebar";
 import Breadcrumbs from "./breadcrumbs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constant";
+import { getUserInfo } from "../../../api/user";
 
 const AdminLayout = ({ children }) => {
   const user = useSelector(({ user }) => user.user);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  if (user.role !== -1) {
+  if (user?.role !== -1) {
     navigate(ROUTES.MAIN_ROUTES.HEADQUARTER);
   }
+
+  useEffect(() => {
+    getUserInfo(dispatch, navigate);
+  }, []);
 
   return (
     <div className="flex w-screen bg-custom-dark">

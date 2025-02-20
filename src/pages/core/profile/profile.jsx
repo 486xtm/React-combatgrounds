@@ -23,8 +23,8 @@ export const Profile = () => {
   const user_1 = otherUser ? otherUserInfoAll || otherUser : currentUser;
   const user = {
     ...user_1,
-    medals: user_1.medals
-      ? [...user_1.medals].sort(
+    medals: user_1?.medals
+      ? [...user_1?.medals].sort(
         (a, b) => Number(a.medal.id) - Number(b.medal.id)
       )
       : [],
@@ -417,7 +417,7 @@ export const Profile = () => {
               {user && user.medals ? (
                 <div className="flex w-[80%] ml-[10%]">
                   <div className="w-1/3 flex flex-col gap-4">
-                    {user.medals
+                    {user && user.medals
                       .filter((i) => i.medal.type === 0)
                       .map((item, index) => (
                         <img
@@ -436,7 +436,7 @@ export const Profile = () => {
                       ))}
                   </div>
                   <div className="w-1/3  flex flex-col gap-4">
-                    {user.medals
+                    {user && user.medals
                       .filter((i) => i.medal.type === 1)
                       .map((item, index) => (
                         <img
@@ -455,7 +455,7 @@ export const Profile = () => {
                       ))}
                   </div>
                   <div className="w-1/3  flex flex-col gap-4">
-                    {user.medals
+                    {user && user.medals
                       .filter((i) => i.medal.type === 2)
                       .map((item, index) => (
                         <img
