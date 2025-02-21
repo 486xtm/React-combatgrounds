@@ -127,12 +127,12 @@ const buyInfo2 = [
     bonus: 25000,
     cost: 250,
   },
-  // {
-  //   total: 175000,
-  //   turns: 100000,
-  //   bonus: 75000,
-  //   cost: 500,
-  // },
+  {
+    total: 175000,
+    turns: 100000,
+    bonus: 75000,
+    cost: 500,
+  },
 ];
 
 export const BuyTurns = () => {
