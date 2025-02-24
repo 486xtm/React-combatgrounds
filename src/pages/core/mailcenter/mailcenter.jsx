@@ -207,7 +207,7 @@ export const MailCenter = () => {
                         </td>
                         <td>
                           <span
-                            className={`${viewType === 'Inbox' && !msg.read ? 'text-secondary' : 'text-white'} text-sm font-bold underline cursor-pointer hover:text-secondary`}
+                            className={`${viewType === 'Inbox' && !msg.read ? (msg && msg.sender?.name !== 'system' ? 'text-secondary' : 'text-warning') : 'text-white'} text-sm font-bold underline cursor-pointer hover:text-secondary`}
                             onClick={() =>
                               handleUserClick(
                                 viewType !== "Inbox" ? msg.receiver : msg.sender
@@ -225,7 +225,7 @@ export const MailCenter = () => {
                         </td>
                         <td>
                           <span
-                            className={`${viewType === 'Inbox' && !msg.read ? 'text-secondary' : 'text-white'} text-sm font-bold underline cursor-pointer hover:text-secondary`}
+                            className={`${viewType === 'Inbox' && !msg.read ? (msg && msg.sender?.name !== 'system' ? 'text-secondary' : 'text-warning') : 'text-white'} text-sm font-bold underline cursor-pointer hover:text-secondary`}
                             onClick={() => {
                               if (viewType === 'Inbox') checkMessage({ msgId: msg._id }, dispatch);
                               setDetailedViewMessage(msg);
@@ -235,7 +235,7 @@ export const MailCenter = () => {
                           </span>
                         </td>
                         <td>
-                          <span className={`${viewType === 'Inbox' && !msg.read ? 'text-secondary' : 'text-white'} text-sm font-bold`}>
+                          <span className={`${viewType === 'Inbox' && !msg.read ? (msg && msg.sender?.name !== 'system' ? 'text-secondary' : 'text-warning') : 'text-white'} text-sm font-bold`}>
                             {moment(msg.created_at).format(
                               "MMMM Do, YYYY, h:mm A"
                             )}

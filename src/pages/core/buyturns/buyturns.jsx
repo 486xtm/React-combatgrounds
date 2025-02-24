@@ -141,7 +141,9 @@ export const BuyTurns = () => {
   const [ErrorMessage, setErrorMessage] = useState("");
   const [orderID, setOrderID] = useState(false);
   const [buyTurn, setBuyTurn] = useState({});
+  const [transferType, setTransferType] = useState("");
   const [transferTurn, setTransferTurn] = useState("");
+  const [casinoTurn, setCaisnoTurn] = useState("");
   const [receiver, setReceiver] = useState("");
   const [agent, setAgent] = useState(localStorage.getItem("agent"));
   const [showConfirmAlert, setShowConfirmAlert] = useState(false);
@@ -160,7 +162,6 @@ export const BuyTurns = () => {
   const dispatch = useDispatch();
 
   const handleSetReceiver = async () => {
-    // if (receiver)
     try {
       await axios.post(`${basicURL}/payment/agent`, { receiver });
       setAgent(receiver);
@@ -171,8 +172,15 @@ export const BuyTurns = () => {
       setReceiver(null);
     }
   };
+
   const handleTransfer = () => {
     setShowConfirmAlert(true);
+    setTransferType('round');
+  };
+
+  const handleTransferCasino = () => {
+    setShowConfirmAlert(true);
+    setTransferType('casino');
   };
 
   const createOrder = (data, actions) => {
@@ -240,7 +248,7 @@ export const BuyTurns = () => {
             <br /> your account
           </div>
           <div className="flex gap-5 justify-center mb-10">
-            Number of turns :{" "}
+            Turns to Round :{" "}
             <input
               className="rounded-md px-2 text-black"
               onChange={(e) =>
@@ -253,6 +261,24 @@ export const BuyTurns = () => {
             <button
               className="text-black px-5 bg-white"
               onClick={handleTransfer}
+            >
+              Transfer
+            </button>
+          </div>
+          <div className="flex gap-5 justify-center mb-10">
+            Turns to Casino :{" "}
+            <input
+              className="rounded-md px-2 text-black"
+              onChange={(e) =>
+                setCaisnoTurn(e.target.value.replace(/[^0-9]/g, ""))
+              }
+              value={
+                casinoTurn ? Number(casinoTurn).toLocaleString("en-US") : ""
+              }
+            />{" "}
+            <button
+              className="text-black px-5 bg-white"
+              onClick={handleTransferCasino}
             >
               Transfer
             </button>
@@ -349,7 +375,7 @@ export const BuyTurns = () => {
             </div>
           )}
           <div className="text-left my-5">
-            <div className="text-[red] my-2">Pending eCheck Payments:</div>
+            <div className="text-[red] my-2">Pending Check Payments:</div>
             <div>
               Please note that eCheck payments usually take 4 business days to
               clear. The order will not be processed until the funds have
@@ -373,12 +399,12 @@ export const BuyTurns = () => {
       <ConfirmAlert
         isOpen={showConfirmAlert}
         onAccept={() => {
-          transfer({ transferTurn }, dispatch);
+          transfer({ transferTurn: (transferType !== 'casino' ? transferTurn : casinoTurn), transferType }, dispatch);
           setShowConfirmAlert(false);
         }}
         onClose={() => setShowConfirmAlert(false)}
         description={
-          "Once you transfer turns, you cannot put them back into storage."
+          "Once you transfer turns, you can not put them back into vault."
         }
       />
     </PayPalScriptProvider>
