@@ -33,7 +33,7 @@ export const transfer = async (data, dispatch) => {
         type: "success",
         msg: `You've just transfered ${data.transferTurn.toLocaleString(
           "en-US"
-        )} turns from your bank to the round.`,
+        )} turns from your bank to the ${data.transferType || "round"}.`,
       })
     );
   } catch (err) {
