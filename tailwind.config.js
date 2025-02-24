@@ -45,6 +45,7 @@ export default {
         "custom-dark": "#151A1E",
         "custom-light-gray": "#FAFAFA",
         "custom-dark-purple": "#4940AE",
+        "warning": "#f43f5e"
       },
       fontSize: {
         xxl: "1.7rem",

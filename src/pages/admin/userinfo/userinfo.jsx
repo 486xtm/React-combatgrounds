@@ -74,6 +74,7 @@ export const AdminUserInfo = () => {
 
   useEffect(() => {
     setUser(userInfo);
+    console.log(userInfo);
   }, [userInfo]);
 
   useEffect(() => {
@@ -368,6 +369,17 @@ export const AdminUserInfo = () => {
               className="border-[1px] rounded-md px-2 py-1 shadow-sm focus:border-gray-600 flex-1"
             />
           </div>
+          <div className="flex items-center">
+            <div className="w-[100px]">Ip: </div>{" "}
+            <select
+              // disabled
+              className="border-[1px] rounded-md px-2 py-1 shadow-sm focus:border-gray-600 flex-1"
+            >
+              {user && user?.ips && user.ips.length ? user.ips.map(({ ip }) => (
+                <option key={`ip_${ip}`}>{ip}</option>
+              )) : <option>No Ips detected</option>}
+            </select>
+          </div>
           <div className="flex flex-col gap-3 justify-center">
             <div className="text-left">Description: </div>
             <textarea
@@ -519,7 +531,7 @@ export const AdminUserInfo = () => {
                     height="55"
                     onClick={() => setShowRemoveAchievementModal(item)}
                     alt="medals"
-                    />
+                  />
                 ))}
             </div>) : (<p className="text-center">No achievements</p>)}
             <Modal isOpen={showAchievementModal} onClose={() => setShowAchievementModal(false)}>
