@@ -3,6 +3,7 @@ import { Header, Layout, Menu } from "../../../common/components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getRound } from "../../../api/headquarter";
+import { getMaxTurnByRole, getTurnRewardsPerCycle } from "../../../common/utils";
 
 export const HeadQuarter = React.memo(() => {
   const user = useSelector(({ user }) => user.user);
@@ -31,7 +32,7 @@ export const HeadQuarter = React.memo(() => {
           </p>
           <p className="text-secondary text-center text-tiny mt-3">
             You get turns, money and recruits every 10 minutes as long as you
-            have less than {user && Number(user.role) > 0 ? "2,500" : "1,500"}{" "}
+            have less than {getMaxTurnByRole(user)}{" "}
             turns
           </p>
 
@@ -68,7 +69,7 @@ export const HeadQuarter = React.memo(() => {
                   Turns per cycle
                 </div>
                 <div className="text-white border border-gray-100 text-sm flex-1 bg-primary font-bold px-2">
-                  {user && user.role ? 25 : 15}
+                  {getTurnRewardsPerCycle(user)}
                 </div>
               </div>
             </div>

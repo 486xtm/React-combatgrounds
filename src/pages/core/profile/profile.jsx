@@ -10,6 +10,7 @@ import {
   formattedDuration,
   getColorSchemaByCharacterType,
   getGradeString,
+  getRoleString,
 } from "../../../common/utils";
 import { getUserById } from "../../../api/user";
 import { ROUTES, publicURL } from "../../../common/constant";
@@ -105,11 +106,7 @@ export const Profile = () => {
             </div>
             <div className="flex gap-2">
               <p className="text-[0.7rem] text-white border border-gray px-1 py-1 rounded mt-1">
-                {Number(user.role) != 0
-                  ? "Supporter+"
-                  : Boolean(user.isSupporter)
-                    ? "Supporter"
-                    : "Free Player"}
+                {getRoleString(user)}
               </p>
               {user && user.isHelper && <p className="text-[0.7rem] text-white border border-gray px-1 py-1 rounded mt-1">
                 Helper

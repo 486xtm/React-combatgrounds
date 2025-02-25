@@ -65,17 +65,10 @@ export const pagination = (data) => {
 
 export const getRole = (user) => {
   if (!user) return "N/A";
-  const { role, isSupporter } = user;
-  if (Number(role) === -1) return "Admin";
-  if (!Number(role || 0) && !Boolean(isSupporter || false)) {
-    return "Free Player";
-  }
-
-  if (Number(role || 0)) {
-    return "Supporter+"
-  }
-
-  return "Supporter";
+  if(Number(user.isSupporter) == 3) return "Supporter++";
+  if (Number(user.isSupporter) == 2) return "Supporter+";
+  if (Number(user.isSupporter) || Number(user.role)) return "Supporter";
+  return "Free Player";
 };
 
 export const formattedNumber = (n) => {
@@ -91,3 +84,27 @@ export const formattedNumber = (n) => {
   }
   return Math.floor(n);
 };
+
+export const getRoleString = (user) => {
+  if (!user) return "N/A";
+  if(Number(user.isSupporter) == 3) return "Supporter++";
+  if (Number(user.isSupporter) == 2) return "Supporter+";
+  if (Number(user.isSupporter) || Number(user.role)) return "Supporter";
+  return "Free Player";
+}
+
+export const getTurnRewardsPerCycle = (user) => {
+  if (!user) return 0;
+  if(Number(user.isSupporter) == 3) return 45;
+  if (Number(user.isSupporter) == 2) return 35;
+  if (Number(user.isSupporter) || Number(user.role)) return 25;
+  return 15;
+}
+
+export const getMaxTurnByRole = (user) => {
+  if (!user) return 0;
+  if(Number(user.isSupporter) == 3) return 3600;
+  if (Number(user.isSupporter) == 2) return 2800;
+  if (Number(user.isSupporter) || Number(user.role)) return 2000;
+  return 1500;
+}
