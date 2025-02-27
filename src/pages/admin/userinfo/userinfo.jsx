@@ -283,7 +283,7 @@ export const AdminUserInfo = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="w-[100px]">bankTurn: </div>{" "}
+            <div className="w-[100px]">Casino Turn: </div>{" "}
             <input
               value={
                 user && user.casinoTurn
@@ -294,6 +294,23 @@ export const AdminUserInfo = () => {
                 setUser({
                   ...user,
                   casinoTurn: Number(ev.target.value.replace(/[^0-9]/g, "")),
+                })
+              }
+              className="border-[1px] rounded-md px-2 py-1 shadow-sm focus:border-gray-600 flex-1"
+            />
+          </div>
+          <div className="flex items-center">
+            <div className="w-[100px]">Gold: </div>{" "}
+            <input
+              value={
+                user && user.gold
+                  ? Number(user.gold).toLocaleString("en-US")
+                  : 0
+              }
+              onChange={(ev) =>
+                setUser({
+                  ...user,
+                  gold: Number(ev.target.value.replace(/[^0-9]/g, "")),
                 })
               }
               className="border-[1px] rounded-md px-2 py-1 shadow-sm focus:border-gray-600 flex-1"
